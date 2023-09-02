@@ -1,22 +1,22 @@
-import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
-import User from './User'
+import { BaseModel, column, belongsTo, BelongsTo } from "@ioc:Adonis/Lucid/Orm";
+import User from "./temp/User";
 
 export default class TransactionLog extends BaseModel {
   @column({ isPrimary: true })
-  public logId: number
+  public logId: number;
 
   @column()
-  public userId: number
+  public userId: number;
 
   @column()
-  public action: string
+  public action: string;
 
   @column()
-  public affectedTable: string
+  public affectedTable: string;
 
   @column()
-  public affectedRow: number
+  public affectedRow: number;
 
   @belongsTo(() => User)
-  public user: BelongsTo<typeof User>
+  public user: BelongsTo<typeof User>;
 }

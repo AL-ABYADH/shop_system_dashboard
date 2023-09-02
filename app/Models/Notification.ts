@@ -1,20 +1,20 @@
-import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
-import User from './User'
-import { DateTime } from 'luxon'
+import { BaseModel, column, belongsTo, BelongsTo } from "@ioc:Adonis/Lucid/Orm";
+import User from "./temp/User";
+import { DateTime } from "luxon";
 
 export default class Notification extends BaseModel {
   @column({ isPrimary: true })
-  public notificationId: number
+  public notificationId: number;
 
   @column()
-  public userId: number
+  public userId: number;
 
   @column()
-  public message: string
+  public message: string;
 
   @column.dateTime()
-  public timestamp: DateTime
+  public timestamp: DateTime;
 
   @belongsTo(() => User)
-  public user: BelongsTo<typeof User>
+  public user: BelongsTo<typeof User>;
 }

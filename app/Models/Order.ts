@@ -1,57 +1,57 @@
-import { DateTime } from 'luxon'
-import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
-import User from './User'
-import PaymentMethod from './PaymentMethod'
-import ShippingMethod from './ShippingMethod'
-import Address from './Address'
-import OrderStatus from './OrderStatus'
+import { DateTime } from "luxon";
+import { BaseModel, column, belongsTo, BelongsTo } from "@ioc:Adonis/Lucid/Orm";
+import User from "./temp/User";
+import PaymentMethod from "./PaymentMethod";
+import ShippingMethod from "./ShippingMethod";
+import Address from "./Address";
+import OrderStatus from "./OrderStatus";
 
 export default class Order extends BaseModel {
   @column({ isPrimary: true })
-  public orderId: number
+  public orderId: number;
 
   @column()
-  public userId: number
+  public userId: number;
 
   @belongsTo(() => User)
-  public user: BelongsTo<typeof User>
+  public user: BelongsTo<typeof User>;
 
   @column()
-  public paymentMethodId: number
+  public paymentMethodId: number;
 
   @belongsTo(() => PaymentMethod)
-  public paymentMethod: BelongsTo<typeof PaymentMethod>
+  public paymentMethod: BelongsTo<typeof PaymentMethod>;
 
   @column()
-  public shippingMethodId: number
+  public shippingMethodId: number;
 
   @belongsTo(() => ShippingMethod)
-  public shippingMethod: BelongsTo<typeof ShippingMethod>
+  public shippingMethod: BelongsTo<typeof ShippingMethod>;
 
   @column()
-  public addressId: number
+  public addressId: number;
 
   @belongsTo(() => Address)
-  public address: BelongsTo<typeof Address>
+  public address: BelongsTo<typeof Address>;
 
   @column()
-  public Status: 'Testing' | 'Confirmation' | 'Sold' | 'Canceled'
+  public Status: "Testing" | "Confirmation" | "Sold" | "Canceled";
 
   @column()
-  public orderStatusId: number
+  public orderStatusId: number;
 
   @belongsTo(() => OrderStatus)
-  public orderStatus: BelongsTo<typeof OrderStatus>
+  public orderStatus: BelongsTo<typeof OrderStatus>;
 
   @column()
-  public totalPrice: number
+  public totalPrice: number;
 
   @column.date()
-  public orderDate: DateTime
+  public orderDate: DateTime;
 
   @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
+  public createdAt: DateTime;
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
+  public updatedAt: DateTime;
 }

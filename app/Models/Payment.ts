@@ -1,20 +1,20 @@
-import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
-import User from './User'
-import Order from './Order'
+import { BaseModel, column, belongsTo, BelongsTo } from "@ioc:Adonis/Lucid/Orm";
+import User from "./temp/User";
+import Order from "./Order";
 
 export default class Payment extends BaseModel {
   @column({ isPrimary: true })
-  public paymentId: number
+  public paymentId: number;
 
   @column()
-  public userId: number
+  public userId: number;
 
   @column()
-  public orderId: number
+  public orderId: number;
 
   @belongsTo(() => User)
-  public user: BelongsTo<typeof User>
+  public user: BelongsTo<typeof User>;
 
   @belongsTo(() => Order)
-  public order: BelongsTo<typeof Order>
+  public order: BelongsTo<typeof Order>;
 }
