@@ -5,11 +5,13 @@ export default class Addresses extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('LocationID').primary()
-      table.text('Address').notNullable()
-      table.decimal('Latitude', 10, 8)
-      table.decimal('Longitude', 11, 8)
-      table.timestamps(true, true)
+      table.increments('address_id').primary()
+      table.integer('user_id').unsigned().references('users.user_id').notNullable()
+      table.text('address').notNullable()
+      table.decimal('latitude', 10, 8).notNullable()
+      table.decimal('longitude', 11, 8).notNullable()
+      table.timestamps(true, true) // created_at and updated_at
+      table.timestamp('deleted_at').nullable()
     })
   }
 

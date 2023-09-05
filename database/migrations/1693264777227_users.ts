@@ -5,13 +5,16 @@ export default class Users extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('UserID').primary()
-      table.string('Username', 255).notNullable()
-      table.string('Password', 255).notNullable()
-      table.enum('AccountType', ['Admin', 'Saler', 'User']).notNullable()
-      table.integer('ProfileID').unsigned().references('Profiles.ProfileID')
-      table.dateTime('deleted_at').defaultTo(null)
-      table.timestamps(true, true)
+      table.increments('user_id').primary()
+      table.string('username', 255).notNullable()
+      table.string('password', 255).notNullable()
+      table.string('full_name', 255).notNullable()
+      table.string('phone_number', 20).notNullable()
+      table.enum('account_type', ['admin', 'seller', 'customer']).notNullable()
+      table.time('shop_open_at').notNullable()
+      table.time('shop_close_at').notNullable()
+      table.timestamps(true, true) // created_at and updated_at
+      table.timestamp('deleted_at').nullable()
     })
   }
 

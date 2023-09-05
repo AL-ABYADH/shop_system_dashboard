@@ -1,23 +1,21 @@
-import { BaseModel, column, belongsTo, BelongsTo, beforeFind, beforeFetch } from '@ioc:Adonis/Lucid/Orm'
-import ImagesGroup from './ImagesGroup'
+import { BaseModel, beforeFetch, beforeFind, BelongsTo, belongsTo, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
+import ImageItem from './ImageItem'
+import ProductItem from './ProductItem'
 import { DateTime } from 'luxon'
 import { softDelete, softDeleteQuery } from 'App/Services/SoftDelete'
 
-export default class ImageItem extends BaseModel {
+export default class ImagesGroup extends BaseModel {
   @column({ isPrimary: true })
-  public imageItemId: number
-
-  @column()
   public imagesGroupId: number
 
-  @belongsTo(() => ImagesGroup)
-  public imagesGroup: BelongsTo<typeof ImagesGroup>
-
   @column()
-  public isPrimary: boolean // Should be true for only one of the image items belonging to an ImagesGroup object
+  public productItemId: number
 
-  @column()
-  public imageUrl: string
+  @belongsTo(() => ProductItem)
+  public productItem: BelongsTo<typeof ProductItem>
+
+  @hasMany(() => ImageItem)
+  public imageItems: HasMany<typeof ImageItem>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

@@ -9,7 +9,7 @@ export const softDeleteQuery = (
   query.whereNull("deleted_at");
 };
 
-export const softDelete = async (row: LucidRow, column: string = "deletedAt") => {
+export const softDelete = async (row: LucidRow, column: string = "deleted_at") => {
   try {
     row[column] = DateTime.local().toSQL({ includeOffset: false });
     await row.save();

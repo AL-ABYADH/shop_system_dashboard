@@ -1,16 +1,13 @@
-import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, belongsTo, BelongsTo, hasOne, HasOne, hasMany, HasMany, beforeFind, beforeFetch } from '@ioc:Adonis/Lucid/Orm'
 import Category from './Category'
-import Image from './Image'
+import ImagesGroup from './ImagesGroup'
+import ProductItem from './ProductItem'
+import User from './User'
+import { softDelete, softDeleteQuery } from 'App/Services/SoftDelete'
 
 export default class Product extends BaseModel {
   @column({ isPrimary: true })
   public productId: number
-
-  @column()
-  public categoryId: number
-
-  @column()
-  public imagesId: number
 
   @column()
   public name: string
@@ -19,14 +16,36 @@ export default class Product extends BaseModel {
   public description: string
 
   @column()
-  public Brand: string
+  public brand: string
 
-  // @column()
-  // public rating: number
+  @column()
+  public categoryId: number
 
   @belongsTo(() => Category)
   public category: BelongsTo<typeof Category>
 
-  @belongsTo(() => Image)
-  public image: BelongsTo<typeof Image>
+  @column()
+  public sellerUserId: number
+
+  @belongsTo(() => User)
+  public seller: BelongsTo<typeof User>
+
+  @hasOne(() => ImagesGroup)
+  public imagesGroup: HasOne<typeof ImagesGroup>
+
+  @hasMany(() => ProductItem)
+  public productItems: HasMany<typeof ProductItem>
+
+  // @column()
+  // public rating: number
+
+  // Soft Delete
+  @beforeFind()
+  public static softDeletesFind = softDeleteQuery
+  @beforeFetch()
+  public static softDeletesFetch = softDeleteQuery
+
+  public async softDelete() {
+    await softDelete(this)
+  }
 }

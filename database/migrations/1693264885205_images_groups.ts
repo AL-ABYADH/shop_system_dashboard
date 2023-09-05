@@ -1,13 +1,12 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class Categories extends BaseSchema {
-  protected tableName = 'categories'
+export default class ImagesGroups extends BaseSchema {
+  protected tableName = 'images_groups'
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('category_id').primary()
-      table.string('category_name', 50).notNullable()
-      table.integer('parent_category_id').unsigned().references('categories.category_id').notNullable()
+      table.increments('images_group_id').primary()
+      table.integer('product_item_id').unsigned().references('product_items.product_item_id').notNullable()
       table.timestamps(true, true) // created_at and updated_at
       table.timestamp('deleted_at').nullable()
     })
