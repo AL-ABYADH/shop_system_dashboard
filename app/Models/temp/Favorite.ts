@@ -4,7 +4,7 @@
 
 // export default class FavoriteItem extends BaseModel {
 //   @column({ isPrimary: true })
-//   public favoriteItemId: number
+//   public id: number
 
 //   @column()
 //   public favoritesId: number

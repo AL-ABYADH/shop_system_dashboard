@@ -16,7 +16,7 @@ import Product from './Product'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
-  public userId: number
+  public id: number
 
   @column()
   public username: string // Login credential
@@ -31,10 +31,16 @@ export default class User extends BaseModel {
   public phoneNumber: string // Must be verified
 
   @column()
+  public accountType: 'admin' | 'seller' | 'customer'
+
+  @column()
+  public preferredCurrency: 'YER' | 'USD' | 'SAR' // The preferred currency to display prices to the customer
+
+  @column()
   public imageUrl: string // This will be mandatory for users of types "seller" (shop image), and "admin" (profile image). Not needed for customers
 
   @column()
-  public accountType: 'admin' | 'seller' | 'customer'
+  public warningsCount: number // Will default to 0 for the users of type "seller" and will then be incremented. Null for users of other types
 
   @column()
   public shopOpenAt: DateTime // Only for users of type "seller"
@@ -42,23 +48,17 @@ export default class User extends BaseModel {
   @column()
   public shopCloseAt: DateTime // Only for users of type "seller"
 
-  @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
-
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
-
-  @column.dateTime({ autoCreate: true})
-  public deletedAt: DateTime | null
-
   @hasMany(() => Address)
-  public addresses: HasMany<typeof Address> // Only users of type "seller" will have at least one address
+  public addresses: HasMany<typeof Address> // Only users of types "seller" and "customer" will have at least one address
 
   @hasMany(() => Order)
-  public orderedOrders: HasMany<typeof Order> // Only users of type "customer" will order orders
+  public customerOrders: HasMany<typeof Order> // Only users of type "customer" will order orders
 
   @hasMany(() => Order)
-  public handledOrders: HasMany<typeof Order> // Only users of type "customer" will handle orders
+  public sellerOrders: HasMany<typeof Order> // Only users of type "seller" will be ordered from
+
+  @hasMany(() => Order)
+  public adminOrders: HasMany<typeof Order> // Only users of type "admin" will handle orders
 
   @hasMany(() => Product)
   public products: HasMany<typeof Product> // Only users of type "seller" will have products
@@ -70,6 +70,15 @@ export default class User extends BaseModel {
       user.password = await Hash.make(user.password)
     }
   }
+
+  @column.dateTime({ autoCreate: true })
+  public createdAt: DateTime
+
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  public updatedAt: DateTime
+
+  @column.dateTime({ autoCreate: true})
+  public deletedAt: DateTime | null
 
   // Soft Delete
   @beforeFind()

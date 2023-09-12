@@ -5,11 +5,11 @@ export default class Prices extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('price_id').primary()
-      table.integer('discount_id').unsigned().references('discounts.discount_id')
-      table.integer('currency_id').unsigned().references('currencies.currency_id').notNullable()
-
-      table.timestamps(true, true)
+      table.increments('id').primary()
+      table.decimal('price', 10, 2).unsigned().notNullable()
+      table.enum('currentcy', ['YER', 'USD', 'SAR']).notNullable()
+      table.timestamps(true, true) // created_at and updated_at
+      table.timestamp('deleted_at').nullable()
     })
   }
 

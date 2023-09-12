@@ -1,14 +1,14 @@
-import { BaseModel, column, belongsTo, BelongsTo, beforeFind, beforeFetch } from "@ioc:Adonis/Lucid/Orm"
-import User from "./temp/User"
-import { DateTime } from "luxon"
-import { softDelete, softDeleteQuery } from "App/Services/SoftDelete"
+import { BaseModel, column, belongsTo, BelongsTo, beforeFind, beforeFetch } from '@ioc:Adonis/Lucid/Orm'
+import User from './User'
+import { DateTime } from 'luxon'
+import { softDelete, softDeleteQuery } from 'App/Services/SoftDelete'
 
 export default class Address extends BaseModel {
   @column({ isPrimary: true })
-  public addressId: number
+  public id: number
 
   @column()
-  public userId: number
+  public userId: number // Could be a customer or a seller, not an admin
 
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>

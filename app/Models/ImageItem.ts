@@ -5,7 +5,7 @@ import { softDelete, softDeleteQuery } from 'App/Services/SoftDelete'
 
 export default class ImageItem extends BaseModel {
   @column({ isPrimary: true })
-  public imageItemId: number
+  public id: number
 
   @column()
   public imagesGroupId: number

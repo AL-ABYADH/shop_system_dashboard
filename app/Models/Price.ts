@@ -1,20 +1,33 @@
-import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
-import Discount from './Discount'
-import Currency from './Currency'
+import { BaseModel, beforeFetch, beforeFind, column } from '@ioc:Adonis/Lucid/Orm'
+import { softDelete, softDeleteQuery } from 'App/Services/SoftDelete'
+import { DateTime } from 'luxon'
 
 export default class Price extends BaseModel {
   @column({ isPrimary: true })
-  public priceId: number
+  public id: number
 
   @column()
-  public discountId: number
+  public price: number
 
   @column()
-  public currencyId: number
+  public currency: 'YER' | 'USD' | 'SAR'
 
-  @belongsTo(() => Discount)
-  public discount: BelongsTo<typeof Discount>
+  @column.dateTime({ autoCreate: true })
+  public createdAt: DateTime
 
-  @belongsTo(() => Currency)
-  public currency: BelongsTo<typeof Currency>
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  public updatedAt: DateTime
+
+  @column.dateTime({ autoCreate: true})
+  public deletedAt: DateTime | null
+
+  // Soft Delete
+  @beforeFind()
+  public static softDeletesFind = softDeleteQuery
+  @beforeFetch()
+  public static softDeletesFetch = softDeleteQuery
+
+  public async softDelete() {
+    await softDelete(this)
+  }
 }

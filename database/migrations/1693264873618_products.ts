@@ -5,13 +5,14 @@ export default class Products extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('product_id').primary()
-      table.string('name', 100).notNullable()
+      table.increments('id').primary()
+      table.string('name', 50).notNullable().unique()
+      table.string('model', 50).notNullable().unique()
       table.text('description').nullable()
-      table.string('brand', 255).notNullable()
-      table.integer('category_id').unsigned().references('categories.category_id').notNullable()
-      table.integer('images_id').unsigned().references('images.image_id').notNullable()
-      // table.enum('rating', [1, 2, 3, 4, 5])
+      table.string('brand', 50).notNullable()
+      table.text('flaws').nullable()
+      table.integer('category_id').unsigned().references('categories.id').notNullable()
+      table.decimal('rating', 2, 1).notNullable().unsigned()
       table.timestamps(true, true) // created_at and updated_at
       table.timestamp('deleted_at').nullable()
     })

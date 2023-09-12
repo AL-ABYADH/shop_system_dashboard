@@ -5,14 +5,16 @@ export default class ProductItems extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('product_item_id').primary()
-      table.integer('product_id').unsigned().references('products.product_id').notNullable()
-      table.decimal('Price', 10, 2)
-      table.text('Flaws')
-      table.string('PhoneStatus', 255)
-      table.string('Availability', 255)
-      table.text('Description')
-      table.timestamps(true, true)
+      table.increments('id').primary()
+      table.text('description').nullable()
+      table.integer('product_id').unsigned().references('products.id').notNullable()
+      table.integer('seller_id').unsigned().references('users.id').notNullable()
+      table.integer('price_id').unsigned().references('prices.id').notNullable()
+      table.integer('warranty_ends_in').unsigned().notNullable()
+      table.boolean('usedProduct').notNullable()
+      table.enum('used_product_condition', ['excellent', 'good', 'normal', 'bad', 'terrible']).nullable()
+      table.timestamps(true, true) // created_at and updated_at
+      table.timestamp('deleted_at').nullable()
     })
   }
 

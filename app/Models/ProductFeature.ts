@@ -1,13 +1,22 @@
-import { BaseModel, beforeFetch, beforeFind, BelongsTo, belongsTo, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
-import ImageItem from './ImageItem'
-import ProductItem from './ProductItem'
-import { DateTime } from 'luxon'
-import { softDelete, softDeleteQuery } from 'App/Services/SoftDelete'
-import Product from './Product'
+import { BaseModel, column, belongsTo, BelongsTo, beforeFind, beforeFetch } from "@ioc:Adonis/Lucid/Orm"
+import { DateTime } from "luxon"
+import { softDelete, softDeleteQuery } from "App/Services/SoftDelete"
+import Product from "./Product"
+import Feature from "./Feature"
+import ProductItem from "./ProductItem"
 
-export default class ImagesGroup extends BaseModel {
+export default class ProductFeature extends BaseModel {
   @column({ isPrimary: true })
   public id: number
+
+  @column()
+  public value: string
+
+  @column()
+  public featureId: number
+
+  @belongsTo(() => Feature)
+  public feature: BelongsTo<typeof Feature>
 
   @column()
   public productId: number
@@ -20,11 +29,6 @@ export default class ImagesGroup extends BaseModel {
 
   @belongsTo(() => ProductItem)
   public productItem: BelongsTo<typeof ProductItem>
-
-  // Either productId or productItemId should have a value, not both, nor neither. In the migration, both will be nullable
-
-  @hasMany(() => ImageItem)
-  public imageItems: HasMany<typeof ImageItem>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

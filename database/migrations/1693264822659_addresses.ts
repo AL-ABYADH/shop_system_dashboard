@@ -5,9 +5,9 @@ export default class Addresses extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('address_id').primary()
-      table.integer('user_id').unsigned().references('users.user_id').notNullable()
-      table.text('address').notNullable()
+      table.increments('id').primary()
+      table.integer('user_id').unsigned().references('users.id').notNullable()
+      table.string('address', 50).notNullable()
       table.decimal('latitude', 10, 8).notNullable()
       table.decimal('longitude', 11, 8).notNullable()
       table.timestamps(true, true) // created_at and updated_at

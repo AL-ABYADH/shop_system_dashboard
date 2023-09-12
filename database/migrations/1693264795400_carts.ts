@@ -5,10 +5,10 @@ export default class Carts extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('cart_id').primary()
-      table.integer('user_id').unsigned().references('users.user_id').notNullable()
-
-      table.timestamps(true, true)
+      table.increments('id').primary()
+      table.integer('customer_id').unsigned().references('users.id').notNullable()
+      table.timestamps(true, true) // created_at and updated_at
+      table.timestamp('deleted_at').nullable()
     })
   }
 

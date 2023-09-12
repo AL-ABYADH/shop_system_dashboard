@@ -1,21 +1,33 @@
-import { DateTime } from "luxon";
-import { BaseModel, column, belongsTo, BelongsTo } from "@ioc:Adonis/Lucid/Orm";
-import User from "./temp/User";
-import PaymentMethod from "./PaymentMethod";
-import ShippingMethod from "./ShippingMethod";
-import Address from "./Address";
-import OrderStatus from "./OrderStatus";
-import Admin from "./Admin";
+import { DateTime } from 'luxon';
+import { BaseModel, column, belongsTo, BelongsTo, beforeFind, beforeFetch, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm';
+import User from './User';
+import PaymentMethod from './PaymentMethod';
+import Address from './Address';
+import { softDelete, softDeleteQuery } from 'App/Services/SoftDelete';
+import Payment from './Payment';
+import Price from './Price';
 
 export default class Order extends BaseModel {
   @column({ isPrimary: true })
-  public orderId: number;
+  public id: number;
 
   @column()
-  public userId: number;
+  public customerUserId: number; // The customer user that made the order
 
   @belongsTo(() => User)
-  public user: BelongsTo<typeof User>;
+  public customer: BelongsTo<typeof User>;
+
+  @column()
+  public sellerUserId: number; // The seller user the items belong to
+
+  @belongsTo(() => User)
+  public seller: BelongsTo<typeof User>;
+
+  @column()
+  public adminUserId: number; // The admin user that handled the order
+
+  @belongsTo(() => User)
+  public admin: BelongsTo<typeof User>;
 
   @column()
   public paymentMethodId: number;
@@ -24,41 +36,55 @@ export default class Order extends BaseModel {
   public paymentMethod: BelongsTo<typeof PaymentMethod>;
 
   @column()
-  public shippingMethodId: number;
-
-  @belongsTo(() => ShippingMethod)
-  public shippingMethod: BelongsTo<typeof ShippingMethod>;
-
-  @column()
-  public addressId: number;
+  public sellerAddressId: number;
 
   @belongsTo(() => Address)
-  public address: BelongsTo<typeof Address>;
+  public sellerAddress: BelongsTo<typeof Address>;
 
   @column()
-  public Status: "Testing" | "Confirmation" | "Sold" | "Canceled";
+  public customerAddressId: number; // Null if no delivery is required
+
+  @belongsTo(() => Address)
+  public customerAddress: BelongsTo<typeof Address>;
 
   @column()
-  public orderStatusId: number;
+  public deliveryPriceId: number // Null if no delivery is required
 
-  @belongsTo(() => OrderStatus)
-  public orderStatus: BelongsTo<typeof OrderStatus>;
-
-  @column()
-  public totalPrice: number;
-
-  @column.date()
-  public orderDate: DateTime;
+  @belongsTo(() => Price)
+  public deliveryPrice: BelongsTo<typeof Price>;
 
   @column()
-  public AdminID: number;
+  public totalPrice: number; // Including the delivery price and the product items prices
 
-  @belongsTo(() => Admin)
-  public adminId: BelongsTo<typeof Admin>;
+  @column()
+  public status: 'awaiting' | 'confirming' | 'confirmed' | 'testing' | 'done' | 'canceled' | 'returningItem';
+  // "awaiting" if no admin has handled the order yet (adminUserId is null), and seller hasn't confirm that the product is available or not. Able to cancel order with no canceling fee
+  // "confirming" if admin handles order that got no confirmation from the seller. Able to cancel order with no canceling fee
+  // "confirmed" if seller confirms that the product item. Able to cancel order with a canceling fee. If canceled, 5% is paid to the seller, 10% to the business, and 85% back to the customer
+  // "testing" if admin handles order while in "confirmed" state, or changing state from "confirming". Able to cancel order with a canceling fee. If canceled, 5% is paid to the seller, 5% to the admin, 5% to the business, and 85% back to the customer
+  // "done" if order has been done. Not able to cancel anymore
+  // "canceled" if for any reason the order is canceled
+  // "returningItem" if customer tries to return order item of which the product item's warranty hasn't ended
+
+  @hasMany(() => Payment)
+  public payments: HasMany<typeof Payment>;
 
   @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime;
+  public createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime;
+  public updatedAt: DateTime
+
+  @column.dateTime({ autoCreate: true})
+  public deletedAt: DateTime | null
+
+  // Soft Delete
+  @beforeFind()
+  public static softDeletesFind = softDeleteQuery
+  @beforeFetch()
+  public static softDeletesFetch = softDeleteQuery
+
+  public async softDelete() {
+    await softDelete(this)
+  }
 }

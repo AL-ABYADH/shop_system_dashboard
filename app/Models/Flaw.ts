@@ -1,16 +1,23 @@
-import { BaseModel, beforeFetch, beforeFind, column } from '@ioc:Adonis/Lucid/Orm'
-import { softDelete, softDeleteQuery } from 'App/Services/SoftDelete'
+import { BaseModel, column, belongsTo, BelongsTo, beforeFind, beforeFetch } from '@ioc:Adonis/Lucid/Orm'
 import { DateTime } from 'luxon'
+import { softDelete, softDeleteQuery } from 'App/Services/SoftDelete'
+import ProductItem from './ProductItem'
 
-export default class PaymentMethod extends BaseModel {
+export default class Flaw extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
   @column()
-  public method: string
+  public flaw: string
 
   @column()
-  public accountNumber: string
+  public productItemId: number
+
+  @belongsTo(() => ProductItem)
+  public productItem: BelongsTo<typeof ProductItem>
+
+  @column()
+  public severityLevel: 'varySlight' | 'slight' | 'noticeable' | 'sever' | 'verySever'
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

@@ -1,11 +1,11 @@
 import { BaseModel, beforeFetch, beforeFind, BelongsTo, belongsTo, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
-import Category from './Category'
 import Product from './Product'
 import { softDelete, softDeleteQuery } from 'App/Services/SoftDelete'
+import { DateTime } from 'luxon'
 
-export default class CategoryModel extends BaseModel {
+export default class Category extends BaseModel {
   @column({ isPrimary: true })
-  public categoryId: number
+  public id: number
 
   @column()
   public categoryName: string
@@ -21,6 +21,15 @@ export default class CategoryModel extends BaseModel {
 
   @hasMany(() => Category)
   public subCategories: HasMany<typeof Category>
+
+  @column.dateTime({ autoCreate: true })
+  public createdAt: DateTime
+
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  public updatedAt: DateTime
+
+  @column.dateTime({ autoCreate: true})
+  public deletedAt: DateTime | null
 
   // Soft Delete
   @beforeFind()

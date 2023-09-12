@@ -19,7 +19,7 @@
 */
 
 import Route from "@ioc:Adonis/Core/Route";
-import User from "App/Models/temp/User";
+import User from "App/Models/User";
 import Hash from "@ioc:Adonis/Core/Hash";
 
 Route.get("/exchange", "ExchangesController.index");

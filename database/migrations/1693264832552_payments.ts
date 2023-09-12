@@ -5,11 +5,11 @@ export default class Payments extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('payment_id').primary()
-      table.integer('user_id').unsigned().references('users.user_id').notNullable()
-      table.integer('order_id').unsigned().references('orders.order_id').notNullable()
-
-      table.timestamps(true, true)
+      table.increments('id').primary()
+      table.integer('order_id').unsigned().references('orders.id').notNullable()
+      table.enum('payment_type', ['fromCustomer', 'toSeller', 'toAdmin', 'refund']).notNullable()
+      table.timestamps(true, true) // created_at and updated_at
+      table.timestamp('deleted_at').nullable()
     })
   }
 

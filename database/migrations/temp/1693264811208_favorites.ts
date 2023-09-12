@@ -6,7 +6,7 @@ export default class Favorites extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('favorites_id').primary()
-      table.integer('user_id').unsigned().references('users.user_id').notNullable()
+      table.integer('user_id').unsigned().references('users.id').notNullable()
 
       table.timestamps(true, true)
     })

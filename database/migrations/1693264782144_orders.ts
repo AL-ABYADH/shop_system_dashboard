@@ -1,32 +1,21 @@
-import BaseSchema from "@ioc:Adonis/Lucid/Schema";
+import BaseSchema from '@ioc:Adonis/Lucid/Schema';
 
 export default class Orders extends BaseSchema {
-  protected tableName = "orders";
+  protected tableName = 'orders';
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments("order_id");
-      table.integer("user_id").unsigned().references("users.user_id");
-      table
-        .integer("payment_method_id")
-        .unsigned()
-        .references("payment_methods.payment_method_id");
-      table
-        .integer("shipping_method_id")
-        .unsigned()
-        .references("shipping_methods.shipping_method_id");
-      table.integer("address_id").unsigned().references("addresses.address_id");
-      table
-        .integer("payment_status_id")
-        .unsigned()
-        .references("payment_statuses.payment_status_id");
-      table
-        .enum("Status", ["Testing", "Confirmation", "Sold", "Canceled"])
-        .notNullable();
-      table.timestamp("Timestamp").defaultTo(this.now());
-      table.decimal("total_price", 10, 2);
-      table.integer("AdminID").unsigned().references("admins.AdminID");
-      table.timestamps(true, true);
+      table.increments('id').primary();
+      table.integer('customer_user_id').unsigned().references('users.id').notNullable();
+      table.integer('seller_user_id').unsigned().references('users.id').notNullable();
+      table.integer('admin_user_id').unsigned().references('users.id').notNullable();
+      table.integer('payment_method_id').unsigned().references('payment_methods.id').notNullable();
+      table.integer('seller_address_id').unsigned().references('addresses.id').notNullable();
+      table.integer('customer_address_id').unsigned().references('addresses.id').notNullable();
+      table.decimal('total_price', 10, 2).unsigned().notNullable();
+      table.enum('status', ['awaiting', 'confirming', 'confirmed', 'testing', 'done', 'canceled', 'returningItem']).notNullable();
+      table.timestamps(true, true) // created_at and updated_at
+      table.timestamp('deleted_at').nullable()
     });
   }
 
