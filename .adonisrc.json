@@ -32,7 +32,8 @@
     "@adonisjs/shield",
     "@91codes/adonis-vite",
     "@eidellev/inertia-adonisjs",
-    "@adonisjs/lucid"
+    "@adonisjs/lucid",
+    "@adonisjs/auth"
   ],
   "metaFiles": [
     {

@@ -31,7 +31,7 @@ export default class User extends BaseModel {
   public phoneNumber: string // Must be verified
 
   @column()
-  public accountType: 'admin' | 'seller' | 'customer'
+  public role: 'admin' | 'seller' | 'customer'
 
   @column()
   public preferredCurrency: 'YER' | 'USD' | 'SAR' // The preferred currency to display prices to the customer
