@@ -7,7 +7,7 @@ body {
 <template>
     <div class="shadow-black/30 flex w-full fixed">
       <!-- Left Side (Form) -->
-      <div class="w-full md:w-2/5 lg:w-3/6 bg-white h-screen items-center flex">
+      <div class="w-full md:w-2/5 bg-white h-screen items-center flex">
         <div class="w-full p-4 md:p-10">
           <h1 class="text-lg md:text-xl lg:text-2xl mb-4 md:mb-6">اهلا بك في لوحة التحكم</h1>
           <h1 class="text-gray-500 text-xs md:text-sm lg:text-xs mb-4"> من خلال لوحة التحكم تستطيع التحكم بالنظام </h1>
