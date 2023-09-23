@@ -12,7 +12,7 @@ import { softDelete, softDeleteQuery } from '../Services/SoftDelete'
 import Hash from '@ioc:Adonis/Core/Hash'
 import Address from './Address'
 import Order from './Order'
-import Product from './Product'
+import ProductItem from './ProductItem'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -60,8 +60,8 @@ export default class User extends BaseModel {
   @hasMany(() => Order)
   public adminOrders: HasMany<typeof Order> // Only users of type "admin" will handle orders
 
-  @hasMany(() => Product)
-  public products: HasMany<typeof Product> // Only users of type "seller" will have products
+  @hasMany(() => ProductItem)
+  public productItems: HasMany<typeof ProductItem> // Only users of type "seller" will have product items
 
   // Hash Password
   @beforeSave()

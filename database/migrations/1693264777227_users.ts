@@ -9,7 +9,7 @@ export default class Users extends BaseSchema {
       table.string('username', 50).notNullable().unique()
       table.string('password', 50).notNullable()
       table.string('full_name', 50).notNullable()
-      table.string('phone_number', 9).notNullable()
+      table.string('phone_number', 9).notNullable().unique()
       table.enum('role', ['admin', 'seller', 'customer']).notNullable().defaultTo('admin')
       table.enum('preferred_currency', ['YER', 'USD', 'SAR']).nullable()
       table.text('image_url').nullable()

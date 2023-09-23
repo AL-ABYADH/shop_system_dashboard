@@ -1,26 +1,57 @@
-// import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-// import { schema, rules } from '@ioc:Adonis/Core/Validator'
-// import User from 'App/Models/User';
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { schema, rules } from '@ioc:Adonis/Core/Validator'
+import User from 'App/Models/User';
 
-// export default class AdminAuthsController {
-//     public async register({ request, response, auth}: HttpContextContract) {
-//         const userSchema = schema.create({
-//             phoneNumber: schema.string([rules.mobile(), rules.trim()]),
-//             username: schema.string([rules.unique()])
-//             password: schema.string([rules.minLength(6)]),
-//         })
+export default class AdminAuthsController {
+    public async register({ request, response, auth}: HttpContextContract) {
+        const userSchema = schema.create({
+            username: schema.string({}, [
+              rules.alpha(),
+              rules.minLength(4),
+              rules.maxLength(20),
+              rules.unique({ table: 'users', column: 'username' }),
+            ]),
+            password: schema.string({}, [
+              rules.minLength(8),
+              rules.confirmed(),
+            ]),
+            phone_number: schema.string({}, [
+              rules.mobile({
+                locale: ['ar-OM'],
+              }),
+              rules.unique({ table: 'users', column: 'phone_number' }),
+            ]),
+            image: schema.file.optional({
+              size: '2mb',
+              extnames: ['jpg', 'png', 'jpeg'],
+            }),
+        })
 
-//         const data = await request.validate({ schema: userSchema })
-//         const user = await User.create(data);
-//     }
+        const data = await request.validate({ schema: userSchema })
+        const user = await User.create(data);
 
-//     public async login({}: HttpContextContract) {
-        
-//     }
+        await auth.login(user)
 
-//     public async logout({ response, auth }: HttpContextContract) {
-//         await auth.logout()
+        return response
+        // .redirect().toPath('/')
+    }
 
-//         return response.redirect().toPath('/login')
-//     }
-// }
+    public async login({ request, response, session, auth }: HttpContextContract) {
+        const { username, password } = request.only(['username', 'password'])
+
+        try {
+            await auth.attempt(username, password)
+        } catch (_err) {
+            session.flash('errors', 'Username or password is incorrect')
+            return response.redirect().back()
+        }
+
+        return response.redirect().toPath('/')
+    }
+
+    public async logout({ response, auth }: HttpContextContract) {
+        await auth.logout()
+
+        return response.redirect().toPath('/login')
+    }
+}
