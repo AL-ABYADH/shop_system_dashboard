@@ -18,22 +18,10 @@
 |
 */
 
-import Route from "@ioc:Adonis/Core/Route";
-import User from "App/Models/User";
-import Hash from "@ioc:Adonis/Core/Hash";
+import Route from '@ioc:Adonis/Core/Route';
 
-Route.get("/exchange", "ExchangesController.index");
+Route.get('/exchange', 'ExchangesController.index');
 
-Route.get("/", async ({ inertia }) => {
-  return inertia.render("Home");
-});
-
-Route.get("/users", async () => {
-  const user = await User.first();
-  if (user && (await Hash.verify(user.password, "123456"))) {
-    // verified
-    return user?.name;
-  }
-
-  return User.all();
+Route.get('/', async ({ inertia }) => {
+  return inertia.render('Home');
 });
