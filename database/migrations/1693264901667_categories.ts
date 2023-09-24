@@ -7,7 +7,7 @@ export default class Categories extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').primary()
       table.string('category_name', 50).notNullable()
-      table.integer('parent_category_id').unsigned().references('categories.id').notNullable()
+      table.integer('parent_category_id').unsigned().references('categories.id').nullable()
       table.timestamps(true, true) // created_at and updated_at
       table.timestamp('deleted_at').nullable()
     })

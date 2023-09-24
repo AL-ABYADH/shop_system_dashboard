@@ -1,7 +1,7 @@
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import axios from "axios";
 
-export default class ExchangeController {
+export default class ExchangesController {
   public async index({ response }: HttpContextContract) {
     try {
       const api = "https://kuraimibank.com/api/ar/home";
