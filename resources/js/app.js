@@ -3,6 +3,7 @@ import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from "@inertiajs/progress";
 
+
 export function resolvePageComponent(name, pages) {
     for (const path in pages) {
         if (path.endsWith(`${name.replace('.', '/')}.vue`)) {
