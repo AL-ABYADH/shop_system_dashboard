@@ -21,7 +21,6 @@
 import Route from "@ioc:Adonis/Core/Route";
 import "./sellers_app_api/seller_products";
 
-Route.get("/exchange", "ExchangesController.index");
 Route.group(() => {
   // Register a new user
   Route.post("/register", "UserAuthsController.register");
