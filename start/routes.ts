@@ -23,7 +23,13 @@ import User from "App/Models/User";
 import Hash from "@ioc:Adonis/Core/Hash";
 
 Route.get("/exchange", "ExchangesController.index");
+Route.group(() => {
+  // Register a new user
+  Route.post('/register', 'UserAuthsController.register');
 
+  // User login
+  Route.post('/login', 'UserAuthsController.login');
+}).prefix('api/auth');
 Route.get("/", async ({ inertia }) => {
   return inertia.render("Home");
 });
