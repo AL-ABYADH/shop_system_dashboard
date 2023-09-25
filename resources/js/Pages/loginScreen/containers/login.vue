@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import loginScreen from '../components/loginComponents/loginScreen.vue';
+import loginScreen from '../screens/loginScreen.vue';
 
 
 export default {
