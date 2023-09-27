@@ -1,18 +1,18 @@
 <template>
   <div>
-    <loginVue/>
+    <adminsAccountsScreen/>
   </div>
 </template>
 
 
 <script lang="ts">
-import appVue from './containers/app.vue';
-import loginVue from './containers/login.vue'
+import adminsAccountsScreen from './appScreen/screens/adminAccountsScreen/adminsAccountsScreen.vue';
+import homePageScreen from './appScreen/screens/homePageScreen/homePageScreen.vue'
 
 export default {
   components: {
-    appVue,
-    loginVue
+    adminsAccountsScreen,
+    homePageScreen
   }
 }
 </script>

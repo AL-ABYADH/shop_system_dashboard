@@ -1,45 +1,5 @@
-<style>
-body {
-  direction: rtl;
-  background-color: #f5f5f5;
-  margin-top: 10px;
-  margin-right: 10px;
-
-}
-
-#sidebar {
-  transition: width 0.3s ease-in-out;
-}
-</style>
-
-<template>
-  <div class="flex gap-5 fixed w-full">
-    <div
-      id="sidebar"
-      class="md:w-1/4"
-      :style="{ width: isSidebarClosed ? '50px' : '250px' }"
-    >
-      <sidebarVue
-        @toggle-sidebar-width="toggleSidebarWidth"
-        @content-change="changeContent"
-      />
-    </div>
-
-    <div
-      :style="{ width: isSidebarClosed ? '100%' : '100%' }"
-      class="sm:block w-full md:w-3/4 ml-5"
-    >
-      <headerVue />
-      <contentVue :selectedContent="selectedContent" />
-    </div>
-  </div>
-</template>
-
-<script lang="ts">
-import '../../../css/font.css';
-import headerVue from '../components/appComponent/header.vue';
-import sidebarVue from '../components/appComponent/sidebar.vue';
-import contentVue from '../components/appComponent/content.vue';
+import sidebarVue from '../../components/sidebar.vue';
+import headerVue from '../../components/header.vue';
 
 declare var localStorage: any;
 
@@ -54,8 +14,11 @@ export default {
   components: {
     headerVue,
     sidebarVue,
-    contentVue,
   },
+
+  props: {
+        selectedContent: String, // Receive the selected content from the parent component
+    },
 
   created() {
     const storedContent = localStorage.getItem("selectedContent");
@@ -103,4 +66,3 @@ export default {
     },
   },
 };
-</script>
