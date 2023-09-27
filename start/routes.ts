@@ -18,21 +18,19 @@
 |
 */
 
-import Route from '@ioc:Adonis/Core/Route';
+import Route from "@ioc:Adonis/Core/Route";
+import "./sellers_app_api/seller_products";
 
-// Sellers routes
-import './sellers_app_api/get/seller_products';
+Route.group(() => {
+  // Register a new user
+  Route.post("/register", "UserAuthsController.register");
 
+  // User login
+  Route.post("/login", "UserAuthsController.login");
+}).prefix("api/auth");
 
-// Customers routes
-// ===========
+Route.get("/exchange", "ExchangesController.index");
 
-
-// Dashboard routes
-// ===========
-
-Route.get('/exchange', 'ExchangesController.index');
-
-Route.get('/', async ({ inertia }) => {
-  return inertia.render('Home');
+Route.get("/", async ({ inertia }) => {
+  return inertia.render("Home");
 });
