@@ -1,5 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Database from '@ioc:Adonis/Lucid/Database';
+import Database from '@ioc:Adonis/Lucid/Database'
 
 // import Product from "App/Models/Product";
 
@@ -12,7 +12,7 @@ export default class SellerProductsController {
         } catch (err) {
             return response.status(400).json({
                 status: 'error',
-                message: 'An error has occurred!'
+                message: 'An error has occurred!',
             })
         }
     }

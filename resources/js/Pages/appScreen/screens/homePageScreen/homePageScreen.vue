@@ -1,28 +1,30 @@
-<style src="../../../../../css/app.css">
-</style>
+<style src="../../../../../css/app.css"></style>
 
 <template>
     <div class="flex gap-5 fixed w-full">
-      <div
-        id="sidebar"
-        class="md:w-1/4"
-        :style="{ width: isSidebarClosed ? '50px' : '250px' }"
-      >
-        <sidebarVue
-          @toggle-sidebar-width="toggleSidebarWidth"
-          @content-change="changeContent"
-        />
-      </div>
-  
-      <div
-        :style="{ width: isSidebarClosed ? '100%' : '100%' }"
-        class="sm:block w-full md:w-3/4 ml-5"
-      >
-        <headerVue />
-        <div class="w-full border-b-2 font-almarai pt-5 border-primary text-primary pb-2 text-xl"> الطلبات المتاحة </div>
-      </div>
-    </div>
-  </template>
+        <div
+            id="sidebar"
+            class="md:w-1/4"
+            :style="{ width: isSidebarClosed ? '50px' : '250px' }"
+        >
+            <sidebarVue
+                @toggle-sidebar-width="toggleSidebarWidth"
+                @content-change="changeContent"
+            />
+        </div>
 
-<script lang="ts" src="../controllers/appScreens">
-</script>
+        <div
+            :style="{ width: isSidebarClosed ? '100%' : '100%' }"
+            class="sm:block w-full md:w-3/4 ml-5"
+        >
+            <headerVue />
+            <div
+                class="w-full border-b-2 font-almarai pt-5 border-primary text-primary pb-2 text-xl"
+            >
+                الطلبات المتاحة
+            </div>
+        </div>
+    </div>
+</template>
+
+<script lang="ts" src="../controllers/appScreens"></script>

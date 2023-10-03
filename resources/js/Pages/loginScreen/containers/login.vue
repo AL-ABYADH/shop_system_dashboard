@@ -1,16 +1,15 @@
 <style></style>
 
 <template>
-    <loginScreen/>
+    <loginScreen />
 </template>
 
 <script lang="ts">
-import loginScreen from '../screens/loginScreen.vue';
-
+import loginScreen from '../screens/loginScreen.vue'
 
 export default {
     components: {
-        loginScreen
-    }
+        loginScreen,
+    },
 }
 </script>

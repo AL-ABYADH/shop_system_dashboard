@@ -18,19 +18,27 @@
 |
 */
 
-import Route from "@ioc:Adonis/Core/Route";
-import "./sellers_app_api/seller_products";
+import Route from '@ioc:Adonis/Core/Route'
 
-Route.group(() => {
-  // Register a new user
-  Route.post("/register", "UserAuthsController.register");
+// mobile
+// auth
+import './mobile/auth/user_auth'
+// sellers_app_api
+// get
+import './mobile/sellers_app_api/get/seller_products'
+// post
 
-  // User login
-  Route.post("/login", "UserAuthsController.login");
-}).prefix("api/auth");
+// customers_app_api
+// get
+// post
 
-Route.get("/exchange", "ExchangesController.index");
+// dashboard
+// auth
+// get
+// post
 
-Route.get("/", async ({ inertia }) => {
-  return inertia.render("Home");
-});
+Route.get('/exchange', 'ExchangesController.index')
+
+Route.get('/', async ({ inertia }) => {
+    return inertia.render('Home')
+})

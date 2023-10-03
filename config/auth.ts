@@ -17,9 +17,9 @@ import type { AuthConfig } from '@ioc:Adonis/Addons/Auth'
 |
 */
 const authConfig: AuthConfig = {
-  guard: 'web',
-  guards: {
-    /*
+    guard: 'web',
+    guards: {
+        /*
     |--------------------------------------------------------------------------
     | Web Guard
     |--------------------------------------------------------------------------
@@ -29,11 +29,11 @@ const authConfig: AuthConfig = {
     | use web guard with session driver
     |
     */
-    web: {
-      driver: 'session',
+        web: {
+            driver: 'session',
 
-      provider: {
-        /*
+            provider: {
+                /*
         |--------------------------------------------------------------------------
         | Driver
         |--------------------------------------------------------------------------
@@ -41,9 +41,9 @@ const authConfig: AuthConfig = {
         | Name of the driver
         |
         */
-        driver: 'lucid',
+                driver: 'lucid',
 
-        /*
+                /*
         |--------------------------------------------------------------------------
         | Identifier key
         |--------------------------------------------------------------------------
@@ -52,9 +52,9 @@ const authConfig: AuthConfig = {
         | the primary key is the right choice.
         |
         */
-        identifierKey: 'id',
+                identifierKey: 'id',
 
-        /*
+                /*
         |--------------------------------------------------------------------------
         | Uids
         |--------------------------------------------------------------------------
@@ -64,9 +64,9 @@ const authConfig: AuthConfig = {
         | of the mentioned columns to find their user record.
         |
         */
-        uids: ['email'],
+                uids: ['username'],
 
-        /*
+                /*
         |--------------------------------------------------------------------------
         | Model
         |--------------------------------------------------------------------------
@@ -77,10 +77,10 @@ const authConfig: AuthConfig = {
         | that time.
         |
         */
-        model: () => import('App/Models/User'),
-      },
-    },
-    /*
+                model: () => import('App/Models/User'),
+            },
+        },
+        /*
     |--------------------------------------------------------------------------
     | OAT Guard
     |--------------------------------------------------------------------------
@@ -93,10 +93,10 @@ const authConfig: AuthConfig = {
     | on cookies/sessions.
     |
     */
-    api: {
-      driver: 'oat',
+        api: {
+            driver: 'oat',
 
-      /*
+            /*
       |--------------------------------------------------------------------------
       | Tokens provider
       |--------------------------------------------------------------------------
@@ -109,15 +109,15 @@ const authConfig: AuthConfig = {
       | and the token. You are free to use any column name here.
       |
       */
-      tokenProvider: {
-        type: 'api',
-        driver: 'database',
-        table: 'api_tokens',
-        foreignKey: 'user_id',
-      },
+            tokenProvider: {
+                type: 'api',
+                driver: 'database',
+                table: 'api_tokens',
+                foreignKey: 'user_id',
+            },
 
-      provider: {
-        /*
+            provider: {
+                /*
         |--------------------------------------------------------------------------
         | Driver
         |--------------------------------------------------------------------------
@@ -125,9 +125,9 @@ const authConfig: AuthConfig = {
         | Name of the driver
         |
         */
-        driver: 'lucid',
+                driver: 'lucid',
 
-        /*
+                /*
         |--------------------------------------------------------------------------
         | Identifier key
         |--------------------------------------------------------------------------
@@ -136,9 +136,9 @@ const authConfig: AuthConfig = {
         | the primary key is the right choice.
         |
         */
-        identifierKey: 'id',
+                identifierKey: 'id',
 
-        /*
+                /*
         |--------------------------------------------------------------------------
         | Uids
         |--------------------------------------------------------------------------
@@ -148,9 +148,9 @@ const authConfig: AuthConfig = {
         | of the mentioned columns to find their user record.
         |
         */
-        uids: ['email'],
+                uids: ['username'],
 
-        /*
+                /*
         |--------------------------------------------------------------------------
         | Model
         |--------------------------------------------------------------------------
@@ -161,10 +161,10 @@ const authConfig: AuthConfig = {
         | that time.
         |
         */
-        model: () => import('App/Models/User'),
-      },
+                model: () => import('App/Models/User'),
+            },
+        },
     },
-  },
 }
 
 export default authConfig

@@ -1,24 +1,44 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
 export default class ProductItems extends BaseSchema {
-  protected tableName = 'product_items'
+    protected tableName = 'product_items'
 
-  public async up() {
-    this.schema.createTable(this.tableName, (table) => {
-      table.increments('id').primary()
-      table.text('description').nullable()
-      table.integer('product_id').unsigned().references('products.id').notNullable()
-      table.integer('seller_id').unsigned().references('users.id').notNullable()
-      table.integer('price_id').unsigned().references('prices.id').notNullable()
-      table.integer('warranty_ends_in').unsigned().notNullable()
-      table.boolean('usedProduct').notNullable()
-      table.enum('used_product_condition', ['excellent', 'good', 'normal', 'bad', 'terrible']).nullable()
-      table.timestamps(true, true) // created_at and updated_at
-      table.timestamp('deleted_at').nullable()
-    })
-  }
+    public async up() {
+        this.schema.createTable(this.tableName, (table) => {
+            table.increments('id').primary()
+            table.text('description').nullable()
+            table
+                .integer('product_id')
+                .unsigned()
+                .references('products.id')
+                .notNullable()
+            table
+                .integer('seller_id')
+                .unsigned()
+                .references('users.id')
+                .notNullable()
+            table
+                .integer('price_id')
+                .unsigned()
+                .references('prices.id')
+                .notNullable()
+            table.integer('warranty_ends_in').unsigned().notNullable()
+            table.boolean('usedProduct').notNullable()
+            table
+                .enum('used_product_condition', [
+                    'excellent',
+                    'good',
+                    'normal',
+                    'bad',
+                    'terrible',
+                ])
+                .nullable()
+            table.timestamps(true, true) // created_at and updated_at
+            table.timestamp('deleted_at').nullable()
+        })
+    }
 
-  public async down() {
-    this.schema.dropTable(this.tableName)
-  }
+    public async down() {
+        this.schema.dropTable(this.tableName)
+    }
 }
