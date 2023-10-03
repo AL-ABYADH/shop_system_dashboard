@@ -7,7 +7,7 @@ export default class Prices extends BaseSchema {
         this.schema.createTable(this.tableName, (table) => {
             table.increments('id').primary()
             table.decimal('price', 10, 2).unsigned().notNullable()
-            table.enum('currentcy', ['YER', 'USD', 'SAR']).notNullable()
+            table.enum('currency', ['YER', 'USD', 'SAR']).notNullable()
             table.timestamps(true, true) // created_at and updated_at
             table.timestamp('deleted_at').nullable()
         })

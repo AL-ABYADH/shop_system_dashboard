@@ -33,7 +33,7 @@ export default class ProductItem extends BaseModel {
     public product: BelongsTo<typeof Product>
 
     @column()
-    public sellerUserId: number
+    public userId: number
 
     @belongsTo(() => User)
     public seller: BelongsTo<typeof User>

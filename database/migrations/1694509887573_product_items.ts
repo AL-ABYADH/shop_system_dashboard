@@ -13,7 +13,7 @@ export default class ProductItems extends BaseSchema {
                 .references('products.id')
                 .notNullable()
             table
-                .integer('seller_id')
+                .integer('user_id')
                 .unsigned()
                 .references('users.id')
                 .notNullable()
@@ -23,7 +23,7 @@ export default class ProductItems extends BaseSchema {
                 .references('prices.id')
                 .notNullable()
             table.integer('warranty_ends_in').unsigned().notNullable()
-            table.boolean('usedProduct').notNullable()
+            table.boolean('used_product').notNullable()
             table
                 .enum('used_product_condition', [
                     'excellent',
