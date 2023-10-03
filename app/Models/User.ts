@@ -34,19 +34,19 @@ export default class User extends BaseModel {
     public role: 'admin' | 'seller' | 'customer'
 
     @column()
-    public preferredCurrency: 'YER' | 'USD' | 'SAR' // The preferred currency to display prices to the customer
+    public preferredCurrency: 'YER' | 'USD' | 'SAR' | null // The preferred currency to display prices to the customer
 
     @column()
-    public imageUrl: string // This will be mandatory for users of types "seller" (shop image), and "admin" (profile image). Not needed for customers
+    public imageUrl: string | null // This will be mandatory for users of types "seller" (shop image), and "admin" (profile image). Not needed for customers
 
     @column()
-    public warningsCount: number // Will default to 0 for the users of type "seller" and will then be incremented. Null for users of other types
+    public warningsCount: number | null // Will default to 0 for the users of type "seller" and will then be incremented. Null for users of other types
 
     @column()
-    public shopOpenAt: DateTime // Only for users of type "seller"
+    public shopOpenAt: string | null // Only for users of type "seller"
 
     @column()
-    public shopCloseAt: DateTime // Only for users of type "seller"
+    public shopCloseAt: string | null // Only for users of type "seller"
 
     @hasMany(() => Address)
     public addresses: HasMany<typeof Address> // Only users of types "seller" and "customer" will have at least one address

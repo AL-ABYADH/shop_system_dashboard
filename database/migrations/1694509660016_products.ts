@@ -7,10 +7,10 @@ export default class Products extends BaseSchema {
         this.schema.createTable(this.tableName, (table) => {
             table.increments('id').primary()
             table.string('name', 50).notNullable().unique()
-            table.string('model', 50).notNullable().unique()
+            table.json('models').notNullable().unique()
             table.text('description').nullable()
             table.string('brand', 50).notNullable()
-            table.text('flaws').nullable()
+            table.json('flaws').notNullable()
             table
                 .integer('category_id')
                 .unsigned()

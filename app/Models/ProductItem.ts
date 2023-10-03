@@ -33,6 +33,9 @@ export default class ProductItem extends BaseModel {
     public product: BelongsTo<typeof Product>
 
     @column()
+    public model: string // Will be one of the available models tha the product has
+
+    @column()
     public userId: number
 
     @belongsTo(() => User)

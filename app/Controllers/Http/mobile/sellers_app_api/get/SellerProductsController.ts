@@ -13,6 +13,7 @@ export default class SellerProductsController {
                 .related('productItems')
                 .query()
                 .preload('product') // Use preload to fetch related products
+                .distinct('product_id') // Use distinct so as not to get all the product items of each product, and only get one
 
             // Use a Set to store unique products
             const uniqueProducts = new Set()

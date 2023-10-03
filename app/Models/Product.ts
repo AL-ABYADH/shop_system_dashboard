@@ -25,7 +25,7 @@ export default class Product extends BaseModel {
     public name: string
 
     @column()
-    public model: string
+    public models: string[]
 
     @column()
     public description: string
@@ -34,7 +34,7 @@ export default class Product extends BaseModel {
     public brand: string
 
     @column()
-    public flaws: string // Will look like this: ['first flaw', 'second flaw', ...]
+    public flaws: string[]
 
     @column()
     public categoryId: number

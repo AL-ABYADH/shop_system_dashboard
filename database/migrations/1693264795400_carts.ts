@@ -11,6 +11,7 @@ export default class Carts extends BaseSchema {
                 .unsigned()
                 .references('users.id')
                 .notNullable()
+                .unique()
             table.timestamps(true, true) // created_at and updated_at
             table.timestamp('deleted_at').nullable()
         })
