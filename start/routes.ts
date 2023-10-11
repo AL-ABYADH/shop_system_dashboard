@@ -34,6 +34,8 @@ import './mobile/sellers_app_api/get/seller_products'
 
 // dashboard
 // auth
+// render
+import './dashboard/render/admin_login'
 // get
 // post
 

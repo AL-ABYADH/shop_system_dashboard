@@ -6,4 +6,6 @@ Route.group(() => {
 
     // User login
     Route.post('/login', 'mobile/auth/UserAuthController.login')
-}).prefix('api')
+})
+    .prefix('api')
+    .middleware('checkUser')

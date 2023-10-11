@@ -28,13 +28,10 @@ export default class UserAuthController {
                     rules.alpha({ allow: ['space'] }),
                     rules.maxLength(50),
                 ]),
-                imageUrl: schema.string.optional({}, [
-                    rules.required(),
-                    rules.url(),
-                ]),
+                imageUrl: schema.string.optional({}, [rules.url()]),
                 address: schema.string({}, [
                     rules.required(),
-                    rules.alpha(),
+                    rules.alpha({ allow: ['space'] }),
                     rules.maxLength(50),
                 ]),
                 latitude: schema.number([
