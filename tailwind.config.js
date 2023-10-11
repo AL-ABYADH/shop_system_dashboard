@@ -9,6 +9,7 @@ module.exports = {
         // Primary colors
         'primary': 'rgba(89, 152, 115, 1)',
         'primary-opacity': 'rgba(89, 152, 115, 0.2)',
+        'primary-opacity2': 'rgba(89, 152, 115, 0.6)',
         'primary-transparent': 'rgba(16, 94, 177, 0.5)',
         'secondary-first': 'rgba(81, 143, 234, 1)',
         'secondary-second': 'rgba(186, 134, 32, 1)',

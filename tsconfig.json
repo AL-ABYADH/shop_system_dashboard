@@ -8,6 +8,8 @@
     "build"
   ],
   "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitReturns": true,
     "lib": ["es5", "es6", "dom"],
     "outDir": "build",
     "rootDir": "./",
