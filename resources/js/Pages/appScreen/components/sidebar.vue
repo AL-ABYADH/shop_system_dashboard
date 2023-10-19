@@ -31,23 +31,28 @@
         <div v-for="item in sidebarItems" :key="item.id" class="w-full flex mr-1 rounded-md">
           <template v-if="!isSidebarClosed">
             <div
+              @mouseover="showTooltip(item.id)"
+              @mouseout="hideTooltip(item.id)"
               @click="changeContent(item.id)"
               :class="{
                 'text-slate-500 bg-primary-opacity': selectedItem === item.id,
               }"
               class="flex mb-1 px-3 py-2 duration-200 transform rounded-lg w-full cursor-pointer ml-2"
+              data-toggle="tooltip"
+      data-placement="right"
+      :title="item.label"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill=""
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                class="w-6 h-6 mr-2"
-              >
-                <!-- Icon for open sidebar item -->
-              </svg>
-              <span class="text-sm overflow-hidden block whitespace-nowrap w-full pr-4">{{ item.label }}</span>
+            <div class="flex">
+              <i :class="item.icon"></i>
             </div>
+            
+            <span
+      class="text-sm overflow-hidden block whitespace-nowrap w-full pr-4"
+      
+    >
+      {{ item.label }}
+    </span>            
+  </div>
           </template>
           <template v-else>
             <div
@@ -57,15 +62,13 @@
               }"
               class="flex mb-1 px-3 py-2 duration-200 transform rounded-lg w-10 cursor-pointer ml-2"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                class="w-6 h-6"
-              >
-                <!-- Icon for closed sidebar item -->
-              </svg>
+            <div class="flex"
+      data-toggle="tooltip"
+      data-placement="right"
+      :title="item.label">
+              <i :class="item.icon"></i> 
+            </div>
+                     
             </div>
           </template>
         </div>
@@ -84,16 +87,33 @@ export default {
         {
           id: "home",
           label: "الرئيسية",
+          icon: "fa fa-home", // Font Awesome icon class
         },
         {
-          id: "my-orders",
-          label: "طلباتي",
+          id: "handled-orders",
+          label: "الطلبات الموكلة",
+          icon: "fa fa-shopping-cart", // Font Awesome icon class
+        },
+        {
+          id: "orders-history",
+          label: "سجل الطلبات",
+          icon: "fa fa-history", // Font Awesome icon class
         },
         {
           id: "admin-accounts",
           label: "حسابات المشرفين",
+          icon: "fa fa-user", // Font Awesome icon class
         },
-        
+        {
+          id: "sellers-accounts",
+          label: "حسابات البائعين",
+          icon: "fa fa-user-o", // Font Awesome icon class
+        },
+        {
+          id: "customers-accounts",
+          label: "حسابات المستخدمين",
+          icon: "fa fa-users ", // Font Awesome icon class
+        },
         // Add more items here
       ],
     };
@@ -152,6 +172,34 @@ export default {
       // Save sidebar state before the page is unloaded
       this.saveSidebarState();
     },
+    showTooltip(itemId) {
+      // Find the item by its ID and trigger the tooltip
+      const item = this.sidebarItems.find(item => item.id === itemId);
+      if (item) {
+        // Trigger the tooltip
+        const tooltipElement = document.querySelector(`[data-toggle="tooltip"][title="${item.label}"]`);
+        if (tooltipElement) {
+          $(tooltipElement).tooltip('show');
+        }
+      }
+    },
+
+    hideTooltip(itemId) {
+      // Find the item by its ID and hide the tooltip
+      const item = this.sidebarItems.find(item => item.id === itemId);
+      if (item) {
+        // Hide the tooltip
+        const tooltipElement = document.querySelector(`[data-toggle="tooltip"][title="${item.label}"]`);
+        if (tooltipElement) {
+          $(tooltipElement).tooltip('hide');
+        }
+      }
+    },
+    
+  },
+  mounted() {
+    // Initialize Bootstrap tooltips when the component is mounted
+    $('[data-toggle="tooltip"]').tooltip();
   },
 };
 </script>

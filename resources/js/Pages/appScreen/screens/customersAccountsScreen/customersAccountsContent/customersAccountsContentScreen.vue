@@ -14,7 +14,8 @@
                 <tr>
                     <th
                         class="px-4 py-2 sm:px-6 sm:py-3 md:px-6 md:py-3 lg:px-6 lg:py-3 xl:px-6 xl:py-3 text-center text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium text-gray-500">
-                        اسم المشرف</th>
+                        اسم المستخدم</th>
+                    
                     <th
                         class="px-4 py-2 sm:px-6 sm:py-3 md:px-6 md:py-3 lg:px-6 lg:py-3 xl:px-6 xl:py-3 text-center text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium text-gray-500">
                         رقم الهاتف</th>
@@ -27,10 +28,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(person, index) in people" :key="index" class='odd:bg-white even:bg-primary-opacity'>
+                <tr v-for="(person, index) in people" :key="person.id" class='odd:bg-white even:bg-primary-opacity'>
                     <td
                         class="px-2 py-2 sm:px-4 sm:py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2 whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center sm:w-1/3 md:w-1/4 lg:w-1/6">
                         {{ person.name }}</td>
+                    
                     <td
                         class="px-2 py-2 sm:px-4 sm:py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2 whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center sm:w-1/2 md:w-1/3 lg:w-1/4">
                         {{ person.phone }}</td>
@@ -39,9 +41,6 @@
                         {{ person.address }}</td>
                     <td
                         class="px-2 py-2 sm:px-4 sm:py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2 whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center sm:w-1/6 md:w-1/12 lg:w-1/12">
-                        <button class="text-blue-500 hover:text-blue-700 pl-2 sm:pl-4">
-                            <i class="fa fa-edit"></i> <!-- Edit Icon -->
-                        </button>
                         <button class="text-red-500 hover:text-red-700">
                             <i class="fa fa-trash"></i> <!-- Delete Icon -->
                         </button>
@@ -109,6 +108,69 @@ export default {
       },
       {
         id: 7, // Unique ID
+        name: 'حمادي حامد',
+        email: 'jane@example.com',
+        phone: 774546494,
+        address: 'صنعاء - مدينة', // Add address field
+      },
+      {
+        id: 8, // Unique ID
+        name: 'حمادي حامد',
+        email: 'jane@example.com',
+        phone: 774546494,
+        address: 'صنعاء - مدينة', // Add address field
+      },
+      {
+        id: 8, // Unique ID
+        name: 'حمادي حامد',
+        email: 'jane@example.com',
+        phone: 774546494,
+        address: 'صنعاء - مدينة', // Add address field
+      },
+      {
+        id: 8, // Unique ID
+        name: 'حمادي حامد',
+        email: 'jane@example.com',
+        phone: 774546494,
+        address: 'صنعاء - مدينة', // Add address field
+      },
+      {
+        id: 8, // Unique ID
+        name: 'حمادي حامد',
+        email: 'jane@example.com',
+        phone: 774546494,
+        address: 'صنعاء - مدينة', // Add address field
+      },
+      {
+        id: 8, // Unique ID
+        name: 'حمادي حامد',
+        email: 'jane@example.com',
+        phone: 774546494,
+        address: 'صنعاء - مدينة', // Add address field
+      },
+      {
+        id: 8, // Unique ID
+        name: 'حمادي حامد',
+        email: 'jane@example.com',
+        phone: 774546494,
+        address: 'صنعاء - مدينة', // Add address field
+      },
+      {
+        id: 8, // Unique ID
+        name: 'حمادي حامد',
+        email: 'jane@example.com',
+        phone: 774546494,
+        address: 'صنعاء - مدينة', // Add address field
+      },
+      {
+        id: 8, // Unique ID
+        name: 'حمادي حامد',
+        email: 'jane@example.com',
+        phone: 774546494,
+        address: 'صنعاء - مدينة', // Add address field
+      },
+      {
+        id: 8, // Unique ID
         name: 'حمادي حامد',
         email: 'jane@example.com',
         phone: 774546494,

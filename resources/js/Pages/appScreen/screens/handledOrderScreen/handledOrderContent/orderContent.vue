@@ -43,7 +43,7 @@
             </td>
             <td>
               <p class="text-gray-600 text-md font-semibold">
-                  {{ orderStatus=="Confirmed" ? "تم التأكيد": "جاري الأنتظار" }}
+                  {{ orderStatus=="Confirming" ? "جاري التأكيد": "قيد الفحص" }}
                 </p>
             </td>
             </div>
@@ -168,7 +168,7 @@
         <button
           class="mt-4 text-white bg-primary p-2 ml-2 rounded-md hover:bg-primary-opacity2"
         >
-          قبول
+        {{ orderStatus=="Confirming" ? "تأكيد الطلب": "تأكيد الفحص" }}
         </button>
         <button
           class="mt-4 text-white bg-red-600 p-2 rounded-md hover:bg-primary-opacity2"

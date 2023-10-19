@@ -60,7 +60,7 @@ export default {
           time: "3:35م",
           delivery: true,
           deliveryPrice: 2000,
-          orderStatus: "Confirmed",
+          orderStatus: "Done",
           devices: [
             {
               deviceName: "Samsung Galaxy S20",
@@ -101,7 +101,7 @@ export default {
           time: "3:35م",
           delivery: false,
           deliveryPrice: null,
-          orderStatus: "Awating",
+          orderStatus: "Canceled",
           devices: [
             {
               deviceName: "Samsung Galaxy S20",

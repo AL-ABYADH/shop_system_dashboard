@@ -43,7 +43,7 @@
             </td>
             <td>
               <p class="text-gray-600 text-md font-semibold">
-                  {{ orderStatus=="Confirmed" ? "تم التأكيد": "جاري الأنتظار" }}
+                  {{ orderStatus=="Done" ? "منتهي": "ملغي" }}
                 </p>
             </td>
             </div>
@@ -166,11 +166,7 @@
       </div>
       <div class="justify-center flex">
         <button
-          class="mt-4 text-white bg-primary p-2 ml-2 rounded-md hover:bg-primary-opacity2"
-        >
-          قبول
-        </button>
-        <button
+        v-if='orderStatus=="Done"'
           class="mt-4 text-white bg-red-600 p-2 rounded-md hover:bg-primary-opacity2"
         >
           إلغاء

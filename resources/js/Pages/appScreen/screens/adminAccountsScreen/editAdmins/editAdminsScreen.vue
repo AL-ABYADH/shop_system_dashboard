@@ -15,18 +15,18 @@
                 <span class="cursor-pointer">حسابات المشرفين
                 </span> /
                 <span>
-                    إضافة مستخدم
+                     تعديل
                 </span>
             </div>
       <div class="mt-5 md:pt-0 md:pl-5">
-        <newAdmins/>
+        <editAdmins/>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import newAdmins from './newAdminsContent/newAdminsContentScreen.vue';
+import editAdmins from './editAdminsContent/editAdminsContentScreen.vue';
 import sidebarVue from '../../../components/sidebar.vue';
 import headerVue from '../../../components/header.vue';
 
@@ -41,7 +41,7 @@ export default {
   components: {
     headerVue,
     sidebarVue,
-    newAdmins,
+    editAdmins,
   },
 
   created() {

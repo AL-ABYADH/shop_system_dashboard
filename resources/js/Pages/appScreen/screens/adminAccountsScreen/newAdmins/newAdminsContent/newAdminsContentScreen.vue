@@ -1,4 +1,6 @@
 <template>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <div class="max-w-md bg-white mx-auto mt-4 p-4 border rounded-lg shadow-lg">
       <h2 class="text-lg font-semibold mb-2">نموذج التسجيل</h2>
       <form @submit.prevent="submitForm">
@@ -8,7 +10,7 @@
             <img src="../../../../.././../Assets/profile.jpg" alt="Select Profile Picture"
               class="w-24 h-auto rounded-full border-2 border-primary flex justify-center items-center"
               @click="$refs.pictureInput.click()" />
-            <input ref="pictureInput" type="file" id="picture" class="hidden" accept="image/*" required
+            <input ref="pictureInput" type="file" id="picture" class="hidden" accept="image/*"
               @change="handlePictureChange" />
           </div>
           <div v-if="pictureTouched && !pictureIsValid" class="text-red-500 text-sm mt-1">الرجاء اختيار صورة صالحة.</div>
@@ -45,6 +47,14 @@
           <div v-if="phoneTouched && !phoneIsValid" class="text-red-500 text-sm mt-1">الرجاء إدخال رقم هاتف مكون من 9
             أرقام.</div>
         </div>
+
+        <!-- Address Input -->
+      <div class="mb-2">
+        <input type="text" id="address" v-model="formData.address"
+          class="mt-1 p-2 block w-full border rounded-md focus:bg-primary-opacity text-sm sm:text-base"
+          placeholder="أدخل عنوانك" required @blur="validateAddress" />
+        <div v-if="addressTouched && !addressIsValid" class="text-red-500 text-sm mt-1">الرجاء إدخال العنوان .</div>
+      </div>
   
         <!-- Email Input -->
         <div class="mb-2">
@@ -90,6 +100,7 @@ export default {
                 picture: null, // Store the picture file
                 name: "",
                 phone: "",
+                address:"",
                 email: "",
                 password: "",
                 confirmPassword: "",
@@ -100,6 +111,7 @@ export default {
             passwordRegex: /^.{6,}$/,
             nameTouched: false,
             phoneTouched: false,
+            addressTouched: false,
             emailTouched: false,
             passwordTouched: false,
             confirmPasswordTouched: false,
@@ -109,10 +121,10 @@ export default {
     computed: {
         isFormValid() {
             return (
-                this.pictureIsValid &&
                 this.nameIsValid &&
                 this.phoneIsValid &&
                 this.emailIsValid &&
+                this.addressIsValid &&
                 this.passwordIsValid &&
                 this.confirmPasswordIsValid
             );
@@ -122,6 +134,9 @@ export default {
         },
         phoneIsValid() {
             return this.phoneRegex.test(this.formData.phone);
+        },
+        addressIsValid() {
+            return this.nameRegex.test(this.formData.address);
         },
         emailIsValid() {
             return this.emailRegex.test(this.formData.email);
@@ -145,9 +160,8 @@ export default {
     },
     methods: {
         submitForm() {
-            // Handle form submission
-            // You can access form data in this.formData
-            // Send the data to your server or perform other actions
+            console.log("lll");
+            
         },
         handlePictureChange(event) {
             this.formData.picture = event.target.files[0];
@@ -162,6 +176,9 @@ export default {
         },
         validatePhone() {
             this.phoneTouched = true;
+        },
+        validateAddress() {
+            this.addressTouched = true;
         },
         validateEmail() {
             this.emailTouched = true;

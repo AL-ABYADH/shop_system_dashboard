@@ -19,24 +19,56 @@
 </style>
 
 <template>
-  <div class="container max-w-full">
-    <ExpandableItem
-      v-for="order in orders"
-      :key="order.id"
-      :title="order.title"
-      :address="order.address"
-      :date="order.date"
-      :imageUrl="order.imageUrl"
-      :devicesNumber="order.devicesNumber"
-      :phoneNumber="order.phoneNumber"
-      :time="order.time"
-      :checkPrice="order.checkPrice"
-      :delivery="order.delivery"
-      :deliveryPrice="order.deliveryPrice"
-      :orderStatus="order.orderStatus"
-      :devices="order.devices"
-    />
+  <div  class="container max-w-full">
+    <div>
+    <p
+      class="w-full border-b-2 font-almarai mb-3 pt-2 sm:pt-3 md:pt-4 border-primary text-primary text-base sm:text-lg md:text-xl sm:pb-2"
+    >
+      الطلبات قيد الفحص
+    </p>
+    <div v-for="order in filteredOrders('Testing')" :key="order.id">
+      <!-- Render order details for Confirmed orders -->
+      <ExpandableItem
+        :title="order.title"
+        :address="order.address"
+        :date="order.date"
+        :imageUrl="order.imageUrl"
+        :devicesNumber="order.devicesNumber"
+        :phoneNumber="order.phoneNumber"
+        :time="order.time"
+        :delivery="order.delivery"
+        :deliveryPrice="order.deliveryPrice"
+        :orderStatus="order.orderStatus"
+        :devices="order.devices"
+      />
+    </div>
   </div>
+
+  <div>
+    <p
+      class="w-full border-b-2 font-almarai mb-3 pt-2 sm:pt-3 md:pt-4 border-primary text-primary text-base sm:text-lg md:text-xl sm:pb-2"
+    >
+      الطلبات في انتظار التأكيد
+    </p>
+    <div v-for="order in filteredOrders('Confirming')" :key="order.id">
+      <!-- Render order details for Awaiting orders -->
+      <ExpandableItem
+        :title="order.title"
+        :address="order.address"
+        :date="order.date"
+        :imageUrl="order.imageUrl"
+        :devicesNumber="order.devicesNumber"
+        :phoneNumber="order.phoneNumber"
+        :time="order.time"
+        :delivery="order.delivery"
+        :deliveryPrice="order.deliveryPrice"
+        :orderStatus="order.orderStatus"
+        :devices="order.devices"
+      />
+    </div>
+  </div>
+  </div>
+  
 </template>
 
 <script lang="ts">
@@ -60,7 +92,48 @@ export default {
           time: "3:35م",
           delivery: true,
           deliveryPrice: 2000,
-          orderStatus: "Confirmed",
+          orderStatus: "Testing",
+          devices: [
+            {
+              deviceName: "Samsung Galaxy S20",
+              seller: "علي صالح",
+              address: "صنعاء - الحصبة",
+              phoneNumber: "771172112",
+              productId: "ABC123",
+              price: 10000,
+              flaws: "شدوخ خفيفة",
+              description: "هاتف ذو جودة عالية",
+              isUsed: true,
+              usedProductCondition: "كالجديد",
+              pictureLink: "https://example.com/device1-image.jpg",
+            },
+            {
+              deviceName: "iPhone 15 Pro",
+              seller: "علي صالح",
+              address: "صنعاء - الحصبة",
+              phoneNumber: "771172112",
+              productId: "XYZ789",
+              price: 8000,
+              flaws: "بلا مشاكل",
+              description: "بالكرتون",
+              isUsed: false,
+              usedProductCondition: null,
+              pictureLink: "https://example.com/device2-image.jpg",
+            },
+          ],
+        },
+        {
+          id: 1,
+          title: "حمود حمادي",
+          address: "صنعاء - شعوب",
+          date: "2023-10-07",
+          imageUrl: "https://picsum.photos/200",
+          devicesNumber: 2,
+          phoneNumber: "770893740",
+          time: "3:35م",
+          delivery: true,
+          deliveryPrice: 2000,
+          orderStatus: "Confirming",
           devices: [
             {
               deviceName: "Samsung Galaxy S20",
@@ -101,7 +174,7 @@ export default {
           time: "3:35م",
           delivery: false,
           deliveryPrice: null,
-          orderStatus: "Awating",
+          orderStatus: "Confirming",
           devices: [
             {
               deviceName: "Samsung Galaxy S20",
@@ -133,6 +206,11 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    filteredOrders(status) {
+      return this.orders.filter((order) => order.orderStatus === status);
+    },
   },
 };
 </script>
