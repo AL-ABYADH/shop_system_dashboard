@@ -13,18 +13,18 @@
       <div>
         <p
           class="w-full border-b-2 font-almarai pt-2 sm:pt-3 md:pt-4 border-primary text-primary text-base sm:text-lg md:text-xl pb-1 sm:pb-2 md:pb-3 lg:pb-4 xl:pb-5">
-           حسابات المشرفين
+           حسابات المستخدمين
         </p>
       </div>
       <div class="mt-5 md:pt-0 md:pl-5">
-        <adminsAccountContentScreenVue/>
+        <customersAccountContentScreenVue/>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import adminsAccountContentScreenVue from './adminsAccountsContent/adminsAccountsContentScreen.vue';
+import customersAccountContentScreenVue from './customersAccountsContent/customersAccountsContentScreen.vue';
 import sidebarVue from '../../components/sidebar.vue';
 import headerVue from '../../components/header.vue';
 
@@ -39,7 +39,7 @@ export default {
   components: {
     headerVue,
     sidebarVue,
-    adminsAccountContentScreenVue,
+    customersAccountContentScreenVue,
   },
 
   created() {

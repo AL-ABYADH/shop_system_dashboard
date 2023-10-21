@@ -10,21 +10,15 @@
     <!-- Main Content -->
     <div :style="{ width: isSidebarClosed ? '100%' : '100%' }" class="w-full md:w-3/4 ml-5 overflow-y-auto">
       <headerVue />
-      <div>
-        <p
-          class="w-full border-b-2 font-almarai pt-2 sm:pt-3 md:pt-4 border-primary text-primary text-base sm:text-lg md:text-xl pb-1 sm:pb-2 md:pb-3 lg:pb-4 xl:pb-5">
-           حسابات المشرفين
-        </p>
-      </div>
-      <div class="mt-5 md:pt-0 md:pl-5">
-        <adminsAccountContentScreenVue/>
+      <div class="mt-2 w-full md:pt-0 md:pl-5">
+        <handledOrderContentScreen/>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import adminsAccountContentScreenVue from './adminsAccountsContent/adminsAccountsContentScreen.vue';
+import handledOrderContentScreen from './handledOrderContent/handledOrderContentScreen.vue'
 import sidebarVue from '../../components/sidebar.vue';
 import headerVue from '../../components/header.vue';
 
@@ -39,7 +33,7 @@ export default {
   components: {
     headerVue,
     sidebarVue,
-    adminsAccountContentScreenVue,
+    handledOrderContentScreen,
   },
 
   created() {
