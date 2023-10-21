@@ -1,7 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/User'
-import Address from 'App/Models/Address'
 
 export default class UserAuthController {
     public async register({ request, response, auth }: HttpContextContract) {
@@ -28,37 +27,27 @@ export default class UserAuthController {
                     rules.alpha({ allow: ['space'] }),
                     rules.maxLength(50),
                 ]),
-                imageUrl: schema.string.optional({}, [rules.url()]),
-                address: schema.string({}, [
-                    rules.required(),
-                    rules.alpha({ allow: ['space'] }),
-                    rules.maxLength(50),
-                ]),
-                latitude: schema.number([
-                    rules.required(),
-                    rules.range(-90, 90),
-                ]),
-                longitude: schema.number([
-                    rules.required(),
-                    rules.range(-180, 180),
-                ]),
                 role: schema.enum(['seller', 'customer', rules.required()]),
             })
 
             const messages = {
                 required:
                     'The {{ field }} is required to create a new account.',
-                minLength:
-                    'The {{ field }} should be at least {{ options.minLength }} characters long.',
-                maxLength:
-                    'The {{ field }} should not exceed {{ options.maxLength }} characters.',
-                alpha: 'The {{ field }} should only contain alphabets.',
-                unique: 'The {{ field }} is already registered.',
-                url: 'The {{ field }} should be a valid URL.',
-                range: 'The {{ field }} should be between {{ options.range[0] }} and {{ options.range[1] }}.',
+                // url: 'The {{ field }} should be a valid URL.',
                 enum: 'The {{ field }} should be either "seller" or "customer".',
-                'username.unique': 'Username not available',
-                'phoneNumber.unique': 'Phone number already in use',
+                'username.unique': 'اسم المستخدم غير متاح',
+                'username.alpha':
+                    'اسم المستخدم يجب ألا يحتوي إلا حروف بدون مسافات',
+                'username.maxLength':
+                    'اسم المستخدم يجب أن يتكون من أقل من 20 عنصر',
+                'username.minLength':
+                    'اسم المستخدم يجب أن يتكون من أكثر من 4 عناصر',
+                'fullName.alpha': 'الاسم الكامل يجب ألا يحتوي إلا حروف',
+                'fullName.maxLength':
+                    'الاسم الكامل يجب أن يتكون من أقل من 50 عنصر',
+                'phoneNumber.unique': 'رقم الهاتف غير متاح',
+                'password.minLength':
+                    'كلمة المرور يجب أن تتكون من أكثر من 6 عناصر',
             }
 
             const data = await request.validate({
@@ -71,16 +60,15 @@ export default class UserAuthController {
                 password: data.password,
                 phoneNumber: data.phoneNumber,
                 fullName: data.fullName,
-                imageUrl: data.imageUrl,
                 role: data.role == 'seller' ? 'seller' : 'customer',
             })
 
-            Address.create({
-                userId: user.id,
-                address: data.address,
-                latitude: data.latitude,
-                longitude: data.longitude,
-            })
+            // Address.create({
+            //     userId: user.id,
+            //     address: data.address,
+            //     latitude: data.latitude,
+            //     longitude: data.longitude,
+            // })
 
             // Attempt to authenticate the user
             const token = await auth
@@ -90,9 +78,7 @@ export default class UserAuthController {
             return { ...user.serialize(), token: token.token }
         } catch (err) {
             return response.status(400).send({
-                status: 'error',
-                message: 'Validation failed',
-                errors: err.messages,
+                message: err.messages[0],
             })
         }
     }

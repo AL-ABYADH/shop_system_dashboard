@@ -16,8 +16,7 @@ export default class CheckUser {
         } catch (error) {
             if (error.response.status == 404)
                 response.status(400).json({
-                    message:
-                        'You must first create an account in the virtual payment app',
+                    message: 'يجب أن يكون لديك حساب في نظام الدفع',
                 })
             else
                 response
