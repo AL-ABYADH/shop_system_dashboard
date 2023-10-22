@@ -1,9 +1,5 @@
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-
-// import Product from "App/Models/Product";
-
 export default class SellerProductsController {
-    public async getProducts({ response, auth }: HttpContextContract) {
+    public async getProducts({ response, auth }) {
         try {
             // Get the currently authenticated user
             const user = await auth.use('api').authenticate()

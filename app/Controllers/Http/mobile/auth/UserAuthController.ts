@@ -1,9 +1,10 @@
-import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/User'
+import axios from 'axios'
+import Env from '@ioc:Adonis/Core/Env'
 
 export default class UserAuthController {
-    public async register({ request, response, auth }: HttpContextContract) {
+    public async register({ request, response, auth }) {
         try {
             // Validate the request data
             const validationSchema = schema.create({
@@ -75,15 +76,17 @@ export default class UserAuthController {
                 .use('api')
                 .attempt(data.username, data.password)
 
-            return { ...user.serialize(), token: token.token }
+            return response
+                .status(200)
+                .json({ ...user.serialize(), token: token.token })
         } catch (err) {
-            return response.status(400).send({
-                message: err.messages[0],
+            return response.status(400).json({
+                message: (Object.values(err.messages)[0] as Array<string>)[0],
             })
         }
     }
 
-    public async login({ request, response, auth }: HttpContextContract) {
+    public async login({ request, response, auth }) {
         try {
             // Validate the request data
             const validationSchema = schema.create({
@@ -105,15 +108,24 @@ export default class UserAuthController {
                 .use('api')
                 .attempt(data.username, data.password)
 
-            return response.status(200).send({
-                status: 'success',
-                message: 'Logged in successfully',
-                token: token.toJSON(),
-            })
+            const user = await User.findBy('username', data.username)
+
+            await axios.get(
+                `${Env.get('PAYMENT_URL')}/checkUser?phoneNumber=${
+                    user?.phoneNumber
+                }`
+            )
+
+            return response
+                .status(200)
+                .json({ ...user!.serialize(), token: token.token })
         } catch (err) {
-            return response.status(400).send({
-                status: 'error',
-                message: 'Invalid username or password',
+            if (err.response && err.response.status == 404)
+                return response.status(400).json({
+                    message: 'يجب أن يكون لديك حساب في نظام الدفع',
+                })
+            return response.status(400).json({
+                message: 'اسم المستخدم أو كلمة المرور غير صحيحة',
             })
         }
     }
