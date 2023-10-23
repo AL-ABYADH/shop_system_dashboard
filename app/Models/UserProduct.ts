@@ -1,41 +1,31 @@
+import { DateTime } from 'luxon'
 import {
     BaseModel,
-    column,
-    belongsTo,
     BelongsTo,
-    beforeFind,
     beforeFetch,
+    beforeFind,
+    belongsTo,
+    column,
 } from '@ioc:Adonis/Lucid/Orm'
-import { DateTime } from 'luxon'
 import { softDelete, softDeleteQuery } from 'App/Services/SoftDelete'
+import User from './User'
 import Product from './Product'
-import Feature from './Feature'
-import ProductItem from './ProductItem'
 
-export default class ProductFeature extends BaseModel {
+export default class UserProduct extends BaseModel {
     @column({ isPrimary: true })
     public id: number
 
     @column()
-    public value: string[]
+    public userId: number
 
-    @column()
-    public featureId: number
-
-    @belongsTo(() => Feature)
-    public feature: BelongsTo<typeof Feature>
+    @belongsTo(() => User)
+    public user: BelongsTo<typeof User>
 
     @column()
     public productId: number
 
     @belongsTo(() => Product)
     public product: BelongsTo<typeof Product>
-
-    @column()
-    public productItemId: number
-
-    @belongsTo(() => ProductItem)
-    public productItem: BelongsTo<typeof ProductItem>
 
     @column.dateTime({ autoCreate: true })
     public createdAt: DateTime

@@ -13,6 +13,7 @@ import Hash from '@ioc:Adonis/Core/Hash'
 import Address from './Address'
 import Order from './Order'
 import ProductItem from './ProductItem'
+import Product from './Product'
 
 export default class User extends BaseModel {
     @column({ isPrimary: true })
@@ -62,6 +63,9 @@ export default class User extends BaseModel {
 
     @hasMany(() => ProductItem)
     public productItems: HasMany<typeof ProductItem> // Only users of type "seller" will have product items
+
+    @hasMany(() => Product)
+    public products: HasMany<typeof Product> // Only users of type "seller" will have products
 
     @column.dateTime({ autoCreate: true })
     public createdAt: DateTime

@@ -1,28 +1,20 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class ProductFeatures extends BaseSchema {
-    protected tableName = 'product_features'
+export default class UserProducts extends BaseSchema {
+    protected tableName = 'user_products'
 
     public async up() {
         this.schema.createTable(this.tableName, (table) => {
             table.increments('id').primary()
-            table.json('value').notNullable()
             table
-                .integer('feature_id')
+                .integer('user_id')
                 .unsigned()
-                .references('features.id')
+                .references('users.id')
                 .notNullable()
-
-            // Only one of the following two columns should be null and the other one must have a value
             table
                 .integer('product_id')
                 .unsigned()
                 .references('products.id')
-                .nullable()
-            table
-                .integer('product_item_id')
-                .unsigned()
-                .references('product_items.id')
                 .nullable()
 
             table.timestamps(true, true) // created_at and updated_at

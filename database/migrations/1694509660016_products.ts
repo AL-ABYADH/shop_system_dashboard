@@ -8,7 +8,6 @@ export default class Products extends BaseSchema {
             table.increments('id').primary()
             table.string('name', 50).notNullable().unique()
             table.json('models').notNullable().unique()
-            table.text('description').nullable()
             table.string('brand', 50).notNullable()
             table.json('flaws').notNullable()
             table

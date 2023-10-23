@@ -28,9 +28,6 @@ export default class Product extends BaseModel {
     public models: string[]
 
     @column()
-    public description: string
-
-    @column()
     public brand: string
 
     @column()
