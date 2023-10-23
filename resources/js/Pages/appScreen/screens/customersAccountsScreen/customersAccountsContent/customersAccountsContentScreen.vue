@@ -50,13 +50,6 @@
         </table>
     </div>
 </div>
-
-
-
-    <a class="w-full md:w-auto h-full rounded-xl mt-5 flex justify-center items-center text-primary border-4 border-primary border-dotted bg-[#F5F5F5]"
-        href="www.google.com">
-        <p class="block my-2 mx-2 md:mx-4 text-center md:text-left">اضافة مستخدم جديد الى لوحة التحكم</p>
-    </a>
 </template>
 
 <script lang="ts">

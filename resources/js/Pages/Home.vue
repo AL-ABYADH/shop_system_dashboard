@@ -1,6 +1,6 @@
 <template>
   <div>
-    <eAdmins/>
+    </>
   </div>
 </template>
 
@@ -14,8 +14,11 @@ import history from "./appScreen/screens/orderHistoryScreen/orderHistoryScreen.v
 import sellers from "./appScreen/screens/sellersAccountsScreen/sellersAccountsScreen.vue";
 import customers from "./appScreen/screens/customersAccountsScreen/customersAccountsScreen.vue";
 import eAdmins from './appScreen/screens/adminAccountsScreen/editAdmins/editAdminsScreen.vue'
+import login from './loginScreen/screens/loginScreen.vue';
+
 export default {
   components: {
+    login,
     adminsAccountsScreen,
     homePageScreen,
     admins,

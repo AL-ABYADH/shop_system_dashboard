@@ -5,7 +5,7 @@
   />
 
   <div class="max-w-md bg-white mx-auto mt-4 p-4 border rounded-lg shadow-lg">
-    <h2 class="text-lg font-semibold mb-2">نموذج التسجيل</h2>
+    <h2 class="text-lg font-semibold mb-2"></h2>
     <form @submit.prevent="submitForm" >
       <!-- Picture Input -->
       <div v-if="!formData.picture" class="mb-3">
