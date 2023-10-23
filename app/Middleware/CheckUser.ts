@@ -1,5 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import axios from 'axios'
+import Env from '@ioc:Adonis/Core/Env'
 
 export default class CheckUser {
     async handle(
@@ -10,18 +11,18 @@ export default class CheckUser {
             const phoneNumber = request.input('phoneNumber')
 
             await axios.get(
-                `http://localhost:3333/checkUser?phoneNumber=${phoneNumber}`
+                `${Env.get('PAYMENT_URL')}/checkUser?phoneNumber=${phoneNumber}`
             )
             await next()
-        } catch (error) {
-            if (error.response.status == 404)
-                response.status(400).json({
+        } catch (err) {
+            if (err.response && err.response.status == 404)
+                return response.status(400).json({
                     message: 'يجب أن يكون لديك حساب في نظام الدفع',
                 })
-            else
-                response
-                    .status(error.response.status || 500)
-                    .json({ message: error.message })
+
+            return response
+                .status(err.response?.status || 500)
+                .json({ message: err.message })
         }
     }
 }
