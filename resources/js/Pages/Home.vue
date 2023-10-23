@@ -1,6 +1,6 @@
 <template>
   <div>
-    </>
+    <Scree/>
   </div>
 </template>
 
@@ -13,7 +13,7 @@ import handle from './appScreen/screens/handledOrderScreen/handledOrderScreen.vu
 import history from "./appScreen/screens/orderHistoryScreen/orderHistoryScreen.vue";
 import sellers from "./appScreen/screens/sellersAccountsScreen/sellersAccountsScreen.vue";
 import customers from "./appScreen/screens/customersAccountsScreen/customersAccountsScreen.vue";
-import eAdmins from './appScreen/screens/adminAccountsScreen/editAdmins/editAdminsScreen.vue'
+import eAdmins from './appScreen/screens/adminAccountsScreen/editAdmins/editAdminsScreen.vue';
 import login from './loginScreen/screens/loginScreen.vue';
 
 export default {

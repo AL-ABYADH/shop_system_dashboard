@@ -73,6 +73,24 @@
         </div>
       </div>
 
+      <div class="mb-2">
+        <input
+          type="text"
+          id="name"
+          v-model="formData.username"
+          class="mt-1 p-2 block w-full border rounded-md focus:bg-primary-opacity text-sm sm:text-base"
+          placeholder="أدخل اسم المستخدم (باللغة العربية أو الإنجليزية)"
+          required
+          @blur="validateUsername"
+        />
+        <div
+          v-if="usernameTouched && !usernameIsValid"
+          class="text-red-500 text-sm mt-1"
+        >
+          الرجاء إدخال اسم مستخدم من كلمة واحدة باللغة العربية أو الإنجليزية.
+        </div>
+      </div>
+
       <!-- Phone Number Input -->
       <div class="mb-2">
         <input
@@ -112,24 +130,6 @@
         </div>
       </div>
 
-      <!-- Email Input -->
-      <div class="mb-2">
-        <input
-          type="email"
-          id="email"
-          v-model="formData.email"
-          class="mt-1 p-2 block w-full border rounded-md focus:bg-primary-opacity text-sm sm:text-base"
-          placeholder="أدخل بريدك الإلكتروني (مثال: example@example.com)"
-          required
-          @blur="validateEmail"
-        />
-        <div
-          v-if="emailTouched && !emailIsValid"
-          class="text-red-500 text-sm mt-1"
-        >
-          الرجاء إدخال عنوان بريد إلكتروني صالح.
-        </div>
-      </div>
 
       <!-- Password Input -->
       <div class="mb-2">
@@ -188,21 +188,21 @@ export default {
       formData: {
         picture: null, // Store the picture file
         name: "John Doe", // Initial name
+        username: "hamod",
         phone: "123456789", // Initial phone number
-        address: "123 Main Street", // Initial address
-        email: "example@example.com", // Initial email
+        address: "123 Main Street", // Initial address // Initial email
         password: "password123", // Initial password
         confirmPassword: "password123", // Initial password confirmation
       },
       nameRegex: /^[a-zA-Z\u0600-\u06FF\s]+$/,
+      usernameRegex: /^[a-zA-Z\u0600-\u06FF]+$/,
       addressRegex: /^(?!$).*$/,
       phoneRegex: /^\d{9}$/,
-      emailRegex: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
       passwordRegex: /^.{6,}$/,
       nameTouched: false,
+      usernameTouched: false,
       phoneTouched: false,
       addressTouched: false,
-      emailTouched: false,
       passwordTouched: false,
       confirmPasswordTouched: false,
       pictureTouched: false,
@@ -212,8 +212,8 @@ export default {
     isFormValid() {
       return (
         this.nameIsValid &&
+        this.usernameIsValid &&
         this.phoneIsValid &&
-        this.emailIsValid &&
         this.addressIsValid &&
         this.passwordIsValid &&
         this.confirmPasswordIsValid
@@ -222,14 +222,14 @@ export default {
     nameIsValid() {
       return this.nameRegex.test(this.formData.name);
     },
+    usernameIsValid() {
+      return this.usernameRegex.test(this.formData.username);
+    },
     phoneIsValid() {
       return this.phoneRegex.test(this.formData.phone);
     },
     addressIsValid() {
       return this.addressRegex.test(this.formData.address);
-    },
-    emailIsValid() {
-      return this.emailRegex.test(this.formData.email);
     },
     passwordIsValid() {
       return this.passwordRegex.test(this.formData.password);
@@ -263,14 +263,14 @@ export default {
     validateName() {
       this.nameTouched = true;
     },
+    validateUsername(){
+      this.usernameTouched =true;
+    },
     validatePhone() {
       this.phoneTouched = true;
     },
     validateAddress() {
       this.addressTouched = true;
-    },
-    validateEmail() {
-      this.emailTouched = true;
     },
     validatePassword() {
       this.passwordTouched = true;

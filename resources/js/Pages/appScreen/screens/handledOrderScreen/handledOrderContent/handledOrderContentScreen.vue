@@ -22,7 +22,7 @@
   <div  class="container max-w-full">
     <div>
     <p
-      class="w-full border-b-2 font-almarai mb-3 pt-2 sm:pt-3 md:pt-4 border-primary text-primary text-base sm:text-lg md:text-xl sm:pb-2"
+      class="w-full border-b-2 font-almarai mb-3 sm:pt-2 md:pt-2 border-primary text-primary text-base sm:text-lg md:text-xl sm:pb-2"
     >
       الطلبات قيد الفحص
     </p>
