@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\yarn\bin\yarn.js add prettier--save-dev --save-exact
+  C:\Program Files\nodejs\node.exe C:\Users\grz\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add adonisjs@auth@latest
 
 PATH: 
-  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\YAHYA\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files (x86)\HP\HP Performance Advisor;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\PostgreSQL\14\bin;C:\Program Files\Git\cmd;C:\Users\YAHYA\AppData\Local\Programs\Python\Python310;C:\Users\YAHYA\AppData\Local\Programs\Python\Python310\Scripts;C:\Program Files\dotnet;C:\Program Files\Java\jdk-20\bin;C:\Users\YAHYA\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\PuTTY;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Users\YAHYA\AppData\Local\Microsoft\WindowsApps;C:\Users\YAHYA\AppData\Local\GitHubDesktop\bin;C:\Program Files\Sublime Text;C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Node.js;C:\Users\YAHYA\AppData\Local\Programs\oh-my-posh\bin;C:\Program Files\heroku\bin;C:\Users\YAHYA\AppData\Local\Programs\Microsoft VS Code\bin;C:\MinGW\bin;C:\Program Files\JetBrains\PyCharm 2022.2.1\bin;C:\Users\YAHYA\AppData\Local\Programs\Python\Python310\Lib\venv\scripts\nt;C:\flutter\bin;C:\Users\YAHYA\AppData\Local\Android\tools;C:\Users\YAHYA\AppData\Local\Android\platform-tools;C:\Program Files\Visual Sudio Code;C:\Users\YAHYA\AppData\Roaming\npm;C:\Users\YAHYA\AppData\Roaming\nvm;C:\Program Files\nodejs
+  C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\HP\HP Performance Advisor;C:\Program Files (x86)\Git\cmd;C:\Users\Hussain GRZ\flutter\bin;E:\flutter for hussain\flutter_windows_3.3.9-stable\flutter\bin;Desktop\flutter;C:\Program Files\Java\jdk-20\bin;C:\Program Files\nodejs\;C:\Users\grz\.console-ninja\.bin;C:\Users\grz\AppData\Local\Microsoft\WindowsApps;C:\Users\Hussain GRZ\AppData\Local\Programs\Python\Python310\Lib\venv\scripts\nt;C:\Users\Hussain GRZ\flutter\bin;E:\flutter for hussain\flutter_windows_3.3.9-stable\flutter\bin;C:\Users\grz\flutter\bin;C:\Users\grz\AppData\Local\Android\Sdk\tools;C:\Users\grz\AppData\Local\Android\Sdk\platform-tools;C:\Users\grz\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\grz\AppData\Local\GitHubDesktop\bin;C:\Program Files\Java\jdk-20\bin;C:\Users\grz\AppData\Roaming\npm
 
 Yarn version: 
   1.22.19
@@ -14,13 +14,13 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/prettier--save-dev: Not found
-      at params.callback [as _callback] (C:\Users\YAHYA\AppData\Roaming\nvm\v20.5.1\node_modules\yarn\lib\cli.js:66145:18)
-      at self.callback (C:\Users\YAHYA\AppData\Roaming\nvm\v20.5.1\node_modules\yarn\lib\cli.js:140890:22)
+  Error: https://registry.yarnpkg.com/adonisjs: Not found
+      at params.callback [as _callback] (C:\Users\grz\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66145:18)
+      at self.callback (C:\Users\grz\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140890:22)
       at Request.emit (node:events:514:28)
-      at Request.<anonymous> (C:\Users\YAHYA\AppData\Roaming\nvm\v20.5.1\node_modules\yarn\lib\cli.js:141862:10)
+      at Request.<anonymous> (C:\Users\grz\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141862:10)
       at Request.emit (node:events:514:28)
-      at IncomingMessage.<anonymous> (C:\Users\YAHYA\AppData\Roaming\nvm\v20.5.1\node_modules\yarn\lib\cli.js:141784:12)
+      at IncomingMessage.<anonymous> (C:\Users\grz\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141784:12)
       at Object.onceWrapper (node:events:628:28)
       at IncomingMessage.emit (node:events:526:35)
       at endReadableNT (node:internal/streams/readable:1376:12)
@@ -58,7 +58,6 @@ npm manifest:
     },
     "dependencies": {
       "@91codes/adonis-vite": "^0.3.2",
-      "@adonisjs/auth": "^8.2.3",
       "@adonisjs/core": "^5.9.0",
       "@adonisjs/lucid": "^10.0.0",
       "@adonisjs/repl": "^3.1.11",
@@ -70,14 +69,14 @@ npm manifest:
       "@inertiajs/inertia-vue3": "^0.6.0",
       "@inertiajs/progress": "^0.2.7",
       "@vitejs/plugin-vue": "^4.0.0",
-      "adonis": "^0.9.0",
-      "axios": "^1.5.0",
+      "bootstrap": "^5.3.2",
       "luxon": "^3.2.1",
       "mysql": "^2.18.1",
       "phc-bcrypt": "^1.0.8",
       "proxy-addr": "^2.0.7",
       "reflect-metadata": "^0.1.13",
       "source-map-support": "^0.5.21",
+      "v-tooltip": "^2.1.3",
       "vue": "^3.2.47",
       "vue-router": "^4.2.4"
     }
@@ -146,15 +145,6 @@ Lockfile:
       has-yarn "^2.1.0"
       picomatch "^2.3.1"
       slash "^3.0.0"
-  
-  "@adonisjs/auth@^8.2.3":
-    version "8.2.3"
-    resolved "https://registry.yarnpkg.com/@adonisjs/auth/-/auth-8.2.3.tgz#30ea07216589cd0865a10d22749490ff0b122308"
-    integrity sha512-js9e8AHEsNC/8MGvho6MgL+uXr8SlhTg9MJJDWQBBiqsKkT7+H7NMP/pLbuSzYaaf40t2u/OXfq6wXuIC5ZYvw==
-    dependencies:
-      "@poppinss/hooks" "^5.0.3"
-      "@poppinss/utils" "^5.0.0"
-      luxon "^3.0.4"
   
   "@adonisjs/bodyparser@^8.1.7":
     version "8.1.7"
@@ -462,6 +452,13 @@ Lockfile:
     version "7.20.13"
     resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.20.13.tgz#ddf1eb5a813588d2fb1692b70c6fce75b945c088"
     integrity sha512-gFDLKMfpiXCsjt4za2JA9oTMn70CeseCehb11kRZgvd7+F67Hih3OHOK24cRrWECJ/ljfPGac6ygXAs/C8kIvw==
+  
+  "@babel/runtime@^7.13.10":
+    version "7.23.2"
+    resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.23.2.tgz#062b0ac103261d68a966c4c7baf2ae3e62ec3885"
+    integrity sha512-mM8eg4yl5D6i3lu2QKPuPH4FArvJ8KhTofbE7jwMUv9KX5mBvwPAqnV3MlyBNqdp9RyRKP6Yck8TrfYrPvX3bg==
+    dependencies:
+      regenerator-runtime "^0.14.0"
   
   "@colors/colors@1.5.0":
     version "1.5.0"
@@ -842,11 +839,6 @@ Lockfile:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/@poppinss/hooks/-/hooks-2.0.0.tgz#d5346ad1eb53c7a0861f77ad6a069acb76765a51"
     integrity sha512-Hn8MUlS2gRJ7JvfZsO/lfMlYZhIiJOQdNft6ITMUrbYAJuEfXiThP/S6W47EWpc3ZaS2/3Ic9/Qn9Gb0FRL3Uw==
-  
-  "@poppinss/hooks@^5.0.3":
-    version "5.0.3"
-    resolved "https://registry.yarnpkg.com/@poppinss/hooks/-/hooks-5.0.3.tgz#7c911f62d303ba79011546d8953616dea36a602d"
-    integrity sha512-M5a151VUl+RslVP5qwDW+u+0VmzKt5Nfplzdx2nrtXol3yVlLN3u2Jp6UADESid3DDI7IRHmFrA3sQusey3eUA==
   
   "@poppinss/hooks@^6.0.2-0":
     version "6.0.2-0"
@@ -1317,13 +1309,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/adonis-preset-ts/-/adonis-preset-ts-2.1.0.tgz#3fccdee1c82c574114dc089d8c76dddf5a223054"
     integrity sha512-cQH/NP250gOF9k3TTDhVsTOPSAvyH4MhKVZ4ryYiihA+vnP27sut1gVIrRas3Evl5d2wEgWVGI5DgdP/ZFSk0w==
   
-  adonis@^0.9.0:
-    version "0.9.0"
-    resolved "https://registry.yarnpkg.com/adonis/-/adonis-0.9.0.tgz#5c4c8e9caeb0318d9ea98c0a56771b83031b610c"
-    integrity sha512-S9MbJcGlDOqGn8+q+VW/ZC9DRUaH/d/LOmEqKkdWyQrp6Zq5oICrNLwb/6TTCaoGgjwh2XSL/s54DA9DMxVsoQ==
-    dependencies:
-      aphrodite "^1.1.0"
-  
   agent-base@6:
     version "6.0.2"
     resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-6.0.2.tgz#49fff58577cfee3f37176feab4c22e00f86d7f77"
@@ -1414,15 +1399,6 @@ Lockfile:
     dependencies:
       normalize-path "^3.0.0"
       picomatch "^2.0.4"
-  
-  aphrodite@^1.1.0:
-    version "1.2.5"
-    resolved "https://registry.yarnpkg.com/aphrodite/-/aphrodite-1.2.5.tgz#8358c36c80bb03aee9b97165aaa70186225b4983"
-    integrity sha512-vbhTGgXORXnHNnQF7ReckeB3LAow8l4svWwf4R6zBdbBQEswi6+HVIWQX914jWYOJoD/h+AjWDvbIAvyhWnBmQ==
-    dependencies:
-      asap "^2.0.3"
-      inline-style-prefixer "^3.0.1"
-      string-hash "^1.1.3"
   
   api-contract-validator@^2.2.8:
     version "2.2.8"
@@ -1537,7 +1513,7 @@ Lockfile:
     dependencies:
       printable-characters "^1.0.42"
   
-  asap@^2.0.0, asap@^2.0.3:
+  asap@^2.0.0:
     version "2.0.6"
     resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"
     integrity sha512-BSHWgDSAiKs50o2Re8ppvp3seVHXSRM44cdSsT9FfNEUUZLOGWVCsiWaRPWM1Znn+mqZ1OfVZ3z3DWEzSp7hRA==
@@ -1603,15 +1579,6 @@ Lockfile:
     dependencies:
       follow-redirects "^1.14.0"
   
-  axios@^1.5.0:
-    version "1.5.0"
-    resolved "https://registry.yarnpkg.com/axios/-/axios-1.5.0.tgz#f02e4af823e2e46a9768cfc74691fdd0517ea267"
-    integrity sha512-D4DdjDo5CY50Qms0qGQTTw6Q44jl7zRwY7bthds06pUGfChBCTcQs+N743eFWGEd6pRTMd6A+I87aWyFV5wiZQ==
-    dependencies:
-      follow-redirects "^1.15.0"
-      form-data "^4.0.0"
-      proxy-from-env "^1.1.0"
-  
   babel-code-frame@^6.26.0:
     version "6.26.0"
     resolved "https://registry.yarnpkg.com/babel-code-frame/-/babel-code-frame-6.26.0.tgz#63fd43f7dc1e3bb7ce35947db8fe369a3f58c74b"
@@ -1672,10 +1639,10 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.2.tgz#9f229c15be272454ffa973ace0dbee79a1b0c36f"
     integrity sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==
   
-  bowser@^1.7.3:
-    version "1.9.4"
-    resolved "https://registry.yarnpkg.com/bowser/-/bowser-1.9.4.tgz#890c58a2813a9d3243704334fa81b96a5c150c9a"
-    integrity sha512-9IdMmj2KjigRq6oWhmwv1W36pDuA4STQZ8q6YO9um+x07xgYNCD3Oou+WP/3L1HNz7iqythGet3/p4wvc8AAwQ==
+  bootstrap@^5.3.2:
+    version "5.3.2"
+    resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.3.2.tgz#97226583f27aae93b2b28ab23f4c114757ff16ae"
+    integrity sha512-D32nmNWiQHo94BKHLmOrdjlL05q1c8oxbtBphQFb9Z5to6eGRDCm0QgeaZ4zFBHzfg2++rqa2JkqCcxDy0sH0g==
   
   brace-expansion@^1.1.7:
     version "1.1.11"
@@ -2217,14 +2184,6 @@ Lockfile:
       rndm "1.2.0"
       tsscmp "1.0.6"
       uid-safe "2.1.5"
-  
-  css-in-js-utils@^2.0.0:
-    version "2.0.1"
-    resolved "https://registry.yarnpkg.com/css-in-js-utils/-/css-in-js-utils-2.0.1.tgz#3b472b398787291b47cfe3e44fecfdd9e914ba99"
-    integrity sha512-PJF0SpJT+WdbVVt0AOYp9C8GnuruRlL/UFW7932nLWmFLQTaWEzTBQEx7/hn4BuV+WON75iAViSUJLiU3PKbpA==
-    dependencies:
-      hyphenate-style-name "^1.0.2"
-      isobject "^3.0.1"
   
   cssesc@^3.0.0:
     version "3.0.0"
@@ -2842,7 +2801,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/flattie/-/flattie-1.1.0.tgz#1459504209f2001c478751b4e2fb69d6b1ee3241"
     integrity sha512-xU99gDEnciIwJdGcBmNHnzTJ/w5AT+VFJOu6sTB6WM8diOYNA3Sa+K1DiEBQ7XH4QikQq3iFW1U+jRVcotQnBw==
   
-  follow-redirects@^1.14.0, follow-redirects@^1.15.0:
+  follow-redirects@^1.14.0:
     version "1.15.2"
     resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.2.tgz#b460864144ba63f2681096f274c4e57026da2c13"
     integrity sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==
@@ -3260,11 +3219,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/human-signals/-/human-signals-2.1.0.tgz#dc91fcba42e4d06e4abaed33b3e7a3c02f514ea0"
     integrity sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==
   
-  hyphenate-style-name@^1.0.2:
-    version "1.0.4"
-    resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.4.tgz#691879af8e220aea5750e8827db4ef62a54e361d"
-    integrity sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==
-  
   iconv-lite@0.4.24:
     version "0.4.24"
     resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
@@ -3329,14 +3283,6 @@ Lockfile:
     version "1.3.8"
     resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.8.tgz#a29da425b48806f34767a4efce397269af28432c"
     integrity sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==
-  
-  inline-style-prefixer@^3.0.1:
-    version "3.0.8"
-    resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-3.0.8.tgz#8551b8e5b4d573244e66a34b04f7d32076a2b534"
-    integrity sha512-ne8XIyyqkRaNJ1JfL1NYzNdCNxq+MCBQhC8NgOQlzNm2vv3XxlP0VSLQUbSRCF6KPEoveCVEpayHoHzcMyZsMQ==
-    dependencies:
-      bowser "^1.7.3"
-      css-in-js-utils "^2.0.0"
   
   interpret@^2.2.0:
     version "2.2.0"
@@ -3897,11 +3843,6 @@ Lockfile:
     version "3.2.1"
     resolved "https://registry.yarnpkg.com/luxon/-/luxon-3.2.1.tgz#14f1af209188ad61212578ea7e3d518d18cee45f"
     integrity sha512-QrwPArQCNLAKGO/C+ZIilgIuDnEnKx5QYODdDtbFaxzsbZcc/a7WFq7MhsVYgRlwawLtvOUESTlfJ+hc/USqPg==
-  
-  luxon@^3.0.4:
-    version "3.4.3"
-    resolved "https://registry.yarnpkg.com/luxon/-/luxon-3.4.3.tgz#8ddf0358a9492267ffec6a13675fbaab5551315d"
-    integrity sha512-tFWBiv3h7z+T/tDaoxA8rqTxy1CHV6gHS//QdaH4pulbq/JuBSGgQspQQqcgnwdAx6pNI7cmvz5Sv/addzHmUg==
   
   macroable@^5.0.3:
     version "5.1.4"
@@ -4741,6 +4682,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-8.0.0.tgz#1a6fa16a38d12a1901e0320fa017051c539ce3b1"
     integrity sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==
   
+  popper.js@^1.16.1:
+    version "1.16.1"
+    resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
+    integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
+  
   posix-character-classes@^0.1.0:
     version "0.1.1"
     resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
@@ -4866,11 +4812,6 @@ Lockfile:
     dependencies:
       forwarded "0.2.0"
       ipaddr.js "1.9.1"
-  
-  proxy-from-env@^1.1.0:
-    version "1.1.0"
-    resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-1.1.0.tgz#e102f16ca355424865755d2c9e8ea4f24d58c3e2"
-    integrity sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==
   
   pseudomap@^1.0.2:
     version "1.0.2"
@@ -5030,6 +4971,11 @@ Lockfile:
     version "0.1.13"
     resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.1.13.tgz#67ae3ca57c972a2aa1642b10fe363fe32d49dc08"
     integrity sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==
+  
+  regenerator-runtime@^0.14.0:
+    version "0.14.0"
+    resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.14.0.tgz#5e19d68eb12d486f797e15a3c6a918f7cec5eb45"
+    integrity sha512-srw17NI0TUWHuGa5CFGGmhfNIeja30WMBfbslPNhf6JrqQlLN5gcrvig1oqPxiVaXb0oW0XRKtH6Nngs5lKCIA==
   
   regex-not@^1.0.0, regex-not@^1.0.2:
     version "1.0.2"
@@ -5473,11 +5419,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/statuses/-/statuses-2.0.1.tgz#55cb000ccf1d48728bd23c685a063998cf1a1b63"
     integrity sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==
   
-  string-hash@^1.1.3:
-    version "1.1.3"
-    resolved "https://registry.yarnpkg.com/string-hash/-/string-hash-1.1.3.tgz#e8aafc0ac1855b4666929ed7dd1275df5d6c811b"
-    integrity sha512-kJUvRUFK49aub+a7T1nNE66EJbZBMnBgoC1UbCZ5n6bsZKBRga4KgBRTMn/pFkeCZSYtNeSyMxPDM0AXWELk2A==
-  
   "string-width@^1.0.2 || 2 || 3 || 4", string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.2, string-width@^4.2.3:
     version "4.2.3"
     resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
@@ -5879,6 +5820,16 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
     integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
   
+  v-tooltip@^2.1.3:
+    version "2.1.3"
+    resolved "https://registry.yarnpkg.com/v-tooltip/-/v-tooltip-2.1.3.tgz#281c2015d1e73787f13c8956aa295b8c3a73f261"
+    integrity sha512-xXngyxLQTOx/yUEy50thb8te7Qo4XU6h4LZB6cvEfVd9mnysUxLEoYwGWDdqR+l69liKsy3IPkdYff3J1gAJ5w==
+    dependencies:
+      "@babel/runtime" "^7.13.10"
+      lodash "^4.17.21"
+      popper.js "^1.16.1"
+      vue-resize "^1.0.1"
+  
   v8flags@^3.2.0:
     version "3.2.0"
     resolved "https://registry.yarnpkg.com/v8flags/-/v8flags-3.2.0.tgz#b243e3b4dfd731fa774e7492128109a0fe66d656"
@@ -5928,6 +5879,13 @@ Lockfile:
       chalk "^4.1.0"
       hash-sum "^2.0.0"
       loader-utils "^2.0.0"
+  
+  vue-resize@^1.0.1:
+    version "1.0.1"
+    resolved "https://registry.yarnpkg.com/vue-resize/-/vue-resize-1.0.1.tgz#c120bed4e09938771d622614f57dbcf58a5147ee"
+    integrity sha512-z5M7lJs0QluJnaoMFTIeGx6dIkYxOwHThlZDeQnWZBizKblb99GSejPnK37ZbNE/rVwDcYcHY+Io+AxdpY952w==
+    dependencies:
+      "@babel/runtime" "^7.13.10"
   
   vue-router@^4.2.4:
     version "4.2.4"

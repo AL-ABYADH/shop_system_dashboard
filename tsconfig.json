@@ -32,6 +32,7 @@
       "@adonisjs/core",
       "@adonisjs/repl",
       "@adonisjs/session",
+      "@adonisjs/auth",
       "@adonisjs/view",
       "@adonisjs/shield",
       "@japa/preset-adonis/build/adonis-typings",
