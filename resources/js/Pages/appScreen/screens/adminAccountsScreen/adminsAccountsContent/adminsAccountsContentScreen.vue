@@ -10,7 +10,7 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <div id="app" v-for="admin in admins" :key="admin.id" class="md:pt-1 bg-white rounded-md">
+    <div id="app" class="md:pt-1 bg-white rounded-md">
         <div class="overflow-y-auto h-96 md:h-96">
             <table class="w-full divide-primary divide-y-2">
                 <thead>
@@ -39,7 +39,8 @@
                 </thead>
                 <tbody>
                     <tr
-                        
+                        v-for="admin in admins"
+                        :key="admin.id"
                         class="odd:bg-white even:bg-primary-opacity"
                     >
                         <td
@@ -89,10 +90,23 @@
 </template>
 
 <script lang="ts">
+type Admin = {
+    id: number
+    name: string
+    phone: number
+    address: string
+}
+
 export default {
+    props: {
+        admins: {
+            type: Array as () => Admin[],
+            required: true,
+        },
+    },
     data() {
         return {
-          admins: [],
+            admins: this.admins,
             // people: [
             //     {
             //         id: 1, // Unique ID
@@ -181,9 +195,5 @@ export default {
             // ],
         }
     },
-    mounted() {this.admins = this.$root.admins
-      console.log(this.admins)
-      
-  },
 }
 </script>

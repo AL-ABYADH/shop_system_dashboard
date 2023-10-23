@@ -2,7 +2,14 @@
 
 export default class AdminsAccountsScreenController {
     async index({ inertia }) {
-        const admins = [
+        type Admin = {
+            id: number
+            name: string
+            phone: number
+            address: string
+        }
+
+        const admins: Admin[] = [
             {
                 id: 1, // Unique ID
                 name: 'حمود حامد',
@@ -89,6 +96,6 @@ export default class AdminsAccountsScreenController {
             },
         ]
 
-        return inertia.render('adminsAccountsScreen', admins)
+        return inertia.render('adminsAccountsScreen', { admins })
     }
 }
