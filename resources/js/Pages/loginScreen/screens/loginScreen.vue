@@ -57,7 +57,7 @@ body {
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import { usePage } from '@inertiajs/inertia-vue3'
 
 export default {
