@@ -28,11 +28,6 @@
                         <th
                             class="px-4 py-2 sm:px-6 sm:py-3 md:px-6 md:py-3 lg:px-6 lg:py-3 xl:px-6 xl:py-3 text-center text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium text-gray-500"
                         >
-                            العنوان
-                        </th>
-                        <th
-                            class="px-4 py-2 sm:px-6 sm:py-3 md:px-6 md:py-3 lg:px-6 lg:py-3 xl:px-6 xl:py-3 text-center text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium text-gray-500"
-                        >
                             التحكم
                         </th>
                     </tr>
@@ -52,11 +47,6 @@
                             class="px-2 py-2 sm:px-4 sm:py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2 whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center sm:w-1/2 md:w-1/3 lg:w-1/4"
                         >
                             {{ admin.phoneNumber }}
-                        </td>
-                        <td
-                            class="px-2 py-2 sm:px-4 sm:py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2 whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center sm:w-1/2 md:w-1/3 lg:w-1/4"
-                        >
-                            {{ admin.address }}
                         </td>
                         <td
                             class="px-2 py-2 sm:px-4 sm:py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2 whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center sm:w-1/6 md:w-1/12 lg:w-1/12"
@@ -94,7 +84,6 @@ type Admin = {
     id: number
     fullName: string
     phoneNumber: number
-    address: string
 }
 
 export default {
@@ -107,92 +96,6 @@ export default {
     data() {
         return {
             admins: this.admins,
-            // people: [
-            //     {
-            //         id: 1, // Unique ID
-            //         name: 'حمود حامد',
-            //         phone: 770893740,
-            //         address: 'صنعاء - شعوب', // Add address field
-            //     },
-            //     {
-            //         id: 2, // Unique ID
-            //         name: 'حمادي حامد',
-            //         phone: 774546494,
-            //         address: 'صنعاء - مديرية', // Add address field
-            //     },
-            //     {
-            //         id: 3, // Unique ID
-            //         name: 'حمادي حامد',
-            //         phone: 774546494,
-            //         address: 'صنعاء - مدينة', // Add address field
-            //     },
-            //     {
-            //         id: 4, // Unique ID
-            //         name: 'حمادي حامد',
-            //         phone: 774546494,
-            //         address: 'صنعاء - مدينة', // Add address field
-            //     },
-            //     {
-            //         id: 5, // Unique ID
-            //         name: 'حمادي حامد',
-            //         phone: 774546494,
-            //         address: 'صنعاء - مدينة', // Add address field
-            //     },
-            //     {
-            //         id: 6, // Unique ID
-            //         name: 'حمادي حامد',
-            //         phone: 774546494,
-            //         address: 'صنعاء - مدينة', // Add address field
-            //     },
-            //     {
-            //         id: 7, // Unique ID
-            //         name: 'حمادي حامد',
-            //         phone: 774546494,
-            //         address: 'صنعاء - مدينة', // Add address field
-            //     },
-            //     {
-            //         id: 8, // Unique ID
-            //         name: 'حمادي حامد',
-            //         phone: 774546494,
-            //         address: 'صنعاء - مدينة', // Add address field
-            //     },
-            //     {
-            //         id: 8, // Unique ID
-            //         name: 'حمادي حامد',
-            //         phone: 774546494,
-            //         address: 'صنعاء - مدينة', // Add address field
-            //     },
-            //     {
-            //         id: 8, // Unique ID
-            //         name: 'حمادي حامد',
-            //         phone: 774546494,
-            //         address: 'صنعاء - مدينة', // Add address field
-            //     },
-            //     {
-            //         id: 8, // Unique ID
-            //         name: 'حمادي حامد',
-            //         phone: 774546494,
-            //         address: 'صنعاء - مدينة', // Add address field
-            //     },
-            //     {
-            //         id: 8, // Unique ID
-            //         name: 'حمادي حامد',
-            //         phone: 774546494,
-            //         address: 'صنعاء - مدينة', // Add address field
-            //     },
-            //     {
-            //         id: 8, // Unique ID
-            //         name: 'حمادي حامد',
-            //         phone: 774546494,
-            //         address: 'صنعاء - مدينة', // Add address field
-            //     },
-            //     {
-            //         id: 8, // Unique ID
-            //         name: 'حمادي حامد',
-            //         phone: 774546494,
-            //         address: 'صنعاء - مدينة', // Add address field
-            //     },
-            // ],
         }
     },
 }
