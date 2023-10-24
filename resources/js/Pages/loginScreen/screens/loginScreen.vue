@@ -15,12 +15,12 @@ body {
                 <h1 class="text-gray-500 text-xs md:text-sm lg:text-xs mb-4">
                     من خلال لوحة التحكم تستطيع التحكم بالنظام
                 </h1>
-                <form method="POST">
+                <form @submit.prevent="submit">
                     <div class="py-2">
                         <div class="relative">
                             <input
+                                v-model="form.username"
                                 type="text"
-                                onfocus=""
                                 onblur="this.type='text'"
                                 placeholder="اسم المستخدم"
                                 class="w-full rounded-md bg-primary-opacity border-0 px-3 py-2 text-xs md:text-sm lg:text-base"
@@ -36,8 +36,8 @@ body {
                     <div class="py-2">
                         <div class="relative">
                             <input
+                                v-model="form.password"
                                 type="password"
-                                onfocus=""
                                 onblur="this.type='password'"
                                 placeholder="كلمة المرور"
                                 class="w-full rounded-md bg-primary-opacity border-0 px-3 py-2 text-xs md:text-sm lg:text-base"
@@ -49,6 +49,9 @@ body {
                                 />
                             </div>
                         </div>
+                    </div>
+                    <div v-if="errors">
+                        <p>{{ errors }}</p>
                     </div>
                     <div>
                         <button
@@ -78,3 +81,31 @@ body {
         </div>
     </div>
 </template>
+
+<script>
+import { usePage } from '@inertiajs/inertia-vue3'
+
+export default {
+    data() {
+        return {
+            form: {
+                username: '',
+                password: '',
+            },
+        }
+    },
+    methods: {
+        async submit() {
+            console.log(this.form)
+            await this.$inertia.post('/login/postForm', this.form)
+        },
+    },
+    setup() {
+        const { props } = usePage()
+
+        return {
+            errors: props.flash != undefined ? props.flash.errors : null,
+        }
+    },
+}
+</script>
