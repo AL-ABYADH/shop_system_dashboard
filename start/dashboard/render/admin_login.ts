@@ -1,3 +1,3 @@
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/login', 'dashboard/render/AdminLoginController.index')
+Route.get('/login', 'dashboard/AdminLoginController.index')

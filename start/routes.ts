@@ -35,15 +35,15 @@ import './mobile/sellers_app_api/get/seller_products'
 // dashboard
 // auth
 // render
-import './dashboard/render/admin_login'
-import './dashboard/render/home_screen'
-import './dashboard/render/handled_order_screen'
-import './dashboard/render/order_history_screen'
-import './dashboard/render/admins_accounts_screen'
-import './dashboard/render/sellers_accounts_screen'
-import './dashboard/render/customers_accounts_screen'
-import './dashboard/render/new_admins_screen'
-import './dashboard/render/edit_admins_screen'
+import './dashboard/admin_login'
+import './dashboard/home_screen'
+import './dashboard/handled_order_screen'
+import './dashboard/order_history_screen'
+import './dashboard/admins_accounts_screen'
+import './dashboard/sellers_accounts_screen'
+import './dashboard/customers_accounts_screen'
+import './dashboard/new_admins_screen'
+import './dashboard/edit_admins_screen'
 // get
 // post
 
