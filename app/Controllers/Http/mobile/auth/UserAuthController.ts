@@ -1,10 +1,12 @@
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/User'
 import axios from 'axios'
 import Env from '@ioc:Adonis/Core/Env'
 
 export default class UserAuthController {
-    public async register({ request, response, auth }) {
+    public async register({ request, response, auth }: HttpContextContract) {
+        console.log('does')
         try {
             // Validate the request data
             const validationSchema = schema.create({
@@ -86,7 +88,8 @@ export default class UserAuthController {
         }
     }
 
-    public async login({ request, response, auth }) {
+    public async login({ request, response, auth }: HttpContextContract) {
+        console.log('does')
         try {
             // Validate the request data
             const validationSchema = schema.create({
