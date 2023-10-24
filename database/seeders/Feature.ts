@@ -4,6 +4,7 @@ import Feature from 'App/Models/Feature'
 export default class FeatureSeeder extends BaseSeeder {
     public async run() {
         const featureData = [
+            { feature: 'model numbers', categoryId: 1 },
             { feature: 'ram', categoryId: 1 },
             { feature: 'avaliable ram', categoryId: 1 },
             { feature: 'storage', categoryId: 1 },
@@ -16,7 +17,6 @@ export default class FeatureSeeder extends BaseSeeder {
             { feature: 'camera level', categoryId: 1 },
             { feature: 'speakers level', categoryId: 1 },
             { feature: 'Matrial quality', categoryId: 1 },
-            { feature: 'os version', categoryId: 1 },
             { feature: 'max os version', categoryId: 1 },
             { feature: 'water dust resistance', categoryId: 1 },
             { feature: 'budget range', categoryId: 1 },
