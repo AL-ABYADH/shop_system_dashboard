@@ -30,9 +30,9 @@
       :devicesNumber="order.devicesNumber"
       :phoneNumber="order.phoneNumber"
       :time="order.time.toLocaleString()"
-      :delivery="order.delivery"
       :deliveryPrice="order.deliveryPrice"
       :orderStatus="order.orderStatus"
+      :totalPrice="order.totalPrice"
       :devices="order.devices"
     />
   </div>
@@ -66,7 +66,7 @@ type Order = {
     devicesNumber: number
     phoneNumber: string
     time:DateTime
-    delivery: boolean
+    totalPrice: number
     deliveryPrice?: number
     orderStatus: string
     devices:Device[]

@@ -42,10 +42,9 @@
                             <div
                                 @mouseover="showTooltip(item.id)"
                                 @mouseout="hideTooltip(item.id)"
-                                @click="changeContent(item.id)"
                                 :class="{
                                     'text-slate-500 bg-primary-opacity':
-                                        selectedItem === item.id,
+                                        this.path === item.route,
                                 }"
                                 class="flex mb-1 px-3 py-2 duration-200 transform rounded-lg w-full cursor-pointer ml-2"
                                 data-toggle="tooltip"
@@ -69,10 +68,10 @@
                             <div
                                 @mouseover="showTooltip(item.id)"
                                 @mouseout="hideTooltip(item.id)"
-                                @click="changeContent(item.id)"
+                           
                                 :class="{
                                     'text-slate-500 bg-primary-opacity':
-                                        selectedItem === item.id,
+                                    this.path === item.route,
                                 }"
                                 class="flex mb-1 px-3 py-2 duration-200 transform rounded-lg w-10 cursor-pointer ml-2"
                                 data-toggle="tooltip"
@@ -95,7 +94,7 @@
 export default {
     data() {
         return {
-            selectedItem: '',
+            path: window.location.pathname,
             isSidebarClosed: false,
             sidebarItems: [
                 {
@@ -108,31 +107,31 @@ export default {
                     id: 'handled-orders',
                     label: 'الطلبات الموكلة',
                     icon: 'fa fa-shopping-cart', // Font Awesome icon class
-                    route: 'handledOrder',
+                    route: '/handledOrder',
                 },
                 {
                     id: 'orders-history',
                     label: 'سجل الطلبات',
                     icon: 'fa fa-history', // Font Awesome icon class
-                    route: 'orderHistory',
+                    route: '/orderHistory',
                 },
                 {
                     id: 'admin-accounts',
                     label: 'حسابات المشرفين',
                     icon: 'fa fa-user', // Font Awesome icon class
-                    route: 'adminsAccounts',
+                    route: '/adminsAccounts',
                 },
                 {
                     id: 'sellers-accounts',
                     label: 'حسابات البائعين',
                     icon: 'fa fa-user-o', // Font Awesome icon class
-                    route: 'sellersAccounts',
+                    route: '/sellersAccounts',
                 },
                 {
                     id: 'customers-accounts',
                     label: 'حسابات المستخدمين',
                     icon: 'fa fa-users ', // Font Awesome icon class
-                    route: 'customersAccounts',
+                    route: '/customersAccounts',
                 },
                 // Add more items here
             ],
@@ -141,11 +140,7 @@ export default {
 
     created() {
         // Retrieve the selected item and sidebar state from local storage
-        const storedItem = localStorage.getItem('selectedItem')
         const isSidebarClosed = localStorage.getItem('isSidebarClosed')
-        if (storedItem) {
-            this.selectedItem = storedItem
-        }
         if (isSidebarClosed) {
             this.isSidebarClosed = isSidebarClosed === 'true'
         }
@@ -163,15 +158,6 @@ export default {
     },
 
     methods: {
-        changeContent(content) {
-            if (content === this.selectedItem) {
-                // Reload the page when the current item is clicked
-                location.reload()
-            }
-            this.selectedItem = content
-            this.saveSidebarState()
-            this.$emit('content-change', content)
-        },
         toggleSidebarWidth() {
             this.isSidebarClosed = !this.isSidebarClosed
             this.saveSidebarState()

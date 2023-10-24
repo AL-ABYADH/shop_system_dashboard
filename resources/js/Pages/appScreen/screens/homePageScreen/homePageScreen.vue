@@ -10,7 +10,6 @@
         >
             <sidebarVue
                 @toggle-sidebar-width="toggleSidebarWidth"
-                @content-change="changeContent"
             />
         </div>
 
@@ -45,7 +44,6 @@ export default {
     },
     data() {
         return {
-            selectedContent: 'home',
             isSidebarClosed: false,
         }
     },
@@ -76,12 +74,6 @@ export default {
     },
 
     methods: {
-        changeContent(content) {
-            this.selectedContent = content
-            // Store the selected content in localStorage
-            localStorage.setItem('selectedContent', content)
-        },
-
         toggleSidebarWidth() {
             // Toggle the value
             this.isSidebarClosed = !this.isSidebarClosed

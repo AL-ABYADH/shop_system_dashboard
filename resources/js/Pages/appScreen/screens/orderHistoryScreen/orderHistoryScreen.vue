@@ -4,7 +4,7 @@
   <div class="flex gap-5 fixed w-screen">
     <!-- Sidebar -->
     <div id="sidebar" class="md:w-1/4" :style="{ width: isSidebarClosed ? '50px' : '250px' }">
-      <sidebarVue @toggle-sidebar-width="toggleSidebarWidth" @content-change="changeContent" />
+      <sidebarVue @toggle-sidebar-width="toggleSidebarWidth" />
     </div>
 
     <!-- Main Content -->
@@ -35,7 +35,6 @@ export default {
     },
   data() {
     return {
-      selectedContent: "home",
       isSidebarClosed: false,
     };
   },
@@ -66,12 +65,6 @@ export default {
   },
 
   methods: {
-    changeContent(content) {
-      this.selectedContent = content;
-      // Store the selected content in localStorage
-      localStorage.setItem("selectedContent", content);
-    },
-
     toggleSidebarWidth() {
       // Toggle the value
       this.isSidebarClosed = !this.isSidebarClosed;

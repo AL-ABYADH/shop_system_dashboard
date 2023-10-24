@@ -4,7 +4,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
   />
 
-  <div class="max-w-md bg-white mx-auto mt-4 p-4 border rounded-lg shadow-lg">
+  <div class=" max-w-md bg-white mx-auto mt-4 p-4 border rounded-lg shadow-lg">
     <h2 class="text-lg font-semibold mb-2"></h2>
     <form @submit.prevent="submitForm" >
       <!-- Picture Input -->

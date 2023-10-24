@@ -67,7 +67,7 @@
               <i class="fa fa-money fa-lg text-primary ml-2"></i>
             </td>
             <td>
-              <p class="text-gray-800 font-semibold">{{ orderPrice }} ريال</p>
+              <p class="text-gray-800 font-semibold">{{ totalPrice }} ريال</p>
             </td>
           </tr>
           <tr>
@@ -154,7 +154,7 @@
             </td>
             <td>
               <p class="text-gray-600">
-                <strong> الإجمالي: </strong>{{ orderPrice }} ريال
+                <strong> الإجمالي: </strong>{{ totalPrice }} ريال
               </p>
             </td>
           </tr>
@@ -198,8 +198,8 @@ export default {
         phoneNumber: String,
         time: String,
         devices: Array<any>,
-        delivery: Boolean,
         deliveryPrice: Number,
+        totalPrice: Number,
         orderStatus: String,
     },
   data() {
@@ -208,24 +208,6 @@ export default {
     };
   },
   computed: {
-    orderPrice() {
-    // Calculate the order price as the sum of device prices, check prices, and deliveryPrice
-
-    // Calculate the sum of device prices
-    const devicePriceTotal = this.devices.reduce((total, device) => total + device.price, 0);
-
-    // Calculate the sum of check prices using the checkPrice function
-    const checkPriceTotal = this.devices.reduce((total, device) => total + this.checkPrice(device.price), 0);
-
-    // Calculate the total price by adding device prices, check prices, and delivery price
-    let totalPrice = devicePriceTotal + checkPriceTotal;
-
-    if (this.delivery) {
-      totalPrice += this.deliveryPrice;
-    }
-
-    return totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  },
   formattedDeliveryPrice() {
             if (typeof this.deliveryPrice === 'number') {
                 return `${this.deliveryPrice

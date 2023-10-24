@@ -54,12 +54,12 @@
                         <td
                             class="px-2 py-2 sm:py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2 whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center sm:w-1/3 md:w-1/4 lg:w-1/6"
                         >
-                            {{ seller.name }}
+                            {{ seller.fullName }}
                         </td>
                         <td
                             class="px-2 py-2 sm:py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2 whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center sm:w-1/2 md:w-1/3 lg:w-1/4"
                         >
-                            {{ seller.phone }}
+                            {{ seller.phoneNumber }}
                         </td>
                         <td
                             class="px-2 py-2 sm:py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2 whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center sm:w-1/2 md:w-1/3 lg:w-1/4"
@@ -93,7 +93,7 @@
     <div v-if="showWarningPopup" class="warning-popup">
         <div class="warning-content">
             <h3 class="font-semibold mb-3">
-                إعطاء إنذار ل{{ selectedSeller?.name }}
+                إعطاء إنذار ل{{ selectedSeller?.fullName }}
             </h3>
             <textarea
                 v-model="warningReason"
@@ -121,8 +121,8 @@
 import VTooltip from 'v-tooltip'
 type Seller = {
     id: number
-    name: string
-    phone: number
+    fullName: string
+    phoneNumber: string
     address: string
     warnings: number
 }
