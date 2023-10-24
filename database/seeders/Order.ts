@@ -30,7 +30,7 @@ export default class OrderSeeder extends BaseSeeder {
                     sellerAddressId: sellerAddressId!,
                     customerAddressId: customerAddressId!,
                     deliveryPrice: this.getRandomDeliveryPrice(),
-                    totalPrice: 0,
+                    totalPrice: 10000,
                     currency: customer.preferredCurrency!,
                     status: 'awaiting',
                 })
