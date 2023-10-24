@@ -195,7 +195,7 @@ export default {
                 confirmPassword: '',
             },
             nameRegex: /^[a-zA-Z\u0600-\u06FF\s]+$/,
-            usernameRegex: /^[a-zA-Z\u0600-\u06FF]+$/,
+            usernameRegex: /^[a-zA-Z_\u0600-\u06FF]+$/,
             addressRegex: /^(?!$).*$/,
             phoneRegex: /^\d{9}$/,
             passwordRegex: /^.{6,}$/,
