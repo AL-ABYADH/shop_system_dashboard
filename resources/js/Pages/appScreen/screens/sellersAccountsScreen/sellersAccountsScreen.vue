@@ -17,7 +17,7 @@
         </p>
       </div>
       <div class="mt-5 md:pt-0 md:pl-5">
-        <sellersAccountContentScreenVue/>
+        <sellersAccountContentScreenVue :sellers="this.sellers"/>
       </div>
     </div>
   </div>
@@ -29,6 +29,9 @@ import sidebarVue from '../../components/sidebar.vue';
 import headerVue from '../../components/header.vue';
 
 export default {
+  props: {
+        sellers: Array,
+    },
   data() {
     return {
       selectedContent: "home",

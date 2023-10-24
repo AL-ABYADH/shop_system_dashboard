@@ -17,7 +17,7 @@
         </p>
       </div>
       <div class="mt-5 w-full md:pt-0 md:pl-5">
-        <homePageContentScreen/>
+        <homePageContentScreen :orders="this.orders"/>
       </div>
     </div>
   </div>
@@ -29,6 +29,9 @@ import sidebarVue from '../../components/sidebar.vue';
 import headerVue from '../../components/header.vue';
 
 export default {
+  props: {
+        orders: Array,
+    },
   data() {
     return {
       selectedContent: "home",

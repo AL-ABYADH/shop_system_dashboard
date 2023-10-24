@@ -3,7 +3,7 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
   />
-  <div class="bg-white w-full rounded-md p-4 mb-4 text-xs sm:text-lg">
+  <div class="bg-white w-full rounded-md p-4 text-xs sm:text-lg">
     <div class="flex justify-between">
       <div>
         <table>
@@ -189,6 +189,7 @@
       </button>
     </div>
   </div>
+  <br>
 </template>
 
 <script lang="ts">
