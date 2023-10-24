@@ -14,7 +14,6 @@ import PaymentMethod from './PaymentMethod'
 import Address from './Address'
 import { softDelete, softDeleteQuery } from 'App/Services/SoftDelete'
 import Payment from './Payment'
-import Price from './Price'
 
 export default class Order extends BaseModel {
     @column({ isPrimary: true })
@@ -33,7 +32,7 @@ export default class Order extends BaseModel {
     public seller: BelongsTo<typeof User>
 
     @column()
-    public adminUserId: number // The admin user that handled the order
+    public adminUserId: number | null // The admin user that handled the order
 
     @belongsTo(() => User)
     public admin: BelongsTo<typeof User>
@@ -57,13 +56,13 @@ export default class Order extends BaseModel {
     public customerAddress: BelongsTo<typeof Address>
 
     @column()
-    public deliveryPriceId: number // Null if no delivery is required
-
-    @belongsTo(() => Price)
-    public deliveryPrice: BelongsTo<typeof Price>
+    public deliveryPrice: number | null // Null if no delivery is required
 
     @column()
-    public totalPrice: number // Including the delivery price and the product items prices
+    public totalPrice: number // Including the delivery price and the product items prices. Will be converted to the user's preferred currency
+
+    @column()
+    public currency: 'USD' | 'YER' | 'SAR' // Will be taken from the user's preferred currency
 
     @column()
     public status:

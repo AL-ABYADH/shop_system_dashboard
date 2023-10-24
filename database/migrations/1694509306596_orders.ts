@@ -20,7 +20,7 @@ export default class Orders extends BaseSchema {
                 .integer('admin_user_id')
                 .unsigned()
                 .references('users.id')
-                .notNullable()
+                .nullable()
             table
                 .integer('payment_method_id')
                 .unsigned()
@@ -36,7 +36,9 @@ export default class Orders extends BaseSchema {
                 .unsigned()
                 .references('addresses.id')
                 .notNullable()
+            table.decimal('delivery_price').unsigned().nullable()
             table.decimal('total_price', 10, 2).unsigned().notNullable()
+            table.enum('currency', ['USD', 'YER', 'SAR']).notNullable()
             table
                 .enum('status', [
                     'awaiting',

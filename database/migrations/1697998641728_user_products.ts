@@ -15,8 +15,7 @@ export default class UserProducts extends BaseSchema {
                 .integer('product_id')
                 .unsigned()
                 .references('products.id')
-                .nullable()
-
+                .notNullable()
             table.timestamps(true, true) // created_at and updated_at
             table.timestamp('deleted_at').nullable()
         })

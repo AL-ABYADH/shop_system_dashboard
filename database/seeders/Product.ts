@@ -9,7 +9,6 @@ export default class ProductSeeder extends BaseSeeder {
             productData.push({
                 name: `Product ${i}`,
                 models: JSON.stringify([`Model A${i}`, `Model B${i}`]),
-                description: `Description of Product ${i}`,
                 brand: `Brand ${i}`,
                 flaws: JSON.stringify([`Flaw A${i}`, `Flaw B${i}`]),
                 categoryId: 1,

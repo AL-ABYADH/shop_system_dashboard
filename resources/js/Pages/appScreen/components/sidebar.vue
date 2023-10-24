@@ -102,7 +102,7 @@ export default {
                     id: 'home',
                     label: 'الرئيسية',
                     icon: 'fa fa-home', // Font Awesome icon class
-                    route: 'home',
+                    route: '/',
                 },
                 {
                     id: 'handled-orders',

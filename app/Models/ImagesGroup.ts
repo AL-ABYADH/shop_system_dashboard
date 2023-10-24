@@ -19,13 +19,13 @@ export default class ImagesGroup extends BaseModel {
     public id: number
 
     @column()
-    public productId: number
+    public productId: number | null
 
     @belongsTo(() => Product)
     public product: BelongsTo<typeof Product>
 
     @column()
-    public productItemId: number
+    public productItemId: number | null
 
     @belongsTo(() => ProductItem)
     public productItem: BelongsTo<typeof ProductItem>

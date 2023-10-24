@@ -26,13 +26,13 @@ export default class ProductFeature extends BaseModel {
     public feature: BelongsTo<typeof Feature>
 
     @column()
-    public productId: number
+    public productId: number | null
 
     @belongsTo(() => Product)
     public product: BelongsTo<typeof Product>
 
     @column()
-    public productItemId: number
+    public productItemId: number | null
 
     @belongsTo(() => ProductItem)
     public productItem: BelongsTo<typeof ProductItem>

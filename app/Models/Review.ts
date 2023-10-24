@@ -22,13 +22,13 @@ export default class Review extends BaseModel {
     public customer: BelongsTo<typeof User>
 
     @column()
-    public productId: number // The review could be about a product
+    public productId: number | null // The review could be for a product
 
     @belongsTo(() => Product)
     public product: BelongsTo<typeof Product>
 
     @column()
-    public sellerUserId: number // The review could be about a seller
+    public sellerUserId: number | null // The review could be for a seller
 
     @belongsTo(() => User)
     public seller: BelongsTo<typeof User>

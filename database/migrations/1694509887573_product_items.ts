@@ -34,6 +34,10 @@ export default class ProductItems extends BaseSchema {
                     'terrible',
                 ])
                 .nullable()
+            table
+                .enum('status', ['available', 'sold', 'reserved'])
+                .defaultTo('available')
+                .notNullable()
             table.timestamps(true, true) // created_at and updated_at
             table.timestamp('deleted_at').nullable()
         })

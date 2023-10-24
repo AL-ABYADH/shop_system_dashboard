@@ -20,7 +20,7 @@ export default class Category extends BaseModel {
     public categoryName: string
 
     @column()
-    public parentCategoryId: number
+    public parentCategoryId: number | null
 
     @belongsTo(() => Category)
     public parentCategory: BelongsTo<typeof Category>

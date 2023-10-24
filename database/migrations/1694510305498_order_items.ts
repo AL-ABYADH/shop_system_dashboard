@@ -16,7 +16,7 @@ export default class OrderItems extends BaseSchema {
                 .unsigned()
                 .references('product_items.id')
                 .notNullable()
-            table.boolean('returned').notNullable()
+            table.boolean('returned').defaultTo(false).notNullable()
             table.timestamps(true, true) // created_at and updated_at
             table.timestamp('deleted_at').nullable()
         })

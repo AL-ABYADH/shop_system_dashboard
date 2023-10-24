@@ -24,7 +24,7 @@ export default class ProductItem extends BaseModel {
     public id: number
 
     @column()
-    public description: string
+    public description: string | null
 
     @column()
     public productId: number
@@ -59,7 +59,8 @@ export default class ProductItem extends BaseModel {
         | 'good'
         | 'normal'
         | 'bad'
-        | 'terrible' // How clean or new the product is if it's used. Null if the product is new (usedProduct = false)
+        | 'terrible'
+        | null // How clean or new the product is if it's used. Null if the product is new (usedProduct = false)
 
     @column()
     public status: 'available' | 'sold' | 'reserved'
