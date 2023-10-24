@@ -11,7 +11,7 @@ export const softDeleteQuery = (
 
 export const softDelete = async (
     row: LucidRow,
-    column: string = 'deleted_at'
+    column: string = 'deletedAt'
 ) => {
     try {
         row[column] = DateTime.local().toSQL({ includeOffset: false })
