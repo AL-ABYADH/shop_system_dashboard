@@ -11,7 +11,7 @@
     <div :style="{ width: isSidebarClosed ? '100%' : '100%' }" class="w-full md:w-3/4 ml-5 overflow-y-auto">
       <headerVue />
       <div class="mt-2 w-full md:pt-0 md:pl-5">
-        <handledOrderContentScreen/>
+        <handledOrderContentScreen :orders="this.orders"/>
       </div>
     </div>
   </div>
@@ -23,6 +23,9 @@ import sidebarVue from '../../components/sidebar.vue';
 import headerVue from '../../components/header.vue';
 
 export default {
+  props: {
+        orders: Array,
+    },
   data() {
     return {
       selectedContent: "home",

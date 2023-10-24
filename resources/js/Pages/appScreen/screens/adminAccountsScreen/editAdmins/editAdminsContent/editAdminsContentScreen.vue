@@ -182,6 +182,10 @@
 </template>
 
 <script lang="ts">
+import { ref } from 'vue';
+
+const pictureInput = ref<HTMLInputElement | null>(null);
+
 export default {
   data() {
     return {
@@ -207,6 +211,7 @@ export default {
       confirmPasswordTouched: false,
       pictureTouched: false,
     };
+    
   },
   computed: {
     isFormValid() {
@@ -245,7 +250,7 @@ export default {
       if (this.formData.picture) {
         return URL.createObjectURL(this.formData.picture);
       }
-      return null;
+      return undefined;
     },
   },
   methods: {

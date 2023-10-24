@@ -143,11 +143,7 @@
               <p class="text-gray-600">
                 <strong> التوصيل: </strong
                 >{{
-                  delivery
-                    ? deliveryPrice
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ريال"
-                    : "بدون توصيل"
+                  formattedDeliveryPrice
                 }}
               </p>
             </td>
@@ -194,18 +190,18 @@
 <script lang="ts">
 export default {
   props: {
-    title: String,
-    address: String,
-    date: String,
-    imageUrl: String,
-    devicesNumber: Number,
-    phoneNumber: String,
-    time: String,
-    devices: Array,
-    delivery: Boolean,
-    deliveryPrice: Number,
-    orderStatus: String,
-  },
+        title: String,
+        address: String,
+        date: String,
+        imageUrl: String,
+        devicesNumber: Number,
+        phoneNumber: String,
+        time: String,
+        devices: Array<any>,
+        delivery: Boolean,
+        deliveryPrice: Number,
+        orderStatus: String,
+    },
   data() {
     return {
       expanded: false,
@@ -230,6 +226,15 @@ export default {
 
     return totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   },
+  formattedDeliveryPrice() {
+            if (typeof this.deliveryPrice === 'number') {
+                return `${this.deliveryPrice
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')} ريال`
+            } else {
+                return 'بدون توصيل'
+            }
+        },
   },
   methods: {
     checkPrice(devicePrice) {

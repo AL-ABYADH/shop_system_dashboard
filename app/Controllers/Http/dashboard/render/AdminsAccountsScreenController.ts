@@ -89,6 +89,6 @@ export default class AdminsAccountsScreenController {
             },
         ]
 
-        return inertia.render('adminsAccountsScreen', admins)
+        return inertia.render('adminsAccountsScreen', { admins })
     }
 }
