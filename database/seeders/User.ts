@@ -11,7 +11,7 @@ export default class UserSeeder extends BaseSeeder {
                     username: `admin_user${i}`,
                     password: 'password123',
                     fullName: `Admin User ${i}`,
-                    phoneNumber: `admin_user${i}`,
+                    phoneNumber: `77777777${i}`,
                     role: 'admin',
                 }
             )
@@ -24,7 +24,7 @@ export default class UserSeeder extends BaseSeeder {
                     username: `seller_user${i}`,
                     password: 'password123',
                     fullName: `Seller User ${i}`,
-                    phoneNumber: `seller_phone${i}`,
+                    phoneNumber: `77777778${i}`,
                     role: 'seller',
                     warningsCount: 0, // Defaults to 0 for sellers, null for others
                     shopOpenAt: '08:00:00', // Example shop open time for sellers
@@ -40,7 +40,7 @@ export default class UserSeeder extends BaseSeeder {
                     username: `customer_user${i}`,
                     password: 'password123',
                     fullName: `Customer User ${i}`,
-                    phoneNumber: `customer_phone${i}`,
+                    phoneNumber: `777777788${i}`,
                     role: 'customer',
                     preferredCurrency: 'USD', // You can change the preferred currency as needed
                 }

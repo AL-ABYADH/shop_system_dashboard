@@ -57,6 +57,10 @@ export default {
         adminsAccountContentScreenVue,
     },
 
+    mounted() {
+        console.log(this.admins)
+    },
+
     created() {
         // Initialize isSidebarClosed from localStorage or use the default value
         const isClosed = localStorage.getItem('isSidebarClosed')
