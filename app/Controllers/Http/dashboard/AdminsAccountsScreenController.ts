@@ -19,7 +19,7 @@ export default class AdminsAccountsScreenController {
         return inertia.render('adminsAccountsScreen', { admins })
     }
 
-    public async register({ request, response, auth }: HttpContextContract) {
+    public async register({ request, response }: HttpContextContract) {
         const validationSchema = schema.create({
             username: schema.string({}, [
                 rules.alpha(),
@@ -57,7 +57,7 @@ export default class AdminsAccountsScreenController {
             messages: messages,
         })
 
-        const user = await User.create({
+        await User.create({
             username: data.username,
             password: data.password,
             phoneNumber: data.phoneNumber,
@@ -66,8 +66,6 @@ export default class AdminsAccountsScreenController {
             role: 'admin',
         })
 
-        await auth.login(user)
-
-        return response.redirect().toPath('/')
+        return response.status(200).json({ message: 'success' })
     }
 }

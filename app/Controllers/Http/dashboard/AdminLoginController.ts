@@ -14,7 +14,7 @@ export default class AdminLoginController {
         const { username, password } = request.only(['username', 'password'])
 
         try {
-            await auth.attempt(username, password)
+            await auth.use('web').attempt(username, password)
         } catch (_err) {
             session.flash('errors', 'Username or password is incorrect')
             return response.redirect().back()
