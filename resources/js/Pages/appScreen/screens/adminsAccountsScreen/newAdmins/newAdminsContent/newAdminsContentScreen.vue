@@ -112,24 +112,6 @@
                 </div>
             </div>
 
-            <!-- Address Input -->
-            <div class="mb-2">
-                <input
-                    type="text"
-                    id="address"
-                    v-model="formData.address"
-                    class="mt-1 p-2 block w-full border rounded-md focus:bg-primary-opacity text-sm sm:text-base"
-                    placeholder="أدخل عنوانك"
-                    required
-                    @blur="validateAddress"
-                />
-                <div
-                    v-if="addressTouched && !addressIsValid"
-                    class="text-red-500 text-sm mt-1"
-                >
-                    الرجاء إدخال العنوان .
-                </div>
-            </div>
 
             <!-- Password Input -->
             <div class="mb-2">
@@ -190,19 +172,16 @@ export default {
                 name: '',
                 username: '',
                 phone: '',
-                address: '',
                 password: '',
                 confirmPassword: '',
             },
             nameRegex: /^[a-zA-Z\u0600-\u06FF\s]+$/,
-            usernameRegex: /^[a-zA-Z\u0600-\u06FF]+$/,
-            addressRegex: /^(?!$).*$/,
+            usernameRegex: /^[a-zA-Z_\u0600-\u06FF]+$/,
             phoneRegex: /^\d{9}$/,
             passwordRegex: /^.{6,}$/,
             nameTouched: false,
             usernameTouched: false,
             phoneTouched: false,
-            addressTouched: false,
             passwordTouched: false,
             confirmPasswordTouched: false,
             pictureTouched: false,
@@ -214,7 +193,6 @@ export default {
                 this.nameIsValid &&
                 this.usernameIsValid &&
                 this.phoneIsValid &&
-                this.addressIsValid &&
                 this.passwordIsValid &&
                 this.confirmPasswordIsValid
             )
@@ -227,9 +205,6 @@ export default {
         },
         phoneIsValid() {
             return this.phoneRegex.test(this.formData.phone)
-        },
-        addressIsValid() {
-            return this.addressRegex.test(this.formData.address)
         },
         passwordIsValid() {
             return this.passwordRegex.test(this.formData.password)
@@ -268,9 +243,6 @@ export default {
         },
         validatePhone() {
             this.phoneTouched = true
-        },
-        validateAddress() {
-            this.addressTouched = true
         },
         validatePassword() {
             this.passwordTouched = true

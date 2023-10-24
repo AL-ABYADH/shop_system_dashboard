@@ -48,4 +48,3 @@ import './dashboard/edit_admins_screen'
 // post
 
 Route.get('/exchange', 'ExchangesController.index')
-
