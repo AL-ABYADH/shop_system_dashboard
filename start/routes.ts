@@ -44,6 +44,7 @@ import './dashboard/sellers_accounts_screen'
 import './dashboard/customers_accounts_screen'
 import './dashboard/new_admins_screen'
 import './dashboard/edit_admins_screen'
+import './dashboard/orders'
 // get
 // post
 
