@@ -53,7 +53,7 @@
                         >
                             <a
                                 class="text-blue-500 hover:text-blue-700 pl-2 sm:pl-4"
-                                href="editAdmin"
+                                href="adminsAccounts/editAdmin"
                             >
                                 <i class="fa fa-edit"></i>
                                 <!-- Edit Icon -->
@@ -71,10 +71,10 @@
 
     <a
         class="w-full md:w-auto h-full rounded-xl mt-5 flex justify-center items-center text-primary border-4 border-primary border-dotted bg-[#F5F5F5]"
-        href="addAdmin"
+        href="adminsAccounts/addAdmin"
     >
         <p class="block my-2 mx-2 md:mx-4 text-center md:text-left">
-            اضافة مستخدم جديد الى لوحة التحكم
+            اضافة مستخدم جديد إلى لوحة التحكم
         </p>
     </a>
 </template>
