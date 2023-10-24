@@ -17,7 +17,7 @@
         </p>
       </div>
       <div class="mt-5 w-full md:pt-0 md:pl-5">
-        <orderHistoryContentScreen/>
+        <orderHistoryContentScreen :orders="this.orders"/>
       </div>
     </div>
   </div>
@@ -30,6 +30,9 @@ import headerVue from '../../components/header.vue';
 
 
 export default {
+  props: {
+        orders: Array,
+    },
   data() {
     return {
       selectedContent: "home",
