@@ -93,7 +93,7 @@
     <div v-if="showWarningPopup" class="warning-popup">
         <div class="warning-content">
             <h3 class="font-semibold mb-3">
-                إعطاء إنذار ل{{ selectedCustomer.name }}
+                إعطاء إنذار ل{{ selectedCustomer?.name }}
             </h3>
             <textarea
                 v-model="warningReason"
@@ -141,24 +141,26 @@ export default {
     },
     data() {
         return {
-            customers: this.customers,
-            showWarningPopup: false,
+           showWarningPopup: false,
             warningReason: '',
+            selectedCustomer: null as Customer | null,
         }
     },
     methods: {
         showWarningPopupForCustomer(customer) {
             // Set the current customer being warned
-            this.selectedCustomer = customer
-            this.showWarningPopup = true
+            if (customer) {
+                this.selectedCustomer = customer
+                this.showWarningPopup = true
+            }
         },
         sendWarning() {
             // Send the warning reason to the database and update the customer's data
             // For example, you can use an API call here.
-            const warningData = {
-                customerId: this.selectedCustomer.id,
-                reason: this.warningReason,
-            }
+            // const warningData = {
+            //     customerId: this.selectedCustomer.id,
+            //     reason: this.warningReason,
+            // }
 
             // After successful update, close the popup and reset the reason field
             // This is just a placeholder, you should implement the actual API call.

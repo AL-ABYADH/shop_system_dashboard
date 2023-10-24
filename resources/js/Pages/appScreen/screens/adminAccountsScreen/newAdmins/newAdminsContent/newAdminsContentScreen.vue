@@ -245,7 +245,7 @@ export default {
             if (this.formData.picture) {
                 return URL.createObjectURL(this.formData.picture)
             }
-            return null
+            return undefined
         },
     },
     methods: {

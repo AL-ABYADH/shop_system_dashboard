@@ -1,5 +1,4 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-
 export default class OrderHistoryScreenController {
     public index({ inertia }) {
         const orders = [
@@ -7,11 +6,11 @@ export default class OrderHistoryScreenController {
                 id: 1,
                 title: 'حمود حمادي',
                 address: 'صنعاء - شعوب',
-                date: '2023-10-07',
+                date: '2023-10-24',
                 imageUrl: 'https://picsum.photos/200',
                 devicesNumber: 2,
                 phoneNumber: '770893740',
-                time: '3:35م',
+                time: '15:30',
                 delivery: true,
                 deliveryPrice: 2000,
                 orderStatus: 'Done',
@@ -48,11 +47,11 @@ export default class OrderHistoryScreenController {
                 id: 2,
                 title: 'حمود حمادي',
                 address: 'صنعاء - سعوان',
-                date: '2023-10-07',
+                date: '2023-10-24',
                 imageUrl: 'https://picsum.photos/200',
                 devicesNumber: 2,
                 phoneNumber: '770893740',
-                time: '3:35م',
+                time: '15:40',
                 delivery: false,
                 deliveryPrice: null,
                 orderStatus: 'Canceled',
@@ -87,6 +86,6 @@ export default class OrderHistoryScreenController {
             },
         ]
 
-        return inertia.render('orderHistoryScreen', {orders})
+        return inertia.render('orderHistoryScreen', { orders })
     }
 }

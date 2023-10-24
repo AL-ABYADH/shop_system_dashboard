@@ -77,7 +77,7 @@
                                 class="flex mb-1 px-3 py-2 duration-200 transform rounded-lg w-10 cursor-pointer ml-2"
                                 data-toggle="tooltip"
                                 data-placement="right"
-                                :title="item.home"
+                                :title="item.label"
                             >
                                 <div class="flex">
                                     <i :class="item.icon"></i>
@@ -91,7 +91,7 @@
     </aside>
 </template>
 
-<script>
+<script lang="ts">
 export default {
     data() {
         return {
@@ -200,7 +200,7 @@ export default {
             const item = this.sidebarItems.find((item) => item.id === itemId)
             if (item) {
                 // Trigger the tooltip
-                const tooltipElement = document.querySelector(
+                document.querySelector(
                     `[data-toggle="tooltip"][title="${item.label}"]`
                 )
             }
@@ -211,7 +211,7 @@ export default {
             const item = this.sidebarItems.find((item) => item.id === itemId)
             if (item) {
                 // Hide the tooltip
-                const tooltipElement = document.querySelector(
+                document.querySelector(
                     `[data-toggle="tooltip"][title="${item.label}"]`
                 )
             }

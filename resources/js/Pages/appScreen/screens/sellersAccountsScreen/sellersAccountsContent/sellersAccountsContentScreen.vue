@@ -48,7 +48,7 @@
                 <tbody>
                     <tr
                         v-for="seller in sellers"
-                        :key="index"
+                        :key="seller.id"
                         class="odd:bg-white even:bg-primary-opacity"
                     >
                         <td
@@ -92,16 +92,24 @@
     </div>
     <div v-if="showWarningPopup" class="warning-popup">
         <div class="warning-content">
-            <h3 class='font-semibold mb-3'>إعطاء إنذار ل{{ selectedSeller.name }}</h3>
+            <h3 class="font-semibold mb-3">
+                إعطاء إنذار ل{{ selectedSeller?.name }}
+            </h3>
             <textarea
                 v-model="warningReason"
                 placeholder="سبب الإنذار"
             ></textarea>
             <div class="button-container">
-                <button @click="sendWarning" class="mt-4 text-white bg-primary p-2 ml-2 rounded-md hover:bg-primary-opacity2">
+                <button
+                    @click="sendWarning"
+                    class="mt-4 text-white bg-primary p-2 ml-2 rounded-md hover:bg-primary-opacity2"
+                >
                     إرسال الإنذار
                 </button>
-                <button @click="cancelWarning" class="mt-4 text-white bg-red-600 p-2 rounded-md hover:bg-primary-opacity2">
+                <button
+                    @click="cancelWarning"
+                    class="mt-4 text-white bg-red-600 p-2 rounded-md hover:bg-primary-opacity2"
+                >
                     إلغاء
                 </button>
             </div>
@@ -133,24 +141,26 @@ export default {
     },
     data() {
         return {
-            sellers: this.sellers,
             showWarningPopup: false,
             warningReason: '',
+            selectedSeller: null as Seller | null,
         }
     },
     methods: {
         showWarningPopupForSeller(seller) {
             // Set the current seller being warned
-            this.selectedSeller = seller
-            this.showWarningPopup = true
+            if (seller) {
+                this.selectedSeller = seller
+                this.showWarningPopup = true
+            }
         },
         sendWarning() {
             // Send the warning reason to the database and update the seller's data
             // For example, you can use an API call here.
-            const warningData = {
-                sellerId: this.selectedSeller.id,
-                reason: this.warningReason,
-            }
+            // const warningData = {
+            //     sellerId: this.selectedSeller.id,
+            //     reason: this.warningReason,
+            // }
 
             // After successful update, close the popup and reset the reason field
             // This is just a placeholder, you should implement the actual API call.
@@ -220,13 +230,13 @@ export default {
 }
 
 textarea {
-  width: 100%;
-  height: 100px; /* Adjust the height as needed */
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  resize: vertical; /* Allow vertical resizing */
-  box-shadow: none;
+    width: 100%;
+    height: 100px; /* Adjust the height as needed */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: vertical; /* Allow vertical resizing */
+    box-shadow: none;
 }
 </style>
