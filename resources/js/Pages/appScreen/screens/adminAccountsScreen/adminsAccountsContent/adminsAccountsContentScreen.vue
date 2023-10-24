@@ -46,12 +46,12 @@
                         <td
                             class="px-2 py-2 sm:px-4 sm:py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2 whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center sm:w-1/3 md:w-1/4 lg:w-1/6"
                         >
-                            {{ admin.name }}
+                            {{ admin.fullName }}
                         </td>
                         <td
                             class="px-2 py-2 sm:px-4 sm:py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2 whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center sm:w-1/2 md:w-1/3 lg:w-1/4"
                         >
-                            {{ admin.phone }}
+                            {{ admin.phoneNumber }}
                         </td>
                         <td
                             class="px-2 py-2 sm:px-4 sm:py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2 whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center sm:w-1/2 md:w-1/3 lg:w-1/4"
@@ -92,8 +92,8 @@
 <script lang="ts">
 type Admin = {
     id: number
-    name: string
-    phone: number
+    fullName: string
+    phoneNumber: number
     address: string
 }
 

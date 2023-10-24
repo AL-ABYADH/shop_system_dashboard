@@ -2,7 +2,23 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/User'
 
-export default class AdminAuthController {
+export default class AdminsAccountsScreenController {
+    public async index({ inertia }) {
+        const loadedAdmins = await User.query().where('role', 'admin')
+
+        const admins: Array<any> = []
+
+        for (const admin of loadedAdmins) {
+            admins.push({
+                id: admin.id,
+                fullName: admin.fullName,
+                phoneNumber: admin.phoneNumber,
+            })
+        }
+
+        return inertia.render('adminsAccountsScreen', { admins })
+    }
+
     public async register({ request, response, auth }: HttpContextContract) {
         const validationSchema = schema.create({
             username: schema.string({}, [
@@ -53,29 +69,5 @@ export default class AdminAuthController {
         await auth.login(user)
 
         return response.redirect().toPath('/')
-    }
-
-    public async login({
-        request,
-        response,
-        session,
-        auth,
-    }: HttpContextContract) {
-        const { username, password } = request.only(['username', 'password'])
-
-        try {
-            await auth.attempt(username, password)
-        } catch (_err) {
-            session.flash('errors', 'Username or password is incorrect')
-            return response.redirect().back()
-        }
-
-        return response.redirect().toPath('/')
-    }
-
-    public async logout({ response, auth }: HttpContextContract) {
-        await auth.logout()
-
-        return response.redirect().toPath('/login')
     }
 }
