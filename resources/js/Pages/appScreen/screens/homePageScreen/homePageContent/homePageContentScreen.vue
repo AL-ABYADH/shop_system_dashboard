@@ -23,17 +23,17 @@
     <ExpandableItem
       v-for="order in orders"
       :key="order.id"
-      :title="order.title"
-      :address="order.address"
+      :title="order.customerName"
+      :address="order.customerAddress"
       :date="order.date.toLocaleString()"
-      :imageUrl="order.imageUrl"
+      :imageUrl="order.customerImageUrl"
       :devicesNumber="order.devicesNumber"
-      :phoneNumber="order.phoneNumber"
+      :phoneNumber="order.customerPhone"
       :time="order.time.toLocaleString()"
       :deliveryPrice="order.deliveryPrice"
       :orderStatus="order.orderStatus"
       :totalPrice="order.totalPrice"
-      :devices="order.devices"
+      :devices="order.orderItems"
     />
   </div>
 </template>
@@ -42,34 +42,43 @@
 import ExpandableItem from "./orderContent.vue"; // Import the ExpandableItem component
 import { DateTime } from 'luxon';
 
+type flaws = {
+  flaw: string;
+  severity: string;
+}
 
-interface Device {
+type imageItems = {
+  imagesUrl: string;
+}
+
+type orderItems = {
+  id: number;
   deviceName: string;
-  seller: string;
-  address: string;
-  phoneNumber: string;
-  productId: string;
+  sellerName: string;
+  sellerAddress: string;
+  sellerPhoneNumber: string;
   price: number;
-  flaws: string;
+  currency: string;
+  flaws: flaws[];
   description: string;
-  isUsed: boolean;
   usedProductCondition: string | null;
-  pictureLink: string;
+  imageItems: imageItems[];
   // Add other properties as needed
 }
 type Order = {
     id: number
-    title: string
-    address: string
+    customerName: string
+    customerAddress: string
     date: DateTime
-    imageUrl: string
+    customerImageUrl: string
+    currency: string
     devicesNumber: number
-    phoneNumber: string
+    customerPhone: string
     time:DateTime
     totalPrice: number
     deliveryPrice?: number
     orderStatus: string
-    devices:Device[]
+    orderItems:orderItems[]
 }
 
 export default {

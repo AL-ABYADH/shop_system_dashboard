@@ -107,9 +107,9 @@
       <div v-for="(device, index) in devices" :key="index">
         <ul class="bg-primary-opacity mb-2 p-3 rounded-lg">
           <li><strong> اسم الجهاز:</strong> {{ device.deviceName }}</li>
-          <li><strong>البائع:</strong> {{ device.seller }}</li>
-          <li><strong>العنوان:</strong> {{ device.address }}</li>
-          <li><strong>رقم الهاتف:</strong> {{ device.phoneNumber }}</li>
+          <li><strong>البائع:</strong> {{ device.sellerName }}</li>
+          <li><strong>العنوان:</strong> {{ device.sellerAddress }}</li>
+          <li><strong>رقم الهاتف:</strong> {{ device.sellerPhoneNumber }}</li>
           <li>
             <strong>السعر: </strong>
             {{ device.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}
@@ -118,10 +118,12 @@
           <li>
             <strong>سعر الفحص:</strong> {{ checkPrice(device.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }} ريال
           </li>
-          <li><strong>العيوب:</strong> {{ device.flaws }}</li>
+          <div v-for="flaw in device.flaws">
+            <li><strong>العيوب:</strong> {{ flaw.flaw}}</li>
+          </div>
+          
           <li><strong>الوصف:</strong> {{ device.description }}</li>
-          <li><strong>مستخدم:</strong> {{ device.isUsed ? "نعم" : "لا" }}</li>
-          <li v-if="device.isUsed">
+          <li>
             <strong>حالة الجهاز المستخدم:</strong>
             {{ device.usedProductCondition }}
           </li>
