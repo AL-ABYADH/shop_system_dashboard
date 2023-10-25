@@ -295,6 +295,4 @@ return formattedTime
 }
 </script>
 
-<style scoped>
-/* Add Tailwind CSS classes here as needed */
-</style>
+

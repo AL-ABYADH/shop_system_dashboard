@@ -26,7 +26,7 @@
     >
       الطلبات قيد الفحص
     </p>
-    <div v-for="order in filteredOrders('Testing')" :key="order.id">
+    <div v-for="order in filteredOrders('testing')" :key="order.id">
       <!-- Render order details for Confirmed orders -->
       <ExpandableItem
       :key="order.id"
@@ -50,7 +50,7 @@
     >
       الطلبات في انتظار التأكيد
     </p>
-    <div v-for="order in filteredOrders('Confirming')" :key="order.id">
+    <div v-for="order in filteredOrders('confirming')" :key="order.id">
       <!-- Render order details for Awaiting orders -->
       <ExpandableItem
       :key="order.id"
