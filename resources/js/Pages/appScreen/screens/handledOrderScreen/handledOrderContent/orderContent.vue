@@ -52,7 +52,7 @@
                             <td>
                                 <p class="text-gray-600 text-md font-semibold">
                                     {{
-                                        orderStatus == 'Confirming'
+                                        orderStatus == 'confirming'
                                             ? 'جاري التأكيد'
                                             : 'قيد الفحص'
                                     }}
@@ -73,7 +73,7 @@
                         </td>
                         <td>
                             <p class="text-gray-600 font-semibold">
-                                {{ date }}
+                                {{ dateItem(date) }}
                             </p>
                         </td>
                     </tr>
@@ -83,7 +83,7 @@
                         </td>
                         <td>
                             <p class="text-gray-800 font-semibold">
-                                {{ orderPrice }} ريال
+                                {{ totalPrice }} ريال
                             </p>
                         </td>
                     </tr>
@@ -115,7 +115,7 @@
                         </td>
                         <td>
                             <p class="text-gray-800 font-semibold">
-                                {{ time }}
+                                {{ timeItem(time) }}
                             </p>
                         </td>
                     </tr>
@@ -128,10 +128,13 @@
                     <li>
                         <strong> اسم الجهاز:</strong> {{ device.deviceName }}
                     </li>
-                    <li><strong>البائع:</strong> {{ device.seller }}</li>
-                    <li><strong>العنوان:</strong> {{ device.address }}</li>
+                    <li><strong>البائع:</strong> {{ device.sellerName }}</li>
                     <li>
-                        <strong>رقم الهاتف:</strong> {{ device.phoneNumber }}
+                        <strong>العنوان:</strong> {{ device.sellerAddress }}
+                    </li>
+                    <li>
+                        <strong>رقم الهاتف:</strong>
+                        {{ device.sellerPhoneNumber }}
                     </li>
                     <li>
                         <strong>السعر: </strong>
@@ -140,7 +143,7 @@
                                 .toString()
                                 .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
                         }}
-                        ريال
+                        USD
                     </li>
                     <li>
                         <strong>سعر الفحص:</strong>
@@ -149,26 +152,28 @@
                                 .toString()
                                 .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
                         }}
-                        ريال
+                        USD
                     </li>
-                    <li><strong>العيوب:</strong> {{ device.flaws }}</li>
+                    <div v-for="flaw in device.flaws">
+                        <li><strong>العيوب:</strong> {{ flaw.flaw }}</li>
+                    </div>
                     <li><strong>الوصف:</strong> {{ device.description }}</li>
                     <li>
-                        <strong>مستخدم:</strong>
-                        {{ device.isUsed ? 'نعم' : 'لا' }}
+                        <strong>حالة الجهاز المستخدم:</strong>
+                        {{ device.usedProductCondition }}
                     </li>
                     <li v-if="device.isUsed">
                         <strong>حالة الجهاز المستخدم:</strong>
                         {{ device.usedProductCondition }}
                     </li>
-                    <li>
+                    <!-- <li>
                         <strong>رابط الصور:</strong>
                         <a
                             :href="device.pictureLink"
                             class="underline text-primary"
                             >{{ device.pictureLink }}</a
                         >
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div>
@@ -180,9 +185,7 @@
                         <td>
                             <p class="text-gray-600">
                                 <strong> التوصيل: </strong
-                                >{{
-                                    formattedDeliveryPrice
-                                }}
+                                >{{ formattedDeliveryPrice }}
                             </p>
                         </td>
                     </tr>
@@ -193,7 +196,7 @@
                         <td>
                             <p class="text-gray-600">
                                 <strong> الإجمالي: </strong
-                                >{{ orderPrice }} ريال
+                                >{{ totalPrice }} USD
                             </p>
                         </td>
                     </tr>
@@ -204,7 +207,7 @@
                     class="mt-4 text-white bg-primary p-2 ml-2 rounded-md hover:bg-primary-opacity2"
                 >
                     {{
-                        orderStatus == 'Confirming'
+                        orderStatus == 'confirming'
                             ? 'تأكيد الطلب'
                             : 'تأكيد الفحص'
                     }}
@@ -235,6 +238,7 @@
 </template>
 
 <script lang="ts">
+import dateFormat from "dateformat";
 export default {
     props: {
         title: String,
@@ -245,8 +249,8 @@ export default {
         phoneNumber: String,
         time: String,
         devices: Array<any>,
-        delivery: Boolean,
         deliveryPrice: Number,
+        totalPrice: Number,
         orderStatus: String,
     },
     data() {
@@ -255,35 +259,11 @@ export default {
         }
     },
     computed: {
-        orderPrice() {
-            // Calculate the order price as the sum of device prices, check prices, and deliveryPrice
-
-            // Calculate the sum of device prices
-            const devicePriceTotal = this.devices.reduce(
-                (total, device) => total + device.price,
-                0
-            )
-
-            // Calculate the sum of check prices using the checkPrice function
-            const checkPriceTotal = this.devices.reduce(
-                (total, device) => total + this.checkPrice(device.price),
-                0
-            )
-
-            // Calculate the total price by adding device prices, check prices, and delivery price
-            let totalPrice = devicePriceTotal + checkPriceTotal
-
-            if (this.delivery) {
-                totalPrice += this.deliveryPrice
-            }
-
-            return totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-        },
         formattedDeliveryPrice() {
             if (typeof this.deliveryPrice === 'number') {
                 return `${this.deliveryPrice
                     .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')} ريال`
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')} USD`
             } else {
                 return 'بدون توصيل'
             }
@@ -300,6 +280,16 @@ export default {
         },
         imageLoadError() {
             console.log('Image failed to load')
+        },
+        dateItem(dateObj) {
+          const dateObject = new Date(dateObj)
+          const formattedDate = dateFormat(dateObject, 'd/m/yyyy')
+return formattedDate
+        },
+        timeItem(timeObj) {
+          const timeObject = new Date(timeObj)
+          const formattedTime = dateFormat(timeObject, 'hh : mm')
+return formattedTime
         },
     },
 }

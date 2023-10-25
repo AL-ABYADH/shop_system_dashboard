@@ -30,17 +30,17 @@
       <!-- Render order details for Confirmed orders -->
       <ExpandableItem
       :key="order.id"
-      :title="order.title"
-      :address="order.address"
-      :date="order.date.toLocaleString()"
-      :imageUrl="order.imageUrl"
+      :title="order.customerName"
+      :address="order.customerAddress"
+      :date="order.date"
+      :imageUrl="order.customerImageUrl"
       :devicesNumber="order.devicesNumber"
-      :phoneNumber="order.phoneNumber"
-      :time="order.time.toLocaleString()"
-      :delivery="order.delivery"
+      :phoneNumber="order.customerPhone"
+      :time="order.time"
       :deliveryPrice="order.deliveryPrice"
       :orderStatus="order.orderStatus"
-      :devices="order.devices"
+      :totalPrice="order.totalPrice"
+      :devices="order.orderItems"
     />
     </div>
   </div>
@@ -54,17 +54,17 @@
       <!-- Render order details for Awaiting orders -->
       <ExpandableItem
       :key="order.id"
-      :title="order.title"
-      :address="order.address"
-      :date="order.date.toLocaleString()"
-      :imageUrl="order.imageUrl"
+      :title="order.customerName"
+      :address="order.customerAddress"
+      :date="order.date"
+      :imageUrl="order.customerImageUrl"
       :devicesNumber="order.devicesNumber"
-      :phoneNumber="order.phoneNumber"
-      :time="order.time.toLocaleString()"
-      :delivery="order.delivery"
+      :phoneNumber="order.customerPhone"
+      :time="order.time"
       :deliveryPrice="order.deliveryPrice"
       :orderStatus="order.orderStatus"
-      :devices="order.devices"
+      :totalPrice="order.totalPrice"
+      :devices="order.orderItems"
     />
     </div>
   </div>
@@ -74,36 +74,45 @@
 
 <script lang="ts">
 import ExpandableItem from "./orderContent.vue"; // Import the ExpandableItem component
-import { DateTime } from 'luxon';
 
 
-interface Device {
+type flaws = {
+  flaw: string;
+  severity: string;
+}
+
+type imageItems = {
+  imagesUrl: string;
+}
+
+type orderItems = {
+  id: number;
   deviceName: string;
-  seller: string;
-  address: string;
-  phoneNumber: string;
-  productId: string;
+  sellerName: string;
+  sellerAddress: string;
+  sellerPhoneNumber: string;
   price: number;
-  flaws: string;
+  currency: string;
+  flaws: flaws[];
   description: string;
-  isUsed: boolean;
   usedProductCondition: string | null;
-  pictureLink: string;
+  imageItems: imageItems[];
   // Add other properties as needed
 }
 type Order = {
     id: number
-    title: string
-    address: string
-    date: DateTime
-    imageUrl: string
+    customerName: string
+    customerAddress: string
+    date: string
+    customerImageUrl: string
+    currency: string
     devicesNumber: number
-    phoneNumber: string
-    time:DateTime
-    delivery: boolean
+    customerPhone: string
+    time:string
+    totalPrice: number
     deliveryPrice?: number
     orderStatus: string
-    devices:Device[]
+    orderItems:orderItems[]
 }
 
 export default {
