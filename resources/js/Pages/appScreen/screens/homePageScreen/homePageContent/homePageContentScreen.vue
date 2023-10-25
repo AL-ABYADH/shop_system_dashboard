@@ -19,17 +19,17 @@
 </style>
 
 <template>
-  <div class="container max-w-full">
+  <div class="container max-w-full" v-for="order in filteredOrders('awaiting' || 'confirmed')" :key="order.id">
     <ExpandableItem
       v-for="order in orders"
       :key="order.id"
       :title="order.customerName"
       :address="order.customerAddress"
-      :date="order.date.toLocaleString()"
+      :date="order.date"
       :imageUrl="order.customerImageUrl"
       :devicesNumber="order.devicesNumber"
       :phoneNumber="order.customerPhone"
-      :time="order.time.toLocaleString()"
+      :time="order.time"
       :deliveryPrice="order.deliveryPrice"
       :orderStatus="order.orderStatus"
       :totalPrice="order.totalPrice"
@@ -40,7 +40,6 @@
 
 <script lang="ts">
 import ExpandableItem from "./orderContent.vue"; // Import the ExpandableItem component
-import { DateTime } from 'luxon';
 
 type flaws = {
   flaw: string;
@@ -69,12 +68,12 @@ type Order = {
     id: number
     customerName: string
     customerAddress: string
-    date: DateTime
+    date: string
     customerImageUrl: string
     currency: string
     devicesNumber: number
     customerPhone: string
-    time:DateTime
+    time:string
     totalPrice: number
     deliveryPrice?: number
     orderStatus: string
@@ -91,5 +90,10 @@ export default {
             required: true,
         },
     },
+    methods: {
+    filteredOrders(status) {
+      return this.orders.filter((order) => order.orderStatus === status);
+    },
+  },
 };
 </script>
