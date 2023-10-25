@@ -7,5 +7,5 @@ Route.group(() => {
         'login'
     )
 
-    Route.post('/logout', 'dashboard/AdminLoginController.logout')
+    Route.get('/logout', 'dashboard/AdminLoginController.logout')
 })

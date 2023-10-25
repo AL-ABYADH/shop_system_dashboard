@@ -16,8 +16,9 @@ export default class AdminLoginController {
             await auth.use('web').attempt(username, password)
         } catch (err) {
             console.log(err)
-            session.flash('errors', 'Username or password is incorrect')
-            return response.redirect().back()
+            session.flash({ error: 'Username or password is incorrect' })
+            response.redirect().back()
+            return response.json({ message: 'invalid username or password' })
         }
 
         return response.redirect().toPath('/')

@@ -22,7 +22,7 @@ body {
                                 type="text"
                                 onblur="this.type='text'"
                                 placeholder="اسم المستخدم"
-                                class="w-2/5 rounded-md bg-primary-opacity border-0 px-3 py-2 text-xs md:text-sm lg:text-base"
+                                class="w-2/5 rounded-md bg-primary-opacity border-0 px-3 py-2 text-xs md:text-xs lg:text-base"
                             />
                         </div>
                     </div>
@@ -33,17 +33,17 @@ body {
                                 type="password"
                                 onblur="this.type='password'"
                                 placeholder="كلمة المرور"
-                                class="w-2/5 rounded-md bg-primary-opacity border-0 px-3 py-2 text-xs md:text-sm lg:text-base"
+                                class="w-2/5 rounded-md bg-primary-opacity border-0 px-3 py-2 text-xs md:text-xs lg:text-base"
                             />
                         </div>
                     </div>
-                    <div v-if="errors">
-                        <p>{{ errors }}</p>
+                    <div v-if="error" class="text-red-500">
+                        {{ error }}
                     </div>
-                    <div>
+                    <div class="flex justify-center items-cente">
                         <button
                             type="submit"
-                            class="rounded-md p-1 flex justify-center items-center px-4 cursor-pointer mt-4 md:mt-5 h-10 bg-theme-blue mx-0 w-full"
+                            class="flex justify-center items-center cursor-pointer md:mt-5 h-10 bg-theme-blue mx-0"
                         >
                             <span
                                 class="text-white bg-primary text-xs md:text-sm lg:text-base p-3 rounded-md"
@@ -58,8 +58,6 @@ body {
 </template>
 
 <script lang="ts">
-import { usePage } from '@inertiajs/inertia-vue3'
-
 export default {
     data() {
         return {
@@ -67,11 +65,12 @@ export default {
                 username: '',
                 password: '',
             },
+            error: '',
         }
     },
     methods: {
         async submit() {
-            if (this.form.username != '' && this.form.password.password != '') {
+            if (this.form.username != '' && this.form.password != '') {
                 await this.$inertia.post('/login/postForm', this.form)
             } else if (this.form.username == '') {
                 // username is required
@@ -79,13 +78,6 @@ export default {
                 // password is required
             }
         },
-    },
-    setup() {
-        const { props } = usePage()
-
-        return {
-            errors: props.flash != undefined ? props.flash.errors : null,
-        }
     },
 }
 </script>
