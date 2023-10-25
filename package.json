@@ -31,6 +31,7 @@
     "@91codes/adonis-vite": "^0.3.2",
     "@adonisjs/auth": "^8.2.3",
     "@adonisjs/core": "^5.9.0",
+    "@adonisjs/drive": "^2.3.0",
     "@adonisjs/lucid": "^10.0.0",
     "@adonisjs/repl": "^3.1.11",
     "@adonisjs/session": "^6.4.0",

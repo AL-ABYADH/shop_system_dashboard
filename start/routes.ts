@@ -19,6 +19,7 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import Application from '@ioc:Adonis/Core/Application'
 
 // mobile
 // auth
@@ -47,5 +48,22 @@ import './dashboard/edit_admins_screen'
 import './dashboard/orders'
 // get
 // post
+
+Route.post('upload', async ({ request, response }) => {
+    const image = request.file('image', {
+        size: '2mb',
+        extnames: ['jpg', 'png', 'gif'],
+    })
+
+    if (image && image.isValid) {
+        const fileName = `${Date.now()}-${image.clientName}`
+        await image.move(Application.tmpPath('uploads'), {
+            name: fileName,
+        })
+
+        // Return the URL of the stored image
+        return response.send({ url: `/uploads/${fileName}` })
+    }
+})
 
 Route.get('/exchange', 'ExchangesController.index')

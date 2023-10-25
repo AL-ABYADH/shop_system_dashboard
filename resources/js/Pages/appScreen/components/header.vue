@@ -4,7 +4,7 @@
         dir="ltr"
     >
         <div class="flex items-center ml-4">
-            <a class="text-gray-400 text-xs cursor-pointer" href="/logout"
+            <a class="text-gray-400 text-xs cursor-pointer" @click="logout"
                 >تسجيل الخروج</a
             >
             <div
