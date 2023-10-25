@@ -1,3 +1,6 @@
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/handledOrder', 'dashboard/HandledOrderScreenController.index')
+Route.get(
+    '/handledOrder',
+    'dashboard/HandledOrderScreenController.index'
+).middleware('auth:web')

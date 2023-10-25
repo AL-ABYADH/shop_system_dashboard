@@ -11,10 +11,7 @@ export default class AdminLoginController {
         session,
         auth,
     }: HttpContextContract) {
-        console.log('does')
         const { username, password } = request.only(['username', 'password'])
-        console.log(username)
-        console.log(password)
         try {
             await auth.use('web').attempt(username, password)
         } catch (err) {
