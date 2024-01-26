@@ -5,14 +5,34 @@ export default class ProductSeeder extends BaseSeeder {
     async run() {
         const productData: Object[] = []
 
+        const ratings = [
+            2.4, 4.2, 3.1, 4.1, 1.2, 4.2, 1.3, 3.2, 4.9, 4.2, 3.5, 2.7,
+        ]
+
+        const brands = [
+            'Apple',
+            'Samsung',
+            'Google',
+            'LG',
+            'Motorola',
+            'Sony',
+            'OnePlus',
+            'Huawei',
+            'Xiaomi',
+            'Asus',
+            'ZTE',
+            'Honor',
+            'vivo',
+        ]
+
         for (let i = 1; i <= 20; i++) {
             productData.push({
                 name: `Product ${i}`,
                 models: JSON.stringify([`Model A${i}`, `Model B${i}`]),
-                brand: `Brand ${i}`,
+                brand: brands[Math.floor(Math.random() * brands.length)],
                 flaws: JSON.stringify([`Flaw A${i}`, `Flaw B${i}`]),
                 categoryId: 1,
-                rating: Math.floor(Math.random() * 11), // Generates a random rating between 0 and 10
+                rating: ratings[Math.floor(Math.random() * ratings.length)], // Generates a random rating between 0 and 5
             })
         }
 

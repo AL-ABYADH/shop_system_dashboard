@@ -30,6 +30,8 @@ import './mobile/sellers_app_api/get/seller_products'
 // post
 
 // customers_app_api
+import './mobile/customers_app_api/product_items'
+import './mobile/customers_app_api/products'
 // get
 // post
 

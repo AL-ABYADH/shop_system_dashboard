@@ -36,7 +36,7 @@ export default class Orders extends BaseSchema {
                 .unsigned()
                 .references('addresses.id')
                 .notNullable()
-            table.decimal('delivery_price').unsigned().nullable()
+            table.decimal('delivery_price', 10, 2).unsigned().nullable()
             table.decimal('total_price', 10, 2).unsigned().notNullable()
             table.enum('currency', ['USD', 'YER', 'SAR']).notNullable()
             table
