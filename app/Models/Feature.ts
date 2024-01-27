@@ -18,6 +18,9 @@ export default class Feature extends BaseModel {
     public feature: string
 
     @column()
+    public main: boolean // This is to check if the feature should be listed for the admin in the control panel as some features are intended only for customers.
+
+    @column()
     public type: 'string' | 'number' | 'list' | 'list<number>' | 'list<string>'
 
     @column()

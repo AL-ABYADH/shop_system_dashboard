@@ -7,6 +7,7 @@ export default class Features extends BaseSchema {
         this.schema.createTable(this.tableName, (table) => {
             table.increments('id').primary()
             table.string('feature', 50).notNullable()
+            table.boolean('main').notNullable()
             table
                 .enum('type', [
                     'string',

@@ -13,7 +13,7 @@ export default class UserSeeder extends BaseSeeder {
                     fullName: `Admin User ${i}`,
                     phoneNumber: `77777777${i}`,
                     role: 'admin',
-                    imageUrl: 'https://picsum.photos/200'
+                    imageUrl: 'https://picsum.photos/200',
                 }
             )
 
@@ -30,7 +30,7 @@ export default class UserSeeder extends BaseSeeder {
                     warningsCount: 0, // Defaults to 0 for sellers, null for others
                     shopOpenAt: '08:00:00', // Example shop open time for sellers
                     shopCloseAt: '18:00:00', // Example shop close time for sellers
-                    imageUrl: 'https://picsum.photos/200'
+                    imageUrl: 'https://picsum.photos/200',
                 }
             )
 
@@ -42,10 +42,10 @@ export default class UserSeeder extends BaseSeeder {
                     username: `customer_user${i}`,
                     password: 'password123',
                     fullName: `Customer User ${i}`,
-                    phoneNumber: `777777788${i}`,
+                    phoneNumber: `77777788${i}`,
                     role: 'customer',
                     preferredCurrency: 'USD', // You can change the preferred currency as needed
-                    imageUrl: 'https://picsum.photos/200'
+                    imageUrl: 'https://picsum.photos/200',
                 }
             )
         }
