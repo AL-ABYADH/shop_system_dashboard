@@ -10,12 +10,14 @@ import Flaw from 'App/Models/Flaw'
 // import ImagesGroup from 'App/Models/ImagesGroup'
 // import ImageItem from 'App/Models/ImageItem'
 export default class HandledOrderScreenController {
-    async index({ inertia }) {
-        
-        const loadedOrder = await Order.query().where(
-            'status',
-            'confirming' || 'testing'
-        )
+    async index({ inertia, auth }) {
+        // Get the currently authenticated user
+        const user = await auth.use('web').authenticate()
+
+        const loadedOrder = await user
+            .related('adminOrders')
+            .query()
+            .whereIn('status', ['testing', 'confirming'])
 
         const orders: Array<any> = []
 
@@ -39,7 +41,7 @@ export default class HandledOrderScreenController {
                         orderItem.productItemId
                     )
                 )[0]
-                
+
                 const sellerUser = (
                     await User.query().where('id', productItemDetails.userId)
                 )[0]
@@ -84,7 +86,7 @@ export default class HandledOrderScreenController {
                 //     imageItems.push({
                 //         imagesUrl: image.imageUrl,
                 //     })
-                
+
                 orderItems.push({
                     id: orderItem.id,
                     deviceName: productDetails.name,
@@ -117,7 +119,6 @@ export default class HandledOrderScreenController {
                 orderItems: orderItems,
             })
         }
-        
 
         return inertia.render('handledOrderScreen', { orders })
     }

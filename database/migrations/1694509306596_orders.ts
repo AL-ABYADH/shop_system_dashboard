@@ -47,7 +47,7 @@ export default class Orders extends BaseSchema {
                     'testing',
                     'done',
                     'canceled',
-                    'returningItem',
+                    'returnRequest',
                 ])
                 .notNullable()
             table.timestamps(true, true) // created_at and updated_at

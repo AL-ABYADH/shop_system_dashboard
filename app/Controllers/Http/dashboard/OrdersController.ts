@@ -19,7 +19,7 @@ class OrdersController {
             } else {
                 return response
                     .status(400)
-                    .json({ message: 'Ivalid order states' })
+                    .json({ message: 'Invalid order states' })
             }
 
             await order.save()

@@ -5,4 +5,4 @@ Route.get(
     './mobile/sellers_app_api/get/SellerProductsController.getProducts'
 )
     .prefix('api')
-    .middleware('auth:web,api')
+    .middleware('auth:api')

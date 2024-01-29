@@ -14,6 +14,7 @@ import PaymentMethod from './PaymentMethod'
 import Address from './Address'
 import { softDelete, softDeleteQuery } from 'App/Services/SoftDelete'
 import Payment from './Payment'
+import ReturnRequest from './ReturnRequest'
 
 export default class Order extends BaseModel {
     @column({ isPrimary: true })
@@ -72,17 +73,20 @@ export default class Order extends BaseModel {
         | 'testing'
         | 'done'
         | 'canceled'
-        | 'returningItem'
+        | 'returnRequest'
     // "awaiting" if no admin has handled the order yet (adminUserId is null), and seller hasn't confirm that the product is available or not. Able to cancel order with no canceling fee
     // "confirming" if admin handles order that got no confirmation from the seller. Able to cancel order with no canceling fee
     // "confirmed" if seller confirms that the product item. Able to cancel order with a canceling fee. If canceled, 5% is paid to the seller, 10% to the business, and 85% back to the customer
     // "testing" if admin handles order while in "confirmed" state, or changing state from "confirming". Able to cancel order with a canceling fee. If canceled, 5% is paid to the seller, 5% to the admin, 5% to the business, and 85% back to the customer
     // "done" if order has been done. Not able to cancel anymore
     // "canceled" if for any reason the order is canceled
-    // "returningItem" if customer tries to return order item of which the product item's warranty hasn't ended
+    // "returnRequest" if customer tries to return order item of which the product item's warranty hasn't ended
 
     @hasMany(() => Payment)
     public payments: HasMany<typeof Payment>
+
+    @hasMany(() => ReturnRequest)
+    public returnRequests: HasMany<typeof ReturnRequest>
 
     @column.dateTime({ autoCreate: true })
     public createdAt: DateTime

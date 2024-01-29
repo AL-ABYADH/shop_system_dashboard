@@ -52,13 +52,22 @@ export default class User extends BaseModel {
     @hasMany(() => Address)
     public addresses: HasMany<typeof Address> // Only users of types "seller" and "customer" will have at least one address
 
-    @hasMany(() => Order)
+    @hasMany(() => Order, {
+        foreignKey: 'customerUserId',
+        localKey: 'id',
+    })
     public customerOrders: HasMany<typeof Order> // Only users of type "customer" will order orders
 
-    @hasMany(() => Order)
+    @hasMany(() => Order, {
+        foreignKey: 'sellerUserId',
+        localKey: 'id',
+    })
     public sellerOrders: HasMany<typeof Order> // Only users of type "seller" will be ordered from
 
-    @hasMany(() => Order)
+    @hasMany(() => Order, {
+        foreignKey: 'adminUserId',
+        localKey: 'id',
+    })
     public adminOrders: HasMany<typeof Order> // Only users of type "admin" will handle orders
 
     @hasMany(() => ProductItem)
