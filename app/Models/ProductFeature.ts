@@ -17,7 +17,7 @@ export default class ProductFeature extends BaseModel {
     public id: number
 
     @column()
-    public value: string[]
+    public value: string // JSON list of strings
 
     @column()
     public featureId: number

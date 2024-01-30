@@ -30,6 +30,7 @@ export default class UserSeeder extends BaseSeeder {
                     warningsCount: 0, // Defaults to 0 for sellers, null for others
                     shopOpenAt: '08:00:00', // Example shop open time for sellers
                     shopCloseAt: '18:00:00', // Example shop close time for sellers
+                    shopCloseDays: JSON.stringify(['Friday', 'Thursday']),
                     imageUrl: 'https://picsum.photos/200',
                 }
             )

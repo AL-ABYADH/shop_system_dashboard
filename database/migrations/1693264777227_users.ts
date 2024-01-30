@@ -19,6 +19,7 @@ export default class Users extends BaseSchema {
             table.integer('warnings_count').nullable().defaultTo(null)
             table.string('shop_open_at').nullable().defaultTo(null)
             table.string('shop_close_at').nullable().defaultTo(null)
+            table.json('shop_close_days').nullable()
             table.timestamps(true, true) // created_at and updated_at
             table.timestamp('deleted_at').nullable()
         })

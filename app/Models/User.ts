@@ -49,6 +49,9 @@ export default class User extends BaseModel {
     @column()
     public shopCloseAt: string | null // Only for users of type "seller"
 
+    @column()
+    public shopCloseDays: string // JSON list of strings | null // Only for users of type "seller"
+
     @hasMany(() => Address)
     public addresses: HasMany<typeof Address> // Only users of types "seller" and "customer" will have at least one address
 

@@ -25,13 +25,13 @@ export default class Product extends BaseModel {
     public name: string
 
     @column()
-    public models: string[]
+    public models: string // JSON list of strings
 
     @column()
     public brand: string
 
     @column()
-    public flaws: string[]
+    public flaws: string // JSON list of strings
 
     @column()
     public categoryId: number
