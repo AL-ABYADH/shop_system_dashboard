@@ -63,10 +63,10 @@ export default class ProductItem extends BaseModel {
         | null // How clean or new the product is if it's used. Null if the product is new (usedProduct = false)
 
     @column()
-    public status: 'available' | 'sold' | 'reserved'
+    public status: 'available' | 'sold' | 'reserved' | 'returned'
     // "available" if not included in an order
     // "sold" if included in an order in the status "sold", or if marked as "sold" by the seller
-    // "reserved" if included in an order in the any other status
+    // "reserved" if included in an order in any other status
 
     @hasOne(() => ImagesGroup)
     public imagesGroup: HasOne<typeof ImagesGroup>
