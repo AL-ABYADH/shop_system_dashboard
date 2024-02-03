@@ -67,6 +67,7 @@ export default class ProductItem extends BaseModel {
     // "available" if not included in an order
     // "sold" if included in an order in the status "sold", or if marked as "sold" by the seller
     // "reserved" if included in an order in any other status
+    // "returned" if the product item has been returned by a resolved return request
 
     @hasOne(() => ImagesGroup)
     public imagesGroup: HasOne<typeof ImagesGroup>
