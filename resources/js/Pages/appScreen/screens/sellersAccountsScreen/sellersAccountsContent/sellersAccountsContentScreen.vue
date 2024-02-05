@@ -36,6 +36,21 @@
                         <th
                             class="px-4 py-2 sm:py-3 md:py-3 lg:py-3 xl:py-3 text-center text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium text-gray-500"
                         >
+                            مفتوح
+                        </th>
+                        <th
+                            class="px-4 py-2 sm:py-3 md:py-3 lg:py-3 xl:py-3 text-center text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium text-gray-500"
+                        >
+                            مغلق
+                        </th>
+                        <th
+                            class="px-4 py-2 sm:py-3 md:py-3 lg:py-3 xl:py-3 text-center text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium text-gray-500"
+                        >
+                            أيام الإغلاق
+                        </th>
+                        <th
+                            class="px-4 py-2 sm:py-3 md:py-3 lg:py-3 xl:py-3 text-center text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium text-gray-500"
+                        >
                             الإنذارات
                         </th>
                         <th
@@ -65,6 +80,21 @@
                             class="px-2 py-2 sm:py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2 whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center sm:w-1/2 md:w-1/3 lg:w-1/4"
                         >
                             {{ seller.address }}
+                        </td>
+                        <td
+                            class="px-2 py-2 sm:py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2 whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center sm:w-1/2 md:w-1/3 lg:w-1/4"
+                        >
+                            {{ seller.shopOpen }}
+                        </td>
+                        <td
+                            class="px-2 py-2 sm:py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2 whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center sm:w-1/2 md:w-1/3 lg:w-1/4"
+                        >
+                            {{ seller.shopClose }}
+                        </td>
+                        <td
+                            class="px-2 py-2 sm:py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2 whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center sm:w-1/2 md:w-1/3 lg:w-1/4"
+                        >
+                            {{ getArabicCloseDays(seller.closeDays) }}
                         </td>
                         <td
                             class="px-2 text-red-600 py-2 sm:py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2 whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center sm:w-1/2 md:w-1/3 lg:w-1/4"
@@ -125,6 +155,9 @@ type Seller = {
     phoneNumber: string
     address: string
     warnings: number
+    shopOpen: string | null
+    shopClose: string | null
+    closeDays: string | null
 }
 
 export default {
@@ -147,6 +180,44 @@ export default {
         }
     },
     methods: {
+        getArabicCloseDays(closeDaysString) {
+            if (!closeDaysString) return ''
+
+            // Regular expression to match punctuation marks
+            const punctuationRegex = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g
+
+            // Regular expression to match English days
+            const dayRegex =
+                /sunday|monday|tuesday|wednesday|thursday|friday|saturday/gi
+
+            // Array of Arabic days
+            const arabicDays = [
+                'الأحد',
+                'الاثنين',
+                'الثلاثاء',
+                'الأربعاء',
+                'الخميس',
+                'الجمعة',
+                'السبت',
+            ]
+
+            // Replace punctuation marks with an empty string
+            let result = closeDaysString.replace(punctuationRegex, '')
+
+            // Replace English days with Arabic and join with comma and space
+            result = result.replace(
+                dayRegex,
+                (match) =>
+                    arabicDays[
+                        dayRegex.source.split('|').indexOf(match.toLowerCase())
+                    ] + ', '
+            )
+
+            // Remove the last comma and space and trim leading and trailing whitespace
+            result = result.slice(0, -2).trim()
+
+            return result
+        },
         showWarningPopupForSeller(seller) {
             // Set the current seller being warned
             if (seller) {

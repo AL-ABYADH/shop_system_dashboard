@@ -7,39 +7,35 @@
         <div class="flex justify-between">
             <div>
                 <table>
-                    <tr class="flex justify-left items-center mb-2">
-                        <td>
-                            <div>
-                                <img
-                                    :src="imageUrl"
-                                    @error="imageLoadError"
-                                    class="w-12 h-auto rounded-full border-2 border-primary flex justify-center items-center ml-2 sm:w-20"
-                                />
-                            </div>
-                        </td>
+                    <tr class="flex justify-left items-center">
                         <td>
                             <span class="text- font-semibold sm:text-lg">{{
                                 title
                             }}</span>
                         </td>
                     </tr>
-
                     <tr>
                         <td>
-                            <div class="flex">
-                                <tr>
-                                    <i
-                                        class="fa fa-map-marker fa-lg pr-1 text-primary ml-2"
-                                    ></i>
-                                </tr>
-                                <tr>
-                                    <p
-                                        class="text-gray-600 text-md font-semibold pr-1"
-                                    >
-                                        {{ address }}
-                                    </p>
-                                </tr>
-                            </div>
+                            <p
+                                class="text-gray-600 sm:text-xs position-sticky font-thin"
+                            >
+                                {{ dateItem(date) }}
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div>
+                <table>
+                    <tr class="flex">
+                        <td>
+                            <i class="fa fa-phone fa-lg text-primary ml-2"></i>
+                        </td>
+                        <td>
+                            <p class="text-gray-800 font-semibold">
+                                {{ phoneNumber }}
+                            </p>
                         </td>
                     </tr>
                     <tr>
@@ -52,7 +48,7 @@
                             <td>
                                 <p class="text-gray-600 text-md font-semibold">
                                     {{
-                                        orderStatus == 'Done' ? 'منتهي' : 'ملغي'
+                                        "منتهي"
                                     }}
                                 </p>
                             </td>
@@ -60,113 +56,114 @@
                     </tr>
                 </table>
             </div>
-
-            <div>
-                <table>
-                    <tr>
-                        <td>
-                            <i
-                                class="fa fa-calendar fa-lg text-primary ml-2"
-                            ></i>
-                        </td>
-                        <td>
-                            <p class="text-gray-600 font-semibold">
-                                {{ date }}
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <i class="fa fa-money fa-lg text-primary ml-2"></i>
-                        </td>
-                        <td>
-                            <p class="text-gray-800 font-semibold">
-                                {{ orderPrice }} ريال
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <i class="fa fa-mobile fa-lg text-primary mr-2"></i>
-                        </td>
-                        <td>
-                            <p class="text-gray-800 font-semibold">
-                                {{ devicesNumber }} أجهزة
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <i class="fa fa-phone fa-lg text-primary ml-2"></i>
-                        </td>
-                        <td>
-                            <p class="text-gray-800 font-semibold">
-                                {{ phoneNumber }}
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <i
-                                class="fa fa-clock-o fa-lg text-primary ml-2"
-                            ></i>
-                        </td>
-                        <td>
-                            <p class="text-gray-800 font-semibold">
-                                {{ time }}
-                            </p>
-                        </td>
-                    </tr>
-                </table>
-            </div>
         </div>
         <div class="mt-4" v-if="expanded">
+            <div
+                class="bg-primary-opacity mb-2 p-3 rounded-lg flex justify-between"
+            >
+                <!-- First div aligned to the start -->
+                <div>
+                    <i class="fa fa-user-circle fa-lg ml-2"></i>
+                    <strong class="text- font-semibold md:text-lg">{{
+                        sellerName
+                    }}</strong>
+                </div>
+                <!-- Second div aligned to the center -->
+                <div>
+                    <i class="fa fa-phone fa-lg ml-2"></i>
+                    <strong class="text- font-semibold md:text-lg">{{
+                        sellerPhoneNumber
+                    }}</strong>
+                </div>
+                <!-- Third div aligned to the end -->
+                <div>
+                    <i class="fa fa-location-arrow fa-lg ml-2"></i>
+                    <strong class="text- font-semibold md:text-lg">{{
+                        sellerAddress
+                    }}</strong>
+                </div>
+            </div>
+
             <div v-for="(device, index) in devices" :key="index">
-                <ul class="bg-primary-opacity mb-2 p-3 rounded-lg">
-                    <li>
-                        <strong> اسم الجهاز:</strong> {{ device.deviceName }}
-                    </li>
-                    <li><strong>البائع:</strong> {{ device.seller }}</li>
-                    <li><strong>العنوان:</strong> {{ device.address }}</li>
-                    <li>
-                        <strong>رقم الهاتف:</strong> {{ device.phoneNumber }}
-                    </li>
-                    <li>
-                        <strong>السعر: </strong>
-                        {{
-                            device.price
-                                .toString()
-                                .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-                        }}
-                        ريال
-                    </li>
-                    <li>
-                        <strong>سعر الفحص:</strong>
-                        {{
-                            checkPrice(device.price)
-                                .toString()
-                                .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-                        }}
-                        ريال
-                    </li>
-                    <li><strong>العيوب:</strong> {{ device.flaws }}</li>
-                    <li><strong>الوصف:</strong> {{ device.description }}</li>
-                    <li>
-                        <strong>مستخدم:</strong> {{ device ? 'نعم' : 'لا' }}
-                    </li>
-                    <li v-if="device.isUsed">
-                        <strong>حالة الجهاز المستخدم:</strong>
-                        {{ device.usedProductCondition }}
-                    </li>
-                    <li>
+                <div class="mb-2 p-3">
+                    <div></div>
+                    <strong
+                        class="ml-3 text-primary bg-primary-opacity mb-2 p-3 rounded-lg"
+                        >{{ device.deviceName }}</strong
+                    >
+                    <button
+                        class="mt-4 text-blue-500 underline"
+                        @click="toggleExpansion2(index)"
+                    >
+                        <i
+                            :class="
+                                device.expanded
+                                    ? 'fa fa-chevron-up text-primary'
+                                    : 'fa fa-chevron-down text-primary'
+                            "
+                        ></i>
+                    </button>
+                </div>
+                <div v-if="device.expanded">
+                    <ul class="bg-gray-100 mb-2 p-3 rounded-lg">
+                        <div class="flex justify-between mb-2">
+                            <li>
+                                <i
+                                    class="fa fa-money text-primary fa-lg ml-1"
+                                ></i>
+                                {{
+                                    device.price
+                                        .toString()
+                                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                                }}
+                                USD
+                            </li>
+                            <li>
+                                <i
+                                    class="fa fa-inbox text-primary fa-lg ml-2"
+                                ></i>
+                                2000 USD
+                            </li>
+                            <li>
+                                <i
+                                    class="fa fa-mobile text-primary fa-lg ml-1"
+                                ></i>
+                                {{
+                                    usedProductCondition(
+                                        device.usedProductCondition
+                                    )
+                                }}
+                            </li>
+                        </div>
+
+                        <div class="flex justify-between mb-2">
+                            <ul>
+                                <li class="bg-primary-opacity p-2 rounded-lg">
+                                    <i
+                                        class="fa fa-info-circle text-primary fa-lg ml-1"
+                                    ></i>
+                                    <details dir="ltr">
+                                        <summary>التفاصيل</summary>
+                                        {{ device.description }}
+                                    </details>
+                                </li>
+                                <!-- Additional list items here -->
+                            </ul>
+                        </div>
+
+                        <div v-for="flaw in device.flaws" dir="rtl">
+                            <li><strong>العيوب:</strong> {{ flaw.flaw }}</li>
+                        </div>
+                        <!-- <li>
                         <strong>رابط الصور:</strong>
                         <a
                             :href="device.pictureLink"
                             class="underline text-primary"
                             >{{ device.pictureLink }}</a
                         >
-                    </li>
-                </ul>
+                    </li> -->
+                    </ul>
+                </div>
             </div>
             <div>
                 <table>
@@ -176,8 +173,19 @@
                         </td>
                         <td>
                             <p class="text-gray-600">
-                                <strong> التوصيل: </strong
-                                >{{ formattedDeliveryPrice }}
+                                {{ formattedDeliveryPrice }}
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i
+                                class="fa fa-sitemap fa-lg text-primary ml-2"
+                            ></i>
+                        </td>
+                        <td>
+                            <p class="text-gray-600">
+                                {{ devices?.length }} وحده
                             </p>
                         </td>
                     </tr>
@@ -186,21 +194,10 @@
                             <i class="fa fa-dollar fa-lg text-primary mr-1"></i>
                         </td>
                         <td>
-                            <p class="text-gray-600">
-                                <strong> الإجمالي: </strong
-                                >{{ orderPrice }} ريال
-                            </p>
+                            <p class="text-gray-600">{{ totalPrice }} USD</p>
                         </td>
                     </tr>
                 </table>
-            </div>
-            <div class="justify-center flex">
-                <button
-                    v-if="orderStatus == 'Done'"
-                    class="mt-4 text-white bg-red-600 p-2 rounded-md hover:bg-primary-opacity2"
-                >
-                    إلغاء
-                </button>
             </div>
         </div>
         <div class="justify-center flex">
@@ -221,8 +218,11 @@
 </template>
 
 <script lang="ts">
+import dateFormat from 'dateformat'
+
 export default {
     props: {
+        orderId: Number,
         title: String,
         address: String,
         date: String,
@@ -231,9 +231,12 @@ export default {
         phoneNumber: String,
         time: String,
         devices: Array<any>,
-        delivery: Boolean,
         deliveryPrice: Number,
+        totalPrice: Number,
         orderStatus: String,
+        sellerName: String,
+        sellerAddress: String,
+        sellerPhoneNumber: String,
     },
     data() {
         return {
@@ -241,35 +244,14 @@ export default {
         }
     },
     computed: {
-        orderPrice() {
-            // Calculate the order price as the sum of device prices, check prices, and deliveryPrice
-
-            // Calculate the sum of device prices
-            const devicePriceTotal = this.devices.reduce(
-                (total, device) => total + device.price,
-                0
-            )
-
-            // Calculate the sum of check prices using the checkPrice function
-            const checkPriceTotal = this.devices.reduce(
-                (total, device) => total + this.checkPrice(device.price),
-                0
-            )
-
-            // Calculate the total price by adding device prices, check prices, and delivery price
-            let totalPrice = devicePriceTotal + checkPriceTotal
-
-            if (this.delivery) {
-                totalPrice += this.deliveryPrice ?? 0
-            }
-
-            return totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-        },
         formattedDeliveryPrice() {
             if (typeof this.deliveryPrice === 'number') {
-                return `${this.deliveryPrice
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')} ريال`
+                return (
+                    `USD ${this.deliveryPrice
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}   /   ` +
+                    this.address
+                )
             } else {
                 return 'بدون توصيل'
             }
@@ -287,10 +269,67 @@ export default {
         imageLoadError() {
             console.log('Image failed to load')
         },
+        usedProductCondition(condition) {
+            switch (condition) {
+                case 'excellent':
+                    return 'ممتاز'
+                case 'good':
+                    return 'جيدة جدا'
+                case 'normal':
+                    return 'جيد'
+                case 'bad':
+                    return 'مقبول'
+                case 'terrible':
+                    return 'سيئ'
+                default:
+                    return 'جديد'
+            }
+        },
+        toggleExpansion2(index) {
+            this.devices[index].expanded = !this.devices[index].expanded
+        },
+        dateItem(dateObj) {
+            const dateObject = new Date(dateObj)
+            const formattedDate = dateFormat(dateObject, 'yyyy-mm-dd')
+            const time = dateFormat(dateObject, 'HH:mm:ss ')
+            return time + formattedDate
+        },
     },
 }
 </script>
 
 <style scoped>
-/* Add Tailwind CSS classes here as needed */
+.cancel-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* Ensure it's on top */
+}
+
+.cancel-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 400px; /* Adjust the width as needed */
+}
+
+
+textarea {
+    width: 100%;
+    height: 100px; /* Adjust the height as needed */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: vertical; /* Allow vertical resizing */
+    box-shadow: none;
+}
 </style>

@@ -1,84 +1,110 @@
-<style>
-.container {
-  overflow-y: scroll; /* Add overflow-y: auto; if you want to hide the scrollbar only when it's not needed */
-  height: 86vh; /* Adjust the percentage as needed */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-}
-
-/* Hide the scrollbar thumb for Webkit browsers */
-.container::-webkit-scrollbar {
-  width: 0.1rem; /* Set a very small width for the scrollbar */
-}
-
-.container::-webkit-scrollbar-thumb {
-  background-color: transparent; /* Hide the scrollbar thumb */
-}
-
-
-</style>
-
 <template>
-  <div class="container max-w-full">
-    <ExpandableItem
-      v-for="order in orders"
-      :key="order.id"
-      :title="order.title"
-      :address="order.address"
-      :date="order.date.toLocaleString()"
-      :imageUrl="order.imageUrl"
-      :devicesNumber="order.devicesNumber"
-      :phoneNumber="order.phoneNumber"
-      :time="order.time.toLocaleString()"
-      :delivery="order.delivery"
-      :deliveryPrice="order.deliveryPrice"
-      :orderStatus="order.orderStatus"
-      :devices="order.devices"
-    />
-  </div>
+    <div class="container max-w-full">
+        <div>
+            <p
+                class="w-full border-b-2 font-almarai mb-3 sm:pt-2 md:pt-2 border-primary text-primary text-base sm:text-lg md:text-xl sm:pb-2"
+            >
+                سجل الطلبات
+            </p>
+            <div v-for="order in filteredOrders('done')" :key="order.id">
+                <ExpandableItem
+                    :orderId="order.id"
+                    :title="order.customerName"
+                    :address="order.customerAddress"
+                    :date="order.date"
+                    :imageUrl="order.customerImageUrl"
+                    :devicesNumber="order.devicesNumber"
+                    :phoneNumber="order.customerPhone"
+                    :time="order.time"
+                    :deliveryPrice="order.deliveryPrice"
+                    :orderStatus="order.orderStatus"
+                    :totalPrice="order.totalPrice"
+                    :devices="order.orderItems"
+                    :key="order.id"
+                    :sellerName="order.sellerName"
+                    :sellerAddress="order.sellerAddress"
+                    :sellerPhoneNumber="order.sellerPhoneNumber"
+                />
+            </div>
+        </div>
+    </div>
 </template>
 
 <script lang="ts">
-import ExpandableItem from "./orderContent.vue"; // Import the ExpandableItem component
-import { DateTime } from 'luxon';
-interface Device {
-  deviceName: string;
-  seller: string;
-  address: string;
-  phoneNumber: string;
-  productId: string;
-  price: number;
-  flaws: string;
-  description: string;
-  isUsed: boolean;
-  usedProductCondition: string | null;
-  pictureLink: string;
-  // Add other properties as needed
+import ExpandableItem from './orderContent.vue'
+
+type flaws = {
+    flaw: string
+    severity: string
 }
+
+type imageItems = {
+    imagesUrl: string
+}
+
+type orderItems = {
+    id: number
+    price: number
+    currency: string
+    flaws: flaws[]
+    description: string
+    usedProductCondition: string | null
+    imageItems: imageItems[]
+    expanded: boolean
+    isUsed: number
+}
+
 type Order = {
     id: number
-    title: string
-    address: string
-    date: DateTime
-    imageUrl: string
+    customerName: string
+    customerAddress: string
+    date: string
+    deviceName: string
+    sellerName: string
+    sellerAddress: string
+    sellerPhoneNumber: string
+    customerImageUrl: string
+    currency: string
     devicesNumber: number
-    phoneNumber: string
-    time:DateTime
-    delivery: boolean
+    customerPhone: string
+    time: string
+    totalPrice: number
     deliveryPrice?: number
     orderStatus: string
-    devices:Device[]
+    orderItems: orderItems[]
 }
 
 export default {
-  components: {
-    ExpandableItem, // Register the component
-  },
-  props: {
+    components: {
+        ExpandableItem,
+    },
+    props: {
         orders: {
             type: Array as () => Order[],
             required: true,
         },
     },
-};
+    methods: {
+        filteredOrders(status) {
+            return this.orders.filter((order) => order.orderStatus === status)
+        },
+    },
+}
 </script>
+<style>
+.container {
+    overflow-y: scroll; /* Add overflow-y: auto; if you want to hide the scrollbar only when it's not needed */
+    height: 94vh; /* Adjust the percentage as needed */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide the scrollbar thumb for Webkit browsers */
+.container::-webkit-scrollbar {
+    width: 0.1rem; /* Set a very small width for the scrollbar */
+}
+
+.container::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Hide the scrollbar thumb */
+}
+</style>
