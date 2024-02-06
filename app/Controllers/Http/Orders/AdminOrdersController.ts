@@ -11,7 +11,7 @@ import Flaw from 'App/Models/Flaw'
 // import ImageItem from 'App/Models/ImageItem'
 
 export default class AdminOrdersController {
-    public async getNewOrders({ inertia }) {
+    public async renderNewOrders({ inertia }) {
         const loadedOrder = await Order.query().whereIn('status', [
             'awaiting',
             'confirmed',
@@ -125,7 +125,7 @@ export default class AdminOrdersController {
         return inertia.render('homePageScreen', { orders })
     }
 
-    public async getHandledOrders({ inertia, auth }) {
+    public async renderHandledOrders({ inertia, auth }) {
         // Get the currently authenticated user
         const user = await auth.use('web').authenticate()
 
@@ -243,7 +243,7 @@ export default class AdminOrdersController {
         return inertia.render('handledOrderScreen', { orders })
     }
 
-    public async getFinishedOrders({ inertia, auth }) {
+    public async renderFinishedOrders({ inertia, auth }) {
         // Get the currently authenticated user
         const user = await auth.use('web').authenticate()
 

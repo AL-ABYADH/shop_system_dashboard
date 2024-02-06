@@ -3,7 +3,7 @@ import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/User'
 
 export default class AdminAccountsController {
-    public async getAdmins({ inertia }) {
+    public async renderAdmins({ inertia }) {
         const loadedAdmins = await User.query().where('role', 'admin')
 
         const admins: Array<any> = []
@@ -19,7 +19,7 @@ export default class AdminAccountsController {
         return inertia.render('adminsAccountsScreen', { admins })
     }
 
-    public getAdminDetails({ inertia }) {
+    public renderUpdateAdmin({ inertia }) {
         return inertia.render('newAdminsScreen')
     }
 

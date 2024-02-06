@@ -1,15 +1,30 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
-  Route.get('/new-orders', 'Orders/AdminOrdersController.getNewOrders')
+    Route.get('/', 'Orders/AdminOrdersController.renderNewOrders')
 
-  Route.get('/handled-orders', 'Orders/AdminOrdersController.getHandledOrders')
+    Route.get(
+        '/handled-orders',
+        'Orders/AdminOrdersController.renderHandledOrders'
+    ).prefix('orders')
 
-  Route.get('/finished-orders', 'Orders/AdminOrdersController.getFinishedOrders')
+    Route.get(
+        '/finished-orders',
+        'Orders/AdminOrdersController.renderFinishedOrders'
+    ).prefix('orders')
 
-  Route.post('/handle', 'Orders/AdminOrdersController.handle')
+    Route.put(
+        '/handle-order/:orderId',
+        'Orders/AdminOrdersController.handleOrder'
+    ).prefix('orders')
 
-  Route.post('/confirm', 'Orders/AdminOrdersController.confirm')
+    Route.put(
+        '/confirm-order/:orderId',
+        'Orders/AdminOrdersController.confirmOrder'
+    ).prefix('orders')
 
-  Route.post('/cancel', 'Orders/AdminOrdersController.cancel')
-}).prefix('/admin/orders')
+    Route.put(
+        '/cancel-order/:orderId',
+        'Orders/AdminOrdersController.cancelOrder'
+    ).prefix('orders')
+}).middleware('auth:web')

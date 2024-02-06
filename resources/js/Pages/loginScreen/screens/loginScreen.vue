@@ -71,7 +71,7 @@ export default {
     methods: {
         async submit() {
             if (this.form.username != '' && this.form.password != '') {
-                await this.$inertia.post('/login/postForm', this.form)
+                await this.$inertia.post('/auth/login', this.form)
             } else if (this.form.username == '') {
                 // username is required
             } else if (this.form.password == '') {

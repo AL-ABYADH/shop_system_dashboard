@@ -43,5 +43,5 @@ Server.middleware.register([
 */
 Server.middleware.registerNamed({
     auth: () => import('App/Middleware/Auth'),
-    checkUser: () => import('App/Middleware/CheckUser'),
+    checkPaymentAccount: () => import('App/Middleware/CheckPaymentAccount'),
 })

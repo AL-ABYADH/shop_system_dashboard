@@ -1,7 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class AdminReturnRequestsController {
-    public async getReturnRequests({
+    public async renderReturnRequests({
         request,
         response,
     }: HttpContextContract) {}

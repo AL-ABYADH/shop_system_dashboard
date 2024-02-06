@@ -18,54 +18,40 @@
 |
 */
 
-import Route from '@ioc:Adonis/Core/Route'
-import Application from '@ioc:Adonis/Core/Application'
+// import Route from '@ioc:Adonis/Core/Route'
+// import Application from '@ioc:Adonis/Core/Application'
 
-// mobile
-// auth
-import './mobile/auth/user_auth'
-// sellers_app_api
-// get
-import './mobile/sellers_app_api/get/seller_products'
-// post
+import './auth/api_auth'
+import './auth/web_auth'
+import './carts/carts'
+import './orders/admin_orders'
+import './orders/customer_orders'
+import './orders/seller_orders'
+import './product-items/customer_product_items'
+import './product-items/seller_product_items'
+import './products/seller_products'
+import './products/shop_products'
+import './returns/admin_return_requests'
+import './returns/customer_return_requests'
+import './user-accounts/admin_accounts'
+import './user-accounts/customer_accounts'
+import './user-accounts/seller_accounts'
 
-// customers_app_api
-import './mobile/customers_app_api/product_items'
-import './mobile/customers_app_api/products'
-// get
-// post
+// Route.post('upload', async ({ request, response }) => {
+//     const image = request.file('image', {
+//         size: '2mb',
+//         extnames: ['jpg', 'png', 'gif'],
+//     })
 
-// dashboard
-// auth
-// render
-import './dashboard/admin_login'
-import './dashboard/home_screen'
-import './dashboard/handled_order_screen'
-import './dashboard/order_history_screen'
-import './dashboard/admins_accounts_screen'
-import './dashboard/sellers_accounts_screen'
-import './dashboard/customers_accounts_screen'
-import './dashboard/new_admins_screen'
-import './dashboard/edit_admins_screen'
-import './dashboard/orders'
-// get
-// post
+//     if (image && image.isValid) {
+//         const fileName = `${Date.now()}-${image.clientName}`
+//         await image.move(Application.tmpPath('uploads'), {
+//             name: fileName,
+//         })
 
-Route.post('upload', async ({ request, response }) => {
-    const image = request.file('image', {
-        size: '2mb',
-        extnames: ['jpg', 'png', 'gif'],
-    })
+//         // Return the URL of the stored image
+//         return response.send({ url: `/uploads/${fileName}` })
+//     }
+// })
 
-    if (image && image.isValid) {
-        const fileName = `${Date.now()}-${image.clientName}`
-        await image.move(Application.tmpPath('uploads'), {
-            name: fileName,
-        })
-
-        // Return the URL of the stored image
-        return response.send({ url: `/uploads/${fileName}` })
-    }
-})
-
-Route.get('/exchange', 'ExchangesController.index')
+// Route.get('/exchange', 'ExchangesController.index')

@@ -1,6 +1,10 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class WebAuthController {
+    public renderLogin({ inertia }) {
+        return inertia.render('loginScreen')
+    }
+
     public async login({
         request,
         response,
@@ -14,7 +18,7 @@ export default class WebAuthController {
             console.log(err)
             session.flash({ error: 'Username or password is incorrect' })
             response.redirect().back()
-            return response.json({ message: 'invalid username or password' })
+            return response.json({ message: 'Invalid username or password' })
         }
 
         return response.redirect().toPath('/')

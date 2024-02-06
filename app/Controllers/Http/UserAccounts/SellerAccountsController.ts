@@ -3,7 +3,7 @@ import User from 'App/Models/User'
 import Address from '../../../Models/Address'
 
 export default class SellerAccountsController {
-    async getSellers({ inertia }) {
+    async renderSellers({ inertia }) {
         const loadedSellers = await User.query().where('role', 'seller')
 
         const sellers: Array<any> = []

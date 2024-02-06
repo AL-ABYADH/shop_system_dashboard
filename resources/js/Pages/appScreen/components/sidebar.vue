@@ -111,31 +111,31 @@ export default {
                     id: 'handled-orders',
                     label: 'الطلبات الموكلة',
                     icon: 'fa fa-shopping-cart', // Font Awesome icon class
-                    route: '/handledOrder',
+                    route: '/orders/handled-orders',
                 },
                 {
                     id: 'orders-history',
                     label: 'سجل الطلبات',
                     icon: 'fa fa-history', // Font Awesome icon class
-                    route: '/orderHistory',
+                    route: '/orders/finished-orders',
                 },
                 {
                     id: 'admin-accounts',
                     label: 'حسابات المشرفين',
                     icon: 'fa fa-user', // Font Awesome icon class
-                    route: '/adminsAccounts',
+                    route: '/user-accounts/admins',
                 },
                 {
                     id: 'sellers-accounts',
                     label: 'حسابات البائعين',
                     icon: 'fa fa-user-o', // Font Awesome icon class
-                    route: '/sellersAccounts',
+                    route: '/user-accounts/sellers',
                 },
                 {
                     id: 'customers-accounts',
                     label: 'حسابات المستخدمين',
                     icon: 'fa fa-users ', // Font Awesome icon class
-                    route: '/customersAccounts',
+                    route: '/user-accounts/customers',
                 },
                 // Add more items here
             ],

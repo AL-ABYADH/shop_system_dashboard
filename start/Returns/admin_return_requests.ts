@@ -1,9 +1,20 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
-  Route.get('/admin/return-requests', 'Returns/AdminReturnRequestsController.get')
+    Route.get(
+        '/return-requests',
+        'Returns/AdminReturnRequestsController.renderReturnRequests'
+    )
 
-  Route.put('/admin/return-requests/:id/handle', 'Returns/AdminReturnRequestsController.handle')
+    Route.put(
+        'handle-return-request/:returnRequestId',
+        'Returns/AdminReturnRequestsController.handleReturnRequest'
+    )
 
-  Route.put('/admin/return-requests/:id/resolve', 'Returns/AdminReturnRequestsController.resolve')
+    Route.put(
+        'resolve-return-request/:returnRequestId',
+        'Returns/AdminReturnRequestsController.resolveReturnRequest'
+    )
 })
+    .prefix('returns')
+    .middleware('auth:web')

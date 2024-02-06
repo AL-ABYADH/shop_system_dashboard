@@ -1,11 +1,17 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
-  Route.get('/', 'Products/SellerProductsController.get')
+    Route.get(
+        '/seller-products',
+        'Products/SellerProductsController.getSellerProducts'
+    )
 
-  Route.post('/add', 'Products/SellerProductsController.add')
+    Route.post('/add-product', 'Products/SellerProductsController.addProduct')
 
-  Route.post('/remove', 'Products/SellerProductsController.remove')
-
-  Route.put('/update', 'Products/SellerProductsController.update')
-}).prefix('/seller/products')
+    Route.delete(
+        '/remove-product',
+        'Products/SellerProductsController.removeProduct'
+    )
+})
+    .prefix('api/products')
+    .middleware('auth:api')

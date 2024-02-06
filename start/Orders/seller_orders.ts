@@ -1,9 +1,20 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
-  Route.get('/ongoing-orders', 'Orders/SellerOrdersController.getOngoingOrders')
+    Route.get(
+        '/ongoing-orders',
+        'Orders/SellerOrdersController.getOngoingOrders'
+    )
 
-  Route.post('/confirm', 'Orders/SellerOrdersController.confirm')
+    Route.put(
+        '/confirm-order/:orderId',
+        'Orders/SellerOrdersController.confirmOrder'
+    )
 
-  Route.post('/cancel', 'Orders/SellerOrdersController.cancel')
-}).prefix('/seller/orders')
+    Route.put(
+        '/cancel-order/:orderId',
+        'Orders/SellerOrdersController.cancelOrder'
+    )
+})
+    .prefix('api/sellers/orders')
+    .middleware('auth:api')

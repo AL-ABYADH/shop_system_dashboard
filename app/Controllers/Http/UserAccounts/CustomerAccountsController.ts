@@ -3,7 +3,7 @@ import User from '../../../Models/User'
 import Address from '../../../Models/Address'
 
 export default class CustomerAccountsController {
-    async getCustomers({ inertia }) {
+    async renderCustomers({ inertia }) {
         const loadedCustomer = await User.query().where('role', 'customer')
 
         const customers: Array<any> = []
@@ -24,7 +24,7 @@ export default class CustomerAccountsController {
         return inertia.render('customersAccountsScreen', { customers })
     }
 
-    public async updateCustomer({ request, response }: HttpContextContract) {}
-
     public async banCustomer({ request, response }: HttpContextContract) {}
+
+    public async updateCustomer({ request, response }: HttpContextContract) {}
 }

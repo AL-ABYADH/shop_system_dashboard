@@ -1,9 +1,20 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
-  Route.get('/customer/return-requests', 'Returns/CustomerReturnRequestsController.get')
+    Route.get(
+        '/return-requests',
+        'Returns/CustomerReturnRequestsController.getReturnRequests'
+    )
 
-  Route.post('/customer/return-requests/request', 'Returns/CustomerReturnRequestsController.requestReturn')
+    Route.post(
+        '/request-return',
+        'Returns/CustomerReturnRequestsController.requestReturn'
+    )
 
-  Route.delete('/customer/return-requests/:id/cancel', 'Returns/CustomerReturnRequestsController.cancel')
+    Route.delete(
+        '/cancel-return-request/:returnRequestId',
+        'Returns/CustomerReturnRequestsController.cancelReturnRequest'
+    )
 })
+    .prefix('api/returns')
+    .middleware('auth:api')

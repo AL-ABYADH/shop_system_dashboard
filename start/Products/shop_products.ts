@@ -2,9 +2,20 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
-  Route.get('/search', 'Products/ShopProductsController.getSearchProducts')
+    Route.get(
+        '/search-products',
+        'Products/ShopProductsController.getSearchProducts'
+    )
 
-  Route.get('/filter', 'Products/ShopProductsController.getFilterProducts')
+    Route.get(
+        '/filter-products',
+        'Products/ShopProductsController.getFilterProducts'
+    )
 
-  Route.get('/brand', 'Products/ShopProductsController.getBrandProducts')
-}).prefix('/shop/products')
+    Route.get(
+        '/brand-products',
+        'Products/ShopProductsController.getBrandProducts'
+    )
+})
+    .prefix('api/products')
+    .middleware('auth:api')
