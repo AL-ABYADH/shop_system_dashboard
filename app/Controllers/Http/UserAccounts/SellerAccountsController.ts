@@ -1,11 +1,36 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import User from 'App/Models/User'
+import Address from '../../../Models/Address'
 
 export default class SellerAccountsController {
-    public async get({ request, response }: HttpContextContract) {}
+    async getSellers({ inertia }) {
+        const loadedSellers = await User.query().where('role', 'seller')
 
-    public async update({ request, response }: HttpContextContract) {}
+        const sellers: Array<any> = []
 
-    public async warn({ request, response }: HttpContextContract) {}
+        for (const seller of loadedSellers) {
+            const address = (
+                await Address.query().where('userId', seller.id)
+            )[0]
 
-    public async ban({ request, response }: HttpContextContract) {}
+            sellers.push({
+                id: seller.id,
+                fullName: seller.fullName,
+                phoneNumber: seller.phoneNumber,
+                address: address.address,
+                warnings: seller.warningsCount,
+                shopOpen: seller.shopOpenAt,
+                shopClose: seller.shopCloseAt,
+                closeDays: seller.shopCloseDays,
+            })
+        }
+
+        return inertia.render('sellersAccountsScreen', { sellers })
+    }
+
+    public async updateSeller({ request, response }: HttpContextContract) {}
+
+    public async warnSeller({ request, response }: HttpContextContract) {}
+
+    public async banSeller({ request, response }: HttpContextContract) {}
 }
