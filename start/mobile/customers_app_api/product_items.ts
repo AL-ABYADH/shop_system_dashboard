@@ -15,5 +15,6 @@ Route.group(() => {
         '/brandProductItems/:productId',
         'mobile/customers_app_api/ProductItemsController.getBrandProductItems'
     )
-}).prefix('api')
-// .middleware('auth:api')
+})
+    .prefix('api')
+    .middleware('auth:api')
