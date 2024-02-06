@@ -20,14 +20,14 @@ export default class ReturnRequest extends BaseModel {
     @column()
     public orderId: number
 
+    @belongsTo(() => Order)
+    public order: BelongsTo<typeof Order>
+
     @column()
     public status: 'awaiting' | 'evaluating' | 'resolved'
     // 'awaiting' is when the request is first created.
-    // 'evaluating' is when the request has been handled by admin
-    // 'resolved' is when the request has been resolved by admin whether the items were returned or the request was dismissed
-
-    @belongsTo(() => Order)
-    public order: BelongsTo<typeof Order>
+    // 'evaluating' is when the request has been handled by admin.
+    // 'resolved' is when the request has been resolved by admin whether the items were returned or the request was dismissed.
 
     @hasMany(() => ReturnRequestItem)
     public returnRequestItems: HasMany<typeof ReturnRequestItem>
