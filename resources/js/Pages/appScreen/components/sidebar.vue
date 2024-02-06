@@ -26,9 +26,9 @@
                     </svg>
                 </div>
                 <span
-                    class="text-theme-darkblue mr-6 text-lg block overflow-hidden whitespace-nowrap w-full"
+                    class="text-theme-darkblue mr-3 text-lg block overflow-hidden whitespace-nowrap w-full font-bold"
                 >
-                    السوق
+                    TrustTech
                 </span>
             </section>
             <section class="w-full py-4">
@@ -68,10 +68,9 @@
                             <div
                                 @mouseover="showTooltip(item.id)"
                                 @mouseout="hideTooltip(item.id)"
-                           
                                 :class="{
                                     'text-slate-500 bg-primary-opacity':
-                                    this.path === item.route,
+                                        this.path === item.route,
                                 }"
                                 class="flex mb-1 px-3 py-2 duration-200 transform rounded-lg w-10 cursor-pointer ml-2"
                                 data-toggle="tooltip"
@@ -81,6 +80,11 @@
                                 <div class="flex">
                                     <i :class="item.icon"></i>
                                 </div>
+                                <span
+                                    class="text-sm overflow-hidden block whitespace-nowrap w-full pr-4"
+                                >
+                                    {{ item.label }}
+                                </span>
                             </div>
                         </a>
                     </template>

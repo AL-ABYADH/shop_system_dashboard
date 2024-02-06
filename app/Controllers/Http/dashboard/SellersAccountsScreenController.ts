@@ -15,7 +15,10 @@ export default class SellersAccountsScreenController {
                 fullName: seller.fullName,
                 phoneNumber: seller.phoneNumber,
                 address: address.address,
-                warnings: seller.warningsCount
+                warnings: seller.warningsCount,
+                shopOpen: seller.shopOpenAt,
+                shopClose: seller.shopCloseAt,
+                closeDays: seller.shopCloseDays,
             })
         }
 
