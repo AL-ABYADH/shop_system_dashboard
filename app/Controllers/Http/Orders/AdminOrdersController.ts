@@ -12,14 +12,14 @@ import Flaw from 'App/Models/Flaw'
 
 export default class AdminOrdersController {
     public async renderNewOrders({ inertia }) {
-        const loadedOrder = await Order.query().whereIn('status', [
+        const loadedOrders = await Order.query().whereIn('status', [
             'awaiting',
             'confirmed',
         ])
 
         const orders: Array<any> = []
 
-        for (const order of loadedOrder) {
+        for (const order of loadedOrders) {
             const customerAddress = (
                 await Address.query().where('userId', order.customerUserId)
             )[0]
@@ -129,14 +129,14 @@ export default class AdminOrdersController {
         // Get the currently authenticated user
         const user = await auth.use('web').authenticate()
 
-        const loadedOrder = await user
+        const loadedOrders = await user
             .related('adminOrders')
             .query()
             .whereIn('status', ['confirming', 'testing'])
 
         const orders: Array<any> = []
 
-        for (const order of loadedOrder) {
+        for (const order of loadedOrders) {
             const customerAddress = (
                 await Address.query().where('userId', order.customerUserId)
             )[0]
@@ -181,7 +181,6 @@ export default class AdminOrdersController {
                         flaw: flaw.flaw,
                         severity: flaw.severityLevel,
                     })
-                    console.log(flaw.severityLevel)
                 }
                 // const imagesGroup = (await ImagesGroup.query().where(
                 //     'productItemId',
@@ -244,18 +243,20 @@ export default class AdminOrdersController {
         return inertia.render('handledOrderScreen', { orders })
     }
 
+    
+
     public async renderFinishedOrders({ inertia, auth }) {
         // Get the currently authenticated user
         const user = await auth.use('web').authenticate()
 
-        const loadedOrder = await user
+        const loadedOrders = await user
             .related('adminOrders')
             .query()
             .whereIn('status', ['done'])
 
         const orders: Array<any> = []
 
-        for (const order of loadedOrder) {
+        for (const order of loadedOrders) {
             const customerAddress = (
                 await Address.query().where('userId', order.customerUserId)
             )[0]
