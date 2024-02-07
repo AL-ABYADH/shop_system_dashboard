@@ -114,6 +114,12 @@ export default {
                     route: '/orders/handled-orders',
                 },
                 {
+                    id: 'return-requests',
+                    label: 'طلبات الإرجاع',
+                    icon: 'fa fa-undo', // Font Awesome icon class
+                    route: '/returns/return-requests',
+                }, 
+                {
                     id: 'orders-history',
                     label: 'سجل الطلبات',
                     icon: 'fa fa-history', // Font Awesome icon class
