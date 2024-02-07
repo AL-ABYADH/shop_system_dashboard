@@ -12,7 +12,7 @@ export default class ImageItems extends BaseSchema {
                 .references('images_groups.id')
                 .notNullable()
             table.boolean('is_primary').defaultTo(false).notNullable()
-            table.text('image_url').notNullable().unique()
+            table.text('image_url').notNullable()
             table.timestamps(true, true) // created_at and updated_at
             table.timestamp('deleted_at').nullable()
         })
