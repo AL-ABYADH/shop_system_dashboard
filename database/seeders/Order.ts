@@ -5,16 +5,14 @@ import User from 'App/Models/User'
 
 export default class OrderSeeder extends BaseSeeder {
     public async run() {
-        // Find all customers
         const customers = await User.query().where('role', 'customer')
 
         const orders: Array<any> = []
-
         let orderId = 1
 
         for (const customer of customers) {
-            // Create 5 orders for each customer
             for (let i = 0; i < 5; i++) {
+                const { status, adminUserId } = this.getRandomStatusAndAdmin()
                 const sellerUserId = await this.getRandomSellerId()
                 const customerAddressId =
                     await this.getCorrespondingCustomerAddressId(customer.id)
@@ -25,14 +23,14 @@ export default class OrderSeeder extends BaseSeeder {
                     id: orderId,
                     customerUserId: customer.id,
                     sellerUserId: sellerUserId,
-                    adminUserId: null,
+                    adminUserId: adminUserId,
                     paymentMethodId: 1,
                     sellerAddressId: sellerAddressId!,
                     customerAddressId: customerAddressId!,
                     deliveryPrice: this.getRandomDeliveryPrice(),
                     totalPrice: 10000,
                     currency: customer.preferredCurrency!,
-                    status: 'awaiting',
+                    status: status,
                 })
                 orderId++
             }
@@ -40,11 +38,22 @@ export default class OrderSeeder extends BaseSeeder {
         await Order.updateOrCreateMany('id', orders)
     }
 
-    private getRandomSellerId = async (): Promise<number> => {
-        // Query the database to get seller IDs
-        const sellers = await User.query().where('role', 'seller')
+    private getRandomStatusAndAdmin() {
+        const statuses = ['confirming', 'testing', 'done', 'confirmed']
+        const randomStatus =
+            statuses[Math.floor(Math.random() * statuses.length)]
 
-        // Choose a random seller ID from the retrieved IDs
+        if (randomStatus === 'confirmed') {
+            return { status: randomStatus, adminUserId: null }
+        } else if (randomStatus === 'awaiting') {
+            return { status: 'awaiting', adminUserId: null }
+        } else {
+            return { status: randomStatus, adminUserId: 1 }
+        }
+    }
+
+    private getRandomSellerId = async (): Promise<number> => {
+        const sellers = await User.query().where('role', 'seller')
         const randomIndex = Math.floor(Math.random() * sellers.length)
         return sellers[randomIndex].id
     }
@@ -52,28 +61,22 @@ export default class OrderSeeder extends BaseSeeder {
     private getCorrespondingSellerAddressId = async (
         sellerId: number
     ): Promise<number | null> => {
-        // Query the database to get the seller's address for the given customer
         const sellerAddress = await Address.query()
-            .where('userId', sellerId) // Find addresses related to the customer
+            .where('userId', sellerId)
             .first()
-
         return sellerAddress ? sellerAddress.id : null
     }
 
     private getCorrespondingCustomerAddressId = async (
         customerId: number
     ): Promise<number | null> => {
-        // Query the database to get the customer's address for the given customer
         const customerAddress = await Address.query()
-            .where('userId', customerId) // Find addresses owned by the customer
+            .where('userId', customerId)
             .first()
-
         return customerAddress ? customerAddress.id : null
     }
 
     private getRandomDeliveryPrice = (): number | null => {
-        // Generate random delivery prices or null values
-        // Replace this with your actual logic
         return Math.random() < 0.5 ? null : Math.floor(Math.random() * 100)
     }
 }
