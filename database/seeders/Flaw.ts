@@ -13,12 +13,12 @@ export default class FlawSeeder extends BaseSeeder {
         ]
 
         const severityLevels: (
-            | 'varySlight'
+            | 'verySlight'
             | 'slight'
             | 'noticeable'
             | 'sever'
             | 'verySever'
-        )[] = ['varySlight', 'slight', 'noticeable', 'sever', 'verySever']
+        )[] = ['verySlight', 'slight', 'noticeable', 'sever', 'verySever']
 
         // Assume there are 100 product items in the database
         const productItemsCount = 100
@@ -36,7 +36,7 @@ export default class FlawSeeder extends BaseSeeder {
             await Flaw.create({
                 flaw: randomFlaw,
                 severityLevel: randomSeverity as
-                    | 'varySlight'
+                    | 'verySlight'
                     | 'slight'
                     | 'noticeable'
                     | 'sever'

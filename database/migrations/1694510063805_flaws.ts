@@ -13,7 +13,7 @@ export default class Flaws extends BaseSchema {
                 .references('product_items.id')
                 .notNullable()
             table.enum('severity_level', [
-                'varySlight',
+                'verySlight',
                 'slight',
                 'noticeable',
                 'sever',

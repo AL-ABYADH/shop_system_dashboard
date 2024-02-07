@@ -25,7 +25,7 @@ export default class Flaw extends BaseModel {
 
     @column()
     public severityLevel:
-        | 'varySlight'
+        | 'verySlight'
         | 'slight'
         | 'noticeable'
         | 'sever'
