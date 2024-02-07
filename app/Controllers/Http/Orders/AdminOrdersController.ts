@@ -54,12 +54,12 @@ export default class AdminOrdersController {
                 const priceDetails = (
                     await Price.query().where('id', productItemDetails.priceId)
                 )[0]
-                const loadedFlaw = await Flaw.query().where(
+                const loadedFlaws = await Flaw.query().where(
                     'productItemId',
                     productItemDetails.id
                 )
                 const flaws: Array<any> = []
-                for (const flaw of loadedFlaw) {
+                for (const flaw of loadedFlaws) {
                     flaws.push({
                         flaw: flaw.flaw,
                         severity: flaw.severityLevel,
@@ -171,16 +171,17 @@ export default class AdminOrdersController {
                 const priceDetails = (
                     await Price.query().where('id', productItemDetails.priceId)
                 )[0]
-                const loadedFlaw = await Flaw.query().where(
+                const loadedFlaws = await Flaw.query().where(
                     'productItemId',
                     productItemDetails.id
                 )
                 const flaws: Array<any> = []
-                for (const flaw of loadedFlaw) {
+                for (const flaw of loadedFlaws) {
                     flaws.push({
                         flaw: flaw.flaw,
                         severity: flaw.severityLevel,
                     })
+                    console.log(flaw.severityLevel)
                 }
                 // const imagesGroup = (await ImagesGroup.query().where(
                 //     'productItemId',
@@ -210,7 +211,7 @@ export default class AdminOrdersController {
                     deviceName: productDetails.name,
                     price: priceDetails.price,
                     currency: priceDetails.currency,
-                    deviceFlaws: flaws,
+                    flaws: flaws,
                     description: productItemDetails.description,
                     usedProductCondition:
                         productItemDetails.usedProductCondition,
@@ -289,12 +290,12 @@ export default class AdminOrdersController {
                 const priceDetails = (
                     await Price.query().where('id', productItemDetails.priceId)
                 )[0]
-                const loadedFlaw = await Flaw.query().where(
+                const loadedFlaws = await Flaw.query().where(
                     'productItemId',
                     productItemDetails.id
                 )
                 const flaws: Array<any> = []
-                for (const flaw of loadedFlaw) {
+                for (const flaw of loadedFlaws) {
                     flaws.push({
                         flaw: flaw.flaw,
                         severity: flaw.severityLevel,

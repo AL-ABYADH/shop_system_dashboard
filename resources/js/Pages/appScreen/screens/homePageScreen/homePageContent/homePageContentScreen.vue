@@ -54,6 +54,7 @@
                 :sellerPhoneNumber="order.sellerPhoneNumber"
             />
         </div>
+    <div class="mt-12"></div>
     </div>
 </template>
 

@@ -138,7 +138,7 @@
                             </li>
                         </div>
 
-                        <div class="flex justify-between mb-2">
+                        <div class="flex justify-between mt-3 mb-5">
                             <ul>
                                 <li class="bg-primary-opacity p-2 rounded-lg">
                                     <i
@@ -152,9 +152,26 @@
                                 <!-- Additional list items here -->
                             </ul>
                         </div>
-
-                        <div v-for="flaw in device.flaws" dir="rtl">
-                            <li><strong>العيوب:</strong> {{ flaw.flaw }}</li>
+                        <div class="flex justify-between mt-3 mb-5">
+                            <ul>
+                                <li class="bg-primary-opacity p-2 rounded-lg">
+                                    <i
+                                        class="fa fa-info-circle text-primary fa-lg ml-1"
+                                    ></i>
+                                    <details dir="ltr">
+                                        <summary>العيوب</summary>
+                                        <div
+                                            v-for="flaw in device.flaws"
+                                            dir="rtl"
+                                        >
+                                            <li>
+                                                {{ flaw.flaw }} : {{ flaw.severity }}
+                                            </li>
+                                        </div>
+                                    </details>
+                                </li>
+                                <!-- Additional list items here -->
+                            </ul>
                         </div>
                         <!-- <li>
                         <strong>رابط الصور:</strong>
@@ -304,6 +321,7 @@
 
 <script lang="ts">
 import dateFormat from 'dateformat'
+import Flaw from 'App/Models/Flaw';
 
 export default {
     props: {
@@ -423,7 +441,6 @@ export default {
     max-width: 400px; /* Adjust the width as needed */
 }
 
-
 textarea {
     width: 100%;
     height: 100px; /* Adjust the height as needed */
@@ -433,14 +450,5 @@ textarea {
     font-size: 16px;
     resize: vertical; /* Allow vertical resizing */
     box-shadow: none;
-}
-input[type="radio"] {
-    /* Change the color of the radio button */
-    border-color: green;
-}
-
-input[type="radio"]:checked + label {
-    /* Change the color of the label text when the radio button is checked */
-    color: green;
 }
 </style>

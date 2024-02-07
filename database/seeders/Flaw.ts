@@ -5,13 +5,12 @@ export default class FlawSeeder extends BaseSeeder {
     public async run() {
         // Define sample minor flaws and severity levels
         const flaws = [
-            'Screen has slight spots',
-            'Minor scratch on the back cover',
-            'Slight discoloration on the screen edges',
-            'Volume button feels loose but functional',
-            'Minor cosmetic wear on the charging port',
-        ]
-
+            'الشاشة بها بقع بسيطة',
+            'خدش طفيف على الغطاء الخلفي',
+            'تغير لون طفيف على حواف الشاشة',
+            'زر الصوت يشعر بالخلل لكنه يعمل بشكل سليم',
+            'تآكل تجميلي طفيف على منفذ الشحن',
+        ];
         const severityLevels: (
             | 'verySlight'
             | 'slight'
