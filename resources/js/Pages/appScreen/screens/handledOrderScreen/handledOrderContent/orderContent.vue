@@ -152,11 +152,11 @@
                                 <!-- Additional list items here -->
                             </ul>
                         </div>
-                        <div class="flex justify-between mt-3 mb-5">
+                        <div class="flex justify-between mb-5">
                             <ul>
                                 <li class="bg-primary-opacity p-2 rounded-lg">
                                     <i
-                                        class="fa fa-info-circle text-primary fa-lg ml-1"
+                                        class="fa fa-exclamation-triangle text-primary fa-lg ml-1"
                                     ></i>
                                     <details dir="ltr">
                                         <summary>العيوب</summary>
@@ -165,7 +165,9 @@
                                             dir="rtl"
                                         >
                                             <li>
-                                                {{ flaw.flaw }} : {{ flaw.severity }}
+                                                {{ flaw.flaw }} :
+                                                <strong>{{translateSeverity(flaw.severity) }}</strong>
+                                                
                                             </li>
                                         </div>
                                     </details>
@@ -321,7 +323,6 @@
 
 <script lang="ts">
 import dateFormat from 'dateformat'
-import Flaw from 'App/Models/Flaw';
 
 export default {
     props: {
@@ -403,6 +404,22 @@ export default {
                     return 'سيئ'
                 default:
                     return 'جديد'
+            }
+        },
+        translateSeverity(severity) {
+            switch (severity) {
+                case 'verySlight':
+                    return 'ضئيل جدًا'
+                case 'slight':
+                    return 'طفيف'
+                case 'noticeable':
+                    return 'ملحوظ'
+                case 'sever':
+                    return 'شديد'
+                case 'verySever':
+                    return 'شديد جدًا'
+                default:
+                    return 'غير مذكور'
             }
         },
         toggleExpansion2(index) {
