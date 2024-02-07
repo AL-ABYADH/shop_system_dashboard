@@ -39,15 +39,21 @@ export default class OrderSeeder extends BaseSeeder {
     }
 
     private getRandomStatusAndAdmin() {
-        const statuses = ['confirming', 'testing', 'done', 'confirmed']
+        // Enhanced logic to include 'awaiting' status
+        const statuses = [
+            'confirming',
+            'testing',
+            'done',
+            'confirmed',
+            'awaiting',
+        ] // Include 'awaiting' in the list
         const randomStatus =
             statuses[Math.floor(Math.random() * statuses.length)]
 
-        if (randomStatus === 'confirmed') {
+        if (randomStatus === 'confirmed' || randomStatus === 'awaiting') {
             return { status: randomStatus, adminUserId: null }
-        } else if (randomStatus === 'awaiting') {
-            return { status: 'awaiting', adminUserId: null }
         } else {
+            // For 'confirming', 'testing', 'done', assign adminUserId as 1
             return { status: randomStatus, adminUserId: 1 }
         }
     }
