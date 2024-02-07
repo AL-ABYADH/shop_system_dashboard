@@ -232,7 +232,7 @@
                             <label>
                                 <input
                                     type="radio"
-                                    value="العناصر غير متوفرة"
+                                    value="unavailable"
                                     v-model="cancellationReason"
                                 />
                                 العناصر غير متوفرة
@@ -242,7 +242,7 @@
                             <label>
                                 <input
                                     type="radio"
-                                    value="العناصر لا تتتطابق مع المواصفات المقدمة من البائع"
+                                    value="mismatch"
                                     v-model="cancellationReason"
                                 />
                                 العناصر لا تتتطابق مع المواصفات المقدمة من
@@ -261,7 +261,6 @@
                         </div>
                     </div>
 
-                    <!-- Text area for other reason (conditionally shown) -->
                     <textarea
                         v-if="cancellationReason === 'other'"
                         v-model="otherReason"
@@ -326,7 +325,7 @@ export default {
         return {
             expanded: false,
             showCancellationDialog: false,
-            cancellationReason: 'العناصر غير متوفرة',
+            cancellationReason: 'unavailable',
             otherReason: '', // Text area value for other reason
         }
     },

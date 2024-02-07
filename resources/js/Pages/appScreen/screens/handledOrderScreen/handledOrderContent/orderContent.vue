@@ -232,7 +232,7 @@
                             <label>
                                 <input
                                     type="radio"
-                                    value="العناصر غير متوفرة"
+                                    value="unavailable"
                                     v-model="cancellationReason"
                                 />
                                 العناصر غير متوفرة
@@ -242,7 +242,7 @@
                             <label>
                                 <input
                                     type="radio"
-                                    value="العناصر لا تتتطابق مع المواصفات المقدمة من البائع"
+                                    value="mismatch"
                                     v-model="cancellationReason"
                                 />
                                 العناصر لا تتتطابق مع المواصفات المقدمة من
@@ -327,7 +327,7 @@ export default {
         return {
             expanded: false,
             showCancellationDialog: false,
-            cancellationReason: 'العناصر غير متوفرة',
+            cancellationReason: 'unavailable',
             otherReason: '', // Text area value for other reason
         }
     },
@@ -433,5 +433,14 @@ textarea {
     font-size: 16px;
     resize: vertical; /* Allow vertical resizing */
     box-shadow: none;
+}
+input[type="radio"] {
+    /* Change the color of the radio button */
+    border-color: green;
+}
+
+input[type="radio"]:checked + label {
+    /* Change the color of the label text when the radio button is checked */
+    color: green;
 }
 </style>
