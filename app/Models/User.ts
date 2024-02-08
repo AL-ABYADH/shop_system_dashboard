@@ -53,7 +53,10 @@ export default class User extends BaseModel {
     @hasMany(() => Address)
     public addresses: HasMany<typeof Address> // Only users of types "seller" and "customer" will have at least one address
 
-    @hasMany(() => SellerWarning)
+    @hasMany(() => SellerWarning, {
+        foreignKey: 'sellerUserId',
+        localKey: 'id',
+    })
     public sellerWarnings: HasMany<typeof SellerWarning> // Only users of types "seller" will have warnings
 
     @hasMany(() => Order, {

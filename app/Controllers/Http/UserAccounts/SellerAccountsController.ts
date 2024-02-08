@@ -9,6 +9,8 @@ export default class SellerAccountsController {
         const sellers: Array<any> = []
 
         for (const seller of loadedSellers) {
+            const warnings = await seller.related('sellerWarnings').query()
+
             const address = (
                 await Address.query().where('userId', seller.id)
             )[0]
@@ -18,7 +20,7 @@ export default class SellerAccountsController {
                 fullName: seller.fullName,
                 phoneNumber: seller.phoneNumber,
                 address: address.address,
-                warnings: seller.warningsCount,
+                warnings: warnings.length,
                 shopOpen: seller.shopOpenAt,
                 shopClose: seller.shopCloseAt,
                 closeDays: seller.shopCloseDays,
