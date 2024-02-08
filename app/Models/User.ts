@@ -13,7 +13,8 @@ import Hash from '@ioc:Adonis/Core/Hash'
 import Address from './Address'
 import Order from './Order'
 import ProductItem from './ProductItem'
-import Product from './Product'
+import UserProduct from './UserProduct'
+import SellerWarning from './SellerWarning'
 
 export default class User extends BaseModel {
     @column({ isPrimary: true })
@@ -41,9 +42,6 @@ export default class User extends BaseModel {
     public imageUrl: string | null // This will be mandatory for users of types "seller" (shop image), and "admin" (profile image). Not needed for customers
 
     @column()
-    public warningsCount: number | null // Will default to 0 for the users of type "seller" and will then be incremented. Null for users of other types
-
-    @column()
     public shopOpenAt: string | null // Only for users of type "seller"
 
     @column()
@@ -54,6 +52,9 @@ export default class User extends BaseModel {
 
     @hasMany(() => Address)
     public addresses: HasMany<typeof Address> // Only users of types "seller" and "customer" will have at least one address
+
+    @hasMany(() => SellerWarning)
+    public sellerWarnings: HasMany<typeof SellerWarning> // Only users of types "seller" will have warnings
 
     @hasMany(() => Order, {
         foreignKey: 'customerUserId',
@@ -73,11 +74,17 @@ export default class User extends BaseModel {
     })
     public adminOrders: HasMany<typeof Order> // Only users of type "admin" will handle orders
 
-    @hasMany(() => ProductItem)
+    @hasMany(() => ProductItem, {
+        foreignKey: 'sellerUserId',
+        localKey: 'id',
+    })
     public productItems: HasMany<typeof ProductItem> // Only users of type "seller" will have product items
 
-    @hasMany(() => Product)
-    public products: HasMany<typeof Product> // Only users of type "seller" will have products
+    @hasMany(() => UserProduct, {
+        foreignKey: 'sellerUserId',
+        localKey: 'id',
+    })
+    public userProducts: HasMany<typeof UserProduct> // Only users of type "seller" will have user products
 
     @column.dateTime({ autoCreate: true })
     public createdAt: DateTime

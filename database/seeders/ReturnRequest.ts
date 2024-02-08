@@ -6,6 +6,12 @@ import OrderItem from 'App/Models/OrderItem'
 
 export default class ReturnRequestSeeder extends BaseSeeder {
     public async run() {
+        // Check if return requests already exist and exit if they do
+        const existingReturnRequests = await ReturnRequest.query().first()
+        if (existingReturnRequests) {
+            return
+        }
+
         const adminIds = [1, 4]
         const statuses: ('awaiting' | 'evaluating' | 'resolved')[] = [
             'awaiting',
@@ -19,31 +25,34 @@ export default class ReturnRequestSeeder extends BaseSeeder {
 
                 // Fetch a random order and update its status
                 const order = await this.getRandomOrder()
-                order.status = 'returnRequest'
-                await order.save()
+                if (order) {
+                    order.status = 'returnRequest'
+                    await order.save()
 
-                // Create the return request
-                const returnRequest = new ReturnRequest()
-                returnRequest.fill({
-                    orderId: order.id,
-                    status: status,
-                })
-                await returnRequest.save()
+                    // Create the return request
+                    const returnRequest = new ReturnRequest()
+                    returnRequest.fill({
+                        orderId: order.id,
+                        status: status,
+                    })
+                    await returnRequest.save()
 
-                // Randomly create return request items linked to this return request
-                await this.createReturnRequestItems(returnRequest.id, order.id)
+                    // Randomly create return request items linked to this return request
+                    await this.createReturnRequestItems(
+                        returnRequest.id,
+                        order.id
+                    )
+                }
             }
         }
     }
 
-    private async getRandomOrder(): Promise<Order> {
-        // Assuming you have a method to select a random order eligible for return
-        // This is a simplified example; your actual logic may need to ensure the order is eligible for returns
-        const orders = await Order.query().where(
-            'status',
-            '!=',
-            'returnRequest'
-        )
+    private async getRandomOrder(): Promise<Order | null> {
+        // Fetch orders that are not yet associated with a return request
+        const orders = await Order.query().whereNot('status', 'returnRequest')
+        if (orders.length === 0) {
+            return null
+        }
         return orders[Math.floor(Math.random() * orders.length)]
     }
 

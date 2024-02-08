@@ -27,7 +27,6 @@ export default class UserSeeder extends BaseSeeder {
                     fullName: `Seller User ${i}`,
                     phoneNumber: `77777778${i}`,
                     role: 'seller',
-                    warningsCount: 0, // Defaults to 0 for sellers, null for others
                     shopOpenAt: '08:00:00', // Example shop open time for sellers
                     shopCloseAt: '18:00:00', // Example shop close time for sellers
                     shopCloseDays: JSON.stringify(['Friday', 'Thursday']),

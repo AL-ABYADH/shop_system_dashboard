@@ -14,7 +14,7 @@ export default class UserProductSeeder extends BaseSeeder {
             for (let i = 1; i < 21; i++) {
                 userProducts.push({
                     id: objectId,
-                    userId: seller.id,
+                    sellerUserId: seller.id,
                     productId: i,
                 })
                 objectId++

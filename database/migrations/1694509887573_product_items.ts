@@ -14,7 +14,7 @@ export default class ProductItems extends BaseSchema {
                 .references('products.id')
                 .notNullable()
             table
-                .integer('user_id')
+                .integer('seller_user_id')
                 .unsigned()
                 .references('users.id')
                 .notNullable()

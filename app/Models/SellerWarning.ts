@@ -9,23 +9,19 @@ import {
 } from '@ioc:Adonis/Lucid/Orm'
 import { softDelete, softDeleteQuery } from 'App/Services/SoftDelete'
 import User from './User'
-import Product from './Product'
 
-export default class UserProduct extends BaseModel {
+export default class SellerWarning extends BaseModel {
     @column({ isPrimary: true })
     public id: number
+
+    @column()
+    public reason: string
 
     @column()
     public sellerUserId: number
 
     @belongsTo(() => User)
     public seller: BelongsTo<typeof User>
-
-    @column()
-    public productId: number
-
-    @belongsTo(() => Product)
-    public product: BelongsTo<typeof Product>
 
     @column.dateTime({ autoCreate: true })
     public createdAt: DateTime

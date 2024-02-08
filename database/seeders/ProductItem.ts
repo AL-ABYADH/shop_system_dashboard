@@ -9,6 +9,13 @@ import path from 'path'
 
 export default class ProductItemSeeder extends BaseSeeder {
     public async run() {
+        // Check if any product items already exist
+        const existingProductItems = await ProductItem.query().limit(1)
+        if (existingProductItems.length > 0) {
+            // Product items already exist, so we don't need to seed again
+            return
+        }
+
         // Fetch all products
         const products = await Product.all()
 
@@ -25,7 +32,7 @@ export default class ProductItemSeeder extends BaseSeeder {
                     description: `Product ${product.id} Item ${i}`,
                     productId: product.id,
                     model: `Model A${i}`,
-                    userId: sellerUserIds[i - 1],
+                    sellerUserId: sellerUserIds[i - 1],
                     priceId: priceId,
                     warrantyEndsIn: 365,
                     usedProduct: true,
