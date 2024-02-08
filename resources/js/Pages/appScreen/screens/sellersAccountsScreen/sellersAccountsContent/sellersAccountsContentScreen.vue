@@ -106,13 +106,23 @@
                         >
                             <div class="tooltip-container">
                                 <button
-                                    class="text-red-500 hover:text-red-700 pl-2 sm:pl-4"
+                                    class="text-red-500 hover:text-red-700 mr-5 sm:ml-4 sm:mr-10"
                                     @click="showWarningPopupForSeller(seller)"
                                 >
                                     <i class="fa fa-warning"></i>
                                     <!-- Edit Icon -->
                                 </button>
                                 <div class="tooltip">إنذار</div>
+                            </div>
+                            <div class="tooltip-container">
+                                <button
+                                    class="text-red-500 hover:text-red-700 ml-3 p-2 sm:ml-4"
+                                    @click="showWarningPopupForSeller(seller)"
+                                >
+                                    <i class="fa fa-ban"></i>
+                                    <!-- Edit Icon -->
+                                </button>
+                                <div class="tooltip">حظر</div>
                             </div>
                         </td>
                     </tr>
