@@ -40,7 +40,7 @@ type flaws = {
 }
 
 type imageItems = {
-    imagesUrl: string
+    imageUrl: string
 }
 
 type orderItems = {

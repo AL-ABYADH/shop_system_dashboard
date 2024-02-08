@@ -6,24 +6,24 @@
             >
                 الطلبات قيد الفحص
             </p>
-            <div v-for="order in filteredOrders('testing')" :key="order.id">
+            <div v-for="returnRequest in filteredReturnRequests('evaluating')" :key="returnRequest.id">
                 <ExpandableItem
-                    :orderId="order.id"
-                    :title="order.customerName"
-                    :address="order.customerAddress"
-                    :date="order.date"
-                    :imageUrl="order.customerImageUrl"
-                    :devicesNumber="order.devicesNumber"
-                    :phoneNumber="order.customerPhone"
-                    :time="order.time"
-                    :deliveryPrice="order.deliveryPrice"
-                    :orderStatus="order.orderStatus"
-                    :totalPrice="order.totalPrice"
-                    :devices="order.orderItems"
-                    :key="order.id"
-                    :sellerName="order.sellerName"
-                    :sellerAddress="order.sellerAddress"
-                    :sellerPhoneNumber="order.sellerPhoneNumber"
+                    :returnRequestId="returnRequest.id"
+                    :title="returnRequest.customerName"
+                    :address="returnRequest.customerAddress"
+                    :date="returnRequest.date"
+                    :imageUrl="returnRequest.customerImageUrl"
+                    :devicesNumber="returnRequest.devicesNumber"
+                    :phoneNumber="returnRequest.customerPhone"
+                    :time="returnRequest.time"
+                    :deliveryPrice="returnRequest.deliveryPrice"
+                    :returnRequestStatus="returnRequest.returnRequestStatus"
+                    :totalPrice="returnRequest.totalPrice"
+                    :devices="returnRequest.returnRequestItems"
+                    :key="returnRequest.id"
+                    :sellerName="returnRequest.sellerName"
+                    :sellerAddress="returnRequest.sellerAddress"
+                    :sellerPhoneNumber="returnRequest.sellerPhoneNumber"
                 />
             </div>
         </div>
@@ -33,24 +33,24 @@
             >
                 الطلبات في انتظار التأكيد
             </p>
-            <div v-for="order in filteredOrders('confirming')" :key="order.id">
+            <div v-for="returnRequest in filteredReturnRequests('awaiting')" :key="returnRequest.id">
                 <ExpandableItem
-                    :orderId="order.id"
-                    :title="order.customerName"
-                    :address="order.customerAddress"
-                    :date="order.date"
-                    :imageUrl="order.customerImageUrl"
-                    :devicesNumber="order.devicesNumber"
-                    :phoneNumber="order.customerPhone"
-                    :time="order.time"
-                    :deliveryPrice="order.deliveryPrice"
-                    :orderStatus="order.orderStatus"
-                    :totalPrice="order.totalPrice"
-                    :devices="order.orderItems"
-                    :key="order.id"
-                    :sellerName="order.sellerName"
-                    :sellerAddress="order.sellerAddress"
-                    :sellerPhoneNumber="order.sellerPhoneNumber"
+                    :returnRequestId="returnRequest.id"
+                    :title="returnRequest.customerName"
+                    :address="returnRequest.customerAddress"
+                    :date="returnRequest.date"
+                    :imageUrl="returnRequest.customerImageUrl"
+                    :devicesNumber="returnRequest.devicesNumber"
+                    :phoneNumber="returnRequest.customerPhone"
+                    :time="returnRequest.time"
+                    :deliveryPrice="returnRequest.deliveryPrice"
+                    :returnRequestStatus="returnRequest.returnRequestStatus"
+                    :totalPrice="returnRequest.totalPrice"
+                    :devices="returnRequest.returnRequestItems"
+                    :key="returnRequest.id"
+                    :sellerName="returnRequest.sellerName"
+                    :sellerAddress="returnRequest.sellerAddress"
+                    :sellerPhoneNumber="returnRequest.sellerPhoneNumber"
                 />
             </div>
         </div>
@@ -67,10 +67,10 @@ type flaws = {
 }
 
 type imageItems = {
-    imagesUrl: string
+    imageUrl: string
 }
 
-type orderItems = {
+type returnRequestItems = {
     id: number
     price: number
     currency: string
@@ -82,7 +82,7 @@ type orderItems = {
     isUsed: number
 }
 
-type Order = {
+type returnRequest = {
     id: number
     customerName: string
     customerAddress: string
@@ -98,8 +98,8 @@ type Order = {
     time: string
     totalPrice: number
     deliveryPrice?: number
-    orderStatus: string
-    orderItems: orderItems[]
+    returnRequestStatus: string
+    returnRequestItems: returnRequestItems[]
 }
 
 export default {
@@ -107,14 +107,14 @@ export default {
         ExpandableItem,
     },
     props: {
-        orders: {
-            type: Array as () => Order[],
+        returnRequests: {
+            type: Array as () => returnRequest[],
             required: true,
         },
     },
     methods: {
-        filteredOrders(status) {
-            return this.orders.filter((order) => order.orderStatus === status)
+        filteredReturnRequests(status) {
+            return this.returnRequests.filter((returnRequest) => returnRequest.returnRequestStatus === status)
         },
     },
 }

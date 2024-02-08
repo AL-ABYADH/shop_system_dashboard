@@ -8,6 +8,8 @@ import Price from 'App/Models/Price'
 import Flaw from 'App/Models/Flaw'
 import ReturnRequest from 'App/Models/ReturnRequest'
 import ReturnRequestItem from 'App/Models/ReturnRequestItem'
+import ImagesGroup from 'App/Models/ImagesGroup'
+import ImageItem from 'App/Models/ImageItem'
 // import ImagesGroup from 'App/Models/ImagesGroup'
 // import ImageItem from 'App/Models/ImageItem'
 
@@ -20,16 +22,12 @@ export default class AdminReturnRequestsController {
             .related('adminOrders')
             .query()
             .whereIn('status', ['returnRequest'])
-
-        const orders: Array<any> = []
-
+        const returnRequests: Array<any> = []
         for (const order of loadedOrders) {
             const loadedReturnRequest = await ReturnRequest.query().where(
                 'orderId',
                 order.id
             )
-
-            const returnRequests: Array<any> = []
 
             for (const returnRequest of loadedReturnRequest) {
                 const customerAddress = (
@@ -44,10 +42,13 @@ export default class AdminReturnRequestsController {
                 const sellerAddress = (
                     await Address.query().where('userId', order.sellerUserId)
                 )[0]
-                const loadedReturnRequestItems = await ReturnRequestItem.query().where('returnRequestId', returnRequest.id)
+                const loadedReturnRequestItems =
+                    await ReturnRequestItem.query().where(
+                        'returnRequestId',
+                        returnRequest.id
+                    )
                 const returnRequestItems: Array<any> = []
 
-                
                 for (const returnRequestItem of loadedReturnRequestItems) {
                     const orderItem = (
                         await OrderItem.query().where(
@@ -68,7 +69,10 @@ export default class AdminReturnRequestsController {
                         )
                     )[0]
                     const priceDetails = (
-                        await Price.query().where('id', productItemDetails.priceId)
+                        await Price.query().where(
+                            'id',
+                            productItemDetails.priceId
+                        )
                     )[0]
                     const loadedFlaws = await Flaw.query().where(
                         'productItemId',
@@ -81,31 +85,27 @@ export default class AdminReturnRequestsController {
                             severity: flaw.severityLevel,
                         })
                     }
-                    // const imagesGroup = (await ImagesGroup.query().where(
-                    //     'productItemId',
-                    //     productItemDetails.id
-                    // ))[0]
-    
-                    // const imageItems: Array<any> = []
-    
-                    // const imagesGroup = (
-                    //     await ImagesGroup.query().where(
-                    //         'productItemId	',
-                    //         productItemDetails.id
-                    //     )
-                    // )[0]
-    
-                    // const loadedImageItems = await ImageItem.query().where(
-                    //     'imageGroupId',
-                    //     imagesGroup.id
-                    // )
-                    // for (const image of loadedImageItems) {
-                    //     imageItems.push({
-                    //         imagesUrl: image.imageUrl,
-                    //     })
-    
+                    const imageItems: Array<any> = []
+
+                const imagesGroup = (
+                    await ImagesGroup.query().where(
+                        'productItemId',
+                        productItemDetails.id
+                    )
+                )[0]
+
+                const loadedImageItems = await ImageItem.query().where(
+                    'imagesGroupId',
+                    imagesGroup.id
+                )
+                for (const image of loadedImageItems) {
+                    imageItems.push({
+                        imageUrl: image.imageUrl,
+                    })}
+
                     returnRequestItems.push({
-                        id: orderItem.id,
+                        id: returnRequestItem.id,
+                        orderItemId: orderItem.id,
                         deviceName: productDetails.name,
                         price: priceDetails.price,
                         currency: priceDetails.currency,
@@ -116,11 +116,12 @@ export default class AdminReturnRequestsController {
                         isUsed: productItemDetails.usedProduct,
                         reason: returnRequestItem.reason,
                         expanded: false,
-                        // imageItems: imageItems,
+                        imageItems: imageItems,
                     })
                 }
                 returnRequests.push({
-                    id: order.id,
+                    id: returnRequest.id,
+                    orderId: order.id,
                     customerName: customerUser.fullName,
                     customerPhone: customerUser.phoneNumber,
                     date: order.createdAt,
@@ -131,16 +132,16 @@ export default class AdminReturnRequestsController {
                     customerAddress: customerAddress.address,
                     devicesNumber: returnRequestItems.length,
                     time: order.createdAt,
-                    orderStatus: returnRequest.status,
+                    returnRequestStatus: returnRequest.status,
                     returnRequestItems: returnRequestItems,
                     sellerName: sellerUser.fullName,
                     sellerAddress: sellerAddress.address,
                     sellerPhoneNumber: sellerUser.phoneNumber,
                 })
             }
+            
         }
-
-        return inertia.render('handledOrderScreen', { orders })
+            return inertia.render('returnRequestScreen', { returnRequests })
     }
 
     public async handleReturnRequest({

@@ -1033,6 +1033,13 @@
     "@types/cookiejar" "*"
     "@types/node" "*"
 
+"@types/swiper@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@types/swiper/-/swiper-6.0.0.tgz#9934ecd569611b660a2a9bf200f25ce5ba4b4d63"
+  integrity sha512-QPZRgxZ+ivXXtzV43B3LxpXUIC7FE/EoKM+rtxngmgt2M7eeUYypZhyqZD8UxJtlBcUDw/ATGoVeSNpvBBrz2w==
+  dependencies:
+    swiper "*"
+
 "@types/validator@^13.7.10":
   version "13.7.11"
   resolved "https://registry.npmjs.org/@types/validator/-/validator-13.7.11.tgz"
@@ -5181,6 +5188,11 @@ slice-ansi@^4.0.0:
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
 
+slick-carousel@^1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/slick-carousel/-/slick-carousel-1.8.1.tgz#a4bfb29014887bb66ce528b90bd0cda262cc8f8d"
+  integrity sha512-XB9Ftrf2EEKfzoQXt3Nitrt/IPbT+f1fgqBdoxO3W/+JYvtEOW6EgxnWfr9GH6nmULv7Y2tPmEX3koxThVmebA==
+
 slugify@^1.6.1, slugify@^1.6.5:
   version "1.6.5"
   resolved "https://registry.npmjs.org/slugify/-/slugify-1.6.5.tgz"
@@ -5476,6 +5488,11 @@ swagger-schema-official@2.0.0-bab6bed:
   version "2.0.0-bab6bed"
   resolved "https://registry.npmjs.org/swagger-schema-official/-/swagger-schema-official-2.0.0-bab6bed.tgz"
   integrity sha512-rCC0NWGKr/IJhtRuPq/t37qvZHI/mH4I4sxflVM+qgVe5Z2uOCivzWaVbuioJaB61kvm5UvB7b49E+oBY0M8jA==
+
+swiper@*:
+  version "11.0.6"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-11.0.6.tgz#787187e2711b01301b4c67b86b8e03099e2fc9f2"
+  integrity sha512-W/Me7MQl5rNgdM5x9i3Gll76WsyVpnHn91GhBOyL7RCFUeg62aVnflzlVfIpXzZ/87FtJOfAoDH79ZH2Yq76zA==
 
 tailwindcss@^3.2.4:
   version "3.2.4"
@@ -5812,6 +5829,13 @@ vue-router@^4.2.4:
   integrity sha512-9PISkmaCO02OzPVOMq2w82ilty6+xJmQrarYZDkjZBfl4RvYAlt4PKnEX21oW4KTtWfa9OuO/b3qk1Od3AEdCQ==
   dependencies:
     "@vue/devtools-api" "^6.5.0"
+
+vue-slick@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/vue-slick/-/vue-slick-1.2.0.tgz#651ec6c962d34541ca506d750672534c943160ac"
+  integrity sha512-1hjZsKyBbnOQPwyoJqAmnEs7d24CHACC+R0fKOaOsycB2g7K1JIYqsLpK0N2SRLcJBhfno9YrOYfEPiPZVCjCA==
+  dependencies:
+    slick-carousel "^1.8.1"
 
 vue@^3.2.47:
   version "3.2.47"

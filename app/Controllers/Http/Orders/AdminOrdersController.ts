@@ -7,6 +7,8 @@ import ProductItem from '../../../Models/ProductItem'
 import Product from 'App/Models/Product'
 import Price from 'App/Models/Price'
 import Flaw from 'App/Models/Flaw'
+import ImageItem from 'App/Models/ImageItem'
+import ImagesGroup from 'App/Models/ImagesGroup'
 // import ImagesGroup from 'App/Models/ImagesGroup'
 // import ImageItem from 'App/Models/ImageItem'
 
@@ -70,36 +72,36 @@ export default class AdminOrdersController {
                 //     productItemDetails.id
                 // ))[0]
 
-                // const imageItems: Array<any> = []
+                const imageItems: Array<any> = []
 
-                // const imagesGroup = (
-                //     await ImagesGroup.query().where(
-                //         'productItemId	',
-                //         productItemDetails.id
-                //     )
-                // )[0]
+                const imagesGroup = (
+                    await ImagesGroup.query().where(
+                        'productItemId',
+                        productItemDetails.id
+                    )
+                )[0]
 
-                // const loadedImageItems = await ImageItem.query().where(
-                //     'imageGroupId',
-                //     imagesGroup.id
-                // )
-                // for (const image of loadedImageItems) {
-                //     imageItems.push({
-                //         imagesUrl: image.imageUrl,
-                //     })
+                const loadedImageItems = await ImageItem.query().where(
+                    'imagesGroupId',
+                    imagesGroup.id
+                )
+                for (const image of loadedImageItems) {
+                    imageItems.push({
+                        imageUrl: image.imageUrl,
+                    })}
 
                 orderItems.push({
                     id: orderItem.id,
                     deviceName: productDetails.name,
                     price: priceDetails.price,
                     currency: priceDetails.currency,
-                    deviceFlaws: flaws,
+                    flaws: flaws,
                     description: productItemDetails.description,
                     usedProductCondition:
                         productItemDetails.usedProductCondition,
                     isUsed: productItemDetails.usedProduct,
                     expanded: false,
-                    // imageItems: imageItems,
+                    imageItems: imageItems,
                 })
             }
 
@@ -182,28 +184,23 @@ export default class AdminOrdersController {
                         severity: flaw.severityLevel,
                     })
                 }
-                // const imagesGroup = (await ImagesGroup.query().where(
-                //     'productItemId',
-                //     productItemDetails.id
-                // ))[0]
+                const imageItems: Array<any> = []
 
-                // const imageItems: Array<any> = []
+                const imagesGroup = (
+                    await ImagesGroup.query().where(
+                        'productItemId',
+                        productItemDetails.id
+                    )
+                )[0]
 
-                // const imagesGroup = (
-                //     await ImagesGroup.query().where(
-                //         'productItemId	',
-                //         productItemDetails.id
-                //     )
-                // )[0]
-
-                // const loadedImageItems = await ImageItem.query().where(
-                //     'imageGroupId',
-                //     imagesGroup.id
-                // )
-                // for (const image of loadedImageItems) {
-                //     imageItems.push({
-                //         imagesUrl: image.imageUrl,
-                //     })
+                const loadedImageItems = await ImageItem.query().where(
+                    'imagesGroupId',
+                    imagesGroup.id
+                )
+                for (const image of loadedImageItems) {
+                    imageItems.push({
+                        imageUrl: image.imageUrl,
+                    })}
 
                 orderItems.push({
                     id: orderItem.id,
@@ -216,7 +213,7 @@ export default class AdminOrdersController {
                         productItemDetails.usedProductCondition,
                     isUsed: productItemDetails.usedProduct,
                     expanded: false,
-                    // imageItems: imageItems,
+                    imageItems: imageItems,
                 })
             }
 
@@ -302,41 +299,36 @@ export default class AdminOrdersController {
                         severity: flaw.severityLevel,
                     })
                 }
-                // const imagesGroup = (await ImagesGroup.query().where(
-                //     'productItemId',
-                //     productItemDetails.id
-                // ))[0]
+                const imageItems: Array<any> = []
 
-                // const imageItems: Array<any> = []
+                const imagesGroup = (
+                    await ImagesGroup.query().where(
+                        'productItemId',
+                        productItemDetails.id
+                    )
+                )[0]
 
-                // const imagesGroup = (
-                //     await ImagesGroup.query().where(
-                //         'productItemId	',
-                //         productItemDetails.id
-                //     )
-                // )[0]
-
-                // const loadedImageItems = await ImageItem.query().where(
-                //     'imageGroupId',
-                //     imagesGroup.id
-                // )
-                // for (const image of loadedImageItems) {
-                //     imageItems.push({
-                //         imagesUrl: image.imageUrl,
-                //     })
+                const loadedImageItems = await ImageItem.query().where(
+                    'imagesGroupId',
+                    imagesGroup.id
+                )
+                for (const image of loadedImageItems) {
+                    imageItems.push({
+                        imageUrl: image.imageUrl,
+                    })}
 
                 orderItems.push({
                     id: orderItem.id,
                     deviceName: productDetails.name,
                     price: priceDetails.price,
                     currency: priceDetails.currency,
-                    deviceFlaws: flaws,
+                    flaws: flaws,
                     description: productItemDetails.description,
                     usedProductCondition:
                         productItemDetails.usedProductCondition,
                     isUsed: productItemDetails.usedProduct,
                     expanded: false,
-                    // imageItems: imageItems,
+                    imageItems: imageItems,
                 })
             }
 

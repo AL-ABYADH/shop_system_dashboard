@@ -152,7 +152,7 @@
                                 <!-- Additional list items here -->
                             </ul>
                         </div>
-                        <div class="flex justify-between mb-5">
+                        <div class="flex justify-between mb-5" v-if="device.flaws.length != 0">
                             <ul>
                                 <li class="bg-primary-opacity p-2 rounded-lg">
                                     <i
@@ -175,14 +175,46 @@
                                 <!-- Additional list items here -->
                             </ul>
                         </div>
-                        <!-- <li>
-                        <strong>رابط الصور:</strong>
-                        <a
-                            :href="device.pictureLink"
-                            class="underline text-primary"
-                            >{{ device.pictureLink }}</a
+                        <div
+                            class="flex mb-5"
+                            v-if="device.imageItems.length != 0"
                         >
-                    </li> -->
+                            <ul>
+                                <li class="bg-primary-opacity p-2 rounded-lg">
+                                    <i
+                                        class="fa fa-image text-primary fa-lg ml-1"
+                                    ></i>
+                                    <details dir="ltr">
+                                        <summary class="">الصور</summary>
+                                        <div class="h-2"></div>
+                                        <div class="flex">
+                                            <div
+                                                v-for="(
+                                                    image, index
+                                                ) in device.imageItems"
+                                                :key="index"
+                                                dir="rtl"
+                                                class="flex rounded-sm justify-between p-1"
+                                            >
+                                                <li class="md:w-32 sm: w-10">
+                                                    <img
+                                                        :src="image.imageUrl"
+                                                        alt=""
+                                                        class="rounded-md border-primary border-2"
+                                                        @click="
+                                                            openImageDialog(
+                                                                image.imageUrl
+                                                            )
+                                                        "
+                                                    />
+                                                </li>
+                                            </div>
+                                        </div>
+                                    </details>
+                                </li>
+                                <!-- Additional list items here -->
+                            </ul>
+                        </div>
                     </ul>
                 </div>
             </div>
@@ -318,6 +350,41 @@
                 ></i>
             </button>
         </div>
+        <transition name="popup">
+            <div
+                v-if="showImageDialog"
+                class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75"
+                @click="closeImageDialog"
+            >
+                <div
+                    class="max-w-screen-sm bg-white rounded-lg overflow-hidden"
+                >
+                    <img
+                        :src="modalImageUrl"
+                        alt="Large Image"
+                        class="w-full transform scale-110 transition-transform duration-500"
+                    />
+                    <button
+                        @click="closeImageDialog"
+                        class="absolute top-0 right-0 mt-2 mr-2 text-gray-600 hover:text-black focus:outline-none"
+                    >
+                        <svg
+                            class="w-6 h-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"
+                            ></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </transition>
     </div>
 </template>
 
@@ -348,6 +415,9 @@ export default {
             showCancellationDialog: false,
             cancellationReason: 'unavailable',
             otherReason: '', // Text area value for other reason
+            isModalActive: false,
+            showImageDialog: false,
+            modalImageUrl: '',
         }
     },
     computed: {
@@ -384,6 +454,14 @@ export default {
             const checkPrice = 0.05 * devicePrice
             return checkPrice
         },
+        openModal(imageUrl: string) {
+            this.isModalActive = true
+            this.modalImageUrl = imageUrl
+        },
+        closeModal() {
+            this.isModalActive = false
+            this.modalImageUrl = ''
+        },
         toggleExpansion() {
             this.expanded = !this.expanded
         },
@@ -405,6 +483,14 @@ export default {
                 default:
                     return 'جديد'
             }
+        },
+        openImageDialog(imageUrl) {
+            this.showImageDialog = true
+            this.modalImageUrl = imageUrl
+        },
+        closeImageDialog() {
+            this.showImageDialog = false
+            this.modalImageUrl = ''
         },
         translateSeverity(severity) {
             switch (severity) {
@@ -467,5 +553,61 @@ textarea {
     font-size: 16px;
     resize: vertical; /* Allow vertical resizing */
     box-shadow: none;
+}
+
+.image-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.image-content {
+    background: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 80vw;
+    position: relative;
+}
+
+.image-content img {
+    max-width: 80%;
+    height: auto;
+}
+
+.modal-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #333;
+    padding: 0;
+}
+
+.popup-enter-active {
+    transform: scale(1.1); /* Set initial scale when opening */
+}
+
+.popup-enter-to {
+    transform: scale(1); /* Set final scale when opening */
+}
+
+.popup-leave-active {
+    transform: scale(1); /* Set initial scale when closing */
+}
+
+.popup-leave-to {
+    transform: scale(0.9); /* Set final scale when closing */
 }
 </style>
