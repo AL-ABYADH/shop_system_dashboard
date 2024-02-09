@@ -27,5 +27,10 @@ Route.group(() => {
         '/cancel-order/:orderId',
         'Orders/AdminOrdersController.cancelOrder'
     ).prefix('orders')
+
+    Route.put(
+        '/finish-order/:orderId',
+        'Orders/AdminOrdersController.finishOrder'
+    ).prefix('orders')
 })
 // .middleware('auth:web')

@@ -380,18 +380,16 @@ export default class AdminOrdersController {
 
             return response.status(200).json({ message: 'success' })
         } catch (error) {
-            console.log(error)
+            // console.log(error)
             return response.status(500).json({
-                error: 'An error occurred while updating the order status',
+                error: 'An error occurred while updating order status',
             })
         }
     }
 
-    public async confirmOrder({ request, response }: HttpContextContract) {}
-
-    public async cancelOrder({ params, response }) {
+    public async confirmOrder({ params, response }: HttpContextContract) {
         try {
-            const orderId = params.id
+            const orderId = params.orderId
             const order = await Order.find(orderId)
 
             if (!order) {
@@ -399,13 +397,77 @@ export default class AdminOrdersController {
             }
 
             // Check and update the order status based on the current status
-            order.status = 'testing'
+            if (order.status === 'confirming') {
+                order.status = 'testing'
+            } else {
+                return response
+                    .status(400)
+                    .json({ message: 'Invalid order states' })
+            }
+
             await order.save()
 
-            return response
-                .status(200)
-                .json({ message: 'Order status was cancelled' })
+            return response.status(200).json({ message: 'success' })
         } catch (error) {
+            // console.log(error)
+            return response.status(500).json({
+                error: 'An error occurred while updating order status',
+            })
+        }
+    }
+
+    public async cancelOrder({ params, response }) {
+        try {
+            const orderId = params.orderId
+            const order = await Order.find(orderId)
+
+            if (!order) {
+                return response.status(404).json({ message: 'Order not found' })
+            }
+
+            // Check and update the order status based on the current status
+            if (order.status === 'confirming' || 'testing') {
+                order.status = 'canceled'
+            } else {
+                return response
+                    .status(400)
+                    .json({ message: 'Invalid order states' })
+            }
+
+            await order.save()
+
+            return response.status(200).json({ message: 'success' })
+        } catch (error) {
+            // console.log(error)
+            return response.status(500).json({
+                error: 'An error occurred while updating the order status',
+            })
+        }
+    }
+
+    public async finishOrder({ params, response }) {
+        try {
+            const orderId = params.orderId
+            const order = await Order.find(orderId)
+
+            if (!order) {
+                return response.status(404).json({ message: 'Order not found' })
+            }
+
+            // Check and update the order status based on the current status
+            if (order.status === 'testing') {
+                order.status = 'done'
+            } else {
+                return response
+                    .status(400)
+                    .json({ message: 'Invalid order states' })
+            }
+
+            await order.save()
+
+            return response.status(200).json({ message: 'success' })
+        } catch (error) {
+            // console.log(error)
             return response.status(500).json({
                 error: 'An error occurred while updating the order status',
             })
