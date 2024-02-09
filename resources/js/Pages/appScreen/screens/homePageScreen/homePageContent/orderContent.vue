@@ -274,83 +274,8 @@
                 <button
                     class="mt-4 text-white bg-primary p-2 ml-2 rounded-md w-60 hover:bg-primary-opacity2"
                 >
-                    {{ orderStatus == 'confirming' ? 'تأكيد' : 'إنهاء الطلب' }}
+                    قبول الطلب
                 </button>
-                <button
-                    class="mt-4 text-white bg-red-600 p-2 rounded-md w-60 hover:bg-primary-opacity2"
-                    @click="showCancellationDialog = true"
-                >
-                    إلغاء
-                </button>
-            </div>
-            <div v-if="showCancellationDialog" class="cancel-popup">
-                <div class="cancel-content">
-                    <div class="flex">
-                        <i
-                            class="fa fa-question-circle fa-lg mt-1 ml-2"
-                            aria-hidden="true"
-                        ></i>
-                        <p class="mb-2 text-start">
-                            ما هو سبب إلغاء طلب {{ title }}؟
-                        </p>
-                    </div>
-
-                    <!-- Radio buttons for multiple choices -->
-                    <div class="radio-group">
-                        <div class="text-start mb-2">
-                            <label>
-                                <input
-                                    type="radio"
-                                    value="unavailable"
-                                    v-model="cancellationReason"
-                                />
-                                العناصر غير متوفرة
-                            </label>
-                        </div>
-                        <div class="text-start mb-2">
-                            <label>
-                                <input
-                                    type="radio"
-                                    value="mismatch"
-                                    v-model="cancellationReason"
-                                />
-                                العناصر لا تتتطابق مع المواصفات المقدمة من
-                                البائع
-                            </label>
-                        </div>
-                        <div class="text-start mb-2">
-                            <label>
-                                <input
-                                    type="radio"
-                                    value="other"
-                                    v-model="cancellationReason"
-                                />
-                                آخر
-                            </label>
-                        </div>
-                    </div>
-
-                    <textarea
-                        v-if="cancellationReason === 'other'"
-                        v-model="otherReason"
-                        placeholder="سبب الإلغاء"
-                    ></textarea>
-
-                    <div class="w-full">
-                        <button
-                            class="mt-4 text-white bg-primary p-2 w-44 ml-2 rounded-md hover:bg-primary-opacity2"
-                            @click="cancelOrder"
-                        >
-                            تأكيد
-                        </button>
-                        <button
-                            class="mt-4 text-white bg-red-600 p-2 w-44 rounded-md hover:bg-primary-opacity2"
-                            @click="closeDialog"
-                        >
-                            إلغاء
-                        </button>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="justify-center flex">
@@ -428,9 +353,6 @@ export default {
     data() {
         return {
             expanded: false,
-            showCancellationDialog: false,
-            cancellationReason: 'unavailable',
-            otherReason: '', // Text area value for other reason
             isModalActive: false,
             showImageDialog: false,
             modalImageUrl: '',
@@ -451,22 +373,6 @@ export default {
         },
     },
     methods: {
-        cancelOrder() {
-            let reason = this.cancellationReason
-            // If the reason is 'other', use the text area value
-            if (reason === 'other') {
-                reason = this.otherReason
-            }
-            // You can emit an event to the parent component to handle cancellation
-            this.$emit('cancel', {
-                orderId: this.orderId,
-                reason: reason,
-            })
-            this.closeDialog()
-        },
-        closeDialog() {
-            this.showCancellationDialog = false
-        },
         checkPrice(devicePrice) {
             // Calculate the checkPrice as 20% of the device's price
             const checkPrice = 0.05 * devicePrice
@@ -540,38 +446,6 @@ export default {
 </script>
 
 <style scoped>
-.cancel-popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999; /* Ensure it's on top */
-}
-
-.cancel-content {
-    background: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    text-align: center;
-    max-width: 400px; /* Adjust the width as needed */
-}
-
-textarea {
-    width: 100%;
-    height: 100px; /* Adjust the height as needed */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    resize: vertical; /* Allow vertical resizing */
-    box-shadow: none;
-}
 
 .image-popup {
     position: fixed;

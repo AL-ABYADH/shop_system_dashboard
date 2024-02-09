@@ -1,39 +1,45 @@
 <template>
     <div class="container max-w-full">
         <div>
+            <div>
+                <p
+                    class="w-full border-b-2 font-almarai mb-3 pt-2 sm:pt-3 md:pt-4 border-primary text-primary text-base sm:text-lg md:text-xl sm:pb-2"
+                >
+                    الطلبات في انتظار التأكيد
+                </p>
+                <div
+                    v-for="returnRequest in filteredReturnRequests('awaiting')"
+                    :key="returnRequest.id"
+                >
+                    <ExpandableItem
+                        :returnRequestId="returnRequest.id"
+                        :title="returnRequest.customerName"
+                        :address="returnRequest.customerAddress"
+                        :date="returnRequest.date"
+                        :imageUrl="returnRequest.customerImageUrl"
+                        :devicesNumber="returnRequest.devicesNumber"
+                        :phoneNumber="returnRequest.customerPhone"
+                        :time="returnRequest.time"
+                        :deliveryPrice="returnRequest.deliveryPrice"
+                        :returnRequestStatus="returnRequest.returnRequestStatus"
+                        :totalPrice="returnRequest.totalPrice"
+                        :devices="returnRequest.returnRequestItems"
+                        :key="returnRequest.id"
+                        :sellerName="returnRequest.sellerName"
+                        :sellerAddress="returnRequest.sellerAddress"
+                        :sellerPhoneNumber="returnRequest.sellerPhoneNumber"
+                    />
+                </div>
+            </div>
             <p
                 class="w-full border-b-2 font-almarai mb-3 sm:pt-2 md:pt-2 border-primary text-primary text-base sm:text-lg md:text-xl sm:pb-2"
             >
-                الطلبات قيد الفحص
+                الطلبات قيد التحقق
             </p>
-            <div v-for="returnRequest in filteredReturnRequests('evaluating')" :key="returnRequest.id">
-                <ExpandableItem
-                    :returnRequestId="returnRequest.id"
-                    :title="returnRequest.customerName"
-                    :address="returnRequest.customerAddress"
-                    :date="returnRequest.date"
-                    :imageUrl="returnRequest.customerImageUrl"
-                    :devicesNumber="returnRequest.devicesNumber"
-                    :phoneNumber="returnRequest.customerPhone"
-                    :time="returnRequest.time"
-                    :deliveryPrice="returnRequest.deliveryPrice"
-                    :returnRequestStatus="returnRequest.returnRequestStatus"
-                    :totalPrice="returnRequest.totalPrice"
-                    :devices="returnRequest.returnRequestItems"
-                    :key="returnRequest.id"
-                    :sellerName="returnRequest.sellerName"
-                    :sellerAddress="returnRequest.sellerAddress"
-                    :sellerPhoneNumber="returnRequest.sellerPhoneNumber"
-                />
-            </div>
-        </div>
-        <div>
-            <p
-                class="w-full border-b-2 font-almarai mb-3 pt-2 sm:pt-3 md:pt-4 border-primary text-primary text-base sm:text-lg md:text-xl sm:pb-2"
+            <div
+                v-for="returnRequest in filteredReturnRequests('evaluating')"
+                :key="returnRequest.id"
             >
-                الطلبات في انتظار التأكيد
-            </p>
-            <div v-for="returnRequest in filteredReturnRequests('awaiting')" :key="returnRequest.id">
                 <ExpandableItem
                     :returnRequestId="returnRequest.id"
                     :title="returnRequest.customerName"
@@ -114,7 +120,9 @@ export default {
     },
     methods: {
         filteredReturnRequests(status) {
-            return this.returnRequests.filter((returnRequest) => returnRequest.returnRequestStatus === status)
+            return this.returnRequests.filter(
+                (returnRequest) => returnRequest.returnRequestStatus === status
+            )
         },
     },
 }

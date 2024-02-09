@@ -259,6 +259,7 @@
                     {{ orderStatus == 'confirming' ? 'تأكيد' : 'إنهاء الطلب' }}
                 </button>
                 <button
+                    v-if="orderStatus == 'confirming'"
                     class="mt-4 text-white bg-red-600 p-2 rounded-md w-60 hover:bg-primary-opacity2"
                     @click="showCancellationDialog = true"
                 >

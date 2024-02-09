@@ -4,11 +4,11 @@
             <p
                 class="w-full border-b-2 mb-3 font-almarai pt-2 sm:pt-3 md:pt-4 border-primary text-primary text-base sm:text-lg md:text-xl sm:pb-2"
             >
-                طلبات مؤكدة
+            طلبات في انتظار التأكيد
             </p>
         </div>
         <!-- Loop through orders -->
-        <div v-for="order in filteredOrders('confirmed')" :key="order.id">
+        <div v-for="order in filteredOrders('awaiting')" :key="order.id">
             <ExpandableItem
                 :title="order.customerName"
                 :address="order.customerAddress"
@@ -31,11 +31,11 @@
             <p
                 class="w-full border-b-2 mb-3 font-almarai pt-2 sm:pt-3 md:pt-4 border-primary text-primary text-base sm:text-lg md:text-xl sm:pb-2"
             >
-                طلبات في انتظار التأكيد
+            طلبات مؤكدة
             </p>
         </div>
         <!-- Loop through orders -->
-        <div v-for="order in filteredOrders('awaiting')" :key="order.id">
+        <div v-for="order in filteredOrders('confirmed')" :key="order.id">
             <ExpandableItem
                 :title="order.customerName"
                 :address="order.customerAddress"
