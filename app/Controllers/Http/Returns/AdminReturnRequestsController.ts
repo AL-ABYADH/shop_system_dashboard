@@ -181,7 +181,7 @@ export default class AdminReturnRequestsController {
             const returnRequestId = params.returnRequestId
             const returnRequest = await ReturnRequest.find(returnRequestId)
 
-            const returnedItemIds = request.input('returnedItemIds')
+            const returnedItemIds = request.input('returnedItemIds', [])
 
             if (!returnRequest) {
                 return response
@@ -192,24 +192,23 @@ export default class AdminReturnRequestsController {
             // Check and update the return request status based on the current status
             if (returnRequest.status === 'evaluating') {
                 // Set the returned product item status to returned, and order item returned to true
-                if (returnedItemIds) {
-                    for (const id of returnedItemIds) {
-                        const orderItem = await OrderItem.find(id)
-                        if (
-                            !orderItem ||
-                            orderItem.orderId != returnRequest.orderId
-                        )
-                            return response
-                                .status(404)
-                                .json({ message: 'Order item not found' })
-                        const productItem = await ProductItem.find(
-                            orderItem.productItemId
-                        )
-                        orderItem.returned = true
-                        productItem!.status = 'returned'
-                        orderItem.save()
-                        productItem!.save()
-                    }
+
+                for (const id of returnedItemIds) {
+                    const orderItem = await OrderItem.find(id)
+                    if (
+                        !orderItem ||
+                        orderItem.orderId != returnRequest.orderId
+                    )
+                        return response
+                            .status(404)
+                            .json({ message: 'Order item not found' })
+                    const productItem = await ProductItem.find(
+                        orderItem.productItemId
+                    )
+                    orderItem.returned = true
+                    productItem!.status = 'returned'
+                    orderItem.save()
+                    productItem!.save()
                 }
 
                 returnRequest.status = 'resolved'
@@ -228,7 +227,7 @@ export default class AdminReturnRequestsController {
 
             return response.status(200).json({ message: 'success' })
         } catch (error) {
-            console.log(error)
+            // console.log(error)
             return response.status(500).json({
                 error: 'An error occurred while updating the return request status',
             })

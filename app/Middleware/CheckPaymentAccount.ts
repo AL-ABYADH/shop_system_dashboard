@@ -17,7 +17,9 @@ export default class CheckUser {
             // console.log(phoneNumber)
 
             await axios.get(
-                `${Env.get('PAYMENT_URL')}/checkUser?phoneNumber=${phoneNumber}`
+                `${Env.get(
+                    'PAYMENT_URL'
+                )}/check-payment-account?phoneNumber=${phoneNumber}`
             )
             await next()
         } catch (err) {

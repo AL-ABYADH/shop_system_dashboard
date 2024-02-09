@@ -9,6 +9,8 @@ import Price from 'App/Models/Price'
 import Flaw from 'App/Models/Flaw'
 import ImageItem from 'App/Models/ImageItem'
 import ImagesGroup from 'App/Models/ImagesGroup'
+import Env from '@ioc:Adonis/Core/Env'
+import PaymentServiceController from 'App/Controllers/PaymentServiceController'
 // import ImagesGroup from 'App/Models/ImagesGroup'
 // import ImageItem from 'App/Models/ImageItem'
 
@@ -426,12 +428,18 @@ export default class AdminOrdersController {
             const orderId = params.orderId
             const order = await Order.find(orderId)
 
-            const unavailableItemIds = request.input('unavailableItemIds')
-            const missMatchedItemIds = request.input('missMatchedItemIds')
+            const unavailableItemIds = request.input('unavailableItemIds', [])
+            const missMatchedItemIds = request.input('missMatchedItemIds', [])
 
             if (!order) {
                 return response.status(404).json({ message: 'Order not found' })
             }
+
+            // Check the company's payment balance to see if it has enough money to refund customer
+            PaymentServiceController.checkBalance(
+                Env.get('MYSQL_USER'),
+                order.currency
+            )
 
             // Check and update the order status based on the current status
             if (order.status === 'confirming') {
@@ -463,7 +471,7 @@ export default class AdminOrdersController {
                     await productItem!.save()
                 }
 
-                order.status = 'canceled'
+                // order.status = 'canceled'
             } else if (order.status === 'testing') {
                 // Delete missMatched items
                 for (const id of missMatchedItemIds) {
@@ -493,7 +501,7 @@ export default class AdminOrdersController {
                     await productItem!.save()
                 }
 
-                order.status = 'canceled'
+                // order.status = 'canceled'
             } else {
                 return response
                     .status(400)
