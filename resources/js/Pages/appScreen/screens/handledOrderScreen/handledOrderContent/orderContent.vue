@@ -259,82 +259,11 @@
                     {{ orderStatus == 'confirming' ? 'تأكيد' : 'إنهاء الطلب' }}
                 </button>
                 <button
-                    v-if="orderStatus == 'confirming'"
                     class="mt-4 text-white bg-red-600 p-2 rounded-md w-60 hover:bg-primary-opacity2"
                     @click="showCancellationDialog = true"
                 >
                     إلغاء
                 </button>
-            </div>
-            <div v-if="showCancellationDialog" class="cancel-popup">
-                <div class="cancel-content">
-                    <div class="flex">
-                        <i
-                            class="fa fa-question-circle fa-lg mt-1 ml-2"
-                            aria-hidden="true"
-                        ></i>
-                        <p class="mb-2 text-start">
-                            ما هو سبب إلغاء طلب {{ title }}؟
-                        </p>
-                    </div>
-
-                    <!-- Radio buttons for multiple choices -->
-                    <div class="radio-group">
-                        <div class="text-start mb-2">
-                            <label>
-                                <input
-                                    type="radio"
-                                    value="unavailable"
-                                    v-model="cancellationReason"
-                                />
-                                العناصر غير متوفرة
-                            </label>
-                        </div>
-                        <div class="text-start mb-2">
-                            <label>
-                                <input
-                                    type="radio"
-                                    value="mismatch"
-                                    v-model="cancellationReason"
-                                />
-                                العناصر لا تتتطابق مع المواصفات المقدمة من
-                                البائع
-                            </label>
-                        </div>
-                        <div class="text-start mb-2">
-                            <label>
-                                <input
-                                    type="radio"
-                                    value="other"
-                                    v-model="cancellationReason"
-                                />
-                                آخر
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Text area for other reason (conditionally shown) -->
-                    <textarea
-                        v-if="cancellationReason === 'other'"
-                        v-model="otherReason"
-                        placeholder="سبب الإلغاء"
-                    ></textarea>
-
-                    <div class="w-full">
-                        <button
-                            class="mt-4 text-white bg-primary p-2 w-44 ml-2 rounded-md hover:bg-primary-opacity2"
-                            @click="cancelOrder"
-                        >
-                            تأكيد
-                        </button>
-                        <button
-                            class="mt-4 text-white bg-red-600 p-2 w-44 rounded-md hover:bg-primary-opacity2"
-                            @click="closeDialog"
-                        >
-                            إلغاء
-                        </button>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="justify-center flex">
@@ -610,5 +539,28 @@ textarea {
 
 .popup-leave-to {
     transform: scale(0.9); /* Set final scale when closing */
+}
+.snackbar {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: #fff;
+    padding: 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    max-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.snackbar.success {
+    background-color: #4caf50;
+}
+
+.snackbar.error {
+    background-color: #f44336;
 }
 </style>
