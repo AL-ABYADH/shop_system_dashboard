@@ -22,12 +22,23 @@ export default class ProductItemSeeder extends BaseSeeder {
         // Define arrays to store entities for bulk insertion
         let itemId = 1
 
+        // Item conditions to choose randomly from
+        const conditions: (
+            | 'excellent'
+            | 'good'
+            | 'normal'
+            | 'bad'
+            | 'terrible'
+        )[] = ['excellent', 'good', 'normal', 'bad', 'terrible']
+
         // Iterate through each product and create 5 product items for each
         for (const product of products) {
             let priceId = 1
             const sellerUserIds: number[] = [2, 5, 8, 11, 14]
 
             for (let i = 1; i <= 5; i++) {
+                const used = Math.random() < 0.5
+
                 const productItem = await ProductItem.create({
                     description: `Product ${product.id} Item ${i}`,
                     productId: product.id,
@@ -35,8 +46,13 @@ export default class ProductItemSeeder extends BaseSeeder {
                     sellerUserId: sellerUserIds[i - 1],
                     priceId: priceId,
                     warrantyEndsIn: 365,
-                    usedProduct: true,
-                    usedProductCondition: 'excellent',
+                    usedProduct: used,
+                    usedProductCondition: used
+                        ? conditions[
+                              Math.floor(Math.random() * conditions.length)
+                          ]
+                        : null,
+                    productRating: product.rating,
                 })
 
                 // Assuming a function to handle image uploading and return paths

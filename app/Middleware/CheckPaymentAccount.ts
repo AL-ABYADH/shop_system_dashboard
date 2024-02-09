@@ -1,6 +1,7 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import axios from 'axios'
 import Env from '@ioc:Adonis/Core/Env'
+import User from 'App/Models/User'
 
 export default class CheckUser {
     async handle(
@@ -8,7 +9,12 @@ export default class CheckUser {
         next: () => Promise<void>
     ) {
         try {
-            const phoneNumber = request.input('phoneNumber')
+            const username = request.input('username')
+            const phoneNumber = (
+                await User.query().where('username', username)
+            )[0].phoneNumber
+
+            // console.log(phoneNumber)
 
             await axios.get(
                 `${Env.get('PAYMENT_URL')}/checkUser?phoneNumber=${phoneNumber}`
@@ -22,7 +28,7 @@ export default class CheckUser {
 
             return response
                 .status(err.response?.status || 500)
-                .json({ message: err.message })
+                .json({ message: 'An error has occurred!' })
         }
     }
 }

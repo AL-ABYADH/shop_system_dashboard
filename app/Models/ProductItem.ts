@@ -54,6 +54,9 @@ export default class ProductItem extends BaseModel {
     public usedProduct: boolean
 
     @column()
+    public productRating: number // The rating of the product the item belongs to
+
+    @column()
     public usedProductCondition:
         | 'excellent'
         | 'good'

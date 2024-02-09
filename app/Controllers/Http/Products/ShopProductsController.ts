@@ -11,10 +11,7 @@ export default class ShopProductsController {
         response,
     }: HttpContextContract) {}
 
-    public async getFilterProducts({
-        request,
-        response,
-    }: HttpContextContract) {}
+    public async getFilterProducts() {}
 
     public async getBrandProducts({ request, response }) {
         try {

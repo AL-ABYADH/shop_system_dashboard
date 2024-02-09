@@ -10,7 +10,8 @@ import ProductFeature from 'App/Models/ProductFeature'
 import ProductItem from 'App/Models/ProductItem'
 
 export default class CustomerProductItemsController {
-    public async getProductItems({ params, response }) {
+    public async getAllItems({ params, response }) {
+        // console.log('test')
         try {
             const productId = params.productId
 
@@ -27,44 +28,158 @@ export default class CustomerProductItemsController {
         }
     }
 
-    public async getRecentlyAddedProductItems({ response }) {
+    public async getHomeScreenItems({ request, response }) {
         try {
+            // Default values for pagination
+            const page = request.input('page', 1) // Default to page 1 if not provided
+            const perPage = request.input('perPage', 10) // Default to 10 items per page if not provided
+
+            // Get recently added items
             const currentDate = new Date()
             const lastWeekDate = new Date(
                 currentDate.getTime() - 7 * 24 * 60 * 60 * 1000
             )
-            const loadedItems = await ProductItem.query().where(
-                'createdAt',
-                '>',
-                lastWeekDate.toISOString()
+            const paginatedRecentlyAddedItems = await ProductItem.query()
+                .where('createdAt', '>', lastWeekDate.toISOString())
+                .paginate(page, perPage)
+            const recentlyAddedItems = await this.getItems(
+                paginatedRecentlyAddedItems.toJSON().data
             )
 
-            const items = await this.getItems(loadedItems)
+            // Get high rated items
+            const paginatedHighRatedItems = await ProductItem.query()
+                .where('productRating', '>', 4)
+                .paginate(page, perPage)
+            const highRatedItems = await this.getItems(
+                paginatedHighRatedItems.toJSON().data
+            )
 
-            response.status(200).json(items)
+            // Get new items
+            const paginatedNewItems = await ProductItem.query()
+                .where('usedProduct', false)
+                .paginate(page, perPage)
+            const newItems = await this.getItems(
+                paginatedNewItems.toJSON().data
+            )
+
+            // Get excellentItems used condition
+            const paginatedExcellentItems = await ProductItem.query()
+                .where('usedProductCondition', 'excellent')
+                .paginate(page, perPage)
+            const excellentItems = await this.getItems(
+                paginatedExcellentItems.toJSON().data
+            )
+
+            response.status(200).json({
+                data: {
+                    recentlyAddedItems: recentlyAddedItems,
+                    highRatedItems: highRatedItems,
+                    newItems: newItems,
+                    excellentItems: excellentItems,
+                },
+                meta: paginatedRecentlyAddedItems.toJSON().meta, // Includes pagination info like total, perPage, currentPage
+            })
         } catch (err) {
+            console.error(err) // Consider logging the error for debugging
             response.status(500).json({ message: 'An error has occurred!' })
         }
     }
 
-    public async getHighRatedProductItems({ response }) {
+    public async getRecentlyAddedItems({ request, response }) {
         try {
-            const loadedItems = await ProductItem.all()
+            // Default values for pagination
+            const page = request.input('page', 1) // Default to page 1 if not provided
+            const perPage = request.input('perPage', 10) // Default to 10 items per page if not provided
 
-            const filteredItems: Array<any> = []
+            const currentDate = new Date()
+            const lastWeekDate = new Date(
+                currentDate.getTime() - 7 * 24 * 60 * 60 * 1000
+            )
+            const paginatedRecentlyAddedItems = await ProductItem.query()
+                .where('createdAt', '>', lastWeekDate.toISOString())
+                .paginate(page, perPage)
+            const recentlyAddedItems = await this.getItems(
+                paginatedRecentlyAddedItems.toJSON().data
+            )
 
-            for (const item of loadedItems) {
-                const product = await Product.find(item.productId)
-                // console.log(product && product.rating >= 4.0)
-                if (product && product.rating >= 4.0) {
-                    filteredItems.push(item)
-                }
-            }
-
-            const items = await this.getItems(filteredItems)
-
-            response.status(200).json(items)
+            response.status(200).json({
+                data: recentlyAddedItems,
+                meta: paginatedRecentlyAddedItems.toJSON().meta, // Includes pagination info like total, perPage, currentPage
+            })
         } catch (err) {
+            console.error(err) // Consider logging the error for debugging
+            response.status(500).json({ message: 'An error has occurred!' })
+        }
+    }
+
+    public async getHighRatedItems({ request, response }) {
+        try {
+            // Default values for pagination
+            const page = request.input('page', 1) // Default to page 1 if not provided
+            const perPage = request.input('perPage', 10) // Default to 10 items per page if not provided
+
+            // Get high rated items
+            const paginatedHighRatedItems = await ProductItem.query()
+                .where('productRating', '>', 4)
+                .paginate(page, perPage)
+            const highRatedItems = await this.getItems(
+                paginatedHighRatedItems.toJSON().data
+            )
+
+            response.status(200).json({
+                data: highRatedItems,
+                meta: paginatedHighRatedItems.toJSON().meta, // Includes pagination info like total, perPage, currentPage
+            })
+        } catch (err) {
+            console.error(err) // Consider logging the error for debugging
+            response.status(500).json({ message: 'An error has occurred!' })
+        }
+    }
+
+    public async getNewItems({ request, response }) {
+        try {
+            // Default values for pagination
+            const page = request.input('page', 1) // Default to page 1 if not provided
+            const perPage = request.input('perPage', 10) // Default to 10 items per page if not provided
+
+            // Get new items
+            const paginatedNewItems = await ProductItem.query()
+                .where('usedProduct', false)
+                .paginate(page, perPage)
+            const newItems = await this.getItems(
+                paginatedNewItems.toJSON().data
+            )
+
+            response.status(200).json({
+                data: newItems,
+                meta: paginatedNewItems.toJSON().meta, // Includes pagination info like total, perPage, currentPage
+            })
+        } catch (err) {
+            console.error(err) // Consider logging the error for debugging
+            response.status(500).json({ message: 'An error has occurred!' })
+        }
+    }
+
+    public async getExcellentItems({ request, response }) {
+        try {
+            // Default values for pagination
+            const page = request.input('page', 1) // Default to page 1 if not provided
+            const perPage = request.input('perPage', 10) // Default to 10 items per page if not provided
+
+            // Get excellentItems used condition
+            const paginatedExcellentItems = await ProductItem.query()
+                .where('usedProductCondition', 'excellent')
+                .paginate(page, perPage)
+            const excellentItems = await this.getItems(
+                paginatedExcellentItems.toJSON().data
+            )
+
+            response.status(200).json({
+                data: excellentItems,
+                meta: paginatedExcellentItems.toJSON().meta, // Includes pagination info like total, perPage, currentPage
+            })
+        } catch (err) {
+            console.error(err) // Consider logging the error for debugging
             response.status(500).json({ message: 'An error has occurred!' })
         }
     }

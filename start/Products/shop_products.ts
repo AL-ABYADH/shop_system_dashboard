@@ -16,6 +16,5 @@ Route.group(() => {
         '/brand-products',
         'Products/ShopProductsController.getBrandProducts'
     )
-})
-    .prefix('api/products')
-    .middleware('auth:api')
+}).prefix('api/products')
+// .middleware('auth:api')

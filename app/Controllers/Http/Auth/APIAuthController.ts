@@ -6,7 +6,6 @@ import Env from '@ioc:Adonis/Core/Env'
 
 export default class APIAuthController {
     public async register({ request, response, auth }: HttpContextContract) {
-        console.log('does')
         try {
             // Validate the request data
             const validationSchema = schema.create({
@@ -89,7 +88,6 @@ export default class APIAuthController {
     }
 
     public async login({ request, response, auth }: HttpContextContract) {
-        console.log('does')
         try {
             // Validate the request data
             const validationSchema = schema.create({
@@ -123,6 +121,7 @@ export default class APIAuthController {
                 .status(200)
                 .json({ ...user!.serialize(), token: token.token })
         } catch (err) {
+            // console.log(err)
             if (err.response && err.response.status == 404)
                 return response.status(400).json({
                     message: 'يجب أن يكون لديك حساب في نظام الدفع',

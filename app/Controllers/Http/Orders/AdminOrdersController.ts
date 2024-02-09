@@ -88,7 +88,8 @@ export default class AdminOrdersController {
                 for (const image of loadedImageItems) {
                     imageItems.push({
                         imageUrl: image.imageUrl,
-                    })}
+                    })
+                }
 
                 orderItems.push({
                     id: orderItem.id,
@@ -200,7 +201,8 @@ export default class AdminOrdersController {
                 for (const image of loadedImageItems) {
                     imageItems.push({
                         imageUrl: image.imageUrl,
-                    })}
+                    })
+                }
 
                 orderItems.push({
                     id: orderItem.id,
@@ -239,8 +241,6 @@ export default class AdminOrdersController {
 
         return inertia.render('handledOrderScreen', { orders })
     }
-
-    
 
     public async renderFinishedOrders({ inertia, auth }) {
         // Get the currently authenticated user
@@ -315,7 +315,8 @@ export default class AdminOrdersController {
                 for (const image of loadedImageItems) {
                     imageItems.push({
                         imageUrl: image.imageUrl,
-                    })}
+                    })
+                }
 
                 orderItems.push({
                     id: orderItem.id,
@@ -357,7 +358,7 @@ export default class AdminOrdersController {
 
     public async handleOrder({ params, response }) {
         try {
-            const orderId = params.id
+            const orderId = params.orderId
             const order = await Order.find(orderId)
 
             if (!order) {
@@ -377,10 +378,9 @@ export default class AdminOrdersController {
 
             await order.save()
 
-            return response
-                .status(200)
-                .json({ message: 'Order status updated successfully' })
+            return response.status(200).json({ message: 'success' })
         } catch (error) {
+            console.log(error)
             return response.status(500).json({
                 error: 'An error occurred while updating the order status',
             })

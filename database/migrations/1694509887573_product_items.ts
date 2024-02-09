@@ -25,6 +25,7 @@ export default class ProductItems extends BaseSchema {
                 .notNullable()
             table.integer('warranty_ends_in').unsigned().notNullable()
             table.boolean('used_product').notNullable()
+            table.decimal('product_rating', 2, 1).notNullable().unsigned()
             table
                 .enum('used_product_condition', [
                     'excellent',

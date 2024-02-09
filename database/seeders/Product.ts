@@ -9,21 +9,7 @@ export default class ProductSeeder extends BaseSeeder {
             2.4, 4.2, 3.1, 4.1, 1.2, 4.2, 1.3, 3.2, 4.9, 4.2, 3.5, 2.7,
         ]
 
-        const brands = [
-            'Apple',
-            'Samsung',
-            'Google',
-            'LG',
-            'Motorola',
-            'Sony',
-            'OnePlus',
-            'Huawei',
-            'Xiaomi',
-            'Asus',
-            'ZTE',
-            'Honor',
-            'vivo',
-        ]
+        const brands = ['Samsung', 'Google', 'Xiaomi']
 
         for (let i = 1; i <= 20; i++) {
             productData.push({
