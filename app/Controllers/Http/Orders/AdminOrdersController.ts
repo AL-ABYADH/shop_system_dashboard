@@ -356,8 +356,11 @@ export default class AdminOrdersController {
         return inertia.render('orderHistoryScreen', { orders })
     }
 
-    public async handleOrder({ params, response }) {
+    public async handleOrder({ auth, params, response }) {
         try {
+            // Get the currently authenticated user
+            const user = await auth.use('web').authenticate()
+
             const orderId = params.orderId
             const order = await Order.find(orderId)
 
@@ -375,6 +378,8 @@ export default class AdminOrdersController {
                     .status(400)
                     .json({ message: 'Invalid order states' })
             }
+
+            order.adminUserId = user.id
 
             await order.save()
 
@@ -416,17 +421,78 @@ export default class AdminOrdersController {
         }
     }
 
-    public async cancelOrder({ params, response }) {
+    public async cancelOrder({ params, request, response }) {
         try {
             const orderId = params.orderId
             const order = await Order.find(orderId)
+
+            const unavailableItemIds = request.input('unavailableItemIds')
+            const missMatchedItemIds = request.input('missMatchedItemIds')
 
             if (!order) {
                 return response.status(404).json({ message: 'Order not found' })
             }
 
             // Check and update the order status based on the current status
-            if (order.status === 'confirming' || 'testing') {
+            if (order.status === 'confirming') {
+                // Set unavailable items to sold
+                for (const id of unavailableItemIds) {
+                    const orderItem = await OrderItem.find(id)
+                    if (!orderItem || orderItem.orderId != orderId)
+                        return response
+                            .status(404)
+                            .json({ message: 'Order item not found' })
+                    const item = await ProductItem.find(orderItem.productItemId)
+                    item!.status = 'sold'
+                    await item!.save()
+                }
+
+                // Set available items back to available
+                const availableItems = (
+                    await OrderItem.query().where('orderId', orderId)
+                ).filter((item) => {
+                    return !unavailableItemIds
+                        .map((id) => Number(id))
+                        .includes(item.id)
+                })
+                for (const item of availableItems) {
+                    const productItem = await ProductItem.find(
+                        item.productItemId
+                    )
+                    productItem!.status = 'available'
+                    await productItem!.save()
+                }
+
+                order.status = 'canceled'
+            } else if (order.status === 'testing') {
+                // Delete missMatched items
+                for (const id of missMatchedItemIds) {
+                    const orderItem = await OrderItem.find(id)
+                    if (!orderItem || orderItem.orderId != orderId)
+                        return response
+                            .status(404)
+                            .json({ message: 'Order item not found' })
+                    const item = await ProductItem.find(orderItem.productItemId)
+                    item!.softDelete()
+                    await item!.save()
+                }
+
+                // Set available items back to available
+                const matchedItems = (
+                    await OrderItem.query().where('orderId', orderId)
+                ).filter((item) => {
+                    return !missMatchedItemIds
+                        .map((id) => Number(id))
+                        .includes(item.id)
+                })
+                for (const item of matchedItems) {
+                    const productItem = await ProductItem.find(
+                        item.productItemId
+                    )
+                    productItem!.status = 'available'
+                    await productItem!.save()
+                }
+
                 order.status = 'canceled'
             } else {
                 return response
@@ -438,7 +504,7 @@ export default class AdminOrdersController {
 
             return response.status(200).json({ message: 'success' })
         } catch (error) {
-            // console.log(error)
+            console.log(error)
             return response.status(500).json({
                 error: 'An error occurred while updating the order status',
             })
@@ -461,6 +527,16 @@ export default class AdminOrdersController {
                 return response
                     .status(400)
                     .json({ message: 'Invalid order states' })
+            }
+
+            // Set order items to sold
+            const orderItems = await OrderItem.query().where('orderId', orderId)
+            for (const orderItem of orderItems) {
+                const productItem = await ProductItem.find(
+                    orderItem.productItemId
+                )
+                productItem!.status = 'sold'
+                await productItem!.save()
             }
 
             await order.save()

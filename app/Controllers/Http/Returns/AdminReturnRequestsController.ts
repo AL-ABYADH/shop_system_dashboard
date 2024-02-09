@@ -10,6 +10,7 @@ import ReturnRequest from 'App/Models/ReturnRequest'
 import ReturnRequestItem from 'App/Models/ReturnRequestItem'
 import ImagesGroup from 'App/Models/ImagesGroup'
 import ImageItem from 'App/Models/ImageItem'
+import Order from 'App/Models/Order'
 // import ImagesGroup from 'App/Models/ImagesGroup'
 // import ImageItem from 'App/Models/ImageItem'
 
@@ -87,21 +88,22 @@ export default class AdminReturnRequestsController {
                     }
                     const imageItems: Array<any> = []
 
-                const imagesGroup = (
-                    await ImagesGroup.query().where(
-                        'productItemId',
-                        productItemDetails.id
-                    )
-                )[0]
+                    const imagesGroup = (
+                        await ImagesGroup.query().where(
+                            'productItemId',
+                            productItemDetails.id
+                        )
+                    )[0]
 
-                const loadedImageItems = await ImageItem.query().where(
-                    'imagesGroupId',
-                    imagesGroup.id
-                )
-                for (const image of loadedImageItems) {
-                    imageItems.push({
-                        imageUrl: image.imageUrl,
-                    })}
+                    const loadedImageItems = await ImageItem.query().where(
+                        'imagesGroupId',
+                        imagesGroup.id
+                    )
+                    for (const image of loadedImageItems) {
+                        imageItems.push({
+                            imageUrl: image.imageUrl,
+                        })
+                    }
 
                     returnRequestItems.push({
                         id: returnRequestItem.id,
@@ -139,18 +141,97 @@ export default class AdminReturnRequestsController {
                     sellerPhoneNumber: sellerUser.phoneNumber,
                 })
             }
-            
         }
-            return inertia.render('returnRequestScreen', { returnRequests })
+        return inertia.render('returnRequestScreen', { returnRequests })
     }
 
-    public async handleReturnRequest({
-        request,
-        response,
-    }: HttpContextContract) {}
+    public async handleReturnRequest({ params, response }) {
+        try {
+            const returnRequestId = params.returnRequestId
+            const returnRequest = await ReturnRequest.find(returnRequestId)
 
-    public async resolveReturnRequest({
-        request,
-        response,
-    }: HttpContextContract) {}
+            if (!returnRequest) {
+                return response
+                    .status(404)
+                    .json({ message: 'Return request not found' })
+            }
+
+            // Check and update the return request status based on the current status
+            if (returnRequest.status === 'awaiting') {
+                returnRequest.status = 'evaluating'
+            } else {
+                return response
+                    .status(400)
+                    .json({ message: 'Invalid return request states' })
+            }
+
+            await returnRequest.save()
+
+            return response.status(200).json({ message: 'success' })
+        } catch (error) {
+            // console.log(error)
+            return response.status(500).json({
+                error: 'An error occurred while updating the return request status',
+            })
+        }
+    }
+
+    public async resolveReturnRequest({ params, request, response }) {
+        try {
+            const returnRequestId = params.returnRequestId
+            const returnRequest = await ReturnRequest.find(returnRequestId)
+
+            const returnedItemIds = request.input('returnedItemIds')
+
+            if (!returnRequest) {
+                return response
+                    .status(404)
+                    .json({ message: 'Return request not found' })
+            }
+
+            // Check and update the return request status based on the current status
+            if (returnRequest.status === 'evaluating') {
+                // Set the returned product item status to returned, and order item returned to true
+                if (returnedItemIds) {
+                    for (const id of returnedItemIds) {
+                        const orderItem = await OrderItem.find(id)
+                        if (
+                            !orderItem ||
+                            orderItem.orderId != returnRequest.orderId
+                        )
+                            return response
+                                .status(404)
+                                .json({ message: 'Order item not found' })
+                        const productItem = await ProductItem.find(
+                            orderItem.productItemId
+                        )
+                        orderItem.returned = true
+                        productItem!.status = 'returned'
+                        orderItem.save()
+                        productItem!.save()
+                    }
+                }
+
+                returnRequest.status = 'resolved'
+            } else {
+                return response
+                    .status(400)
+                    .json({ message: 'Invalid return request states' })
+            }
+
+            // Set the order status back to done
+            const order = await Order.find(returnRequest.orderId)
+            order!.status = 'done'
+            order!.save()
+
+            await returnRequest.save()
+
+            return response.status(200).json({ message: 'success' })
+        } catch (error) {
+            console.log(error)
+            return response.status(500).json({
+                error: 'An error occurred while updating the return request status',
+            })
+        }
+    }
 }
