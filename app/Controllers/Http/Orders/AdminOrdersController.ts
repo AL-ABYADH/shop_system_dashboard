@@ -547,8 +547,29 @@ export default class AdminOrdersController {
                 return response.status(404).json({ message: 'Order not found' })
             }
 
+            // Check the company's payment balance to see if it has enough money to refund customer
+            const companyBalance = await PaymentServiceController.checkBalance(
+                Env.get('COMPANY_PHONE_NUMBER'),
+                order.currency
+            )
+            // console.log(companyBalance)
+            if (companyBalance < order.totalPrice) {
+                return response.status(400).json({
+                    message:
+                        'Failed to cancel. Company balance is less that refund amount',
+                })
+            }
+
             // Check and update the order status based on the current status
             if (order.status === 'testing') {
+                // Handle the payment here after insuring the items were found and only proceed with cancelation logic if payment was successful
+                PaymentServiceController.pay({
+                    from: Env.get('COMPANY_PHONE_NUMBER'),
+                    to: (await User.find(order.customerUserId))!.phoneNumber,
+                    amount: order.totalPrice,
+                    currency: order.currency,
+                })
+
                 order.status = 'done'
             } else {
                 return response

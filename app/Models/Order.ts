@@ -63,6 +63,9 @@ export default class Order extends BaseModel {
     public totalPrice: number // Including the delivery price, company's commission, admin's commission and the product items prices. Will be converted to the user's preferred currency
 
     @column()
+    public itemsPrice: number // The total price of the items. Doesn't include commissions and delivery fees
+
+    @column()
     public companyCommission: number // This will be assigned when the order is created and will be different for each currency and total price
 
     @column()
