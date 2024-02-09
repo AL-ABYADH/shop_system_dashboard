@@ -452,7 +452,7 @@ export default class AdminOrdersController {
             if (companyBalance < order.totalPrice) {
                 return response.status(400).json({
                     message:
-                        'Failed to cancel. Company balance is less that refund amount',
+                        'Failed to cancel order. Company balance is less that refund amount',
                 })
             }
 
@@ -556,7 +556,7 @@ export default class AdminOrdersController {
             if (companyBalance < order.totalPrice) {
                 return response.status(400).json({
                     message:
-                        'Failed to cancel. Company balance is less that refund amount',
+                        'Failed to finish order. Company balance is less that refund amount',
                 })
             }
 
@@ -565,8 +565,16 @@ export default class AdminOrdersController {
                 // Handle the payment here after insuring the items were found and only proceed with cancelation logic if payment was successful
                 PaymentServiceController.pay({
                     from: Env.get('COMPANY_PHONE_NUMBER'),
-                    to: (await User.find(order.customerUserId))!.phoneNumber,
-                    amount: order.totalPrice,
+                    to: (await User.find(order.sellerUserId))!.phoneNumber,
+                    amount: order.itemsPrice,
+                    currency: order.currency,
+                })
+                PaymentServiceController.pay({
+                    from: Env.get('COMPANY_PHONE_NUMBER'),
+                    to: (await User.find(order.adminUserId))!.phoneNumber,
+                    amount:
+                        order.adminCommission +
+                        (order.deliveryPrice != null ? order.deliveryPrice : 0),
                     currency: order.currency,
                 })
 
