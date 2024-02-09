@@ -272,9 +272,11 @@
             </div>
             <div class="justify-center flex w-full">
                 <button
+                    :disabled="loading"
                     class="mt-4 text-white bg-primary p-2 ml-2 rounded-md w-60 hover:bg-primary-opacity2"
+                    @click="handleOrder(orderId)"
                 >
-                    قبول الطلب
+                    {{ loading ? 'جاري المعالجة...' : 'قبول الطلب' }}
                 </button>
             </div>
         </div>
@@ -327,11 +329,15 @@
                 </div>
             </div>
         </transition>
+        <div v-if="snackbarVisible" class="snackbar" :class="snackbarType">
+            <span>{{ successMessage || errorMessage }}</span>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
 import dateFormat from 'dateformat'
+import axios from 'axios' // Import Axios for HTTP requests
 
 export default {
     props: {
@@ -343,6 +349,7 @@ export default {
         phoneNumber: String,
         time: String,
         devices: Array<any>,
+        orderId: Number,
         deliveryPrice: Number,
         totalPrice: Number,
         orderStatus: String,
@@ -356,6 +363,10 @@ export default {
             isModalActive: false,
             showImageDialog: false,
             modalImageUrl: '',
+            loading: false,
+            successMessage: '',
+            errorMessage: '',
+            snackbarVisible: false,
         }
     },
     computed: {
@@ -370,6 +381,9 @@ export default {
             } else {
                 return 'بدون توصيل'
             }
+        },
+        snackbarType() {
+            return this.successMessage ? 'success' : 'error'
         },
     },
     methods: {
@@ -441,12 +455,39 @@ export default {
             const time = dateFormat(dateObject, 'HH:mm:ss ')
             return time + formattedDate
         },
+        async handleOrder(orderId) {
+            try {
+                this.loading = true 
+                const response = await axios.put(
+                    `/orders/handle-order/${orderId}`
+                )
+                console.log(response.data) 
+
+  
+                this.successMessage = 'تمت المعالجة بنجاح'
+                this.snackbarVisible = true 
+            } catch (error) {
+                console.error(
+                    'Error occurred while updating order status:',
+                    error
+                )
+                this.errorMessage = 'فشلت المعالجة' 
+                this.snackbarVisible = true 
+                this.loading = false
+                // Handle error
+            } finally {
+                // Reload the page after 2 seconds
+                setTimeout(() => {
+                    location.reload()
+                }, 2000)
+                 // Set loading to false when the request completes (either success or failure)
+            }
+        },
     },
 }
 </script>
 
 <style scoped>
-
 .image-popup {
     position: fixed;
     top: 0;
@@ -501,5 +542,28 @@ export default {
 
 .popup-leave-to {
     transform: scale(0.9); /* Set final scale when closing */
+}
+.snackbar {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: #fff;
+    padding: 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    max-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.snackbar.success {
+    background-color: #4caf50;
+}
+
+.snackbar.error {
+    background-color: #f44336;
 }
 </style>

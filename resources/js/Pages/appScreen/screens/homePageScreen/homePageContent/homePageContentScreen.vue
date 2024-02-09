@@ -24,6 +24,7 @@
                 :sellerName="order.sellerName"
                 :sellerAddress="order.sellerAddress"
                 :sellerPhoneNumber="order.sellerPhoneNumber"
+                :orderId="order.id"
                 :key="order.id"
             />
         </div>
@@ -49,6 +50,7 @@
                 :totalPrice="order.totalPrice"
                 :devices="order.orderItems"
                 :key="order.id"
+                :orderId="order.id"
                 :sellerName="order.sellerName"
                 :sellerAddress="order.sellerAddress"
                 :sellerPhoneNumber="order.sellerPhoneNumber"
@@ -111,6 +113,8 @@ export default {
             type: Array as () => Order[],
             required: true,
         },
+        
+
     },
     methods: {
         filteredOrders(status) {
