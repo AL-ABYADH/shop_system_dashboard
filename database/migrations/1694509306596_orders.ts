@@ -38,6 +38,8 @@ export default class Orders extends BaseSchema {
                 .notNullable()
             table.decimal('delivery_price', 10, 2).unsigned().nullable()
             table.decimal('total_price', 10, 2).unsigned().notNullable()
+            table.decimal('company_commission', 10, 2).unsigned().notNullable()
+            table.decimal('admin_commission', 10, 2).unsigned().notNullable()
             table.enum('currency', ['USD', 'YER', 'SAR']).notNullable()
             table
                 .enum('status', [

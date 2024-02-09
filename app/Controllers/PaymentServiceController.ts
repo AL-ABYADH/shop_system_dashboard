@@ -7,12 +7,11 @@ export default class PaymentServiceController {
         phoneNumber: string,
         currency: string
     ): Promise<number> {
-        const response = await axios.get(
-            `${Env.get(
-                'PAYMENT_URL'
-            )}/check-balance?phoneNumber=${phoneNumber}&currency=${currency}`
-        )
-        console.log(response)
-        return 1
+        const url = `${Env.get(
+            'PAYMENT_URL'
+        )}/check-balance?phoneNumber=${phoneNumber}&currency=${currency}`
+        // console.log(url)
+        const response = await axios.get(url)
+        return response['data']['balance']
     }
 }

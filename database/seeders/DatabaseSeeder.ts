@@ -14,7 +14,6 @@ import CartSeeder from './Cart'
 import CartItemSeeder from './CartItem'
 import PaymentMethodSeeder from './PaymentMethod'
 import OrderSeeder from './Order'
-import OrderItemSeeder from './OrderItem'
 import PaymentSeeder from './Payment'
 import ReturnRequestSeeder from './ReturnRequest'
 
@@ -34,7 +33,6 @@ export default class DatabaseSeederSeeder extends BaseSeeder {
         await new CartItemSeeder(this.client).run()
         await new PaymentMethodSeeder(this.client).run()
         await new OrderSeeder(this.client).run()
-        await new OrderItemSeeder(this.client).run()
         await new PaymentSeeder(this.client).run()
         await new ReturnRequestSeeder(this.client).run()
     }

@@ -60,7 +60,13 @@ export default class Order extends BaseModel {
     public deliveryPrice: number | null // Null if no delivery is required
 
     @column()
-    public totalPrice: number // Including the delivery price and the product items prices. Will be converted to the user's preferred currency
+    public totalPrice: number // Including the delivery price, company's commission, admin's commission and the product items prices. Will be converted to the user's preferred currency
+
+    @column()
+    public companyCommission: number // This will be assigned when the order is created and will be different for each currency and total price
+
+    @column()
+    public adminCommission: number // This will be assigned when the order is created and will be different for each currency and total price
 
     @column()
     public currency: 'USD' | 'YER' | 'SAR' // Will be taken from the user's preferred currency

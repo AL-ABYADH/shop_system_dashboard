@@ -436,10 +436,18 @@ export default class AdminOrdersController {
             }
 
             // Check the company's payment balance to see if it has enough money to refund customer
-            PaymentServiceController.checkBalance(
-                Env.get('MYSQL_USER'),
+            const companyBalance = await PaymentServiceController.checkBalance(
+                Env.get('COMPANY_PHONE_NUMBER'),
                 order.currency
             )
+            if (companyBalance < order.totalPrice) {
+                return response
+                    .status(400)
+                    .json({
+                        message:
+                            'Failed to cancel. Company balance is less that refund amount',
+                    })
+            }
 
             // Check and update the order status based on the current status
             if (order.status === 'confirming') {
@@ -512,7 +520,7 @@ export default class AdminOrdersController {
 
             return response.status(200).json({ message: 'success' })
         } catch (error) {
-            console.log(error)
+            // console.log(error)
             return response.status(500).json({
                 error: 'An error occurred while updating the order status',
             })

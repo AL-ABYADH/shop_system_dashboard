@@ -1,14 +1,47 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
 import Address from 'App/Models/Address'
 import Order from 'App/Models/Order'
+import OrderItem from 'App/Models/OrderItem'
+import Price from 'App/Models/Price'
+import ProductItem from 'App/Models/ProductItem'
 import User from 'App/Models/User'
+
+// Define the OrderStatus type
+type OrderStatus =
+    | 'confirming'
+    | 'testing'
+    | 'done'
+    | 'confirmed'
+    | 'awaiting'
+    | 'canceled'
+    | 'returnRequest'
 
 export default class OrderSeeder extends BaseSeeder {
     public async run() {
+        // Check if enough available product items exist
+        const availableProductItemsCount = await ProductItem.query()
+            .where('status', 'available')
+            .count('* as total')
+
+        const totalAvailable = parseInt(availableProductItemsCount[0].total, 10)
+
+        // If not enough available items, assume the seeder has already run and exit
+        if (totalAvailable < 75) {
+            return
+        }
+
         const customers = await User.query().where('role', 'customer')
 
-        const orders: Array<any> = []
         let orderId = 1
+
+        // Get available product items
+        const productItems = await ProductItem.query().where(
+            'status',
+            'available'
+        )
+
+        // Counter for product items
+        let productItemCount = 0
 
         for (const customer of customers) {
             for (let i = 0; i < 5; i++) {
@@ -19,7 +52,13 @@ export default class OrderSeeder extends BaseSeeder {
                 const sellerAddressId =
                     await this.getCorrespondingSellerAddressId(sellerUserId)
 
-                orders.push({
+                const deliveryPrice = 2
+
+                let itemsPrice = 0
+
+                const orderItems: Array<any> = []
+
+                const order = {
                     id: orderId,
                     customerUserId: customer.id,
                     sellerUserId: sellerUserId,
@@ -27,33 +66,66 @@ export default class OrderSeeder extends BaseSeeder {
                     paymentMethodId: 1,
                     sellerAddressId: sellerAddressId!,
                     customerAddressId: customerAddressId!,
-                    deliveryPrice: this.getRandomDeliveryPrice(),
-                    totalPrice: 10000,
+                    deliveryPrice: deliveryPrice,
+                    totalPrice: 0,
+                    companyCommission: 0,
+                    adminCommission: 0,
                     currency: customer.preferredCurrency!,
-                    status: status,
-                })
+                    status: status, // This now correctly matches the OrderStatus type
+                }
+                const createdOrder = await Order.updateOrCreate(
+                    { id: orderId },
+                    order
+                )
+
+                for (let i = 0; i < 3; i++) {
+                    const productItem = productItems[productItemCount]
+                    itemsPrice += (await Price.find(productItem.priceId))!.price
+                    orderItems.push({
+                        id: productItemCount + 1,
+                        orderId: orderId,
+                        productItemId: productItem.id,
+                    })
+                    productItem.status = status == 'done' ? 'sold' : 'reserved'
+                    productItem.save()
+                    productItemCount++
+                }
+                await OrderItem.updateOrCreateMany('id', orderItems)
+
+                const companyCommission = (itemsPrice * 5) / 100
+                const adminCommission = (itemsPrice * 5) / 100
+
+                createdOrder.totalPrice =
+                    deliveryPrice +
+                    itemsPrice +
+                    companyCommission +
+                    adminCommission
+                createdOrder.companyCommission = companyCommission
+                createdOrder.adminCommission = adminCommission
+                createdOrder.save()
+
                 orderId++
             }
         }
-        await Order.updateOrCreateMany('id', orders)
     }
 
-    private getRandomStatusAndAdmin() {
-        // Enhanced logic to include 'awaiting' status
-        const statuses = [
+    private getRandomStatusAndAdmin(): {
+        status: OrderStatus
+        adminUserId: number | null
+    } {
+        const statuses: OrderStatus[] = [
             'confirming',
             'testing',
             'done',
             'confirmed',
             'awaiting',
-        ] // Include 'awaiting' in the list
+        ]
         const randomStatus =
             statuses[Math.floor(Math.random() * statuses.length)]
 
         if (randomStatus === 'confirmed' || randomStatus === 'awaiting') {
             return { status: randomStatus, adminUserId: null }
         } else {
-            // For 'confirming', 'testing', 'done', assign adminUserId as 1
             return { status: randomStatus, adminUserId: 1 }
         }
     }
@@ -80,9 +152,5 @@ export default class OrderSeeder extends BaseSeeder {
             .where('userId', customerId)
             .first()
         return customerAddress ? customerAddress.id : null
-    }
-
-    private getRandomDeliveryPrice = (): number | null => {
-        return Math.random() < 0.5 ? null : Math.floor(Math.random() * 100)
     }
 }
