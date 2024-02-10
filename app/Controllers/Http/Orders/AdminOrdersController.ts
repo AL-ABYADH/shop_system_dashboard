@@ -444,7 +444,7 @@ export default class AdminOrdersController {
             }
 
             // Check the order status
-            if (order.status !== 'confirming' || 'testing') {
+            if (order.status !== 'confirming' && order.status !== 'testing') {
                 return response
                     .status(400)
                     .json({ message: 'Invalid order status' })

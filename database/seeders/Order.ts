@@ -5,6 +5,7 @@ import OrderItem from 'App/Models/OrderItem'
 import Price from 'App/Models/Price'
 import ProductItem from 'App/Models/ProductItem'
 import User from 'App/Models/User'
+import ExchangesController from 'App/Controllers/ExchangesController'
 
 // Define the OrderStatus type
 type OrderStatus =
@@ -81,7 +82,22 @@ export default class OrderSeeder extends BaseSeeder {
 
                 for (let i = 0; i < 3; i++) {
                     const productItem = productItems[productItemCount]
-                    itemsPrice += (await Price.find(productItem.priceId))!.price
+
+                    // Check the currency of the item's price to convert it to the customer's preferred currency
+                    const price = (await Price.find(productItem.priceId))!
+                    if (price.currency != customer.preferredCurrency) {
+                        const exchangeRates =
+                            await ExchangesController.getExchanges()
+                        itemsPrice +=
+                            price.price *
+                            Number(exchangeRates[customer.preferredCurrency!])
+                        console.log('converted:')
+                        console.log(price.currency)
+                        console.log(customer.preferredCurrency)
+                        console.log(price.price)
+                        console.log(itemsPrice)
+                    } else itemsPrice += price!.price
+
                     orderItems.push({
                         id: productItemCount + 1,
                         orderId: orderId,
