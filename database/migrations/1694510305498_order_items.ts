@@ -11,6 +11,7 @@ export default class OrderItems extends BaseSchema {
                 .unsigned()
                 .references('orders.id')
                 .notNullable()
+            table.decimal('order_item_price', 10, 2).unsigned().notNullable()
             table
                 .integer('product_item_id')
                 .unsigned()

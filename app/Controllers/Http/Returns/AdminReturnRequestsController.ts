@@ -243,23 +243,18 @@ export default class AdminReturnRequestsController {
             }
 
             // Get the currently authenticated user
-            // const admin = await auth.use('web').authenticate()
-            const admin = (await User.find(order.adminUserId))!
+            const admin = await auth.use('web').authenticate()
+            // const admin = (await User.find(order.adminUserId))!
 
             if (returnedItemIds.length !== 0) {
                 // Handle the payment here after insuring the items were found and only proceed with cancelation logic if payment was successful
-                const returnedProductItemsPrices: number[] = await Promise.all(
-                    returnedProductItems.map(
-                        async (item) => (await Price.find(item.priceId))!.price
-                    )
+                const returnedOrderItemsPrices: number[] = await Promise.all(
+                    returnedOrderItems.map(async (item) => item.orderItemPrice)
                 )
                 const totalReturnedItemsPrice: number =
-                    returnedProductItemsPrices.reduce(
-                        (totalPrice, itemPrice) => {
-                            return totalPrice + itemPrice
-                        },
-                        0
-                    ) // Get the total returned items price the seller took
+                    returnedOrderItemsPrices.reduce((totalPrice, itemPrice) => {
+                        return totalPrice + itemPrice
+                    }, 0) // Get the total returned items price the seller took
                 const returnedAdminCommission =
                     totalReturnedItemsPrice * (5 / 100) // Get the 5% the admin took as commission
                 const returnedCompanyCommission =

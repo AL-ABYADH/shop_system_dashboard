@@ -44,7 +44,7 @@ export default class UserSeeder extends BaseSeeder {
                     fullName: `Customer User ${i}`,
                     phoneNumber: `77777788${i}`,
                     role: 'customer',
-                    preferredCurrency: 'SAR',
+                    preferredCurrency: 'USD',
                     imageUrl: 'https://picsum.photos/200',
                 }
             )

@@ -88,17 +88,19 @@ export default class OrderSeeder extends BaseSeeder {
 
                 for (let i = 0; i < 3; i++) {
                     const productItem = productItems[productItemCount]
+                    const price = (await Price.find(productItem.priceId))!
+                    let orderItemPrice: number = price.price
 
                     // Check if the product item's price currency is not equal to the customer's preferred currency to convert it accordingly
-                    const price = (await Price.find(productItem.priceId))!
                     if (price.currency != customer.preferredCurrency) {
                         if (
                             price.currency == 'USD' &&
                             customer.preferredCurrency == 'YER'
                         ) {
                             // Convert from USD to YER
-                            itemsPrice +=
+                            orderItemPrice =
                                 price.price * Number(exchangeRates['USD'])
+                            itemsPrice += orderItemPrice
                         } else if (
                             price.currency == 'USD' &&
                             customer.preferredCurrency == 'SAR'
@@ -106,15 +108,17 @@ export default class OrderSeeder extends BaseSeeder {
                             // Convert from USD to SAR (First convert USD to YER then YER to SAR)
                             const usdToYer =
                                 price.price * Number(exchangeRates['USD'])
-                            itemsPrice +=
+                            orderItemPrice =
                                 usdToYer / Number(exchangeRates['SAR'])
+                            itemsPrice += orderItemPrice
                         } else if (
                             price.currency == 'SAR' &&
                             customer.preferredCurrency == 'YER'
                         ) {
                             // Convert from SAR to YER
-                            itemsPrice +=
+                            orderItemPrice =
                                 price.price * Number(exchangeRates['SAR'])
+                            itemsPrice += orderItemPrice
                         } else if (
                             price.currency == 'SAR' &&
                             customer.preferredCurrency == 'USD'
@@ -122,29 +126,33 @@ export default class OrderSeeder extends BaseSeeder {
                             // Convert from SAR to USD (First convert SAR to YER then YER to USD)
                             const sarToYer =
                                 price.price * Number(exchangeRates['SAR'])
-                            itemsPrice +=
+                            orderItemPrice =
                                 sarToYer / Number(exchangeRates['USD'])
+                            itemsPrice += orderItemPrice
                         } else if (
                             price.currency == 'YER' &&
                             customer.preferredCurrency == 'SAR'
                         ) {
                             // Convert from YER to SAR
-                            itemsPrice +=
+                            orderItemPrice =
                                 price.price / Number(exchangeRates['SAR'])
+                            itemsPrice += orderItemPrice
                         } else if (
                             price.currency == 'YER' &&
                             customer.preferredCurrency == 'USD'
                         ) {
                             // Convert from YER to USD
-                            itemsPrice +=
+                            orderItemPrice =
                                 price.price / Number(exchangeRates['USD'])
+                            itemsPrice += orderItemPrice
                         }
-                    } else itemsPrice += price.price
+                    } else itemsPrice += orderItemPrice
 
                     orderItems.push({
                         id: productItemCount + 1,
                         orderId: orderId,
                         productItemId: productItem.id,
+                        orderItemPrice: orderItemPrice,
                     })
                     productItem.status = status == 'done' ? 'sold' : 'reserved'
                     productItem.save()

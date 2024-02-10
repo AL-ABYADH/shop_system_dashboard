@@ -22,6 +22,9 @@ export default class OrderItem extends BaseModel {
     public order: BelongsTo<typeof Order>
 
     @column()
+    public orderItemPrice: number // Price after currency conversion
+
+    @column()
     public productItemId: number
 
     @belongsTo(() => ProductItem)
