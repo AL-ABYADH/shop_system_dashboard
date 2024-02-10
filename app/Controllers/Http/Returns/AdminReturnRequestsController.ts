@@ -198,7 +198,14 @@ export default class AdminReturnRequestsController {
             const returnedOrderItems: OrderItem[] = []
             const returnedProductItems: ProductItem[] = []
             for (const id of returnedItemIds) {
-                const orderItem = await OrderItem.find(id)
+                const returnRequestItem = await ReturnRequestItem.find(id)
+                if (!returnRequestItem)
+                    return response
+                        .status(404)
+                        .json({ message: 'Return request item not found' })
+                const orderItem = await OrderItem.find(
+                    returnRequestItem.orderItemId
+                )
                 if (!orderItem || orderItem.orderId != returnRequest.orderId)
                     return response
                         .status(404)
