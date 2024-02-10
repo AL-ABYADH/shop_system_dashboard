@@ -272,7 +272,7 @@
             </div>
             <div class="justify-center flex w-full">
                 <button
-                    :disabled="loading"
+                    :disabled="loading || successMessage.length != 0"
                     class="mt-4 text-white bg-primary p-2 ml-2 rounded-md w-60 hover:bg-primary-opacity2"
                     @click="handleOrder(orderId)"
                 >
@@ -456,31 +456,33 @@ export default {
             return time + formattedDate
         },
         async handleOrder(orderId) {
+            this.loading = true
             try {
-                this.loading = true 
                 const response = await axios.put(
                     `/orders/handle-order/${orderId}`
                 )
-                console.log(response.data) 
+                console.log(response.data)
 
-  
+                this.loading = false
                 this.successMessage = 'تمت المعالجة بنجاح'
-                this.snackbarVisible = true 
+                this.snackbarVisible = true
+                location.reload()
             } catch (error) {
                 console.error(
                     'Error occurred while updating order status:',
                     error
                 )
-                this.errorMessage = 'فشلت المعالجة' 
-                this.snackbarVisible = true 
+                this.errorMessage = 'فشلت المعالجة'
+                this.snackbarVisible = true
                 this.loading = false
                 // Handle error
             } finally {
                 // Reload the page after 2 seconds
                 setTimeout(() => {
-                    location.reload()
+                    this.snackbarVisible = false
                 }, 2000)
-                 // Set loading to false when the request completes (either success or failure)
+                
+                // Set loading to false when the request completes (either success or failure)
             }
         },
     },
