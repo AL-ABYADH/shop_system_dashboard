@@ -15,18 +15,12 @@ export default class PaymentServiceController {
         return response['data']['balance']
     }
 
-    public static async pay({
-        from,
-        to,
-        amount,
-        currency,
-    }: PaymentArgs): Promise<number> {
+    public static async pay({ from, to, amount, currency }: PaymentArgs) {
         const url = `${Env.get(
             'PAYMENT_URL'
         )}/pay?from=${from}&to=${to}&amount=${amount}&currency=${currency}`
         // console.log(url)
-        const response = await axios.put(url)
-        return response['data']['balance']
+        await axios.put(url)
     }
 }
 

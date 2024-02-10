@@ -11,6 +11,8 @@ import ReturnRequestItem from 'App/Models/ReturnRequestItem'
 import ImagesGroup from 'App/Models/ImagesGroup'
 import ImageItem from 'App/Models/ImageItem'
 import Order from 'App/Models/Order'
+import Env from '@ioc:Adonis/Core/Env'
+import PaymentServiceController from 'App/Controllers/PaymentServiceController'
 // import ImagesGroup from 'App/Models/ImagesGroup'
 // import ImageItem from 'App/Models/ImageItem'
 
@@ -162,7 +164,7 @@ export default class AdminReturnRequestsController {
             } else {
                 return response
                     .status(400)
-                    .json({ message: 'Invalid return request states' })
+                    .json({ message: 'Invalid return request status' })
             }
 
             await returnRequest.save()
@@ -176,58 +178,170 @@ export default class AdminReturnRequestsController {
         }
     }
 
-    public async resolveReturnRequest({ params, request, response }) {
+    public async resolveReturnRequest({ auth, params, request, response }) {
         try {
             const returnRequestId = params.returnRequestId
             const returnRequest = await ReturnRequest.find(returnRequestId)
-
-            const returnedItemIds = request.input('returnedItemIds', [])
-
             if (!returnRequest) {
                 return response
                     .status(404)
                     .json({ message: 'Return request not found' })
             }
+            // Check the return request status
+            if (returnRequest.status !== 'evaluating') {
+                return response
+                    .status(400)
+                    .json({ message: 'Invalid return request status' })
+            }
 
-            // Check and update the return request status based on the current status
-            if (returnRequest.status === 'evaluating') {
-                // Set the returned product item status to returned, and order item returned to true
+            const returnedItemIds = request.input('returnedItemIds', [])
+            const returnedOrderItems: OrderItem[] = []
+            const returnedProductItems: ProductItem[] = []
+            for (const id of returnedItemIds) {
+                const orderItem = await OrderItem.find(id)
+                if (!orderItem || orderItem.orderId != returnRequest.orderId)
+                    return response
+                        .status(404)
+                        .json({ message: 'Order item not found' })
+                returnedOrderItems.push(orderItem)
+                const productItem = await ProductItem.find(
+                    orderItem!.productItemId
+                )
+                if (!productItem)
+                    return response
+                        .status(404)
+                        .json({ message: 'Order item not found' })
+                returnedProductItems.push(productItem)
+            }
 
-                for (const id of returnedItemIds) {
-                    const orderItem = await OrderItem.find(id)
-                    if (
-                        !orderItem ||
-                        orderItem.orderId != returnRequest.orderId
+            const order = await Order.find(returnRequest.orderId)
+            if (!order) {
+                return response
+                    .status(404)
+                    .json({ message: 'Return request order not found' })
+            }
+
+            const customer = await User.find(order.customerUserId)
+            if (!customer) {
+                return response
+                    .status(404)
+                    .json({ message: 'Customer not found' })
+            }
+
+            const seller = await User.find(order.sellerUserId)
+            if (!seller) {
+                return response
+                    .status(404)
+                    .json({ message: 'Seller not found' })
+            }
+
+            // Get the currently authenticated user
+            // const admin = await auth.use('web').authenticate()
+            const admin = (await User.find(order.adminUserId))!
+
+            if (returnedItemIds.length !== 0) {
+                // Handle the payment here after insuring the items were found and only proceed with cancelation logic if payment was successful
+                const returnedProductItemsPrices: number[] = await Promise.all(
+                    returnedProductItems.map(
+                        async (item) => (await Price.find(item.priceId))!.price
                     )
-                        return response
-                            .status(404)
-                            .json({ message: 'Order item not found' })
-                    const productItem = await ProductItem.find(
-                        orderItem.productItemId
+                )
+                const totalReturnedItemsPrice: number =
+                    returnedProductItemsPrices.reduce(
+                        (totalPrice, itemPrice) => {
+                            return totalPrice + itemPrice
+                        },
+                        0
+                    ) // Get the total returned items price the seller took
+                const returnedAdminCommission =
+                    totalReturnedItemsPrice * (5 / 100) // Get the 5% the admin took as commission
+                const returnedCompanyCommission =
+                    totalReturnedItemsPrice * (5 / 100) // Get the 5% the company took as commission
+
+                // Check the company's payment balance to see if it has enough money to refund customer
+                const companyBalance =
+                    await PaymentServiceController.checkBalance(
+                        Env.get('COMPANY_PHONE_NUMBER'),
+                        order.currency
+                    )
+                // console.log(companyBalance)
+                if (companyBalance < returnedCompanyCommission) {
+                    return response.status(400).json({
+                        message:
+                            'Failed to cancel. Company balance is less than refund amount',
+                    })
+                }
+
+                // Check the seller's payment balance to see if it has enough money to refund customer
+                const sellerBalance =
+                    await PaymentServiceController.checkBalance(
+                        seller.phoneNumber,
+                        order.currency
+                    )
+                // console.log(sellerBalance)
+                if (sellerBalance < totalReturnedItemsPrice) {
+                    return response.status(400).json({
+                        message:
+                            'Failed to cancel. Seller balance is less than refund amount',
+                    })
+                }
+
+                // Check the admin's payment balance to see if it has enough money to refund customer
+                const adminBalance =
+                    await PaymentServiceController.checkBalance(
+                        admin.phoneNumber,
+                        order.currency
+                    )
+                // console.log(adminBalance)
+                if (adminBalance < returnedAdminCommission) {
+                    return response.status(400).json({
+                        message:
+                            'Failed to cancel. Admin balance is less than refund amount',
+                    })
+                }
+
+                await PaymentServiceController.pay({
+                    from: Env.get('COMPANY_PHONE_NUMBER'),
+                    to: customer.phoneNumber,
+                    amount: returnedCompanyCommission,
+                    currency: order.currency,
+                })
+                await PaymentServiceController.pay({
+                    from: seller.phoneNumber,
+                    to: customer.phoneNumber,
+                    amount: totalReturnedItemsPrice,
+                    currency: order.currency,
+                })
+                await PaymentServiceController.pay({
+                    from: admin.phoneNumber,
+                    to: customer.phoneNumber,
+                    amount: returnedAdminCommission,
+                    currency: order.currency,
+                })
+
+                // Set the returned product item status to returned, and order item returned to true
+                for (const orderItem of returnedOrderItems) {
+                    const productItem = returnedProductItems.find(
+                        (item) => item.id == orderItem.productItemId
                     )
                     orderItem.returned = true
                     productItem!.status = 'returned'
                     orderItem.save()
                     productItem!.save()
                 }
-
-                returnRequest.status = 'resolved'
-            } else {
-                return response
-                    .status(400)
-                    .json({ message: 'Invalid return request states' })
             }
 
+            returnRequest.status = 'resolved'
+
             // Set the order status back to done
-            const order = await Order.find(returnRequest.orderId)
-            order!.status = 'done'
-            order!.save()
+            order.status = 'done'
+            order.save()
 
             await returnRequest.save()
 
             return response.status(200).json({ message: 'success' })
         } catch (error) {
-            // console.log(error)
+            console.log(error)
             return response.status(500).json({
                 error: 'An error occurred while updating the return request status',
             })

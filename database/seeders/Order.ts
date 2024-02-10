@@ -93,8 +93,8 @@ export default class OrderSeeder extends BaseSeeder {
                 }
                 await OrderItem.updateOrCreateMany('id', orderItems)
 
-                const companyCommission = (itemsPrice * 5) / 100
-                const adminCommission = (itemsPrice * 5) / 100
+                const companyCommission = itemsPrice * (5 / 100) // 5% of the total items price goes for the company
+                const adminCommission = itemsPrice * (5 / 100) // 5% of the total items price goes for the admin
 
                 createdOrder.totalPrice =
                     deliveryPrice +

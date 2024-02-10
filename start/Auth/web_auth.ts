@@ -8,5 +8,5 @@ Route.group(() => {
     //     'checkPaymentAccount'
     // )
 
-    Route.post('/logout', 'Auth/WebAuthController.logout')
+    Route.get('/logout', 'Auth/WebAuthController.logout')
 }).prefix('auth')

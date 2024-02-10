@@ -42,14 +42,14 @@ export default class ReturnRequestSeeder extends BaseSeeder {
                         returnRequest.id,
                         order.id
                     )
-                }
+                } else return
             }
         }
     }
 
     private async getRandomOrder(): Promise<Order | null> {
         // Fetch orders that are not yet associated with a return request
-        const orders = await Order.query().whereNot('status', 'returnRequest')
+        const orders = await Order.query().where('status', 'done')
         if (orders.length === 0) {
             return null
         }

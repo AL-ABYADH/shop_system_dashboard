@@ -378,7 +378,7 @@ export default class AdminOrdersController {
             } else {
                 return response
                     .status(400)
-                    .json({ message: 'Invalid order states' })
+                    .json({ message: 'Invalid order status' })
             }
 
             order.adminUserId = user.id
@@ -409,7 +409,7 @@ export default class AdminOrdersController {
             } else {
                 return response
                     .status(400)
-                    .json({ message: 'Invalid order states' })
+                    .json({ message: 'Invalid order status' })
             }
 
             await order.save()
@@ -443,6 +443,13 @@ export default class AdminOrdersController {
                 return response.status(404).json({ message: 'Order not found' })
             }
 
+            // Check the order status
+            if (order.status !== 'confirming' || 'testing') {
+                return response
+                    .status(400)
+                    .json({ message: 'Invalid order status' })
+            }
+
             // Check the company's payment balance to see if it has enough money to refund customer
             const companyBalance = await PaymentServiceController.checkBalance(
                 Env.get('COMPANY_PHONE_NUMBER'),
@@ -452,12 +459,12 @@ export default class AdminOrdersController {
             if (companyBalance < order.totalPrice) {
                 return response.status(400).json({
                     message:
-                        'Failed to cancel order. Company balance is less that refund amount',
+                        'Failed to cancel order. Company balance is less than refund amount',
                 })
             }
 
             // Handle the payment here after insuring the items were found and only proceed with cancelation logic if payment was successful
-            PaymentServiceController.pay({
+            await PaymentServiceController.pay({
                 from: Env.get('COMPANY_PHONE_NUMBER'),
                 to: (await User.find(order.customerUserId))!.phoneNumber,
                 amount: order.totalPrice,
@@ -521,10 +528,6 @@ export default class AdminOrdersController {
                 }
 
                 order.status = 'canceled'
-            } else {
-                return response
-                    .status(400)
-                    .json({ message: 'Invalid order states' })
             }
 
             await order.save()
@@ -547,6 +550,13 @@ export default class AdminOrdersController {
                 return response.status(404).json({ message: 'Order not found' })
             }
 
+            // Check and update the order status based on the current status
+            if (order.status !== 'testing') {
+                return response
+                    .status(400)
+                    .json({ message: 'Invalid order status' })
+            }
+
             // Check the company's payment balance to see if it has enough money to refund customer
             const companyBalance = await PaymentServiceController.checkBalance(
                 Env.get('COMPANY_PHONE_NUMBER'),
@@ -556,34 +566,27 @@ export default class AdminOrdersController {
             if (companyBalance < order.totalPrice) {
                 return response.status(400).json({
                     message:
-                        'Failed to finish order. Company balance is less that refund amount',
+                        'Failed to finish order. Company balance is less than refund amount',
                 })
             }
 
-            // Check and update the order status based on the current status
-            if (order.status === 'testing') {
-                // Handle the payment here after insuring the items were found and only proceed with cancelation logic if payment was successful
-                PaymentServiceController.pay({
-                    from: Env.get('COMPANY_PHONE_NUMBER'),
-                    to: (await User.find(order.sellerUserId))!.phoneNumber,
-                    amount: order.itemsPrice,
-                    currency: order.currency,
-                })
-                PaymentServiceController.pay({
-                    from: Env.get('COMPANY_PHONE_NUMBER'),
-                    to: (await User.find(order.adminUserId))!.phoneNumber,
-                    amount:
-                        order.adminCommission +
-                        (order.deliveryPrice != null ? order.deliveryPrice : 0),
-                    currency: order.currency,
-                })
+            // Handle the payment here after insuring the items were found and only proceed with cancelation logic if payment was successful
+            await PaymentServiceController.pay({
+                from: Env.get('COMPANY_PHONE_NUMBER'),
+                to: (await User.find(order.sellerUserId))!.phoneNumber,
+                amount: order.itemsPrice,
+                currency: order.currency,
+            })
+            await PaymentServiceController.pay({
+                from: Env.get('COMPANY_PHONE_NUMBER'),
+                to: (await User.find(order.adminUserId))!.phoneNumber,
+                amount:
+                    order.adminCommission +
+                    (order.deliveryPrice != null ? order.deliveryPrice : 0),
+                currency: order.currency,
+            })
 
-                order.status = 'done'
-            } else {
-                return response
-                    .status(400)
-                    .json({ message: 'Invalid order states' })
-            }
+            order.status = 'done'
 
             // Set order items to sold
             const orderItems = await OrderItem.query().where('orderId', orderId)
