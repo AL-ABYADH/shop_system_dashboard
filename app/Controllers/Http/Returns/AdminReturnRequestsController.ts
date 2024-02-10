@@ -217,7 +217,7 @@ export default class AdminReturnRequestsController {
                 if (!productItem)
                     return response
                         .status(404)
-                        .json({ message: 'Order item not found' })
+                        .json({ message: 'Order product item not found' })
                 returnedProductItems.push(productItem)
             }
 
@@ -343,7 +343,7 @@ export default class AdminReturnRequestsController {
 
             return response.status(200).json({ message: 'success' })
         } catch (error) {
-            console.log(error)
+            // console.log(error)
             return response.status(500).json({
                 error: 'An error occurred while updating the return request status',
             })

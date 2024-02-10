@@ -429,14 +429,60 @@ export default class AdminOrdersController {
             const order = await Order.find(orderId)
 
             const unavailableItemIds = request.input('unavailableItemIds', [])
+            if (
+                unavailableItemIds.length == 0 &&
+                order?.status == 'confirming'
+            ) {
+                return response.status(400).json({
+                    message:
+                        'Cannot cancel order in the status of confirming with no unavailable items',
+                })
+            }
+            const unavailableOrderItems: OrderItem[] = []
+            const unavailableProductItems: ProductItem[] = []
+
             const missMatchedItemIds = request.input('missMatchedItemIds', [])
+            if (missMatchedItemIds.length == 0 && order?.status == 'testing') {
+                return response.status(400).json({
+                    message:
+                        'Cannot cancel order in the status of testing with no miss-matched items',
+                })
+            }
+            const missMatchedOrderItems: OrderItem[] = []
+            const missMatchedProductItems: ProductItem[] = []
+
             // Check if the provided ids are valid
-            for (const id of unavailableItemIds.concat(missMatchedItemIds)) {
+            for (const id of unavailableItemIds) {
                 const orderItem = await OrderItem.find(id)
                 if (!orderItem || orderItem.orderId != orderId)
                     return response
                         .status(404)
                         .json({ message: 'Order item not found' })
+                unavailableOrderItems.push(orderItem)
+                const productItem = await ProductItem.find(
+                    orderItem.productItemId
+                )
+                if (!productItem)
+                    return response
+                        .status(404)
+                        .json({ message: 'Order product item not found' })
+                unavailableProductItems.push(productItem)
+            }
+            for (const id of missMatchedItemIds) {
+                const orderItem = await OrderItem.find(id)
+                if (!orderItem || orderItem.orderId != orderId)
+                    return response
+                        .status(404)
+                        .json({ message: 'Order item not found' })
+                missMatchedOrderItems.push(orderItem)
+                const productItem = await ProductItem.find(
+                    orderItem.productItemId
+                )
+                if (!productItem)
+                    return response
+                        .status(404)
+                        .json({ message: 'Order product item not found' })
+                missMatchedProductItems.push(productItem)
             }
 
             if (!order) {
@@ -474,13 +520,12 @@ export default class AdminOrdersController {
             // Check and update the order status based on the current status
             if (order.status === 'confirming') {
                 // Set unavailable items to sold
-                for (const id of unavailableItemIds) {
-                    const orderItem = await OrderItem.find(id)
-                    const item = await ProductItem.find(
-                        orderItem!.productItemId
+                for (const orderItem of unavailableOrderItems) {
+                    const productItem = unavailableProductItems.find(
+                        (item) => item.id == orderItem.productItemId
                     )
-                    item!.status = 'sold'
-                    await item!.save()
+                    productItem!.status = 'sold'
+                    await productItem!.save()
                 }
 
                 // Set available items back to available
@@ -502,13 +547,12 @@ export default class AdminOrdersController {
                 order.status = 'canceled'
             } else if (order.status === 'testing') {
                 // Delete missMatched items
-                for (const id of missMatchedItemIds) {
-                    const orderItem = await OrderItem.find(id)
-                    const item = await ProductItem.find(
-                        orderItem!.productItemId
+                for (const orderItem of missMatchedOrderItems) {
+                    const productItem = missMatchedProductItems.find(
+                        (item) => item.id == orderItem.productItemId
                     )
-                    item!.softDelete()
-                    await item!.save()
+                    productItem!.softDelete()
+                    await productItem!.save()
                 }
 
                 // Set available items back to available
