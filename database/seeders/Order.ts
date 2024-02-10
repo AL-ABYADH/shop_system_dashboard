@@ -68,6 +68,7 @@ export default class OrderSeeder extends BaseSeeder {
                     customerAddressId: customerAddressId!,
                     deliveryPrice: deliveryPrice,
                     totalPrice: 0,
+                    itemsPrice: 0,
                     companyCommission: 0,
                     adminCommission: 0,
                     currency: customer.preferredCurrency!,
@@ -100,6 +101,7 @@ export default class OrderSeeder extends BaseSeeder {
                     itemsPrice +
                     companyCommission +
                     adminCommission
+                createdOrder.itemsPrice = itemsPrice
                 createdOrder.companyCommission = companyCommission
                 createdOrder.adminCommission = adminCommission
                 createdOrder.save()

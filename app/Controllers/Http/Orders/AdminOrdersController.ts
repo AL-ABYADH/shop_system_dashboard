@@ -430,6 +430,14 @@ export default class AdminOrdersController {
 
             const unavailableItemIds = request.input('unavailableItemIds', [])
             const missMatchedItemIds = request.input('missMatchedItemIds', [])
+            // Check if the provided ids are valid
+            for (const id of unavailableItemIds.concat(missMatchedItemIds)) {
+                const orderItem = await OrderItem.find(id)
+                if (!orderItem || orderItem.orderId != orderId)
+                    return response
+                        .status(404)
+                        .json({ message: 'Order item not found' })
+            }
 
             if (!order) {
                 return response.status(404).json({ message: 'Order not found' })
@@ -440,25 +448,30 @@ export default class AdminOrdersController {
                 Env.get('COMPANY_PHONE_NUMBER'),
                 order.currency
             )
+            // console.log(companyBalance)
             if (companyBalance < order.totalPrice) {
-                return response
-                    .status(400)
-                    .json({
-                        message:
-                            'Failed to cancel. Company balance is less that refund amount',
-                    })
+                return response.status(400).json({
+                    message:
+                        'Failed to cancel order. Company balance is less that refund amount',
+                })
             }
+
+            // Handle the payment here after insuring the items were found and only proceed with cancelation logic if payment was successful
+            PaymentServiceController.pay({
+                from: Env.get('COMPANY_PHONE_NUMBER'),
+                to: (await User.find(order.customerUserId))!.phoneNumber,
+                amount: order.totalPrice,
+                currency: order.currency,
+            })
 
             // Check and update the order status based on the current status
             if (order.status === 'confirming') {
                 // Set unavailable items to sold
                 for (const id of unavailableItemIds) {
                     const orderItem = await OrderItem.find(id)
-                    if (!orderItem || orderItem.orderId != orderId)
-                        return response
-                            .status(404)
-                            .json({ message: 'Order item not found' })
-                    const item = await ProductItem.find(orderItem.productItemId)
+                    const item = await ProductItem.find(
+                        orderItem!.productItemId
+                    )
                     item!.status = 'sold'
                     await item!.save()
                 }
@@ -479,16 +492,14 @@ export default class AdminOrdersController {
                     await productItem!.save()
                 }
 
-                // order.status = 'canceled'
+                order.status = 'canceled'
             } else if (order.status === 'testing') {
                 // Delete missMatched items
                 for (const id of missMatchedItemIds) {
                     const orderItem = await OrderItem.find(id)
-                    if (!orderItem || orderItem.orderId != orderId)
-                        return response
-                            .status(404)
-                            .json({ message: 'Order item not found' })
-                    const item = await ProductItem.find(orderItem.productItemId)
+                    const item = await ProductItem.find(
+                        orderItem!.productItemId
+                    )
                     item!.softDelete()
                     await item!.save()
                 }
@@ -509,7 +520,7 @@ export default class AdminOrdersController {
                     await productItem!.save()
                 }
 
-                // order.status = 'canceled'
+                order.status = 'canceled'
             } else {
                 return response
                     .status(400)
@@ -536,8 +547,37 @@ export default class AdminOrdersController {
                 return response.status(404).json({ message: 'Order not found' })
             }
 
+            // Check the company's payment balance to see if it has enough money to refund customer
+            const companyBalance = await PaymentServiceController.checkBalance(
+                Env.get('COMPANY_PHONE_NUMBER'),
+                order.currency
+            )
+            // console.log(companyBalance)
+            if (companyBalance < order.totalPrice) {
+                return response.status(400).json({
+                    message:
+                        'Failed to finish order. Company balance is less that refund amount',
+                })
+            }
+
             // Check and update the order status based on the current status
             if (order.status === 'testing') {
+                // Handle the payment here after insuring the items were found and only proceed with cancelation logic if payment was successful
+                PaymentServiceController.pay({
+                    from: Env.get('COMPANY_PHONE_NUMBER'),
+                    to: (await User.find(order.sellerUserId))!.phoneNumber,
+                    amount: order.itemsPrice,
+                    currency: order.currency,
+                })
+                PaymentServiceController.pay({
+                    from: Env.get('COMPANY_PHONE_NUMBER'),
+                    to: (await User.find(order.adminUserId))!.phoneNumber,
+                    amount:
+                        order.adminCommission +
+                        (order.deliveryPrice != null ? order.deliveryPrice : 0),
+                    currency: order.currency,
+                })
+
                 order.status = 'done'
             } else {
                 return response
