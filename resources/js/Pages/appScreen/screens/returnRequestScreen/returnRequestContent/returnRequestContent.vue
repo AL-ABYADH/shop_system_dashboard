@@ -3,7 +3,9 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <div class="bg-white w-full rounded-md p-4 mb-4 text-xs sm:text-lg transition-transform duration-300">
+    <div
+        class="bg-white w-full rounded-md p-4 mb-4 text-xs sm:text-lg transition-transform duration-300"
+    >
         <div class="flex justify-between">
             <div>
                 <table>
@@ -263,24 +265,79 @@
             >
                 <button
                     class="mt-4 text-white bg-primary p-2 ml-2 rounded-md w-60 hover:bg-primary-opacity2"
+                    @click="showReturningDialog = true"
                 >
-                    قبول 
+                    قبول
                 </button>
                 <button
+                    :disabled="loading || successMessage.length != 0"
                     class="mt-4 text-white bg-red-600 p-2 rounded-md w-60 hover:bg-primary-opacity2"
+                    @click="resolveDismissedReturnRequest(returnRequestId)"
                 >
-                    رفض 
+                {{ loading ? 'جاري المعالجة...' : 'رفض ' }}
                 </button>
             </div>
             <div
+                :disabled="loading || successMessage.length != 0"
                 class="justify-center flex w-full"
                 v-if="returnRequestStatus == 'awaiting'"
+                @click="handleReturnRequest(returnRequestId)"
             >
                 <button
                     class="mt-4 text-white bg-primary p-2 ml-2 rounded-md w-60 hover:bg-primary-opacity2"
                 >
-                    التحقق من الطلب
+                    {{ loading ? 'جاري المعالجة...' : ' التحقق من الطلب' }}
                 </button>
+            </div>
+            <div v-if="showReturningDialog" class="return-popup">
+                <div class="return-content">
+                    <div class="flex">
+                        <i
+                            class="fa fa-question-circle fa-lg mt-1 ml-2"
+                            aria-hidden="true"
+                        ></i>
+                        <p class="mb-2 text-start">العناصر المرجعة:</p>
+                    </div>
+
+                    <ul>
+                        <li
+                            v-for="(device, index) in devices"
+                            :key="index"
+                            class="text-end"
+                        >
+                            <input
+                                type="checkbox"
+                                v-model="selectedReturnedProducts[index]"
+                            />
+                            <strong class="w-20 mr-3">{{
+                                device.deviceName
+                            }}</strong>
+                        </li>
+                    </ul>
+                    <div class="w-full">
+                        <button
+                            :disabled="
+                                loadingReturning ||
+                                successMessage.length != 0 ||
+                                selectedReturnedProducts.length == 0
+                            "
+                            class="mt-4 text-white bg-primary p-2 w-44 ml-2 rounded-md hover:bg-primary-opacity2"
+                            @click="
+                                resolveAcceptedReturnRequest(returnRequestId)
+                            "
+                        >
+                            {{
+                                loadingReturning ? 'جاري المعالجة...' : ' تأكيد'
+                            }}
+                        </button>
+                        <button
+                            class="mt-4 text-white bg-red-600 p-2 w-44 rounded-md hover:bg-primary-opacity2"
+                            @click="closeDialog"
+                        >
+                            إلغاء
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="justify-center flex">
@@ -332,11 +389,15 @@
                 </div>
             </div>
         </transition>
+        <div v-if="snackbarVisible" class="snackbar" :class="snackbarType">
+            <span>{{ successMessage || errorMessage }}</span>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
 import dateFormat from 'dateformat'
+import axios from 'axios' // Import Axios for HTTP requests
 
 export default {
     props: {
@@ -359,9 +420,16 @@ export default {
     data() {
         return {
             expanded: false,
+            showReturningDialog: false,
             isModalActive: false,
             showImageDialog: false,
             modalImageUrl: '',
+            loading: false,
+            loadingReturning: false,
+            successMessage: '',
+            errorMessage: '',
+            snackbarVisible: false,
+            selectedReturnedProducts: [],
         }
     },
     computed: {
@@ -377,8 +445,14 @@ export default {
                 return 'بدون توصيل'
             }
         },
+        snackbarType() {
+            return this.successMessage ? 'success' : 'error'
+        },
     },
     methods: {
+        closeDialog() {
+            this.showReturningDialog = false
+        },
         checkPrice(devicePrice) {
             // Calculate the checkPrice as 20% of the device's price
             const checkPrice = 0.05 * devicePrice
@@ -447,11 +521,125 @@ export default {
             const time = dateFormat(dateObject, 'HH:mm:ss ')
             return time + formattedDate
         },
+        async handleReturnRequest(returnRequestId) {
+            this.loading = true
+            try {
+                const response = await axios.put(
+                    `/returns/handle-return-request/${returnRequestId}`
+                )
+                console.log(response.data)
+
+                this.loading = false
+                this.successMessage = 'تم القبول بنجاح'
+                this.snackbarVisible = true
+                location.reload()
+            } catch (error) {
+                console.error(
+                    'Error occurred while updating order status:',
+                    error
+                )
+                this.errorMessage = 'فشل قبول الطلب'
+                this.snackbarVisible = true
+                this.loading = false
+                // Handle error
+            } finally {
+                setTimeout(() => {
+                    this.snackbarVisible = false
+                }, 2000)
+
+                // Set loading to false when the request completes (either success or failure)
+            }
+        },
+        async resolveAcceptedReturnRequest(returnRequestId) {
+            this.loadingReturning = true
+            try {
+                const returnedItemIds = this.devices
+                    .filter((_, index) => this.selectedReturnedProducts[index])
+                    .map((device) => device.id)
+
+                const params = new URLSearchParams()
+                returnedItemIds.forEach((id) =>
+                    params.append('returnedItemIds[]', id)
+                )
+
+                const response = await axios.put(
+                    `/returns/resolve-return-request/${returnRequestId}?${params.toString()}`
+                )
+                console.log(response.status)
+                this.loadingReturning = false
+                this.successMessage = 'تم الإلغاء '
+                this.snackbarVisible = true
+                location.reload()
+            } catch (error) {
+                console.error(
+                    'Error occurred while updating order status:',
+                    error
+                )
+                this.errorMessage = 'فشل الإلغاء'
+                this.snackbarVisible = true
+                this.loadingReturning = false
+                // Handle error
+            } finally {
+                setTimeout(() => {
+                    this.snackbarVisible = false
+                }, 2000)
+            }
+        },
+        async resolveDismissedReturnRequest(returnRequestId) {
+            this.loading = true
+            try {
+                const response = await axios.put(
+                    `/returns/resolve-return-request/${returnRequestId}`
+                )
+                console.log(response.data)
+
+                this.loading = false
+                this.successMessage = 'تم الرفض بنجاح'
+                this.snackbarVisible = true
+                location.reload()
+            } catch (error) {
+                console.error(
+                    'Error occurred while updating order status:',
+                    error
+                )
+                this.errorMessage = 'فشل رفض الطلب'
+                this.snackbarVisible = true
+                this.loading = false
+                // Handle error
+            } finally {
+                setTimeout(() => {
+                    this.snackbarVisible = false
+                }, 2000)
+
+                // Set loading to false when the request completes (either success or failure)
+            }
+        },
     },
 }
 </script>
 
 <style scoped>
+.return-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* Ensure it's on top */
+}
+
+.return-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 400px; /* Adjust the width as needed */
+}
 .image-popup {
     position: fixed;
     top: 0;
@@ -506,5 +694,28 @@ export default {
 
 .popup-leave-to {
     transform: scale(0.9); /* Set final scale when closing */
+}
+.snackbar {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: #fff;
+    padding: 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    max-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.snackbar.success {
+    background-color: #4caf50;
+}
+
+.snackbar.error {
+    background-color: #f44336;
 }
 </style>
