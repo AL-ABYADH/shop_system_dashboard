@@ -5,22 +5,16 @@ export default class WebAuthController {
         return inertia.render('loginScreen')
     }
 
-    public async login({
-        request,
-        response,
-        session,
-        auth,
-    }: HttpContextContract) {
+    public async login({ request, response, auth }: HttpContextContract) {
         const { username, password } = request.only(['username', 'password'])
         try {
             await auth.use('web').attempt(username, password)
         } catch (err) {
-            console.log(err)
-            session.flash({ error: 'Username or password is incorrect' })
             response.redirect().back()
-            return response.json({ message: 'Invalid username or password' })
+            return response
+                .status(400)
+                .json({ message: 'Invalid username or password' })
         }
-
         return response.redirect().toPath('/')
     }
 
