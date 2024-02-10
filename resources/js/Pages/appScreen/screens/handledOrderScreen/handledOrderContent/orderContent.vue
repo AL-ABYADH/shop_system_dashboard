@@ -662,7 +662,7 @@ export default {
 
                 const params = new URLSearchParams()
                 missMatchedItemIds.forEach((id) =>
-                    params.append('missMatchedItemIds[]=', id)
+                    params.append('missMatchedItemIds[]', id)
                 )
                 console.log(params)
 
@@ -715,17 +715,6 @@ export default {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     text-align: center;
     max-width: 400px; /* Adjust the width as needed */
-}
-
-textarea {
-    width: 100%;
-    height: 100px; /* Adjust the height as needed */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    resize: vertical; /* Allow vertical resizing */
-    box-shadow: none;
 }
 
 .image-popup {
