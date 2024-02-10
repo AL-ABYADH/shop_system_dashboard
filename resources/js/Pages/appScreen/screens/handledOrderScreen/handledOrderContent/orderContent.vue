@@ -313,10 +313,11 @@
                 </ul>
                 <div class="w-full">
                     <button
+                        :disabled="loadingCanceling || successMessage.length != 0 || selectedUnavailableProducts.length == 0"
                         class="mt-4 text-white bg-primary p-2 w-44 ml-2 rounded-md hover:bg-primary-opacity2"
                         @click="cancelOrderConfirming(orderId)"
                     >
-                        تأكيد
+                    {{ loadingCanceling ? 'جاري المعالجة...' : ' تأكيد' }}
                     </button>
                     <button
                         class="mt-4 text-white bg-red-600 p-2 w-44 rounded-md hover:bg-primary-opacity2"
@@ -357,10 +358,11 @@
                 </ul>
                 <div class="w-full">
                     <button
+                        :disabled="loadingCanceling || successMessage.length != 0 || selectedMismatchedProducts.length == 0"
                         class="mt-4 text-white bg-primary p-2 w-44 ml-2 rounded-md hover:bg-primary-opacity2"
                         @click="cancelOrderTesting(orderId)"
                     >
-                        تأكيد
+                    {{ loadingCanceling ? 'جاري المعالجة...' : ' تأكيد' }}
                     </button>
                     <button
                         class="mt-4 text-white bg-red-600 p-2 w-44 rounded-md hover:bg-primary-opacity2"
@@ -456,6 +458,7 @@ export default {
             showImageDialog: false,
             modalImageUrl: '',
             loading: false,
+            loadingCanceling: false,
             successMessage: '',
             errorMessage: '',
             snackbarVisible: false,
@@ -561,7 +564,7 @@ export default {
                 console.log(response.data)
 
                 this.loading = false
-                this.successMessage = 'تمت المعالجة بنجاح'
+                this.successMessage = 'تم التأكيد بنجاح'
                 this.snackbarVisible = true
                 location.reload()
             } catch (error) {
@@ -569,7 +572,7 @@ export default {
                     'Error occurred while updating order status:',
                     error
                 )
-                this.errorMessage = 'فشلت المعالجة'
+                this.errorMessage = 'فشل التأكيد'
                 this.snackbarVisible = true
                 this.loading = false
                 // Handle error
@@ -590,7 +593,7 @@ export default {
                 console.log(response.data)
 
                 this.loading = false
-                this.successMessage = 'تمت المعالجة بنجاح'
+                this.successMessage = 'تم الطلب بنجاح'
                 this.snackbarVisible = true
                 location.reload()
             } catch (error) {
@@ -598,7 +601,7 @@ export default {
                     'Error occurred while updating order status:',
                     error
                 )
-                this.errorMessage = 'فشلت المعالجة'
+                this.errorMessage = 'فشل إنهاء الطلب'
                 this.snackbarVisible = true
                 this.loading = false
                 // Handle error
@@ -611,11 +614,11 @@ export default {
             }
         },
         async cancelOrderConfirming(orderId) {
+            this.loadingCanceling = true
             try {
                 const unavailableItemIds = this.devices
                     .filter(
-                        (_, index) =>
-                            this.selectedUnavailableProducts[index]
+                        (_, index) => this.selectedUnavailableProducts[index]
                     )
                     .map((device) => device.id)
 
@@ -627,20 +630,19 @@ export default {
                 const response = await axios.put(
                     `/orders/cancel-order/${orderId}?${params.toString()}`
                 )
-
-                console.log(orderId)
-                console.log(response.config)
-                this.loading = false
-                this.successMessage = 'تمت المعالجة بنجاح'
+                console.log(response.status)
+                this.loadingCanceling = false
+                this.successMessage = 'تم الإلغاء '
                 this.snackbarVisible = true
+                location.reload()
             } catch (error) {
                 console.error(
                     'Error occurred while updating order status:',
                     error
                 )
-                this.errorMessage = 'فشلت المعالجة'
+                this.errorMessage = 'فشل الإلغاء'
                 this.snackbarVisible = true
-                this.loading = false
+                this.loadingCanceling = false
                 // Handle error
             } finally {
                 setTimeout(() => {
@@ -650,11 +652,11 @@ export default {
         },
 
         async cancelOrderTesting(orderId) {
+            this.loadingCanceling = true
             try {
                 const missMatchedItemIds = this.devices
                     .filter(
-                        (_, index) =>
-                            this.selectedMismatchedProducts[index]
+                        (_, index) => this.selectedMismatchedProducts[index]
                     )
                     .map((device) => device.id)
 
@@ -668,19 +670,19 @@ export default {
                     `/orders/cancel-order/${orderId}?${params.toString()}`
                 )
 
-                console.log(orderId)
-                console.log(response.config)
-                this.loading = false
-                this.successMessage = 'تمت المعالجة بنجاح'
+                console.log(response.status)
+                this.loadingCanceling = false
+                this.successMessage = 'تم الإلغاء '
                 this.snackbarVisible = true
+                location.reload()
             } catch (error) {
                 console.error(
                     'Error occurred while updating order status:',
                     error
                 )
-                this.errorMessage = 'فشلت المعالجة'
+                this.errorMessage = 'فشل الإلغاء'
                 this.snackbarVisible = true
-                this.loading = false
+                this.loadingCanceling = false
                 // Handle error
             } finally {
                 setTimeout(() => {
