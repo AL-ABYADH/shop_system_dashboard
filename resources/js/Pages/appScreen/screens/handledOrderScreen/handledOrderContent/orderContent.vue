@@ -152,7 +152,10 @@
                                 <!-- Additional list items here -->
                             </ul>
                         </div>
-                        <div class="flex justify-between mb-5" v-if="device.flaws.length != 0">
+                        <div
+                            class="flex justify-between mb-5"
+                            v-if="device.flaws.length != 0"
+                        >
                             <ul>
                                 <li class="bg-primary-opacity p-2 rounded-lg">
                                     <i
@@ -166,8 +169,11 @@
                                         >
                                             <li>
                                                 {{ flaw.flaw }} :
-                                                <strong>{{translateSeverity(flaw.severity) }}</strong>
-                                                
+                                                <strong>{{
+                                                    translateSeverity(
+                                                        flaw.severity
+                                                    )
+                                                }}</strong>
                                             </li>
                                         </div>
                                     </details>
@@ -254,9 +260,20 @@
             </div>
             <div class="justify-center flex w-full">
                 <button
+                    v-if="orderStatus == 'confirming'"
+                    :disabled="loading || successMessage.length != 0"
                     class="mt-4 text-white bg-primary p-2 ml-2 rounded-md w-60 hover:bg-primary-opacity2"
+                    @click="confirmOrder(orderId)"
                 >
-                    {{ orderStatus == 'confirming' ? 'تأكيد' : 'إنهاء الطلب' }}
+                    {{ loading ? 'جاري المعالجة...' : ' تأكيد' }}
+                </button>
+                <button
+                    v-if="orderStatus == 'testing'"
+                    :disabled="loading || successMessage.length != 0"
+                    class="mt-4 text-white bg-primary p-2 ml-2 rounded-md w-60 hover:bg-primary-opacity2"
+                    @click="finishOrder(orderId)"
+                >
+                    {{ loading ? 'جاري المعالجة...' : ' إنهاء' }}
                 </button>
                 <button
                     class="mt-4 text-white bg-red-600 p-2 rounded-md w-60 hover:bg-primary-opacity2"
@@ -264,6 +281,94 @@
                 >
                     إلغاء
                 </button>
+            </div>
+        </div>
+        <div
+            v-if="showCancellationDialog && orderStatus === 'confirming'"
+            class="cancel-popup"
+        >
+            <div class="cancel-content">
+                <div class="flex">
+                    <i
+                        class="fa fa-question-circle fa-lg mt-1 ml-2"
+                        aria-hidden="true"
+                    ></i>
+                    <p class="mb-2 text-start">العناصر الغير متوفرة:</p>
+                </div>
+
+                <ul>
+                    <li
+                        v-for="(device, index) in devices"
+                        :key="index"
+                        class="text-end"
+                    >
+                        <input
+                            type="checkbox"
+                            v-model="selectedUnavailableProducts[index]"
+                        />
+                        <strong class="w-20 mr-3">{{
+                            device.deviceName
+                        }}</strong>
+                    </li>
+                </ul>
+                <div class="w-full">
+                    <button
+                        class="mt-4 text-white bg-primary p-2 w-44 ml-2 rounded-md hover:bg-primary-opacity2"
+                        @click="cancelOrderConfirming(orderId)"
+                    >
+                        تأكيد
+                    </button>
+                    <button
+                        class="mt-4 text-white bg-red-600 p-2 w-44 rounded-md hover:bg-primary-opacity2"
+                        @click="closeDialog"
+                    >
+                        إلغاء
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div
+            v-if="showCancellationDialog && orderStatus === 'testing'"
+            class="cancel-popup"
+        >
+            <div class="cancel-content">
+                <div class="flex">
+                    <i
+                        class="fa fa-question-circle fa-lg mt-1 ml-2"
+                        aria-hidden="true"
+                    ></i>
+                    <p class="mb-2 text-start">العناصر الغير مطابقة:</p>
+                </div>
+                <ul>
+                    <li
+                        v-for="(device, index) in devices"
+                        :key="index"
+                        class="text-end"
+                    >
+                        <input
+                            type="checkbox"
+                            v-model="selectedMismatchedProducts[index]"
+                        />
+                        <strong class="w-20 mr-3">{{
+                            device.deviceName
+                        }}</strong>
+                    </li>
+                </ul>
+                <div class="w-full">
+                    <button
+                        class="mt-4 text-white bg-primary p-2 w-44 ml-2 rounded-md hover:bg-primary-opacity2"
+                        @click="cancelOrderTesting(orderId)"
+                    >
+                        تأكيد
+                    </button>
+                    <button
+                        class="mt-4 text-white bg-red-600 p-2 w-44 rounded-md hover:bg-primary-opacity2"
+                        @click="closeDialog"
+                    >
+                        إلغاء
+                    </button>
+                </div>
             </div>
         </div>
         <div class="justify-center flex">
@@ -315,11 +420,15 @@
                 </div>
             </div>
         </transition>
+        <div v-if="snackbarVisible" class="snackbar" :class="snackbarType">
+            <span>{{ successMessage || errorMessage }}</span>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
 import dateFormat from 'dateformat'
+import axios from 'axios' // Import Axios for HTTP requests
 
 export default {
     props: {
@@ -343,11 +452,15 @@ export default {
         return {
             expanded: false,
             showCancellationDialog: false,
-            cancellationReason: 'unavailable',
-            otherReason: '', // Text area value for other reason
             isModalActive: false,
             showImageDialog: false,
             modalImageUrl: '',
+            loading: false,
+            successMessage: '',
+            errorMessage: '',
+            snackbarVisible: false,
+            selectedUnavailableProducts: [],
+            selectedMismatchedProducts: [],
         }
     },
     computed: {
@@ -363,19 +476,11 @@ export default {
                 return 'بدون توصيل'
             }
         },
+        snackbarType() {
+            return this.successMessage ? 'success' : 'error'
+        },
     },
     methods: {
-        cancelOrder() {
-            let reason = this.cancellationReason
-            if (reason === 'other') {
-                reason = this.otherReason
-            }
-            this.$emit('cancel', {
-                orderId: this.orderId,
-                reason: reason,
-            })
-            this.closeDialog()
-        },
         closeDialog() {
             this.showCancellationDialog = false
         },
@@ -446,6 +551,142 @@ export default {
             const formattedDate = dateFormat(dateObject, 'yyyy-mm-dd')
             const time = dateFormat(dateObject, 'HH:mm:ss ')
             return time + formattedDate
+        },
+        async confirmOrder(orderId) {
+            this.loading = true
+            try {
+                const response = await axios.put(
+                    `/orders/confirm-order/${orderId}`
+                )
+                console.log(response.data)
+
+                this.loading = false
+                this.successMessage = 'تمت المعالجة بنجاح'
+                this.snackbarVisible = true
+                location.reload()
+            } catch (error) {
+                console.error(
+                    'Error occurred while updating order status:',
+                    error
+                )
+                this.errorMessage = 'فشلت المعالجة'
+                this.snackbarVisible = true
+                this.loading = false
+                // Handle error
+            } finally {
+                setTimeout(() => {
+                    this.snackbarVisible = false
+                }, 2000)
+
+                // Set loading to false when the request completes (either success or failure)
+            }
+        },
+        async finishOrder(orderId) {
+            this.loading = true
+            try {
+                const response = await axios.put(
+                    `/orders/finish-order/${orderId}`
+                )
+                console.log(response.data)
+
+                this.loading = false
+                this.successMessage = 'تمت المعالجة بنجاح'
+                this.snackbarVisible = true
+                location.reload()
+            } catch (error) {
+                console.error(
+                    'Error occurred while updating order status:',
+                    error
+                )
+                this.errorMessage = 'فشلت المعالجة'
+                this.snackbarVisible = true
+                this.loading = false
+                // Handle error
+            } finally {
+                setTimeout(() => {
+                    this.snackbarVisible = false
+                }, 2000)
+
+                // Set loading to false when the request completes (either success or failure)
+            }
+        },
+        async cancelOrderConfirming(orderId) {
+            try {
+                const unavailableItemIds = this.devices
+                    .filter(
+                        (_, index) =>
+                            this.selectedUnavailableProducts[index]
+                    )
+                    .map((device) => device.id)
+
+                const params = new URLSearchParams()
+                unavailableItemIds.forEach((id) =>
+                    params.append('unavailableItemIds[]', id)
+                )
+
+                const response = await axios.put(
+                    `/orders/cancel-order/${orderId}?${params.toString()}`
+                )
+
+                console.log(orderId)
+                console.log(response.config)
+                this.loading = false
+                this.successMessage = 'تمت المعالجة بنجاح'
+                this.snackbarVisible = true
+            } catch (error) {
+                console.error(
+                    'Error occurred while updating order status:',
+                    error
+                )
+                this.errorMessage = 'فشلت المعالجة'
+                this.snackbarVisible = true
+                this.loading = false
+                // Handle error
+            } finally {
+                setTimeout(() => {
+                    this.snackbarVisible = false
+                }, 2000)
+            }
+        },
+
+        async cancelOrderTesting(orderId) {
+            try {
+                const missMatchedItemIds = this.devices
+                    .filter(
+                        (_, index) =>
+                            this.selectedMismatchedProducts[index]
+                    )
+                    .map((device) => device.id)
+
+                const params = new URLSearchParams()
+                missMatchedItemIds.forEach((id) =>
+                    params.append('missMatchedItemIds[]=', id)
+                )
+                console.log(params)
+
+                const response = await axios.put(
+                    `/orders/cancel-order/${orderId}?${params.toString()}`
+                )
+
+                console.log(orderId)
+                console.log(response.config)
+                this.loading = false
+                this.successMessage = 'تمت المعالجة بنجاح'
+                this.snackbarVisible = true
+            } catch (error) {
+                console.error(
+                    'Error occurred while updating order status:',
+                    error
+                )
+                this.errorMessage = 'فشلت المعالجة'
+                this.snackbarVisible = true
+                this.loading = false
+                // Handle error
+            } finally {
+                setTimeout(() => {
+                    this.snackbarVisible = false
+                }, 2000)
+            }
         },
     },
 }
