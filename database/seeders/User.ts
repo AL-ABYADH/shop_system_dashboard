@@ -27,8 +27,8 @@ export default class UserSeeder extends BaseSeeder {
                     fullName: `Seller User ${i}`,
                     phoneNumber: `77777778${i}`,
                     role: 'seller',
-                    shopOpenAt: '08:00:00', // Example shop open time for sellers
-                    shopCloseAt: '18:00:00', // Example shop close time for sellers
+                    shopOpenAt: '08:00:00',
+                    shopCloseAt: '18:00:00',
                     shopCloseDays: JSON.stringify(['Friday', 'Thursday']),
                     imageUrl: 'https://picsum.photos/200',
                 }
@@ -44,7 +44,7 @@ export default class UserSeeder extends BaseSeeder {
                     fullName: `Customer User ${i}`,
                     phoneNumber: `77777788${i}`,
                     role: 'customer',
-                    preferredCurrency: 'USD', // You can change the preferred currency as needed
+                    preferredCurrency: 'SAR',
                     imageUrl: 'https://picsum.photos/200',
                 }
             )

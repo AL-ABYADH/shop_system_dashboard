@@ -53,7 +53,13 @@ export default class OrderSeeder extends BaseSeeder {
                 const sellerAddressId =
                     await this.getCorrespondingSellerAddressId(sellerUserId)
 
-                const deliveryPrice = 2
+                let deliveryPrice = 1000 // In YER. Will be converted according to customer's preferred currency
+
+                const exchangeRates = await ExchangesController.getExchanges()
+                // Check if the preferred currency isn't equal to YER (the currency of the delivery pride) to convert it accordingly
+                if (customer.preferredCurrency != 'YER') {
+                    deliveryPrice /= exchangeRates[customer.preferredCurrency!]
+                }
 
                 let itemsPrice = 0
 
@@ -83,20 +89,57 @@ export default class OrderSeeder extends BaseSeeder {
                 for (let i = 0; i < 3; i++) {
                     const productItem = productItems[productItemCount]
 
-                    // Check the currency of the item's price to convert it to the customer's preferred currency
+                    // Check if the product item's price currency is not equal to the customer's preferred currency to convert it accordingly
                     const price = (await Price.find(productItem.priceId))!
                     if (price.currency != customer.preferredCurrency) {
-                        const exchangeRates =
-                            await ExchangesController.getExchanges()
-                        itemsPrice +=
-                            price.price *
-                            Number(exchangeRates[customer.preferredCurrency!])
-                        console.log('converted:')
-                        console.log(price.currency)
-                        console.log(customer.preferredCurrency)
-                        console.log(price.price)
-                        console.log(itemsPrice)
-                    } else itemsPrice += price!.price
+                        if (
+                            price.currency == 'USD' &&
+                            customer.preferredCurrency == 'YER'
+                        ) {
+                            // Convert from USD to YER
+                            itemsPrice +=
+                                price.price * Number(exchangeRates['USD'])
+                        } else if (
+                            price.currency == 'USD' &&
+                            customer.preferredCurrency == 'SAR'
+                        ) {
+                            // Convert from USD to SAR (First convert USD to YER then YER to SAR)
+                            const usdToYer =
+                                price.price * Number(exchangeRates['USD'])
+                            itemsPrice +=
+                                usdToYer / Number(exchangeRates['SAR'])
+                        } else if (
+                            price.currency == 'SAR' &&
+                            customer.preferredCurrency == 'YER'
+                        ) {
+                            // Convert from SAR to YER
+                            itemsPrice +=
+                                price.price * Number(exchangeRates['SAR'])
+                        } else if (
+                            price.currency == 'SAR' &&
+                            customer.preferredCurrency == 'USD'
+                        ) {
+                            // Convert from SAR to USD (First convert SAR to YER then YER to USD)
+                            const sarToYer =
+                                price.price * Number(exchangeRates['SAR'])
+                            itemsPrice +=
+                                sarToYer / Number(exchangeRates['USD'])
+                        } else if (
+                            price.currency == 'YER' &&
+                            customer.preferredCurrency == 'SAR'
+                        ) {
+                            // Convert from YER to SAR
+                            itemsPrice +=
+                                price.price / Number(exchangeRates['SAR'])
+                        } else if (
+                            price.currency == 'YER' &&
+                            customer.preferredCurrency == 'USD'
+                        ) {
+                            // Convert from YER to USD
+                            itemsPrice +=
+                                price.price / Number(exchangeRates['USD'])
+                        }
+                    } else itemsPrice += price.price
 
                     orderItems.push({
                         id: productItemCount + 1,
