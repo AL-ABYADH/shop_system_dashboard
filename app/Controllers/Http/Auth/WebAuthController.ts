@@ -27,6 +27,6 @@ export default class WebAuthController {
     public async logout({ response, auth }: HttpContextContract) {
         await auth.logout()
 
-        return response.redirect().toPath('/login')
+        return response.redirect().toPath('/auth/login')
     }
 }
