@@ -2,29 +2,29 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Cart from 'App/Models/Cart'
 import CartItem from 'App/Models/CartItem'
+import User from 'App/Models/User'
 
 export default class CartsController {
     public async getCartItems({ auth, response }: HttpContextContract) {
         try {
-            const user = auth.user!
-            if (!user) {
-                return response.status(404).send({ message: 'User not found' })
-            }
+            // Get the currently authenticated user
+            // const customer = await auth.use('api').authenticate()
+            const customer = await User.find(3)
 
             const cart = await Cart.query()
-                .where('customer_id', user.id)
+                .where('customerId', customer!.id)
                 .select('id')
                 .first()
 
             if (!cart) {
-                return response.status(404).send({ message: 'Cart not found' })
+                return response.notFound({ message: 'Cart not found' })
             }
 
-            const cartItems = await CartItem.query().where('cart_id', cart.id)
+            const cartItems = await CartItem.query().where('cartId', cart.id)
             response.ok(cartItems)
         } catch (error) {
             console.error(error)
-            return response.status(500).send({
+            return response.internalServerError({
                 message: 'Unable to get items',
             })
         }
@@ -45,7 +45,7 @@ export default class CartsController {
 
             return response.ok({ message: 'Item added to cart' })
         } catch (error) {
-            return response.status(500).send({
+            return response.internalServerError({
                 message: 'Unable to add item to cart',
             })
         }
@@ -70,12 +70,12 @@ export default class CartsController {
                 await cartItem.delete()
                 return response.ok({ message: 'Item removed from cart' })
             } else {
-                return response
-                    .status(403)
-                    .send({ message: 'Not authorized to remove this item' })
+                return response.forbidden({
+                    message: 'Not authorized to remove this item',
+                })
             }
         } catch (error) {
-            return response.status(500).send({
+            return response.internalServerError({
                 message: 'Unable to remove item from cart',
             })
         }

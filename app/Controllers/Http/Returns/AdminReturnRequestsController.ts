@@ -153,26 +153,26 @@ export default class AdminReturnRequestsController {
             const returnRequest = await ReturnRequest.find(returnRequestId)
 
             if (!returnRequest) {
-                return response
-                    .status(404)
-                    .json({ message: 'Return request not found' })
+                return response.notFound({
+                    message: 'Return request not found',
+                })
             }
 
             // Check and update the return request status based on the current status
             if (returnRequest.status === 'awaiting') {
                 returnRequest.status = 'evaluating'
             } else {
-                return response
-                    .status(400)
-                    .json({ message: 'Invalid return request status' })
+                return response.badRequest({
+                    message: 'Invalid return request status',
+                })
             }
 
             await returnRequest.save()
 
-            return response.status(200).json({ message: 'success' })
+            return response.ok({ message: 'success' })
         } catch (error) {
             // console.log(error)
-            return response.status(500).json({
+            return response.internalServerError({
                 error: 'An error occurred while updating the return request status',
             })
         }
@@ -183,15 +183,15 @@ export default class AdminReturnRequestsController {
             const returnRequestId = params.returnRequestId
             const returnRequest = await ReturnRequest.find(returnRequestId)
             if (!returnRequest) {
-                return response
-                    .status(404)
-                    .json({ message: 'Return request not found' })
+                return response.notFound({
+                    message: 'Return request not found',
+                })
             }
             // Check the return request status
             if (returnRequest.status !== 'evaluating') {
-                return response
-                    .status(400)
-                    .json({ message: 'Invalid return request status' })
+                return response.badRequest({
+                    message: 'Invalid return request status',
+                })
             }
 
             const returnedItemIds = request.input('returnedItemIds', [])
@@ -200,46 +200,42 @@ export default class AdminReturnRequestsController {
             for (const id of returnedItemIds) {
                 const returnRequestItem = await ReturnRequestItem.find(id)
                 if (!returnRequestItem)
-                    return response
-                        .status(404)
-                        .json({ message: 'Return request item not found' })
+                    return response.notFound({
+                        message: 'Return request item not found',
+                    })
                 const orderItem = await OrderItem.find(
                     returnRequestItem.orderItemId
                 )
                 if (!orderItem || orderItem.orderId != returnRequest.orderId)
-                    return response
-                        .status(404)
-                        .json({ message: 'Order item not found' })
+                    return response.notFound({
+                        message: 'Order item not found',
+                    })
                 returnedOrderItems.push(orderItem)
                 const productItem = await ProductItem.find(
                     orderItem!.productItemId
                 )
                 if (!productItem)
-                    return response
-                        .status(404)
-                        .json({ message: 'Order product item not found' })
+                    return response.notFound({
+                        message: 'Order product item not found',
+                    })
                 returnedProductItems.push(productItem)
             }
 
             const order = await Order.find(returnRequest.orderId)
             if (!order) {
-                return response
-                    .status(404)
-                    .json({ message: 'Return request order not found' })
+                return response.notFound({
+                    message: 'Return request order not found',
+                })
             }
 
             const customer = await User.find(order.customerUserId)
             if (!customer) {
-                return response
-                    .status(404)
-                    .json({ message: 'Customer not found' })
+                return response.notFound({ message: 'Customer not found' })
             }
 
             const seller = await User.find(order.sellerUserId)
             if (!seller) {
-                return response
-                    .status(404)
-                    .json({ message: 'Seller not found' })
+                return response.notFound({ message: 'Seller not found' })
             }
 
             // Get the currently authenticated user
@@ -268,7 +264,7 @@ export default class AdminReturnRequestsController {
                     )
                 // console.log(companyBalance)
                 if (companyBalance < returnedCompanyCommission) {
-                    return response.status(400).json({
+                    return response.badRequest({
                         message:
                             'Failed to cancel. Company balance is less than refund amount',
                     })
@@ -282,7 +278,7 @@ export default class AdminReturnRequestsController {
                     )
                 // console.log(sellerBalance)
                 if (sellerBalance < totalReturnedItemsPrice) {
-                    return response.status(400).json({
+                    return response.badRequest({
                         message:
                             'Failed to cancel. Seller balance is less than refund amount',
                     })
@@ -296,7 +292,7 @@ export default class AdminReturnRequestsController {
                     )
                 // console.log(adminBalance)
                 if (adminBalance < returnedAdminCommission) {
-                    return response.status(400).json({
+                    return response.badRequest({
                         message:
                             'Failed to cancel. Admin balance is less than refund amount',
                     })
@@ -341,10 +337,10 @@ export default class AdminReturnRequestsController {
 
             await returnRequest.save()
 
-            return response.status(200).json({ message: 'success' })
+            return response.ok({ message: 'success' })
         } catch (error) {
             // console.log(error)
-            return response.status(500).json({
+            return response.internalServerError({
                 error: 'An error occurred while updating the return request status',
             })
         }

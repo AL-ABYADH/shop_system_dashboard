@@ -22,9 +22,9 @@ export default class CustomerProductItemsController {
 
             const items = await this.getItems(loadedItems)
 
-            response.status(200).json(items)
+            response.ok(items)
         } catch (err) {
-            response.status(500).json({ message: 'An error has occurred!' })
+            response.internalServerError({ message: 'An error has occurred!' })
         }
     }
 
@@ -70,7 +70,7 @@ export default class CustomerProductItemsController {
                 paginatedExcellentItems.toJSON().data
             )
 
-            response.status(200).json({
+            response.ok({
                 data: {
                     recentlyAddedItems: recentlyAddedItems,
                     highRatedItems: highRatedItems,
@@ -81,7 +81,7 @@ export default class CustomerProductItemsController {
             })
         } catch (err) {
             console.error(err) // Consider logging the error for debugging
-            response.status(500).json({ message: 'An error has occurred!' })
+            response.internalServerError({ message: 'An error has occurred!' })
         }
     }
 
@@ -102,13 +102,13 @@ export default class CustomerProductItemsController {
                 paginatedRecentlyAddedItems.toJSON().data
             )
 
-            response.status(200).json({
+            response.ok({
                 data: recentlyAddedItems,
                 meta: paginatedRecentlyAddedItems.toJSON().meta, // Includes pagination info like total, perPage, currentPage
             })
         } catch (err) {
             console.error(err) // Consider logging the error for debugging
-            response.status(500).json({ message: 'An error has occurred!' })
+            response.internalServerError({ message: 'An error has occurred!' })
         }
     }
 
@@ -126,13 +126,13 @@ export default class CustomerProductItemsController {
                 paginatedHighRatedItems.toJSON().data
             )
 
-            response.status(200).json({
+            response.ok({
                 data: highRatedItems,
                 meta: paginatedHighRatedItems.toJSON().meta, // Includes pagination info like total, perPage, currentPage
             })
         } catch (err) {
             console.error(err) // Consider logging the error for debugging
-            response.status(500).json({ message: 'An error has occurred!' })
+            response.internalServerError({ message: 'An error has occurred!' })
         }
     }
 
@@ -150,13 +150,13 @@ export default class CustomerProductItemsController {
                 paginatedNewItems.toJSON().data
             )
 
-            response.status(200).json({
+            response.ok({
                 data: newItems,
                 meta: paginatedNewItems.toJSON().meta, // Includes pagination info like total, perPage, currentPage
             })
         } catch (err) {
             console.error(err) // Consider logging the error for debugging
-            response.status(500).json({ message: 'An error has occurred!' })
+            response.internalServerError({ message: 'An error has occurred!' })
         }
     }
 
@@ -174,13 +174,13 @@ export default class CustomerProductItemsController {
                 paginatedExcellentItems.toJSON().data
             )
 
-            response.status(200).json({
+            response.ok({
                 data: excellentItems,
                 meta: paginatedExcellentItems.toJSON().meta, // Includes pagination info like total, perPage, currentPage
             })
         } catch (err) {
             console.error(err) // Consider logging the error for debugging
-            response.status(500).json({ message: 'An error has occurred!' })
+            response.internalServerError({ message: 'An error has occurred!' })
         }
     }
 

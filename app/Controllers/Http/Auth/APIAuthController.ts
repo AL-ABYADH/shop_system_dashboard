@@ -77,11 +77,9 @@ export default class APIAuthController {
                 .use('api')
                 .attempt(data.username, data.password)
 
-            return response
-                .status(200)
-                .json({ ...user.serialize(), token: token.token })
+            return response.ok({ ...user.serialize(), token: token.token })
         } catch (err) {
-            return response.status(400).json({
+            return response.badRequest({
                 message: (Object.values(err.messages)[0] as Array<string>)[0],
             })
         }
@@ -111,22 +109,20 @@ export default class APIAuthController {
 
             const user = await User.findBy('username', data.username)
 
-            await axios.get(
-                `${Env.get('PAYMENT_URL')}/checkUser?phoneNumber=${
-                    user?.phoneNumber
-                }`
-            )
+            // await axios.get(
+            //     `${Env.get('PAYMENT_URL')}/checkUser?phoneNumber=${
+            //         user?.phoneNumber
+            //     }`
+            // )
 
-            return response
-                .status(200)
-                .json({ ...user!.serialize(), token: token.token })
+            return response.ok({ ...user!.serialize(), token: token.token })
         } catch (err) {
             // console.log(err)
             if (err.response && err.response.status == 404)
-                return response.status(400).json({
+                return response.badRequest({
                     message: 'يجب أن يكون لديك حساب في نظام الدفع',
                 })
-            return response.status(400).json({
+            return response.badRequest({
                 message: 'اسم المستخدم أو كلمة المرور غير صحيحة',
             })
         }

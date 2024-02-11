@@ -24,7 +24,7 @@ export default class CheckUser {
             await next()
         } catch (err) {
             if (err.response && err.response.status == 404)
-                return response.status(400).json({
+                return response.badRequest({
                     message: 'يجب أن يكون لديك حساب في نظام الدفع',
                 })
 

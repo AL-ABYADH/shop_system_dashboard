@@ -26,7 +26,7 @@ export default class CustomerOrdersController {
                 )
             return response.ok(orders)
         } catch (error) {
-            return response.status(500).send({
+            return response.internalServerError({
                 message: 'Unable to retrieve ongoing orders.',
                 error: error.message,
             })
@@ -50,7 +50,7 @@ export default class CustomerOrdersController {
 
             return response.ok(orders)
         } catch (error) {
-            return response.status(500).send({
+            return response.internalServerError({
                 message: 'Unable to retrieve finished orders.',
                 error: error.message,
             })
@@ -67,7 +67,7 @@ export default class CustomerOrdersController {
             )
 
             if (product_item[0]['states'] != 'available') {
-                return response.status(200).send({
+                return response.ok({
                     message: 'the order not available',
                 })
             }
@@ -87,7 +87,7 @@ export default class CustomerOrdersController {
 
             return response.ok(product_item)
         } catch (error) {
-            return response.status(500).send({
+            return response.internalServerError({
                 message: 'Failed to create order.',
                 error: error.message,
             })
@@ -100,18 +100,16 @@ export default class CustomerOrdersController {
             const order = await Order.find(orderId)
 
             if (!order) {
-                return response.status(404).json({ message: 'Order not found' })
+                return response.notFound({ message: 'Order not found' })
             }
 
             // Check and update the order status based on the current status
             order.status = 'testing'
             await order.save()
 
-            return response
-                .status(200)
-                .json({ message: 'Order status was cancelled' })
+            return response.ok({ message: 'Order status was cancelled' })
         } catch (error) {
-            return response.status(500).json({
+            return response.internalServerError({
                 error: 'An error occurred while updating the order status',
             })
         }

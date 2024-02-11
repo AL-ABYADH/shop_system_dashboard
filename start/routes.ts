@@ -50,7 +50,7 @@ import './user_accounts/seller_accounts'
 //         })
 
 //         // Return the URL of the stored image
-//         return response.send({ url: `/uploads/${fileName}` })
+//         return response.json({ url: `/uploads/${fileName}` })
 //     }
 // })
 

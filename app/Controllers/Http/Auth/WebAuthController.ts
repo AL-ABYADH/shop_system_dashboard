@@ -11,9 +11,9 @@ export default class WebAuthController {
             await auth.use('web').attempt(username, password)
         } catch (err) {
             response.redirect().back()
-            return response
-                .status(400)
-                .json({ message: 'Invalid username or password' })
+            return response.badRequest({
+                message: 'Invalid username or password',
+            })
         }
         return response.redirect().toPath('/')
     }

@@ -62,10 +62,10 @@ export default class ShopProductsController {
                 })
             }
 
-            response.status(200).json(products)
+            response.ok(products)
         } catch (err) {
             console.log(err)
-            response.status(500).json({ message: 'An error has occurred!' })
+            response.internalServerError({ message: 'An error has occurred!' })
         }
     }
 }

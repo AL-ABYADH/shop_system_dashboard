@@ -367,7 +367,7 @@ export default class AdminOrdersController {
             const order = await Order.find(orderId)
 
             if (!order) {
-                return response.status(404).json({ message: 'Order not found' })
+                return response.notFound({ message: 'Order not found' })
             }
 
             // Check and update the order status based on the current status
@@ -376,19 +376,17 @@ export default class AdminOrdersController {
             } else if (order.status === 'confirmed') {
                 order.status = 'testing'
             } else {
-                return response
-                    .status(400)
-                    .json({ message: 'Invalid order status' })
+                return response.badRequest({ message: 'Invalid order status' })
             }
 
             order.adminUserId = user.id
 
             await order.save()
 
-            return response.status(200).json({ message: 'success' })
+            return response.ok({ message: 'success' })
         } catch (error) {
             // console.log(error)
-            return response.status(500).json({
+            return response.internalServerError({
                 error: 'An error occurred while updating order status',
             })
         }
@@ -400,24 +398,22 @@ export default class AdminOrdersController {
             const order = await Order.find(orderId)
 
             if (!order) {
-                return response.status(404).json({ message: 'Order not found' })
+                return response.notFound({ message: 'Order not found' })
             }
 
             // Check and update the order status based on the current status
             if (order.status === 'confirming') {
                 order.status = 'testing'
             } else {
-                return response
-                    .status(400)
-                    .json({ message: 'Invalid order status' })
+                return response.badRequest({ message: 'Invalid order status' })
             }
 
             await order.save()
 
-            return response.status(200).json({ message: 'success' })
+            return response.ok({ message: 'success' })
         } catch (error) {
             // console.log(error)
-            return response.status(500).json({
+            return response.internalServerError({
                 error: 'An error occurred while updating order status',
             })
         }
@@ -433,7 +429,7 @@ export default class AdminOrdersController {
                 unavailableItemIds.length == 0 &&
                 order?.status == 'confirming'
             ) {
-                return response.status(400).json({
+                return response.badRequest({
                     message:
                         'Cannot cancel order in the status of confirming with no unavailable items',
                 })
@@ -443,7 +439,7 @@ export default class AdminOrdersController {
 
             const missMatchedItemIds = request.input('missMatchedItemIds', [])
             if (missMatchedItemIds.length == 0 && order?.status == 'testing') {
-                return response.status(400).json({
+                return response.badRequest({
                     message:
                         'Cannot cancel order in the status of testing with no miss-matched items',
                 })
@@ -455,45 +451,43 @@ export default class AdminOrdersController {
             for (const id of unavailableItemIds) {
                 const orderItem = await OrderItem.find(id)
                 if (!orderItem || orderItem.orderId != orderId)
-                    return response
-                        .status(404)
-                        .json({ message: 'Order item not found' })
+                    return response.notFound({
+                        message: 'Order item not found',
+                    })
                 unavailableOrderItems.push(orderItem)
                 const productItem = await ProductItem.find(
                     orderItem.productItemId
                 )
                 if (!productItem)
-                    return response
-                        .status(404)
-                        .json({ message: 'Order product item not found' })
+                    return response.notFound({
+                        message: 'Order product item not found',
+                    })
                 unavailableProductItems.push(productItem)
             }
             for (const id of missMatchedItemIds) {
                 const orderItem = await OrderItem.find(id)
                 if (!orderItem || orderItem.orderId != orderId)
-                    return response
-                        .status(404)
-                        .json({ message: 'Order item not found' })
+                    return response.notFound({
+                        message: 'Order item not found',
+                    })
                 missMatchedOrderItems.push(orderItem)
                 const productItem = await ProductItem.find(
                     orderItem.productItemId
                 )
                 if (!productItem)
-                    return response
-                        .status(404)
-                        .json({ message: 'Order product item not found' })
+                    return response.notFound({
+                        message: 'Order product item not found',
+                    })
                 missMatchedProductItems.push(productItem)
             }
 
             if (!order) {
-                return response.status(404).json({ message: 'Order not found' })
+                return response.notFound({ message: 'Order not found' })
             }
 
             // Check the order status
             if (order.status !== 'confirming' && order.status !== 'testing') {
-                return response
-                    .status(400)
-                    .json({ message: 'Invalid order status' })
+                return response.badRequest({ message: 'Invalid order status' })
             }
 
             // Check the company's payment balance to see if it has enough money to refund customer
@@ -503,7 +497,7 @@ export default class AdminOrdersController {
             )
             // console.log(companyBalance)
             if (companyBalance < order.totalPrice) {
-                return response.status(400).json({
+                return response.badRequest({
                     message:
                         'Failed to cancel order. Company balance is less than refund amount',
                 })
@@ -576,10 +570,10 @@ export default class AdminOrdersController {
 
             await order.save()
 
-            return response.status(200).json({ message: 'success' })
+            return response.ok({ message: 'success' })
         } catch (error) {
             // console.log(error)
-            return response.status(500).json({
+            return response.internalServerError({
                 error: 'An error occurred while updating the order status',
             })
         }
@@ -591,14 +585,12 @@ export default class AdminOrdersController {
             const order = await Order.find(orderId)
 
             if (!order) {
-                return response.status(404).json({ message: 'Order not found' })
+                return response.notFound({ message: 'Order not found' })
             }
 
             // Check and update the order status based on the current status
             if (order.status !== 'testing') {
-                return response
-                    .status(400)
-                    .json({ message: 'Invalid order status' })
+                return response.badRequest({ message: 'Invalid order status' })
             }
 
             // Check the company's payment balance to see if it has enough money to refund customer
@@ -608,7 +600,7 @@ export default class AdminOrdersController {
             )
             // console.log(companyBalance)
             if (companyBalance < order.totalPrice) {
-                return response.status(400).json({
+                return response.badRequest({
                     message:
                         'Failed to finish order. Company balance is less than refund amount',
                 })
@@ -644,10 +636,10 @@ export default class AdminOrdersController {
 
             await order.save()
 
-            return response.status(200).json({ message: 'success' })
+            return response.ok({ message: 'success' })
         } catch (error) {
             // console.log(error)
-            return response.status(500).json({
+            return response.internalServerError({
                 error: 'An error occurred while updating the order status',
             })
         }

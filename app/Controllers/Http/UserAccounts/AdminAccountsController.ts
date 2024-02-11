@@ -70,7 +70,7 @@ export default class AdminAccountsController {
             role: 'admin',
         })
 
-        return response.status(200).json({ message: 'success' })
+        return response.ok({ message: 'success' })
     }
 
     public async updateAdmin({ request, response }: HttpContextContract) {
@@ -127,7 +127,7 @@ export default class AdminAccountsController {
         try {
             const user = await User.findOrFail(request.qs().id)
             if (user.role != 'admin') {
-                return response.status(404).json({ message: 'Admin not found' })
+                return response.notFound({ message: 'Admin not found' })
             }
             await user.softDelete()
             response.header('X-Inertia', true)

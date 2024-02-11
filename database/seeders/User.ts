@@ -1,4 +1,5 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
+import Cart from 'App/Models/Cart'
 import User from 'App/Models/User'
 
 export default class UserSeeder extends BaseSeeder {
@@ -34,7 +35,7 @@ export default class UserSeeder extends BaseSeeder {
                 }
             )
 
-            await User.updateOrCreate(
+            const customer = await User.updateOrCreate(
                 {
                     username: `customer_user${i}`,
                 },
@@ -48,6 +49,11 @@ export default class UserSeeder extends BaseSeeder {
                     imageUrl: 'https://picsum.photos/200',
                 }
             )
+            // Create a cart for the customer user if not created yet
+            if (await Cart.query().where('customerId', customer.id)) continue
+            await Cart.create({
+                customerId: customer.id,
+            })
         }
     }
 }

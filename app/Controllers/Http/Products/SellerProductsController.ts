@@ -28,7 +28,7 @@ export default class SellerProductsController {
 
             return products
         } catch (err) {
-            return response.status(400).json({
+            return response.badRequest({
                 status: 'error',
                 message: `An error has occurred!: ${err}`,
             })

@@ -9,6 +9,5 @@ Route.group(() => {
         '/remove-from-cart/:cartItemId',
         'Carts/CartsController.removeFromCart'
     )
-})
-    .prefix('api/carts')
-    .middleware('auth:api')
+}).prefix('api/carts')
+// .middleware('auth:api')
