@@ -78,7 +78,6 @@ export default {
             try {
                 this.loading = true
 
-                // Check if username or password is empty
                 if (this.form.username.length === 0) {
                     this.errorMessage = 'يجب إدخال اسم المستخدم'
                     this.snackbarVisible = true
@@ -97,18 +96,14 @@ export default {
 
                 // Perform login request
                 const response = await axios.post('/auth/login', this.form)
-                // Handle successful response if needed
-                console.log(response) // Log the response data
+                console.log(response) 
                 this.snackbarVisible = false
-                // Redirect to home page after successful login
                 this.$inertia.visit('/', { replace: true })
             } catch (error) {
-                console.error('An error occurred:', error) // Log the error for debugging
+                console.error('An error occurred:', error) 
                 if (error.response && error.response.status === 400) {
-                    // Bad request error
                     this.errorMessage = 'اسم المستخدم أو كلمة المرور غير صحيحة'
                 } else {
-                    // Other errors
                     this.errorMessage = 'حدث خطأ غير متوقع'
                 }
                 this.snackbarVisible = true
