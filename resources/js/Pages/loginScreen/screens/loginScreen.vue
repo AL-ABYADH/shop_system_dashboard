@@ -1,9 +1,4 @@
-<style>
-body {
-    margin: 0%;
-}
-</style>
-
+import axios from 'axios';
 <template>
     <div class="shadow-black/30 flex w-full fixed">
         <!-- Left Side (Form) -->
@@ -37,27 +32,35 @@ body {
                             />
                         </div>
                     </div>
-                    <div v-if="error" class="text-red-500">
-                        {{ error }}
-                    </div>
                     <div class="flex justify-center items-cente">
                         <button
+                            :disabled="loading"
                             type="submit"
                             class="flex justify-center items-center cursor-pointer md:mt-5 h-10 bg-theme-blue mx-0"
                         >
                             <span
                                 class="text-white bg-primary text-xs md:text-sm lg:text-base p-3 rounded-md"
-                                >تسجيل الدخول</span
                             >
+                                {{
+                                    loading
+                                        ? 'جاري المعالجة...'
+                                        : 'تسجيل الدخول '
+                                }}
+                            </span>
                         </button>
                     </div>
                 </form>
             </div>
         </div>
+        <div v-if="snackbarVisible" class="snackbar" :class="'error'">
+            <span>{{ errorMessage }}</span>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
+import axios from 'axios' // Import Axios for HTTP requests
+
 export default {
     data() {
         return {
@@ -65,19 +68,78 @@ export default {
                 username: '',
                 password: '',
             },
-            error: '',
+            errorMessage: '',
+            loading: false,
+            snackbarVisible: false,
         }
     },
     methods: {
         async submit() {
-            if (this.form.username != '' && this.form.password != '') {
-                await this.$inertia.post('/auth/login', this.form)
-            } else if (this.form.username == '') {
-                // username is required
-            } else if (this.form.password == '') {
-                // password is required
+            try {
+                this.loading = true
+
+                if (this.form.username.length === 0) {
+                    this.errorMessage = 'يجب إدخال اسم المستخدم'
+                    this.snackbarVisible = true
+                    return
+                }
+                if (this.form.password.length === 0) {
+                    this.errorMessage = 'يجب إدخال كلمة المرور'
+                    this.snackbarVisible = true
+                    return
+                }
+                if (this.form.username.length === 0 && this.form.password.length === 0) {
+                    this.errorMessage = 'يجب إدخال اسم المستخدم و كلمة المرور'
+                    this.snackbarVisible = true
+                    return
+                }
+
+                // Perform login request
+                const response = await axios.post('/auth/login', this.form)
+                console.log(response) 
+                this.snackbarVisible = false
+                this.$inertia.visit('/', { replace: true })
+            } catch (error) {
+                console.error('An error occurred:', error) 
+                if (error.response && error.response.status === 400) {
+                    this.errorMessage = 'اسم المستخدم أو كلمة المرور غير صحيحة'
+                } else {
+                    this.errorMessage = 'حدث خطأ غير متوقع'
+                }
+                this.snackbarVisible = true
+            } finally {
+                this.loading = false
+                setTimeout(() => {
+                    this.snackbarVisible = false
+                }, 2000)
             }
         },
     },
 }
 </script>
+
+<style scoped>
+.snackbar {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: #fff;
+    padding: 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    max-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.snackbar.success {
+    background-color: #4caf50;
+}
+
+.snackbar.error {
+    background-color: #f44336;
+}
+</style>
