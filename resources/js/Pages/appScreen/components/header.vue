@@ -24,7 +24,7 @@
 export default {
     methods: {
         async logout() {
-            await this.$inertia.get('auth/logout')
+            await this.$inertia.get('/auth/logout')
         },
     },
 }

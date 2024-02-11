@@ -15,5 +15,6 @@ Route.group(() => {
         'resolve-return-request/:returnRequestId',
         'Returns/AdminReturnRequestsController.resolveReturnRequest'
     )
-}).prefix('returns')
-// .middleware('auth:web')
+})
+    .prefix('returns')
+    .middleware('auth:web')

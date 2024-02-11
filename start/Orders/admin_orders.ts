@@ -32,5 +32,4 @@ Route.group(() => {
         '/finish-order/:orderId',
         'Orders/AdminOrdersController.finishOrder'
     ).prefix('orders')
-})
-// .middleware('auth:web')
+}).middleware('auth:web')
