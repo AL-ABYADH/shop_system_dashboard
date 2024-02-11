@@ -77,15 +77,35 @@ export default {
         async submit() {
             try {
                 this.loading = true
+
+                // Check if username or password is empty
+                if (this.form.username.length === 0) {
+                    this.errorMessage = 'يجب إدخال اسم المستخدم'
+                    this.snackbarVisible = true
+                    return
+                }
+                if (this.form.password.length === 0) {
+                    this.errorMessage = 'يجب إدخال كلمة المرور'
+                    this.snackbarVisible = true
+                    return
+                }
+                if (this.form.username.length === 0 && this.form.password.length === 0) {
+                    this.errorMessage = 'يجب إدخال اسم المستخدم و كلمة المرور'
+                    this.snackbarVisible = true
+                    return
+                }
+
+                // Perform login request
                 const response = await axios.post('/auth/login', this.form)
                 // Handle successful response if needed
                 console.log(response) // Log the response data
                 this.snackbarVisible = false
-                this.$inertia.visit('/', { replace: true });
+                // Redirect to home page after successful login
+                this.$inertia.visit('/', { replace: true })
             } catch (error) {
                 console.error('An error occurred:', error) // Log the error for debugging
                 if (error.response && error.response.status === 400) {
-                    // Unauthorized error
+                    // Bad request error
                     this.errorMessage = 'اسم المستخدم أو كلمة المرور غير صحيحة'
                 } else {
                     // Other errors
