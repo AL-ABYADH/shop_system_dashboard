@@ -20,3 +20,10 @@ Route.put(
 )
     .prefix('api/user-accounts')
     .middleware('auth:api')
+
+Route.post(
+    '/imageWithAddress',
+    'UserAccounts/CustomerAccountsController.imageWithAddress'
+)
+    .prefix('api/user-accounts')
+    .middleware('auth:api')
