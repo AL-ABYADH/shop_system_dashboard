@@ -110,31 +110,29 @@
                 <div v-if="device.expanded">
                     <ul class="bg-gray-100 mb-2 p-3 rounded-lg">
                         <div class="flex justify-between mb-2">
+                            <li class="flex">
+                                <img
+                                    src="../../../../../Assets/icons/mobile.svg"
+                                    class="w-5 ml-2 lg:w-7"
+                                />
+                                {{ device.deviceName }}
+                            </li>
                             <li>
                                 <i
                                     class="fa fa-money text-primary fa-lg ml-1"
                                 ></i>
-                                {{
-                                    device.price
-                                        .toString()
-                                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-                                }}
-                                USD
-                            </li>
-                            <li>
-                                <i
-                                    class="fa fa-inbox text-primary fa-lg ml-2"
-                                ></i>
-                                2000 USD
+                                {{ formatCurrency(device.price, currency) }}
                             </li>
                             <li>
                                 <i
                                     class="fa fa-mobile text-primary fa-lg ml-1"
                                 ></i>
                                 {{
-                                    usedProductCondition(
-                                        device.usedProductCondition
-                                    )
+                                    device.isUsed == 1
+                                        ? usedProductCondition(
+                                              device.usedProductCondition
+                                          )
+                                        : 'جديد'
                                 }}
                             </li>
                         </div>
@@ -182,6 +180,7 @@
                                 <!-- Additional list items here -->
                             </ul>
                         </div>
+
                         <div
                             class="flex mb-5"
                             v-if="device.imageItems.length != 0"
@@ -222,6 +221,18 @@
                                 <!-- Additional list items here -->
                             </ul>
                         </div>
+                        <div class="flex justify-between mb-5">
+                            <ul>
+                                <li class="bg-primary-opacity p-2 rounded-lg">
+                                    <img src="../../../../../Assets/icons/return.svg" class="w-5 ml-2 lg:w-7">
+                                    <details dir="ltr">
+                                        <summary>سبب الإرجاع</summary>
+                                        {{ device.reason }}
+                                    </details>
+                                </li>
+                                <!-- Additional list items here -->
+                            </ul>
+                        </div>
                     </ul>
                 </div>
             </div>
@@ -239,13 +250,35 @@
                     </tr>
                     <tr>
                         <td>
-                            <i
-                                class="fa fa-sitemap fa-lg text-primary ml-2"
-                            ></i>
+                            <img
+                                src="../../../../../Assets/icons/commission.svg"
+                                class="w-5 ml-2 lg:w-7"
+                            />
                         </td>
                         <td>
                             <p class="text-gray-600">
-                                {{ devices?.length }} وحده
+                                {{ formatCurrency(commission, currency) }}
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img
+                                src="../../../../../Assets/icons/devices.svg"
+                                alt=""
+                                class="w-5 ml-2 lg:w-7"
+                            />
+                        </td>
+                        <td>
+                            <p class="text-gray-600">
+                                {{ devices?.length || 0 }}
+                                {{
+                                    devices?.length && devices.length > 10
+                                        ? 'جهاز'
+                                        : devices?.length && devices.length > 1
+                                        ? 'أجهزة'
+                                        : 'جهاز'
+                                }}
                             </p>
                         </td>
                     </tr>
@@ -254,7 +287,9 @@
                             <i class="fa fa-dollar fa-lg text-primary mr-1"></i>
                         </td>
                         <td>
-                            <p class="text-gray-600">{{ totalPrice }} USD</p>
+                            <p class="text-gray-600">
+                                {{ formatCurrency(totalPrice, currency) }}
+                            </p>
                         </td>
                     </tr>
                 </table>
@@ -274,7 +309,7 @@
                     class="mt-4 text-white bg-red-600 p-2 rounded-md w-60 hover:bg-primary-opacity2"
                     @click="resolveDismissedReturnRequest(returnRequestId)"
                 >
-                {{ loading ? 'جاري المعالجة...' : 'رفض ' }}
+                    {{ loading ? 'جاري المعالجة...' : 'رفض ' }}
                 </button>
             </div>
             <div
@@ -410,6 +445,8 @@ export default {
         phoneNumber: String,
         time: String,
         devices: Array<any>,
+        currency: String,
+        commission: Number,
         deliveryPrice: Number,
         totalPrice: Number,
         returnRequestStatus: String,
@@ -436,9 +473,8 @@ export default {
         formattedDeliveryPrice() {
             if (typeof this.deliveryPrice === 'number') {
                 return (
-                    `USD ${this.deliveryPrice
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}   /   ` +
+                    this.formatCurrency(this.deliveryPrice, this.currency) +
+                    ' / ' +
                     this.address
                 )
             } else {
@@ -486,6 +522,18 @@ export default {
                     return 'سيئ'
                 default:
                     return 'جديد'
+            }
+        },
+        formatCurrency(amount, currency) {
+            switch (currency) {
+                case 'YER':
+                    return amount + ' ريال يمني'
+                case 'SAR':
+                    return amount + ' ريال سعودي'
+                case 'USD':
+                    return amount + ' دولار أمريكي'
+                default:
+                    return amount + ' ' + currency
             }
         },
         openImageDialog(imageUrl) {
@@ -567,7 +615,7 @@ export default {
                 )
                 console.log(response.status)
                 this.loadingReturning = false
-                this.successMessage = 'تم الإلغاء '
+                this.successMessage = 'تم الإرجاع '
                 this.snackbarVisible = true
                 location.reload()
             } catch (error) {
@@ -575,7 +623,7 @@ export default {
                     'Error occurred while updating order status:',
                     error
                 )
-                this.errorMessage = 'فشل الإلغاء'
+                this.errorMessage = 'فشل الإرجاع'
                 this.snackbarVisible = true
                 this.loadingReturning = false
                 // Handle error

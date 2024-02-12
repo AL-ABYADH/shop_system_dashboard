@@ -4,7 +4,7 @@ import OrderItem from 'App/Models/OrderItem'
 import User from 'App/Models/User'
 import ProductItem from '../../../Models/ProductItem'
 import Product from 'App/Models/Product'
-import Price from 'App/Models/Price'
+// import Price from 'App/Models/Price'
 import Flaw from 'App/Models/Flaw'
 import ReturnRequest from 'App/Models/ReturnRequest'
 import ReturnRequestItem from 'App/Models/ReturnRequestItem'
@@ -71,12 +71,12 @@ export default class AdminReturnRequestsController {
                             productItemDetails.productId
                         )
                     )[0]
-                    const priceDetails = (
-                        await Price.query().where(
-                            'id',
-                            productItemDetails.priceId
-                        )
-                    )[0]
+                    // const priceDetails = (
+                    //     await Price.query().where(
+                    //         'id',
+                    //         productItemDetails.priceId
+                    //     )
+                    // )[0]
                     const loadedFlaws = await Flaw.query().where(
                         'productItemId',
                         productItemDetails.id
@@ -111,8 +111,7 @@ export default class AdminReturnRequestsController {
                         id: returnRequestItem.id,
                         orderItemId: orderItem.id,
                         deviceName: productDetails.name,
-                        price: priceDetails.price,
-                        currency: priceDetails.currency,
+                        price: orderItem.orderItemPrice,
                         flaws: flaws,
                         description: productItemDetails.description,
                         usedProductCondition:
@@ -133,6 +132,7 @@ export default class AdminReturnRequestsController {
                     customerImageUrl: customerUser.imageUrl,
                     currency: order.currency,
                     totalPrice: order.totalPrice,
+                    commission: order.adminCommission,
                     customerAddress: customerAddress.address,
                     devicesNumber: returnRequestItems.length,
                     time: order.createdAt,
@@ -339,7 +339,7 @@ export default class AdminReturnRequestsController {
 
             return response.ok({ message: 'success' })
         } catch (error) {
-            // console.log(error)
+            console.log(error)
             return response.internalServerError({
                 error: 'An error occurred while updating the return request status',
             })

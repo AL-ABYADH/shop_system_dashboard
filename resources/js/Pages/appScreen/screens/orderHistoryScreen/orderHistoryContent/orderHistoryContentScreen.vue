@@ -1,14 +1,18 @@
 <template>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <div class="container max-w-full">
         <div>
             <p
-                class="w-full border-b-2 font-almarai mb-3 sm:pt-2 md:pt-2 border-primary text-primary text-base sm:text-lg md:text-xl sm:pb-2"
+                v-if="filteredOrders('done').length > 0"
+                class="w-full border-b-2 mb-3 sm:pt-2 md:pt-2 border-primary text-primary text-base sm:text-lg md:text-xl sm:pb-2"
             >
                 سجل الطلبات
             </p>
             <div v-for="order in filteredOrders('done')" :key="order.id">
                 <ExpandableItem
-                    :orderId="order.id"
                     :title="order.customerName"
                     :address="order.customerAddress"
                     :date="order.date"
@@ -16,15 +20,30 @@
                     :devicesNumber="order.devicesNumber"
                     :phoneNumber="order.customerPhone"
                     :time="order.time"
+                    :currency="order.currency"
                     :deliveryPrice="order.deliveryPrice"
                     :orderStatus="order.orderStatus"
                     :totalPrice="order.totalPrice"
                     :devices="order.orderItems"
-                    :key="order.id"
+                    :commission="order.commission"
                     :sellerName="order.sellerName"
                     :sellerAddress="order.sellerAddress"
                     :sellerPhoneNumber="order.sellerPhoneNumber"
+                    :orderId="order.id"
+                    :key="order.id"
                 />
+            </div>
+            <div
+                v-if="filteredOrders('done').length === 0"
+                class="flex flex-col items-center justify-center h-96"
+            >
+                <img
+                    src="../../../../../Assets/no_order.png"
+                    alt="Empty"
+                    class="w-32 h-32 mb-2"
+                    style="filter: brightness(150%); /* Green tint */"
+                />
+                <p class="text-gray-500 text-lg">لا يوجد طلبات هنا</p>
             </div>
             <div class="mt-12"></div>
         </div>
@@ -46,7 +65,6 @@ type imageItems = {
 type orderItems = {
     id: number
     price: number
-    currency: string
     flaws: flaws[]
     description: string
     usedProductCondition: string | null
@@ -71,6 +89,7 @@ type Order = {
     time: string
     totalPrice: number
     deliveryPrice?: number
+    commission: number,
     orderStatus: string
     orderItems: orderItems[]
 }

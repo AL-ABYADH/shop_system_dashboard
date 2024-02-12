@@ -37,62 +37,35 @@
                     :key="item.id"
                     class="w-full flex mr-1 rounded-md"
                 >
-                    <template v-if="!isSidebarClosed">
-                        <a :href="item.route" class="w-full ml-2">
-                            <div
-                                @mouseover="showTooltip(item.id)"
-                                @mouseout="hideTooltip(item.id)"
-                                :class="{
-                                    'text-slate-500 bg-primary-opacity':
-                                        this.path === item.route,
-                                }"
-                                class="flex mb-1 px-3 py-2 duration-200 transform rounded-lg w-full cursor-pointer ml-2"
-                                data-toggle="tooltip"
-                                data-placement="right"
-                                :title="item.label"
-                            >
-                                <div class="flex">
-                                    <i :class="item.icon"></i>
-                                </div>
-
-                                <span
-                                    class="text-sm overflow-hidden block whitespace-nowrap w-full pr-4"
-                                >
-                                    {{ item.label }}
-                                </span>
+                    <a :href="item.route" class="w-full ml-2">
+                        <div
+                            @mouseover="showTooltip(item.id)"
+                            @mouseout="hideTooltip(item.id)"
+                            :class="{
+                                'text-slate-500 bg-primary-opacity': this.path === item.route,
+                            }"
+                            class="flex mb-1 px-3 py-2 duration-200 transform rounded-lg w-full cursor-pointer ml-2"
+                            data-toggle="tooltip"
+                            data-placement="right"
+                            :title="item.label"
+                        >
+                            <div class="flex">
+                                <i :class="item.icon"></i>
                             </div>
-                        </a>
-                    </template>
-                    <template v-else>
-                        <a :href="item.route">
-                            <div
-                                @mouseover="showTooltip(item.id)"
-                                @mouseout="hideTooltip(item.id)"
-                                :class="{
-                                    'text-slate-500 bg-primary-opacity':
-                                        this.path === item.route,
-                                }"
-                                class="flex mb-1 px-3 py-2 duration-200 transform rounded-lg w-10 cursor-pointer ml-2"
-                                data-toggle="tooltip"
-                                data-placement="right"
-                                :title="item.label"
+                            <span
+                                class="text-sm overflow-hidden block whitespace-nowrap w-full pr-4"
                             >
-                                <div class="flex">
-                                    <i :class="item.icon"></i>
-                                </div>
-                                <span
-                                    class="text-sm overflow-hidden block whitespace-nowrap w-full pr-4"
-                                >
-                                    {{ item.label }}
-                                </span>
-                            </div>
-                        </a>
-                    </template>
+                                {{ item.label }}
+                            </span>
+                        </div>
+                    </a>
                 </div>
             </section>
         </div>
     </aside>
 </template>
+
+
 
 <script lang="ts">
 export default {

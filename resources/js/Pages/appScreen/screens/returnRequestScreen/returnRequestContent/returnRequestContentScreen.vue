@@ -1,9 +1,14 @@
 <template>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <div class="container max-w-full">
         <div>
             <div>
                 <p
-                    class="w-full border-b-2 font-almarai mb-3 pt-2 sm:pt-3 md:pt-4 border-primary text-primary text-base sm:text-lg md:text-xl sm:pb-2"
+                    v-if="filteredReturnRequests('awaiting').length > 0"
+                    class="w-full border-b-2 mb-3 pt-2 sm:pt-3 md:pt-4 border-primary text-primary text-base sm:text-lg md:text-xl sm:pb-2"
                 >
                     الطلبات في انتظار التأكيد
                 </p>
@@ -20,10 +25,12 @@
                         :devicesNumber="returnRequest.devicesNumber"
                         :phoneNumber="returnRequest.customerPhone"
                         :time="returnRequest.time"
+                        :currency="returnRequest.currency"
                         :deliveryPrice="returnRequest.deliveryPrice"
                         :returnRequestStatus="returnRequest.returnRequestStatus"
                         :totalPrice="returnRequest.totalPrice"
                         :devices="returnRequest.returnRequestItems"
+                        :commission="returnRequest.commission"
                         :key="returnRequest.id"
                         :sellerName="returnRequest.sellerName"
                         :sellerAddress="returnRequest.sellerAddress"
@@ -32,7 +39,8 @@
                 </div>
             </div>
             <p
-                class="w-full border-b-2 font-almarai mb-3 sm:pt-2 md:pt-2 border-primary text-primary text-base sm:text-lg md:text-xl sm:pb-2"
+                v-if="filteredReturnRequests('evaluating').length > 0"
+                class="w-full border-b-2 mb-3 sm:pt-2 md:pt-2 border-primary text-primary text-base sm:text-lg md:text-xl sm:pb-2"
             >
                 الطلبات قيد التحقق
             </p>
@@ -49,16 +57,33 @@
                     :devicesNumber="returnRequest.devicesNumber"
                     :phoneNumber="returnRequest.customerPhone"
                     :time="returnRequest.time"
+                    :currency="returnRequest.currency"
                     :deliveryPrice="returnRequest.deliveryPrice"
                     :returnRequestStatus="returnRequest.returnRequestStatus"
                     :totalPrice="returnRequest.totalPrice"
                     :devices="returnRequest.returnRequestItems"
+                    :commission="returnRequest.commission"
                     :key="returnRequest.id"
                     :sellerName="returnRequest.sellerName"
                     :sellerAddress="returnRequest.sellerAddress"
                     :sellerPhoneNumber="returnRequest.sellerPhoneNumber"
                 />
             </div>
+        </div>
+        <div
+            v-if="
+                filteredReturnRequests('awaiting').length === 0 &&
+                filteredReturnRequests('evaluating').length === 0
+            "
+            class="flex flex-col items-center justify-center h-96"
+        >
+            <img
+                src="../../../../../Assets/no_order.png"
+                alt="Empty"
+                class="w-32 h-32 mb-2"
+                style="filter: brightness(150%); /* Green tint */"
+            />
+            <p class="text-gray-500 text-lg">لا يوجد طلبات هنا</p>
         </div>
         <div class="mt-12"></div>
     </div>
@@ -86,6 +111,7 @@ type returnRequestItems = {
     imageItems: imageItems[]
     expanded: boolean
     isUsed: number
+    reason: string
 }
 
 type returnRequest = {
@@ -104,6 +130,7 @@ type returnRequest = {
     time: string
     totalPrice: number
     deliveryPrice?: number
+    commission: number,
     returnRequestStatus: string
     returnRequestItems: returnRequestItems[]
 }

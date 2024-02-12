@@ -25,11 +25,11 @@
                         >
                             رقم الهاتف
                         </th>
-                        <th
+                        <!-- <th
                             class="px-4 py-2 sm:px-6 sm:py-3 md:px-6 md:py-3 lg:px-6 lg:py-3 xl:px-6 xl:py-3 text-center text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium text-gray-500"
                         >
                             التحكم
-                        </th>
+                        </th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -48,35 +48,35 @@
                         >
                             {{ admin.phoneNumber }}
                         </td>
-                        <td
+                        <!-- <td
                             class="px-2 py-2 sm:px-4 sm:py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2 whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center sm:w-1/6 md:w-1/12 lg:w-1/12"
                         >
                             <a
                                 class="text-blue-500 hover:text-blue-700 pl-2 sm:pl-4"
                                 href="adminsAccounts/editAdmin"
                             >
-                                <i class="fa fa-edit"></i>
+                                <i class="fa fa-edit"></i> -->
                                 <!-- Edit Icon -->
-                            </a>
-                            <a class="text-red-500 hover:text-red-700">
-                                <i class="fa fa-trash"></i>
+                            <!-- </a> -->
+                            <!-- <a class="text-red-500 hover:text-red-700">
+                                <i class="fa fa-trash"></i> -->
                                 <!-- Delete Icon -->
-                            </a>
-                        </td>
+                            <!-- </a> -->
+                        <!-- </td> -->
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <a
+    <!-- <a
         class="w-full md:w-auto h-full rounded-xl mt-5 flex justify-center items-center text-primary border-4 border-primary border-dotted bg-[#F5F5F5]"
         href="adminsAccounts/addAdmin"
     >
         <p class="block my-2 mx-2 md:mx-4 text-center md:text-left">
             اضافة مستخدم جديد إلى لوحة التحكم
         </p>
-    </a>
+    </a> -->
 </template>
 
 <script lang="ts">

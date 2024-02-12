@@ -21,7 +21,7 @@
             <headerVue />
             <div>
                 <p
-                    class="w-full border-b-2 font-almarai pt-2 sm:pt-3 md:pt-4 border-primary text-primary text-base sm:text-lg md:text-xl pb-1 sm:pb-2 md:pb-3 lg:pb-4 xl:pb-5"
+                    class="w-full border-b-2 pt-2 sm:pt-3 md:pt-4 border-primary text-primary text-base sm:text-lg md:text-xl pb-1 sm:pb-2 md:pb-3 lg:pb-4 xl:pb-3"
                 >
                     حسابات المشرفين
                 </p>

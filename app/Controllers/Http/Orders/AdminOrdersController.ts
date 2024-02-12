@@ -5,7 +5,7 @@ import OrderItem from 'App/Models/OrderItem'
 import User from 'App/Models/User'
 import ProductItem from '../../../Models/ProductItem'
 import Product from 'App/Models/Product'
-import Price from 'App/Models/Price'
+// import Price from 'App/Models/Price'
 import Flaw from 'App/Models/Flaw'
 import ImageItem from 'App/Models/ImageItem'
 import ImagesGroup from 'App/Models/ImagesGroup'
@@ -55,9 +55,9 @@ export default class AdminOrdersController {
                         productItemDetails.productId
                     )
                 )[0]
-                const priceDetails = (
-                    await Price.query().where('id', productItemDetails.priceId)
-                )[0]
+                // const priceDetails = (
+                //     await Price.query().where('id', productItemDetails.priceId)
+                // )[0]
                 const loadedFlaws = await Flaw.query().where(
                     'productItemId',
                     productItemDetails.id
@@ -96,8 +96,7 @@ export default class AdminOrdersController {
                 orderItems.push({
                     id: orderItem.id,
                     deviceName: productDetails.name,
-                    price: priceDetails.price,
-                    currency: priceDetails.currency,
+                    price: orderItem.orderItemPrice,
                     flaws: flaws,
                     description: productItemDetails.description,
                     usedProductCondition:
@@ -117,6 +116,7 @@ export default class AdminOrdersController {
                 customerImageUrl: customerUser.imageUrl,
                 currency: order.currency,
                 totalPrice: order.totalPrice,
+                commission: order.adminCommission,
                 customerAddress: customerAddress.address,
                 devicesNumber: orderItems.length,
                 time: order.createdAt,
@@ -173,9 +173,9 @@ export default class AdminOrdersController {
                         productItemDetails.productId
                     )
                 )[0]
-                const priceDetails = (
-                    await Price.query().where('id', productItemDetails.priceId)
-                )[0]
+                // const priceDetails = (
+                //     await Price.query().where('id', productItemDetails.priceId)
+                // )[0]
                 const loadedFlaws = await Flaw.query().where(
                     'productItemId',
                     productItemDetails.id
@@ -209,8 +209,7 @@ export default class AdminOrdersController {
                 orderItems.push({
                     id: orderItem.id,
                     deviceName: productDetails.name,
-                    price: priceDetails.price,
-                    currency: priceDetails.currency,
+                    price: orderItem.orderItemPrice,
                     flaws: flaws,
                     description: productItemDetails.description,
                     usedProductCondition:
@@ -230,6 +229,7 @@ export default class AdminOrdersController {
                 customerImageUrl: customerUser.imageUrl,
                 currency: order.currency,
                 totalPrice: order.totalPrice,
+                commission: order.adminCommission,
                 customerAddress: customerAddress.address,
                 devicesNumber: orderItems.length,
                 time: order.createdAt,
@@ -287,9 +287,9 @@ export default class AdminOrdersController {
                         productItemDetails.productId
                     )
                 )[0]
-                const priceDetails = (
-                    await Price.query().where('id', productItemDetails.priceId)
-                )[0]
+                // const priceDetails = (
+                //     await Price.query().where('id', productItemDetails.priceId)
+                // )[0]
                 const loadedFlaws = await Flaw.query().where(
                     'productItemId',
                     productItemDetails.id
@@ -323,8 +323,7 @@ export default class AdminOrdersController {
                 orderItems.push({
                     id: orderItem.id,
                     deviceName: productDetails.name,
-                    price: priceDetails.price,
-                    currency: priceDetails.currency,
+                    price: orderItem.orderItemPrice,
                     flaws: flaws,
                     description: productItemDetails.description,
                     usedProductCondition:
@@ -344,6 +343,7 @@ export default class AdminOrdersController {
                 customerImageUrl: customerUser.imageUrl,
                 currency: order.currency,
                 totalPrice: order.totalPrice,
+                commission: order.adminCommission,
                 customerAddress: customerAddress.address,
                 devicesNumber: orderItems.length,
                 time: order.createdAt,

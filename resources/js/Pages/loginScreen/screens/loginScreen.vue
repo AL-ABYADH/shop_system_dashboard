@@ -77,31 +77,31 @@ export default {
         async submit() {
             try {
                 this.loading = true
-
-                if (this.form.username.length === 0) {
+                if (this.form.username.length === 0 && this.form.password.length === 0) {
+                                    this.errorMessage = 'يجب إدخال اسم المستخدم و كلمة المرور'
+                                    this.snackbarVisible = true
+                                    return
+                                }
+                else if (this.form.username.length === 0) {
                     this.errorMessage = 'يجب إدخال اسم المستخدم'
                     this.snackbarVisible = true
                     return
                 }
-                if (this.form.password.length === 0) {
+                else if (this.form.password.length === 0) {
                     this.errorMessage = 'يجب إدخال كلمة المرور'
                     this.snackbarVisible = true
                     return
                 }
-                if (this.form.username.length === 0 && this.form.password.length === 0) {
-                    this.errorMessage = 'يجب إدخال اسم المستخدم و كلمة المرور'
-                    this.snackbarVisible = true
-                    return
-                }
+                
 
                 // Perform login request
                 const response = await axios.post('/auth/login', this.form)
-                console.log(response) 
+                console.log(response.data) 
                 this.snackbarVisible = false
                 this.$inertia.visit('/', { replace: true })
             } catch (error) {
                 console.error('An error occurred:', error) 
-                if (error.response && error.response.status === 400) {
+                if (error.response.status === 400) {
                     this.errorMessage = 'اسم المستخدم أو كلمة المرور غير صحيحة'
                 } else {
                     this.errorMessage = 'حدث خطأ غير متوقع'
