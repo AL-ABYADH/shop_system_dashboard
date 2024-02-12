@@ -4,6 +4,7 @@ import User from 'App/Models/User'
 import axios from 'axios'
 import Env from '@ioc:Adonis/Core/Env'
 import Cart from 'App/Models/Cart'
+import CartItem from 'App/Models/CartItem'
 
 export default class APIAuthController {
     public async register({ request, response, auth }: HttpContextContract) {
@@ -66,8 +67,14 @@ export default class APIAuthController {
                 role: data.role == 'seller' ? 'seller' : 'customer',
             })
 
+            let cartItemsCount: number | null = null
             if (data.role == 'customer') {
-                Cart.create({ customerUserId: user.id })
+                const cart = await Cart.create({ customerUserId: user.id })
+
+                // Get user's cart items count
+                cartItemsCount = (
+                    await CartItem.query().where('cartId', cart.id)
+                ).length
             }
 
             // Address.create({
@@ -82,7 +89,11 @@ export default class APIAuthController {
                 .use('api')
                 .attempt(data.username, data.password)
 
-            return response.ok({ ...user.serialize(), token: token.token })
+            return response.ok({
+                ...user.serialize(),
+                token: token.token,
+                cart_items_count: cartItemsCount,
+            })
         } catch (err) {
             return response.badRequest({
                 message: (Object.values(err.messages)[0] as Array<string>)[0],
@@ -113,14 +124,25 @@ export default class APIAuthController {
                 .attempt(data.username, data.password)
 
             const user = await User.findBy('username', data.username)
+            if (!user) return response.notFound({ message: 'User not found' })
 
-            // await axios.get(
-            //     `${Env.get('PAYMENT_URL')}/checkUser?phoneNumber=${
-            //         user?.phoneNumber
-            //     }`
-            // )
+            let cartItemsCount: number | null = null
+            if (user.role == 'customer') {
+                const cart = await Cart.findBy('customerUserId', user.id)
+                if (!cart)
+                    return response.notFound({ message: 'User cart not found' })
 
-            return response.ok({ ...user!.serialize(), token: token.token })
+                // Get user's cart items count
+                cartItemsCount = (
+                    await CartItem.query().where('cartId', cart.id)
+                ).length
+            }
+
+            return response.ok({
+                ...user!.serialize(),
+                token: token.token,
+                cart_items_count: cartItemsCount,
+            })
         } catch (err) {
             // console.log(err)
             if (err.response && err.response.status == 404)
