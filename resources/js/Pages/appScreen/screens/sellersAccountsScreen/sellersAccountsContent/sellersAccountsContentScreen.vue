@@ -53,11 +53,11 @@
                         >
                             الإنذارات
                         </th>
-                        <th
+                        <!-- <th
                             class="px-4 py-2 sm:py-3 md:py-3 lg:py-3 xl:py-3 text-center text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium text-gray-500"
                         >
                             التحكم
-                        </th>
+                        </th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -101,7 +101,7 @@
                         >
                             {{ seller.warnings }}
                         </td>
-                        <td
+                        <!-- <td
                             class="px-2 py-2 sm:py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2 whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center sm:w-1/6 md:w-1/12 lg:w-1/12"
                         >
                             <div class="tooltip-container">
@@ -109,9 +109,9 @@
                                     class="text-red-500 hover:text-red-700 mr-5 sm:ml-4 sm:mr-10"
                                     @click="showWarningPopupForSeller(seller)"
                                 >
-                                    <i class="fa fa-warning"></i>
+                                    <i class="fa fa-warning"></i> -->
                                     <!-- Edit Icon -->
-                                </button>
+                                <!-- </button>
                                 <div class="tooltip">إنذار</div>
                             </div>
                             <div class="tooltip-container">
@@ -119,13 +119,13 @@
                                     class="text-red-500 hover:text-red-700 ml-3 p-2 sm:ml-4"
                                     @click="showWarningPopupForSeller(seller)"
                                 >
-                                    <i class="fa fa-ban"></i>
+                                    <i class="fa fa-ban"></i> -->
                                     <!-- Edit Icon -->
-                                </button>
+                                <!-- </button>
                                 <div class="tooltip">حظر</div>
                             </div>
-                        </td>
-                    </tr>
+                        </td>-->
+                    </tr> 
                 </tbody>
             </table>
         </div>
