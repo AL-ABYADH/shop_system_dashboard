@@ -3,14 +3,14 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Cart from 'App/Models/Cart'
 import CartItem from 'App/Models/CartItem'
 import ProductItem from 'App/Models/ProductItem'
-import User from 'App/Models/User'
+// import User from 'App/Models/User'
 
 export default class CartsController {
     public async getCartItems({ auth, response }: HttpContextContract) {
         try {
             // Get the currently authenticated user
-            // const customer = await auth.use('api').authenticate()
-            const customer = await User.find(3)
+            const customer = await auth.use('api').authenticate()
+            // const customer = await User.find(3)
 
             const cart = await Cart.query()
                 .where('customerId', customer!.id)
@@ -34,8 +34,8 @@ export default class CartsController {
     public async addToCart({ auth, request, response }: HttpContextContract) {
         try {
             // Get the currently authenticated user
-            // const customer = await auth.use('api').authenticate()
-            const customer = await User.find(3)
+            const customer = await auth.use('api').authenticate()
+            // const customer = await User.find(3)
 
             const { productItemId } = request.only(['productItemId'])
 
@@ -66,16 +66,8 @@ export default class CartsController {
         }
     }
 
-    public async removeFromCart({
-        auth,
-        params,
-        response,
-    }: HttpContextContract) {
+    public async removeFromCart({ params, response }: HttpContextContract) {
         try {
-            // Get the currently authenticated user
-            // const customer = await auth.use('api').authenticate()
-            const customer = await User.find(3)
-
             const { cartItemId } = params
 
             const cart = await Cart.find(cartItemId)
