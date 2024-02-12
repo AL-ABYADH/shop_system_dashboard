@@ -1,0 +1,440 @@
+[
+  {
+    "name": "Samsung Galaxy A25",
+    "features": {
+      "cameraRate": 7.5,
+      "ram": [
+        "6",
+        "8"
+      ],
+      "storage": [
+        "128GB",
+        "256GB"
+      ],
+      "CPU": {
+        "Samsung Galaxy A25": "Exynos 1280"
+      },
+      "CPURating": 7,
+      "batteryCapacity": "5000 mAh",
+      "batteryRemovable": "No",
+      "batteryRating": 7,
+      "cameraRating": 7,
+      "speakersType": "Hybrid Stereo",
+      "speakersRating": 8,
+      "headphonesJack": "Yes",
+      "materialQualityRating": 7,
+      "maxOsVersion": "Android 14",
+      "SDCard": true,
+      "wirelessCharging": false,
+      "chargingSpeed": "25",
+      "wirelessChargingSpeed": "25W",
+      "backMaterial": "plastic",
+      "screenProtection": "No special glass protection",
+      "screenType": "Super AMOLED",
+      "screenMaxResolution": "1080x2340 pixels",
+      "screenRefreshRate": "120Hz",
+      "type-c": true,
+      "sensors": [
+        "Fingerprint (side-mounted)",
+        "Accelerometer",
+        "Gyro",
+        "Compass",
+        "Proximity"
+      ],
+      "wirelessPowerSharing": false
+    }
+  },
+  {
+    "name": "Samsung Galaxy A15",
+    "features": {
+      "cameraRate": 6.5,
+      "ram": [
+        "4",
+        "6",
+        "8"
+      ],
+      "storage": [
+        "128GB",
+        "256GB"
+      ],
+      "CPU": {
+        "Samsung Galaxy A15 4G": "Mediatek Helio G99",
+        "Samsung Galaxy A15 5G": "MediaTek Dimensity 6100+"
+      },
+      "CPURating": 6,
+      "batteryCapacity": "5000 mAh",
+      "batteryRemovable": "No",
+      "batteryRating": 8.5,
+      "cameraRating": 7,
+      "speakersType": "Mono",
+      "speakersRating": 5,
+      "headphonesJack": "Yes",
+      "materialQualityRating": 6,
+      "maxOsVersion": "Android 14, One UI 6",
+      "SDCard": true,
+      "wirelessCharging": false,
+      "chargingSpeed": "25",
+      "wirelessChargingSpeed": "25W",
+      "backMaterial": "plastic",
+      "screenProtection": "Tempered Glass",
+      "screenType": "Super AMOLED",
+      "screenMaxResolution": "1080x2340 pixels",
+      "screenRefreshRate": "90Hz",
+      "type-c": true,
+      "sensors": [
+        "Fingerprint (side-mounted)",
+        "Accelerometer",
+        "Geomagnetic sensor",
+        "Gyro sensor",
+        "Light Sensor",
+        "Virtual Proximity Sensing"
+      ],
+      "wirelessPowerSharing": null
+    }
+  },
+  {
+    "name": "Samsung Galaxy A35",
+    "features": {
+      "cameraRate": "TBD",
+      "ram": [
+        "6",
+        "8",
+        "12"
+      ],
+      "storage": [
+        "128GB",
+        "256GB"
+      ],
+      "CPU": {
+        "Samsung Galaxy A35": "Exynos 1380"
+      },
+      "CPURating": 7.5,
+      "batteryCapacity": "5000 mAh",
+      "batteryRemovable": "No",
+      "batteryRating": 8,
+      "cameraRating": 7.5,
+      "speakersType": "Earpiece, Multiple speakers",
+      "speakersRating": 7,
+      "headphonesJack": "Yes",
+      "materialQualityRating": 7.5,
+      "maxOsVersion": "Android 14, One UI 6.1",
+      "SDCard": true,
+      "wirelessCharging": false,
+      "chargingSpeed": "25",
+      "wirelessChargingSpeed": "25W",
+      "backMaterial": "Plastic",
+      "screenProtection": "Corning Gorilla Glass 5",
+      "screenType": "Super AMOLED",
+      "screenMaxResolution": "1080x2400 pixels",
+      "screenRefreshRate": "120Hz",
+      "type-c": true,
+      "sensors": [
+        "Fingerprint (under display, optical)",
+        "Accelerometer",
+        "Gyro",
+        "Compass",
+        "Light sensor",
+        "Proximity sensor"
+      ]
+    }
+  },
+  {
+    "name": "Samsung Galaxy A55 5G",
+    "features": {
+      "cameraRate": "TBD",
+      "ram": [
+        "4GB",
+        "6GB",
+        "8GB"
+      ],
+      "storage": [
+        "128GB",
+        "256GB"
+      ],
+      "CPU": {
+        "SM-A556E": "Exynos 1480",
+        "SM-A556B": "Exynos 1480"
+      },
+      "CPURating": 6.5,
+      "batteryCapacity": "5000 mAh",
+      "batteryRemovable": "No",
+      "batteryRating": 10,
+      "cameraRating": 7.5,
+      "speakersType": "Stereo Speakers",
+      "speakersRating": "rating value",
+      "headphonesJack": "No",
+      "materialQualityRating": 7.5,
+      "maxOsVersion": "Android 14, One UI 6.1",
+      "SDCard": true,
+      "wirelessCharging": false,
+      "chargingSpeed": "25W",
+      "wirelessChargingSpeed": "25W",
+      "backMaterial": "Glass (Gorilla Glass)",
+      "screenProtection": "Corning Gorilla Glass",
+      "screenType": "Super AMOLED",
+      "screenMaxResolution": "1080x2340 pixels",
+      "screenRefreshRate": "120Hz",
+      "type-c": true,
+      "sensors": [
+        "Fingerprint (under display, optical)",
+        "Accelerometer",
+        "Gyro",
+        "Compass",
+        "Barometer (USA only)",
+        "Virtual proximity sensing"
+      ],
+      "wirelessPowerSharing": false
+    }
+  },
+  {
+    "name": "Samsung Galaxy S23 FE",
+    "features": {
+      "cameraRate": 8.5,
+      "ram": [
+        "8"
+      ],
+      "storage": [
+        "128GB",
+        "256GB"
+      ],
+      "CPU": {
+        "SM-S711B": "Exynos 2200",
+        "SM-S711B/DS": "Exynos 2200",
+        "SM-S711U1": "Qualcomm SM8450 Snapdragon 8 Gen 1",
+        "SM-S711U": "Qualcomm SM8450 Snapdragon 8 Gen 1",
+        "SM-S711W": "Qualcomm SM8450 Snapdragon 8 Gen 1",
+        "SM-S7110": "Qualcomm SM8450 Snapdragon 8 Gen 1"
+      },
+      "CPURating": 7.5,
+      "batteryCapacity": "4500 mAh",
+      "batteryRemovable": "No",
+      "batteryRating": 7,
+      "cameraRating": 8.5,
+      "speakersType": "stereo speakers",
+      "speakersRating": 8,
+      "headphonesJack": "No",
+      "materialQualityRating": 8,
+      "maxOsVersion": "Android 14",
+      "SDCard": false,
+      "wirelessCharging": true,
+      "chargingSpeed": "25",
+      "wirelessChargingSpeed": "15",
+      "backMaterial": "Gorilla Glass 5",
+      "screenProtection": "Corning Gorilla Glass 5",
+      "screenType": "Dynamic AMOLED 2X",
+      "screenMaxResolution": "1080x2340 pixels",
+      "screenRefreshRate": "120Hz",
+      "type-c": true,
+      "sensors": [
+        "Fingerprint (under display, optical)",
+        "Accelerometer",
+        "Gyro",
+        "Compass",
+        "Virtual proximity sensing"
+      ],
+      "wirelessPowerSharing": true
+    }
+  },
+  {
+    "name": "Samsung Galaxy S24 Ultra",
+    "features": {
+      "cameraRate": 8.5,
+      "ram": [
+        "12"
+      ],
+      "storage": [
+        "256GB",
+        "512GB",
+        "1TB"
+      ],
+      "CPU": {
+        "Samsung Galaxy S24 Ultra": "Qualcomm Snapdragon 8 Gen 3"
+      },
+      "CPURating": 9.5,
+      "batteryCapacity": "5000 mAh",
+      "batteryRemovable": "No",
+      "batteryRating": 9,
+      "cameraRating": 8.5,
+      "speakersType": "Stereo Speakers",
+      "speakersRating": 8,
+      "headphonesJack": "No",
+      "materialQualityRating": 8.5,
+      "maxOsVersion": "Android 21",
+      "SDCard": false,
+      "wirelessCharging": true,
+      "chargingSpeed": "45",
+      "wirelessChargingSpeed": "25",
+      "backMaterial": "Gorilla Glass Armor",
+      "screenProtection": "Corning\u2019s latest Gorilla Armour",
+      "screenType": "Dynamic AMOLED 2X",
+      "screenMaxResolution": "1440x3120 pixels",
+      "screenRefreshRate": "120Hz",
+      "type-c": true,
+      "sensors": [
+        "Fingerprint (under display, ultrasonic)",
+        "Accelerometer",
+        "Gyro",
+        "Proximity",
+        "Compass",
+        "Barometer",
+        "Samsung DeX",
+        "Samsung Wireless DeX (desktop experience support)",
+        "Ultra Wideband (UWB) support"
+      ],
+      "wirelessPowerSharing": true
+    }
+  },
+  {
+    "name": "Samsung Galaxy S24+",
+    "features": {
+      "cameraRate": 8.5,
+      "ram": [
+        "12"
+      ],
+      "storage": [
+        "256GB",
+        "512GB"
+      ],
+      "CPU": {
+        "Samsung Galaxy S24+ Model 1": "Qualcomm SM8650-AC Snapdragon 8 Gen 3",
+        "Samsung Galaxy S24+ Model 2": "Exynos 2400"
+      },
+      "CPURating": 8.5,
+      "batteryCapacity": "4900 mAh",
+      "batteryRemovable": "No",
+      "batteryRating": 8.5,
+      "speakersType": "Stereo Speakers",
+      "speakersRating": 8,
+      "headphonesJack": "No",
+      "materialQualityRating": 8.5,
+      "maxOsVersion": "Android 21",
+      "SDCard": false,
+      "wirelessCharging": true,
+      "chargingSpeed": "45",
+      "wirelessChargingSpeed": "15W",
+      "backMaterial": "Corning\u00ae Gorilla\u00ae Glass Victus\u00ae2",
+      "screenProtection": "Corning\u2019s Gorilla Glass Victus 3",
+      "screenType": "Dynamic AMOLED",
+      "screenMaxResolution": "3120x1440 pixels",
+      "screenRefreshRate": "120Hz",
+      "type-c": true,
+      "sensors": [
+        "Fingerprint (under display, ultrasonic)",
+        "Accelerometer",
+        "Gyro",
+        "Proximity",
+        "Compass",
+        "Barometer",
+        "Geomagnetic Sensor",
+        "Hall Sensor",
+        "Light Sensor"
+      ],
+      "wirelessPowerSharing": true
+    }
+  },
+  {
+    "name": "Samsung Galaxy S24",
+    "features": {
+      "cameraRate": 8.5,
+      "ram": [
+        "8"
+      ],
+      "storage": [
+        "128GB",
+        "256GB",
+        "512GB",
+        "1TB"
+      ],
+      "CPU": {
+        "Samsung Galaxy S24": "Qualcomm SM8650-AC Snapdragon 8 Gen 3 (4 nm)",
+        "Samsung Galaxy S24 Ultra": "1x 3.4 GHz Cortex-X4, 3x 3.15 GHz Cortex-A720, 2x 2.96 GHz Cortex-A520, 2x 2.27 GHz Cortex-A520"
+      },
+      "CPURating": 8,
+      "batteryCapacity": "4000 mAh",
+      "batteryRemovable": "No",
+      "batteryRating": 8.5,
+      "cameraRating": 8,
+      "speakersType": "AKG stereo speakers with Dolby Atmos support",
+      "speakersRating": 8,
+      "headphonesJack": "No",
+      "materialQualityRating": 8.5,
+      "maxOsVersion": "Android 14, One UI 6.1",
+      "SDCard": false,
+      "wirelessCharging": true,
+      "chargingSpeed": "25",
+      "wirelessChargingSpeed": "15W",
+      "backMaterial": "Corning\u00ae Gorilla\u00ae Glass Victus\u00ae2",
+      "screenProtection": "Corning\u2019s Gorilla Armour",
+      "screenType": "Dynamic AMOLED 2X",
+      "screenMaxResolution": "1080x2340 pixels",
+      "screenRefreshRate": "120Hz",
+      "type-c": true,
+      "sensors": [
+        "Fingerprint (under display, ultrasonic)",
+        "Accelerometer",
+        "Gyro",
+        "Proximity",
+        "Compass",
+        "Barometer",
+        "Geomagnetic sensor",
+        "Hall sensor",
+        "Light Sensor"
+      ],
+      "wirelessPowerSharing": true
+    }
+  },
+  {
+    "name": "Samsung Galaxy A34",
+    "features": {
+      "cameraRate": 7.5,
+      "ram": [
+        "6",
+        "8"
+      ],
+      "storage": [
+        "128GB",
+        "256GB"
+      ],
+      "CPU": {
+        "SM-A346E": "Mediatek Dimensity 1080 (MT6877V)",
+        "SM-A346B": "Mediatek Dimensity 1080 (MT6877V)",
+        "SM-A346B/DS": "Mediatek Dimensity 1080 (MT6877V)",
+        "SM-A346B/DSN": "Mediatek Dimensity 1080 (MT6877V)",
+        "SM-A346E/DS": "Mediatek Dimensity 1080 (MT6877V)",
+        "SM-A346E/DSN": "Mediatek Dimensity 1080 (MT6877V)",
+        "SM-A346M": "Mediatek Dimensity 1080 (MT6877V)",
+        "SM-A346M/N": "Mediatek Dimensity 1080 (MT6877V)",
+        "SM-A346M/DSN": "Mediatek Dimensity 1080 (MT6877V)",
+        "SM-A3460": "Mediatek Dimensity 1080 (MT6877V)"
+      },
+      "CPURating": 7,
+      "batteryCapacity": "5000mAh",
+      "batteryRemovable": "No",
+      "batteryRating": 8.1,
+      "cameraRating": 6.5,
+      "speakersType": "stereo speakers",
+      "speakersRating": 7,
+      "headphonesJack": "No",
+      "materialQualityRating": 6.5,
+      "maxOsVersion": "Android 14",
+      "SDCard": true,
+      "wirelessCharging": false,
+      "chargingSpeed": "25",
+      "wirelessChargingSpeed": "25W",
+      "backMaterial": "plastic",
+      "screenProtection": "Corning Gorilla Glass 5",
+      "screenType": "Super AMOLED",
+      "screenMaxResolution": "1080x2340 pixels",
+      "screenRefreshRate": "120Hz",
+      "type-c": true,
+      "sensors": [
+        "Fingerprint (under display, optical)",
+        "Accelerometer",
+        "Gyro",
+        "Compass",
+        "Virtual proximity sensing"
+      ],
+      "wirelessPowerSharing": false
+    }
+  }
+]

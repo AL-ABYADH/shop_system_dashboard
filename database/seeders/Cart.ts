@@ -4,13 +4,13 @@ import Cart from 'App/Models/Cart'
 export default class CartSeeder extends BaseSeeder {
     public async run() {
         const cartData = [
-            { customerId: 3 },
-            { customerId: 6 },
-            { customerId: 9 },
-            { customerId: 12 },
-            { customerId: 15 },
+            { customerUserId: 3 },
+            { customerUserId: 6 },
+            { customerUserId: 9 },
+            { customerUserId: 12 },
+            { customerUserId: 15 },
         ]
 
-        await Cart.updateOrCreateMany('customerId', cartData)
+        await Cart.updateOrCreateMany('customerUserId', cartData)
     }
 }

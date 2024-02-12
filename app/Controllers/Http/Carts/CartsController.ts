@@ -49,9 +49,13 @@ export default class CartsController {
                 })
 
             const cart = await Cart.query()
-                .where('customerId', customer!.id)
+                .where('customerUserId', customer!.id)
                 .select('id')
                 .firstOrFail()
+
+            const cartItem = await CartItem.findBy('cartId', cart.id)
+            if (cartItem)
+                return response.badRequest({ message: 'Item already in cart' })
 
             await CartItem.create({
                 cartId: cart.id,
@@ -60,20 +64,31 @@ export default class CartsController {
 
             return response.ok({ message: 'success' })
         } catch (error) {
+            console.log(error)
             return response.internalServerError({
                 message: 'An error has occurred while adding item to cart',
             })
         }
     }
 
-    public async removeFromCart({ params, response }: HttpContextContract) {
+    public async removeFromCart({
+        auth,
+        params,
+        response,
+    }: HttpContextContract) {
         try {
-            const { cartItemId } = params
+            // Get the currently authenticated user
+            const customer = await auth.use('api').authenticate()
 
-            const cart = await Cart.find(cartItemId)
+            const { productItemId } = params
+
+            const cart = await Cart.findBy('customerUserId', customer.id)
             if (!cart) return response.notFound('Cart not found')
 
-            const cartItem = await CartItem.find(cartItemId)
+            const cartItem = await CartItem.findBy(
+                'productItemId',
+                productItemId
+            )
             if (!cartItem)
                 return response.notFound({ message: 'Cart item not found' })
 

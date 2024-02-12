@@ -7,7 +7,7 @@ export default class Carts extends BaseSchema {
         this.schema.createTable(this.tableName, (table) => {
             table.increments('id').primary()
             table
-                .integer('customer_id')
+                .integer('customer_user_id')
                 .unsigned()
                 .references('users.id')
                 .notNullable()

@@ -6,8 +6,9 @@ Route.group(() => {
     Route.post('/add-to-cart', 'Carts/CartsController.addToCart')
 
     Route.delete(
-        '/remove-from-cart/:cartItemId',
+        '/remove-from-cart/:productItemId',
         'Carts/CartsController.removeFromCart'
     )
-}).prefix('api/carts')
-// .middleware('auth:api')
+})
+    .prefix('api/carts')
+    .middleware('auth:api')

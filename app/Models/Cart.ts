@@ -18,7 +18,7 @@ export default class Cart extends BaseModel {
     public id: number
 
     @column()
-    public customerId: number
+    public customerUserId: number
 
     @belongsTo(() => User)
     public customer: BelongsTo<typeof User>

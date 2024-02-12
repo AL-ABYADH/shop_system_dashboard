@@ -3,6 +3,7 @@ import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/User'
 import axios from 'axios'
 import Env from '@ioc:Adonis/Core/Env'
+import Cart from 'App/Models/Cart'
 
 export default class APIAuthController {
     public async register({ request, response, auth }: HttpContextContract) {
@@ -64,6 +65,10 @@ export default class APIAuthController {
                 fullName: data.fullName,
                 role: data.role == 'seller' ? 'seller' : 'customer',
             })
+
+            if (data.role == 'customer') {
+                Cart.create({ customerUserId: user.id })
+            }
 
             // Address.create({
             //     userId: user.id,

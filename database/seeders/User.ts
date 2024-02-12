@@ -53,11 +53,11 @@ export default class UserSeeder extends BaseSeeder {
             )
             // Create a cart for the customer user if not created yet
             const carts = await Cart.query()
-                .where('customerId', customer.id)
+                .where('customerUserId', customer.id)
                 .select('id')
             if (carts.length != 0) continue
             await Cart.create({
-                customerId: customer.id,
+                customerUserId: customer.id,
             })
         }
     }

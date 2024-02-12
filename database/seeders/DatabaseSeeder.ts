@@ -29,7 +29,7 @@ export default class DatabaseSeederSeeder extends BaseSeeder {
         await new FlawSeeder(this.client).run()
         await new ProductFeatureSeeder(this.client).run()
         await new UserProductSeeder(this.client).run()
-        await new CartSeeder(this.client).run()
+        // await new CartSeeder(this.client).run()
         await new CartItemSeeder(this.client).run()
         await new PaymentMethodSeeder(this.client).run()
         await new OrderSeeder(this.client).run()

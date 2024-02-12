@@ -1,6 +1,7 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import ExchangesController from 'App/Controllers/ExchangesController'
+import CartItem from 'App/Models/CartItem'
 import Feature from 'App/Models/Feature'
 import Flaw from 'App/Models/Flaw'
 import ImageItem from 'App/Models/ImageItem'
@@ -15,7 +16,10 @@ export default class CustomerProductItemsController {
     public async getAllItems({ auth, params, response }) {
         try {
             // Get the currently authenticated user
-            // const customer = await auth.use('api').authenticate().select('preferredCurrency')
+            // const customer = await auth
+            //     .use('api')
+            //     .authenticate()
+            //     .select('preferredCurrency')
             const customer = await User.find(3)
 
             const productId = params.productId
@@ -24,9 +28,16 @@ export default class CustomerProductItemsController {
                 .where('status', 'available')
                 .where('productId', productId)
 
+            if (loadedItems.length == 0) return response.ok([])
+
+            const seller = await User.find(loadedItems[0].sellerUserId)
+            if (!seller)
+                return response.notFound({ message: 'Seller not found' })
+
             const items = await this.getItems(
                 loadedItems,
-                customer?.preferredCurrency!
+                customer?.preferredCurrency!,
+                seller?.fullName
             )
 
             response.ok(items)
@@ -35,10 +46,13 @@ export default class CustomerProductItemsController {
         }
     }
 
-    public async getHomeScreenItems({ request, response }) {
+    public async getHomeScreenItems({ auth, request, response }) {
         try {
             // Get the currently authenticated user
-            // const customer = await auth.use('api').authenticate().select('preferredCurrency')
+            // const customer = await auth
+            //     .use('api')
+            //     .authenticate()
+            //     .select('preferredCurrency')
             const customer = await User.find(3)
 
             const page = request.input('page', 1)
@@ -53,40 +67,82 @@ export default class CustomerProductItemsController {
                 .where('status', 'available')
                 .where('createdAt', '>', lastWeekDate.toISOString())
                 .paginate(page, perPage)
-            const recentlyAddedItems = await this.getItems(
-                paginatedRecentlyAddedItems.toJSON().data,
-                customer?.preferredCurrency!
-            )
+            if (paginatedRecentlyAddedItems.length != 0) {
+                var seller = await User.find(
+                    paginatedRecentlyAddedItems[0].sellerUserId
+                )
+                if (!seller)
+                    return response.notFound({ message: 'Seller not found' })
+            }
+            const recentlyAddedItems =
+                paginatedRecentlyAddedItems.length != 0
+                    ? await this.getItems(
+                          paginatedRecentlyAddedItems.toJSON().data,
+                          customer?.preferredCurrency!,
+                          seller!.fullName
+                      )
+                    : []
 
             // Get high rated items
             const paginatedHighRatedItems = await ProductItem.query()
                 .where('status', 'available')
                 .where('productRating', '>', 4)
                 .paginate(page, perPage)
-            const highRatedItems = await this.getItems(
-                paginatedHighRatedItems.toJSON().data,
-                customer?.preferredCurrency!
-            )
+            if (paginatedHighRatedItems.length != 0) {
+                var seller = await User.find(
+                    paginatedHighRatedItems[0].sellerUserId
+                )
+                if (!seller)
+                    return response.notFound({ message: 'Seller not found' })
+            }
+            const highRatedItems =
+                paginatedHighRatedItems.length != 0
+                    ? await this.getItems(
+                          paginatedHighRatedItems.toJSON().data,
+                          customer?.preferredCurrency!,
+                          seller!.fullName
+                      )
+                    : []
 
             // Get new items
             const paginatedNewItems = await ProductItem.query()
                 .where('status', 'available')
                 .where('usedProduct', false)
                 .paginate(page, perPage)
-            const newItems = await this.getItems(
-                paginatedNewItems.toJSON().data,
-                customer?.preferredCurrency!
-            )
+            if (paginatedNewItems.length != 0) {
+                var seller = await User.find(paginatedNewItems[0].sellerUserId)
+                if (!seller)
+                    return response.notFound({ message: 'Seller not found' })
+            }
+            const newItems =
+                paginatedNewItems.length != 0
+                    ? await this.getItems(
+                          paginatedNewItems.toJSON().data,
+                          customer?.preferredCurrency!,
+                          seller!.fullName
+                      )
+                    : []
 
             // Get excellentItems used condition
             const paginatedExcellentItems = await ProductItem.query()
                 .where('status', 'available')
                 .where('usedProductCondition', 'excellent')
                 .paginate(page, perPage)
-            const excellentItems = await this.getItems(
-                paginatedExcellentItems.toJSON().data,
-                customer?.preferredCurrency!
-            )
+            if (paginatedExcellentItems.length != 0) {
+                var seller = await User.find(
+                    paginatedExcellentItems[0].sellerUserId
+                )
+                if (!seller)
+                    return response.notFound({ message: 'Seller not found' })
+            }
+            const excellentItems =
+                paginatedExcellentItems.length != 0
+                    ? await this.getItems(
+                          paginatedExcellentItems.toJSON().data,
+                          customer?.preferredCurrency!,
+                          seller!.fullName
+                      )
+                    : []
 
             response.ok({
                 data: {
@@ -98,15 +154,18 @@ export default class CustomerProductItemsController {
                 meta: paginatedRecentlyAddedItems.toJSON().meta,
             })
         } catch (err) {
-            // console.error(err)
+            console.error(err)
             response.internalServerError({ message: 'An error has occurred!' })
         }
     }
 
-    public async getRecentlyAddedItems({ request, response }) {
+    public async getRecentlyAddedItems({ auth, request, response }) {
         try {
             // Get the currently authenticated user
-            // const customer = await auth.use('api').authenticate().select('preferredCurrency')
+            // const customer = await auth
+            //     .use('api')
+            //     .authenticate()
+            //     .select('preferredCurrency')
             const customer = await User.find(3)
 
             const page = request.input('page', 1)
@@ -120,10 +179,21 @@ export default class CustomerProductItemsController {
                 .where('status', 'available')
                 .where('createdAt', '>', lastWeekDate.toISOString())
                 .paginate(page, perPage)
-            const recentlyAddedItems = await this.getItems(
-                paginatedRecentlyAddedItems.toJSON().data,
-                customer?.preferredCurrency!
-            )
+            if (paginatedRecentlyAddedItems.length != 0) {
+                var seller = await User.find(
+                    paginatedRecentlyAddedItems[0].sellerUserId
+                )
+                if (!seller)
+                    return response.notFound({ message: 'Seller not found' })
+            }
+            const recentlyAddedItems =
+                paginatedRecentlyAddedItems.length != 0
+                    ? await this.getItems(
+                          paginatedRecentlyAddedItems.toJSON().data,
+                          customer?.preferredCurrency!,
+                          seller!.fullName
+                      )
+                    : []
 
             response.ok({
                 data: recentlyAddedItems,
@@ -135,10 +205,13 @@ export default class CustomerProductItemsController {
         }
     }
 
-    public async getHighRatedItems({ request, response }) {
+    public async getHighRatedItems({ auth, request, response }) {
         try {
             // Get the currently authenticated user
-            // const customer = await auth.use('api').authenticate().select('preferredCurrency')
+            // const customer = await auth
+            //     .use('api')
+            //     .authenticate()
+            //     .select('preferredCurrency')
             const customer = await User.find(3)
 
             const page = request.input('page', 1)
@@ -149,10 +222,21 @@ export default class CustomerProductItemsController {
                 .where('status', 'available')
                 .where('productRating', '>', 4)
                 .paginate(page, perPage)
-            const highRatedItems = await this.getItems(
-                paginatedHighRatedItems.toJSON().data,
-                customer?.preferredCurrency!
-            )
+            if (paginatedHighRatedItems.length != 0) {
+                var seller = await User.find(
+                    paginatedHighRatedItems[0].sellerUserId
+                )
+                if (!seller)
+                    return response.notFound({ message: 'Seller not found' })
+            }
+            const highRatedItems =
+                paginatedHighRatedItems.length != 0
+                    ? await this.getItems(
+                          paginatedHighRatedItems.toJSON().data,
+                          customer?.preferredCurrency!,
+                          seller!.fullName
+                      )
+                    : []
 
             response.ok({
                 data: highRatedItems,
@@ -164,10 +248,13 @@ export default class CustomerProductItemsController {
         }
     }
 
-    public async getNewItems({ request, response }) {
+    public async getNewItems({ auth, request, response }) {
         try {
             // Get the currently authenticated user
-            // const customer = await auth.use('api').authenticate().select('preferredCurrency')
+            // const customer = await auth
+            //     .use('api')
+            //     .authenticate()
+            //     .select('preferredCurrency')
             const customer = await User.find(3)
 
             const page = request.input('page', 1)
@@ -178,10 +265,19 @@ export default class CustomerProductItemsController {
                 .where('status', 'available')
                 .where('usedProduct', false)
                 .paginate(page, perPage)
-            const newItems = await this.getItems(
-                paginatedNewItems.toJSON().data,
-                customer?.preferredCurrency!
-            )
+            if (paginatedNewItems.length != 0) {
+                var seller = await User.find(paginatedNewItems[0].sellerUserId)
+                if (!seller)
+                    return response.notFound({ message: 'Seller not found' })
+            }
+            const newItems =
+                paginatedNewItems.length != 0
+                    ? await this.getItems(
+                          paginatedNewItems.toJSON().data,
+                          customer?.preferredCurrency!,
+                          seller!.fullName
+                      )
+                    : []
 
             response.ok({
                 data: newItems,
@@ -193,10 +289,13 @@ export default class CustomerProductItemsController {
         }
     }
 
-    public async getExcellentItems({ request, response }) {
+    public async getExcellentItems({ auth, request, response }) {
         try {
             // Get the currently authenticated user
-            // const customer = await auth.use('api').authenticate().select('preferredCurrency')
+            // const customer = await auth
+            //     .use('api')
+            //     .authenticate()
+            //     .select('preferredCurrency')
             const customer = await User.find(3)
 
             const page = request.input('page', 1)
@@ -207,10 +306,21 @@ export default class CustomerProductItemsController {
                 .where('status', 'available')
                 .where('usedProductCondition', 'excellent')
                 .paginate(page, perPage)
-            const excellentItems = await this.getItems(
-                paginatedExcellentItems.toJSON().data,
-                customer?.preferredCurrency!
-            )
+            if (paginatedExcellentItems.length != 0) {
+                var seller = await User.find(
+                    paginatedExcellentItems[0].sellerUserId
+                )
+                if (!seller)
+                    return response.notFound({ message: 'Seller not found' })
+            }
+            const excellentItems =
+                paginatedExcellentItems.length != 0
+                    ? await this.getItems(
+                          paginatedExcellentItems.toJSON().data,
+                          customer?.preferredCurrency!,
+                          seller!.fullName
+                      )
+                    : []
 
             response.ok({
                 data: excellentItems,
@@ -224,7 +334,8 @@ export default class CustomerProductItemsController {
 
     private async getItems(
         loadedItems: Array<ProductItem>,
-        preferredCurrency: 'YER' | 'SAR' | 'USD'
+        preferredCurrency: 'YER' | 'SAR' | 'USD',
+        seller: string
     ) {
         const items: Array<any> = []
         const exchangeRates = await ExchangesController.getExchanges()
@@ -328,6 +439,8 @@ export default class CustomerProductItemsController {
                 desc: item.description,
                 productId: item.productId,
                 productName: product?.name,
+                model: item.model,
+                seller: seller,
                 price: productItemPrice,
                 primImageUrl: primImageUrl,
                 imageUrls: imageUrls,
@@ -337,6 +450,9 @@ export default class CustomerProductItemsController {
                 usedProductCondition: item.usedProductCondition,
                 flaws: flaws,
                 features: productFeatures,
+                inCart:
+                    (await CartItem.findBy('productItemId', item.id)) !=
+                    undefined,
             })
         }
 

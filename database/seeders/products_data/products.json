@@ -1,0 +1,3038 @@
+[
+  {
+    "name": "Samsung Galaxy A25",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A256E",
+      "SM-A256B"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84364-350/Samsung-Galaxy-A25.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A15",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A155F",
+      "SM-A155M",
+      "SM-A155P",
+      "SM-A155R",
+      "SM-A156E",
+      "SM-A156WZKAXAC"
+    ],
+    "rating": 7.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84363-350/Samsung-Galaxy-A15.jpg"
+  },
+  {
+    "name": "Samsung Galaxy A35",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A356U",
+      "SM-A356U1",
+      "SM-A356V",
+      "SM-A356E"
+    ],
+    "rating": 8.1,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84355-350/Samsung-Galaxy-A35.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A55 5G",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A556V",
+      "SM-A556U",
+      "SM-A556U1",
+      "SM-A556B",
+      "SM-A556E",
+      "SM-A5560"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84354-350/Samsung-Galaxy-A55-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S23 FE",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-S711B",
+      "SM-S711U",
+      "SM-S7110"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84147-350/Samsung-Galaxy-S23-FE.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S24 Ultra",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-S928B",
+      "SM-S928N",
+      "SM-S928U",
+      "SM-S928U1",
+      "SM-S928W",
+      "SM-S9280"
+    ],
+    "rating": 8.7,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84388-350/Samsung-Galaxy-S24-Ultra.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S24+",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-S926"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84389-350/Samsung-Galaxy-S24.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S24",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-S921",
+      "SM-S921U",
+      "SM-S921B",
+      "SM-S921N"
+    ],
+    "rating": 8.0,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84402-350/Samsung-Galaxy-S24.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A34",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A346E",
+      "SM-A346B",
+      "SM-A346M"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83894-350/Samsung-Galaxy-A34.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy M33",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-M336B",
+      "SM-M336BU"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84007-350/Samsung-Galaxy-M33.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A14 5G",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A146B",
+      "SM-A146P",
+      "SM-A146U"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83814-350/Samsung-Galaxy-A14-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A54 5G",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A546B/DS",
+      "SM-A546E/DS",
+      "SM-A546W"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83891-350/Samsung-Galaxy-A54-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Z Fold 5",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-F946"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84042-350/Samsung-Galaxy-Z-Fold-5.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A23 5G",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A236B",
+      "SM-A236U",
+      "SM-A236U1",
+      "SM-A236E"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83549-350/Samsung-Galaxy-A23-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy XCover 6 Pro",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-G736U",
+      "SM-G736U1",
+      "SM-G736B"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83431-350/Samsung-Galaxy-XCover-6-Pro.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy M13",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-M135F",
+      "SM-M135F/DSN",
+      "SM-M135FU",
+      "SM-M135M"
+    ],
+    "rating": 7.6,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84008-350/Samsung-Galaxy-M13.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Z Fold 4",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-F9360",
+      "SM-F936B",
+      "SM-F936N",
+      "SM-F936U",
+      "SM-F936W"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83568-350/Samsung-Galaxy-Z-Fold-4.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy M53 5G",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-M536B"
+    ],
+    "rating": 8.4,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83292-350/Samsung-Galaxy-M53-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Z Flip 4",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-F7210",
+      "SM-F721B",
+      "SM-F721N",
+      "SM-F721U",
+      "SM-F721W"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83556-350/Samsung-Galaxy-Z-Flip-4.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Z Fold 6",
+    "brand": "SAMSUNG",
+    "models": [
+      "Q6",
+      "Q6A"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84409-350/Samsung-Galaxy-Z-Fold-6.jpg"
+  },
+  {
+    "name": "Samsung Galaxy A25",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A256E",
+      "SM-A256B"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84364-350/Samsung-Galaxy-A25.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A15",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A155F",
+      "SM-A155M",
+      "SM-A155P",
+      "SM-A155R",
+      "SM-A156E",
+      "SM-A156WZKAXAC"
+    ],
+    "rating": 7.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84363-350/Samsung-Galaxy-A15.jpg"
+  },
+  {
+    "name": "Samsung Galaxy A35",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A356U",
+      "SM-A356U1",
+      "SM-A356V",
+      "SM-A356E"
+    ],
+    "rating": 8.1,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84355-350/Samsung-Galaxy-A35.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A55 5G",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A556V",
+      "SM-A556U",
+      "SM-A556U1",
+      "SM-A556B",
+      "SM-A556E",
+      "SM-A5560"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84354-350/Samsung-Galaxy-A55-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S23 FE",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-S711B",
+      "SM-S711U",
+      "SM-S7110"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84147-350/Samsung-Galaxy-S23-FE.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S24 Ultra",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-S928B",
+      "SM-S928N",
+      "SM-S928U",
+      "SM-S928U1",
+      "SM-S928W",
+      "SM-S9280"
+    ],
+    "rating": 8.7,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84388-350/Samsung-Galaxy-S24-Ultra.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S24+",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-S926"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84389-350/Samsung-Galaxy-S24.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S24",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-S921",
+      "SM-S926",
+      "SM-S928"
+    ],
+    "rating": 8.0,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84402-350/Samsung-Galaxy-S24.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A34",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A346E",
+      "SM-A346B",
+      "SM-A346M"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83894-350/Samsung-Galaxy-A34.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy M33",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-M336B",
+      "SM-M336BU",
+      "SM-M336K"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84007-350/Samsung-Galaxy-M33.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A14 5G",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A146B",
+      "SM-A146P",
+      "SM-A146U"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83814-350/Samsung-Galaxy-A14-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A25",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A256E",
+      "SM-A256B"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84364-350/Samsung-Galaxy-A25.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A15",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A155F",
+      "SM-A155M",
+      "SM-A155P",
+      "SM-A155R",
+      "SM-A156E",
+      "SM-A156WZKAXAC"
+    ],
+    "rating": 7.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84363-350/Samsung-Galaxy-A15.jpg"
+  },
+  {
+    "name": "Samsung Galaxy A25",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A256E",
+      "SM-A256B"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84364-350/Samsung-Galaxy-A25.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Z Flip 5",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-F7310",
+      "SM-F731B",
+      "SM-F731N",
+      "SM-F731U",
+      "SM-F731U1",
+      "SM-F731W"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84047-350/Samsung-Galaxy-Z-Flip-5.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S23 Ultra",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-S918",
+      "SM-S918BDS",
+      "SM-S918U",
+      "SM-S918U1",
+      "SM-S918W"
+    ],
+    "rating": 9.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83817-350/Samsung-Galaxy-S23-Ultra.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Z Flip 5",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-F7310",
+      "SM-F731B",
+      "SM-F731N",
+      "SM-F731U",
+      "SM-F731U1",
+      "SM-F731W"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84047-350/Samsung-Galaxy-Z-Flip-5.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S23 Ultra",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-S918B",
+      "SM-S918U",
+      "SM-S918U1",
+      "SM-S918W"
+    ],
+    "rating": 8.7,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83817-350/Samsung-Galaxy-S23-Ultra.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy F23",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-E236B"
+    ],
+    "rating": 7,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83847-350/Samsung-Galaxy-F23.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A73 5G",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A736B",
+      "SM-A736B/DS"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83237-350/Samsung-Galaxy-A73-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A23",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A235F",
+      "SM-A235F/DS",
+      "SM-A235F/DSN",
+      "SM-A235M",
+      "SM-A235M/DS",
+      "SM-A235N"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83211-350/Samsung-Galaxy-A23.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A13",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A135F",
+      "SM-A135M",
+      "SM-A135U",
+      "SM-A135U1",
+      "SM-A135N",
+      "SM-A137F"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83278-350/Samsung-Galaxy-A13.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S22+",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-S906"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83146-350/Samsung-Galaxy-S22.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S22",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-S901B",
+      "SM-S901U",
+      "SM-S901U1",
+      "SM-S901W",
+      "SM-S901N",
+      "SM-S9010",
+      "SM-S901E"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83157-350/Samsung-Galaxy-S22.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S22 Ultra",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-S9080",
+      "SM-S908B",
+      "SM-S908E"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83135-350/Samsung-Galaxy-S22-Ultra.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S21 FE",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-G9900",
+      "SM-G990B",
+      "SM-G990B2",
+      "SM-G990E",
+      "SM-G990U"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83066-350/Samsung-Galaxy-S21-FE.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A13 5G",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A136U",
+      "SM-A136U1",
+      "SM-A136W",
+      "SM-A136B"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83206-350/Samsung-Galaxy-A13-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A03",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A035F",
+      "SM-A035M",
+      "SM-A035G"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83029-350/Samsung-Galaxy-A03.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A33 5G",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A336E",
+      "SM-A336B",
+      "SM-A336M",
+      "SM-A3360"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83249-350/Samsung-Galaxy-A33-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Z Fold 3",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-F9260",
+      "SM-F926B",
+      "SM-F926U",
+      "SM-F926W"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82716-350/Samsung-Galaxy-Z-Fold-3.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Z Flip 3",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-F7110",
+      "SM-F711B",
+      "SM-F711U",
+      "SM-F711W"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82745-350/Samsung-Galaxy-Z-Flip-3.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A22 5G",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A226B",
+      "SM-A226B/DS",
+      "SM-A226B/DSN",
+      "SM-A226BR",
+      "SM-A226BR/N",
+      "SM-A226L",
+      "SC-56B"
+    ],
+    "rating": 7.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82433-350/Samsung-Galaxy-A22-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A22",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A225F",
+      "SM-A225M"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82442-350/Samsung-Galaxy-A22.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A32 LTE Only",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A325F",
+      "SM-A325M"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82259-350/Samsung-Galaxy-A32-LTE-Only.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A52 5G",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A5260",
+      "SM-A526B",
+      "SM-A526U",
+      "SM-A526W"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82965-350/Samsung-Galaxy-A52-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A52",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A525F",
+      "SM-A525M",
+      "SM-A526U",
+      "SM-A526U1",
+      "SM-526W"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81864-350/Samsung-Galaxy-A52.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A72",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A725F",
+      "SM-A725M"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81859-350/Samsung-Galaxy-A72.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy M12",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-M127F",
+      "SM-M127G",
+      "SM-M127N"
+    ],
+    "rating": 5.0,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81855-350/Samsung-Galaxy-M12.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy XCover 5",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-G525F",
+      "SM-G525N"
+    ],
+    "rating": 7.4,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81739-350/Samsung-Galaxy-XCover-5.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy F62",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-E625F"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81579-350/Samsung-Galaxy-F62.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy M02",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-M022F",
+      "SM-M022F/DS",
+      "SM-M022G",
+      "SM-M022G/DS"
+    ],
+    "rating": 5.6,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81548-350/Samsung-Galaxy-M02.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S21 Ultra",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-G998B",
+      "SM-G998N",
+      "SM-G998U1",
+      "SM-G998W"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81288-350/Samsung-Galaxy-S21-Ultra.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S21",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-G991B",
+      "SM-G991U",
+      "SM-G991U1",
+      "SM-G991W",
+      "SM-G991N",
+      "SM-G9910"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81314-350/Samsung-Galaxy-S21.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A32 5G",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A326B",
+      "SM-A326BR",
+      "SM-A326U",
+      "SM-A326W",
+      "SM-A326U1",
+      "SM-A326K",
+      "SCG08",
+      "SM-S326DL"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81285-350/Samsung-Galaxy-A32-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A02s",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A025F",
+      "SM-A025G",
+      "SM-A025M",
+      "SM-A025U",
+      "SM-A025V",
+      "SM-A025A",
+      "SM-A025U1",
+      "SM-A025AZ",
+      "SM-S124DL"
+    ],
+    "rating": 5.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81338-350/Samsung-Galaxy-A02s.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A12",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A125F",
+      "SM-A125M",
+      "SM-A125U",
+      "SM-A125U1",
+      "SM-A125W"
+    ],
+    "rating": 5.6,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81422-350/Samsung-Galaxy-A12.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S20 FE",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-G780F",
+      "SM-G780G",
+      "SM-G781B",
+      "SM-G781U",
+      "SM-G781V"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/80335-350/Samsung-Galaxy-S20-FE.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A42",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A426B",
+      "SM-A4260",
+      "SM-A426U",
+      "SM-A426U1",
+      "SM-A426N"
+    ],
+    "rating": 5.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/79971-350/Samsung-Galaxy-A42.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy M51",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-M515F/DSN"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/80155-350/Samsung-Galaxy-M51.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Z Fold 2",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-F916J",
+      "SM-F9160",
+      "SM-F916B",
+      "SM-F916N",
+      "SM-F916U1",
+      "SM-F916W"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/79637-350/Samsung-Galaxy-Z-Fold-2.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Note 20",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-N980F",
+      "SM-N980F/DS",
+      "SM-N9810",
+      "SM-N981B",
+      "SM-N981B/DS",
+      "SM-N981N",
+      "SM-N981U",
+      "SM-N981U1",
+      "SM-N981W"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/79652-350/Samsung-Galaxy-Note-20.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Note 20",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-N980F",
+      "SM-N980F/DS",
+      "SM-N9810",
+      "SM-N981B",
+      "SM-N981B/DS",
+      "SM-N981N",
+      "SM-N981U",
+      "SM-N981U1",
+      "SM-N981W"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/79652-350/Samsung-Galaxy-Note-20.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Note 20",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-N980F",
+      "SM-N980F/DS",
+      "SM-N9810",
+      "SM-N981B",
+      "SM-N981B/DS",
+      "SM-N981N",
+      "SM-N981U",
+      "SM-N981U1",
+      "SM-N981W"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/79652-350/Samsung-Galaxy-Note-20.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Note 20 Ultra",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-N985F",
+      "SM-N9860",
+      "SM-N986B",
+      "SM-N986N",
+      "SM-N986U",
+      "SM-N986U1",
+      "SM-N986W"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/79642-350/Samsung-Galaxy-Note-20-Ultra.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 13 Pro+ 5G",
+    "brand": "XIAOMI",
+    "models": [
+      "2312DRA50I"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84376-350/Xiaomi-Redmi-Note-13-Pro-5G.jpg?w=1"
+  },
+  {
+    "name": "Google Pixel 9 Pro",
+    "brand": "GOOGLE",
+    "models": [
+      "komodo",
+      "caiman"
+    ],
+    "rating": 8.7,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84405-350/Google-Pixel-9-Pro.jpg"
+  },
+  {
+    "name": "Samsung Galaxy M31s",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-M317F"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/80657-350/Samsung-Galaxy-M31s.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 13 Pro 5G",
+    "brand": "XIAOMI",
+    "models": [
+      "23117RA68G",
+      "2312DRA50G",
+      "2312DRA50I"
+    ],
+    "rating": 8.1,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84375-350/Xiaomi-Redmi-Note-13-Pro-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy M01 Core",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-M013F"
+    ],
+    "rating": 9.3,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/79607-350/Samsung-Galaxy-M01-Core.jpg?w=1"
+  },
+  {
+    "name": "Google Pixel 8a",
+    "brand": "GOOGLE",
+    "models": [
+      "G6PR",
+      "G6GPR"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84174-350/Google-Pixel-8a.jpg"
+  },
+  {
+    "name": "Xiaomi Redmi Note 13 5G",
+    "brand": "XIAOMI",
+    "models": [
+      "2312DRAABG",
+      "2312DRAABI",
+      "2312DRAABC"
+    ],
+    "rating": 3.6,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84371-350/Xiaomi-Redmi-Note-13-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Z Flip 5G",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-F707B",
+      "SM-F707U",
+      "SM-F707U1",
+      "SM-F707W",
+      "SM-F707N",
+      "SM-F7070"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/79589-350/Samsung-Galaxy-Z-Flip-5G.jpg?w=1"
+  },
+  {
+    "name": "Google Pixel 8 Pro",
+    "brand": "GOOGLE",
+    "models": [
+      "G1MNW",
+      "GC3VE"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84160-350/Google-Pixel-8-Pro.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 13 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "23117RA68G",
+      "2312DRA50C",
+      "2312CRAD3C"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84374-350/Xiaomi-Redmi-Note-13-Pro.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A71 5G UW",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A716V"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/79497-350/Samsung-Galaxy-A71-5G-UW.jpg?w=1"
+  },
+  {
+    "name": "Google Pixel 8",
+    "brand": "GOOGLE",
+    "models": [
+      "GKWS6",
+      "G9BQD",
+      "GZPF0",
+      "GPJ41",
+      "G1MNW"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84159-350/Google-Pixel-8.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 13",
+    "brand": "XIAOMI",
+    "models": [
+      "Xiaomi 2312DRA50G"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84370-350/Xiaomi-Redmi-Note-13.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy M01",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-M015F",
+      "SM-M015G"
+    ],
+    "rating": 5.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/79420-350/Samsung-Galaxy-M01.jpg?w=1"
+  },
+  {
+    "name": "Google Pixel 7a",
+    "brand": "GOOGLE",
+    "models": [
+      "G0DZQ",
+      "G82U8",
+      "GHL1X",
+      "GWKK3"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83956-350/Google-Pixel-7a.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 14",
+    "brand": "XIAOMI",
+    "models": [
+      "23127PN0CG",
+      "23127PN0CC"
+    ],
+    "rating": 9.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84333-350/Xiaomi-14.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A21s",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A217F",
+      "SM-A217M"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/78950-350/Samsung-Galaxy-A21s.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 14 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "23127PN0CC",
+      "23127PN0CG",
+      "23116PN5BC",
+      "23116PN5BG"
+    ],
+    "rating": 8.9,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84208-350/Xiaomi-14-Pro.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A51 5G",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A516B/DS",
+      "SM-A516U",
+      "SM-A516F/DSN",
+      "SM-A516N"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/79753-350/Samsung-Galaxy-A51-5G.jpg?w=1"
+  },
+  {
+    "name": "Google Pixel 7",
+    "brand": "GOOGLE",
+    "models": [
+      "GO3Z5",
+      "GQML3",
+      "GVU6C"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83686-350/Google-Pixel-7.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi POCO F5 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "23013PC75G",
+      "MZB0F11EN"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83968-350/Xiaomi-POCO-F5-Pro.jpg?w=1"
+  },
+  {
+    "name": "Google Pixel 7 Pro",
+    "brand": "GOOGLE",
+    "models": [
+      "GE2AE",
+      "GP4BC"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83683-350/Google-Pixel-7-Pro.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Poco F5",
+    "brand": "XIAOMI",
+    "models": [
+      "23049PCD8G",
+      "23049PCD8I"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83970-350/Xiaomi-Poco-F5.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A71 5G",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A716B/DS",
+      "SM-A716U",
+      "SM-A7160",
+      "SM-A716V"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/78615-350/Samsung-Galaxy-A71-5G.jpg?w=1"
+  },
+  {
+    "name": "Google Pixel 6a",
+    "brand": "GOOGLE",
+    "models": [
+      "G1AZG",
+      "GB17L",
+      "GB62Z",
+      "GX7AS"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83328-350/Google-Pixel-6a.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 12 Pro+",
+    "brand": "XIAOMI",
+    "models": [
+      "22101316UCP",
+      "22101316UG"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83927-350/Xiaomi-Redmi-Note-12-Pro.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A51",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A515F/DSN",
+      "SM-A515F/DS",
+      "SM-A515F/DST",
+      "SM-A515F/DSM",
+      "SM-A515F/N",
+      "SM-A515U"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/77785-350/Samsung-Galaxy-A51.jpg?w=1"
+  },
+  {
+    "name": "Google Pixel 6",
+    "brand": "GOOGLE",
+    "models": [
+      "G9S9B",
+      "GB7N6",
+      "GR1YH"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82995-350/Google-Pixel-6.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 12 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "22101316C",
+      "22101316I",
+      "23013RK75C",
+      "22101316G"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83925-350/Xiaomi-Redmi-Note-12-Pro.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A41",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A415F/DSN",
+      "SM-A415F/DSM",
+      "SM-A415F"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/78598-350/Samsung-Galaxy-A41.jpg?w=1"
+  },
+  {
+    "name": "Google Pixel 6 Pro",
+    "brand": "GOOGLE",
+    "models": [
+      "G8V0U",
+      "GF5KQ",
+      "GLU0G"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82994-350/Google-Pixel-6-Pro.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 13 Ultra",
+    "brand": "XIAOMI",
+    "models": [
+      "2304FPN6DC",
+      "2304FPN6DG"
+    ],
+    "rating": 9.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83921-350/Xiaomi-13-Ultra.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A21",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A215U",
+      "SM-A215U1",
+      "SM-S215DL",
+      "SM-A215W"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/79354-350/Samsung-Galaxy-A21.jpg?w=1"
+  },
+  {
+    "name": "Google Pixel 5a",
+    "brand": "GOOGLE",
+    "models": [
+      "G1F8F",
+      "G4S1M",
+      "GR0M2"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82853-350/Google-Pixel-5a.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 13 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "2210132G",
+      "2210132C"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83786-350/Xiaomi-13-Pro.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A01",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A015F",
+      "SM-A015G",
+      "SM-A015M",
+      "SM-A015A",
+      "SM-A015V"
+    ],
+    "rating": 8.6,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/77807-350/Samsung-Galaxy-A01.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 13",
+    "brand": "XIAOMI",
+    "models": [
+      "2211133G",
+      "2211133C"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83782-350/Xiaomi-13.jpg?w=1"
+  },
+  {
+    "name": "Google Pixel 4a 5G",
+    "brand": "GOOGLE",
+    "models": [
+      "G025E",
+      "G025H",
+      "G025I",
+      "G6QU3"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/80466-350/Google-Pixel-4a-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A11",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A115A",
+      "SM-A115F",
+      "SM-A115M",
+      "SM-A115U",
+      "SM-A115U1"
+    ],
+    "rating": 5.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/78321-350/Samsung-Galaxy-A11.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 12 Explorer",
+    "brand": "XIAOMI",
+    "models": [
+      "22101317C"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83755-350/Xiaomi-Redmi-Note-12-Explorer.jpg?w=1"
+  },
+  {
+    "name": "Google Pixel 5",
+    "brand": "GOOGLE",
+    "models": [
+      "G5NZ6",
+      "GD1YQ",
+      "GTT9Q"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/80464-350/Google-Pixel-5.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy M11",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-M115F",
+      "SM-M115M"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/78489-350/Samsung-Galaxy-M11.jpg?w=1"
+  },
+  {
+    "name": "Google Pixel 4 XL",
+    "brand": "GOOGLE",
+    "models": [
+      "G020P",
+      "G020",
+      "GA01180-US",
+      "GA01181-US",
+      "GA01182-US"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/77411-350/Google-Pixel-4-XL.jpg?w=1"
+  },
+  {
+    "name": "Google Pixel 4",
+    "brand": "GOOGLE",
+    "models": [
+      "G020M",
+      "G020I",
+      "GA01189-US",
+      "GA01191-US",
+      "GA01187-US",
+      "GA01188-US"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/77396-350/Google-Pixel-4.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy M21",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-M215F",
+      "SM-M215G"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/78377-350/Samsung-Galaxy-M21.jpg?w=1"
+  },
+  {
+    "name": "Google Pixel 3a XL",
+    "brand": "GOOGLE",
+    "models": [
+      "G020C",
+      "G020G",
+      "G020F"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/75921-350/Google-Pixel-3a-XL.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy M31",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-M315F",
+      "SM-M315F/DS",
+      "SM-M315F/DSN"
+    ],
+    "rating": 7.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/78279-350/Samsung-Galaxy-M31.jpg?w=1"
+  },
+  {
+    "name": "Google Pixel 3a",
+    "brand": "GOOGLE",
+    "models": [
+      "G020A",
+      "G020E",
+      "G020B",
+      "G020G",
+      "G020H"
+    ],
+    "rating": 3.6,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/75916-350/Google-Pixel-3a.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 12T",
+    "brand": "XIAOMI",
+    "models": [
+      "22071212AG",
+      "22081212UG"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83719-350/Xiaomi-12T.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S20+",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-G985",
+      "SM-G986"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/78175-350/Samsung-Galaxy-S20.jpg?w=1"
+  },
+  {
+    "name": "Google Pixel Slate",
+    "brand": "GOOGLE",
+    "models": [
+      "Intel Celeron",
+      "Intel Core m3",
+      "Intel Core i5",
+      "Intel Core i7"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/74706-350/Google-Pixel-Slate.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi 7",
+    "brand": "XIAOMI",
+    "models": [
+      "M1810F6LG",
+      "M1810F6LH",
+      "M1810F6LI",
+      "M1901F7E",
+      "M1901F7T",
+      "M1901F7C"
+    ],
+    "rating": 8.6,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83592-350/Xiaomi-Redmi-7.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S20",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-G980",
+      "SM-G981"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/78190-350/Samsung-Galaxy-S20.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 12S",
+    "brand": "XIAOMI",
+    "models": [
+      "2206123SC"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83446-350/Xiaomi-12S.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S20 Ultra 5G",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-G988B",
+      "SM-G988U",
+      "SM-G988W",
+      "SM-G9880",
+      "SM-G988N"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/78168-350/Samsung-Galaxy-S20-Ultra-5G.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 12S Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "2206122SC"
+    ],
+    "rating": 8.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83442-350/Xiaomi-12S-Pro.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Z Flip",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-F7000",
+      "SM-F700F",
+      "SM-F700N",
+      "SM-F700U",
+      "SM-F700U1",
+      "SM-F700W"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/78163-350/Samsung-Galaxy-Z-Flip.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 12S Ultra",
+    "brand": "XIAOMI",
+    "models": [
+      "2203121C"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83438-350/Xiaomi-12S-Ultra.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy XCover Pro",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-G715FN/DS",
+      "SM-G715W",
+      "SM-G715U",
+      "SM-G715U1"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/77971-350/Samsung-Galaxy-XCover-Pro.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Poco X4 GT",
+    "brand": "XIAOMI",
+    "models": [
+      "22041216G"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83423-350/Xiaomi-Poco-X4-GT.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Note10 Lite",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-N770F",
+      "SM-N770F/DS",
+      "SM-N770F/DSM"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/77836-350/Samsung-Galaxy-Note10-Lite.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Poco F4",
+    "brand": "XIAOMI",
+    "models": [
+      "22021211RG",
+      "22021211RI"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83422-350/Xiaomi-Poco-F4.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S10 Lite",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-G770F",
+      "SM-G770F/DS",
+      "SM-G770F/DSM",
+      "SM-G770U1"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/77828-350/Samsung-Galaxy-S10-Lite.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 12 Lite",
+    "brand": "XIAOMI",
+    "models": [
+      "2203129G"
+    ],
+    "rating": 8.9,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83466-350/Xiaomi-12-Lite.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A71",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A715F",
+      "SM-A715F/DS",
+      "SM-A715F/DSN",
+      "SM-A715F/DSM"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/77794-350/Samsung-Galaxy-A71.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi POCO F4 GT",
+    "brand": "XIAOMI",
+    "models": [
+      "21121210G"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83303-350/Xiaomi-POCO-F4-GT.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy XCover FieldPro",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-G889F",
+      "SM-G889A",
+      "SM-G889N0"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/77745-350/Samsung-Galaxy-XCover-FieldPro.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Black Shark 5 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "SHARK KTUS-H0"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83399-350/Xiaomi-Black-Shark-5-Pro.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy M30s",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-M307F",
+      "SM-M307FN"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/77447-350/Samsung-Galaxy-M30s.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 11 Pro+ 5G",
+    "brand": "XIAOMI",
+    "models": [
+      "21091116UG",
+      "21091116UC",
+      "21091116C"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83270-350/Xiaomi-Redmi-Note-11-Pro-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A20s",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A207F/DS",
+      "SM-A207M/DS",
+      "SM-A2070"
+    ],
+    "rating": 4.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83856-350/Samsung-Galaxy-A20s.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 12X",
+    "brand": "XIAOMI",
+    "models": [
+      "2112123AG",
+      "2112123AC"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83233-350/Xiaomi-12X.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A90 5G",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A908B",
+      "SM-A908N",
+      "SM-A9080"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/76765-350/Samsung-Galaxy-A90-5G.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi POCO X4 Pro 5G",
+    "brand": "XIAOMI",
+    "models": [
+      "2201116PG",
+      "22041216G"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83190-350/Xiaomi-POCO-X4-Pro-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A50s",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A507F",
+      "SM-A507FN",
+      "SM-A5070"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/76735-350/Samsung-Galaxy-A50s.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi POCO M4 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "2201117PI",
+      "2201117PG",
+      "22041219PI"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83189-350/Xiaomi-POCO-M4-Pro.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A30s",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A307F",
+      "SM-A307FN",
+      "SM-A307G",
+      "SM-A307GN",
+      "SM-A307GT"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/76731-350/Samsung-Galaxy-A30s.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 11S",
+    "brand": "XIAOMI",
+    "models": [
+      "2201117SG",
+      "2201117SI",
+      "2201117SY",
+      "2201117SL"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83119-350/Xiaomi-Redmi-Note-11S.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A10s",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A107F",
+      "SM-A107M"
+    ],
+    "rating": 6,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/76701-350/Samsung-Galaxy-A10s.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Mi Mix Fold",
+    "brand": "XIAOMI",
+    "models": [
+      "M2011J18C",
+      "2405CPX3DG",
+      "2405CPX3DC"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83092-350/Xiaomi-Mi-Mix-Fold.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Note10+",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-N975F",
+      "SM-N975U",
+      "SM-N975U1",
+      "SM-N975W",
+      "SM-N9750/DS",
+      "SM-N975N"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/77620-350/Samsung-Galaxy-Note10.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 12 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "2201122G",
+      "2201122C"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83065-350/Xiaomi-12-Pro.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Note10",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-N970F",
+      "SM-N970U",
+      "SM-N970U1",
+      "SM-N970W",
+      "SM-N9700/DS",
+      "SM-N970N"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/77637-350/Samsung-Galaxy-Note10.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 12",
+    "brand": "XIAOMI",
+    "models": [
+      "2201123G",
+      "2201123C"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83063-350/Xiaomi-12.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 11",
+    "brand": "XIAOMI",
+    "models": [
+      "2201117TG",
+      "2201117TI",
+      "2201117TY",
+      "2201117T",
+      "21091116AC"
+    ],
+    "rating": 7.7,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83117-350/Xiaomi-Redmi-Note-11.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Note10+ 5G",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-N976F",
+      "SM-N976B",
+      "SM-N976N",
+      "SM-N9760",
+      "SM-N976U",
+      "SM-N976Q",
+      "SM-N976V"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/77627-350/Samsung-Galaxy-Note10-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A10e",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A102U",
+      "SM-A102U1",
+      "SM-A102W",
+      "SM-S102DL"
+    ],
+    "rating": 3.6,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82198-350/Samsung-Galaxy-A10e.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 11 Pro 5G",
+    "brand": "XIAOMI",
+    "models": [
+      "21091116C"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83114-350/Xiaomi-Redmi-Note-11-Pro-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A20e",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A202F",
+      "SM-A202K"
+    ],
+    "rating": 3.4,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/76525-350/Samsung-Galaxy-A20e.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 13 Pro+ 5G",
+    "brand": "XIAOMI",
+    "models": [
+      "2312DRA50I"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84376-350/Xiaomi-Redmi-Note-13-Pro-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy M40",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-M405FN",
+      "SM-M405F",
+      "SM-M405G"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/76519-350/Samsung-Galaxy-M40.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 13 Pro 5G",
+    "brand": "XIAOMI",
+    "models": [
+      "23117RA68G",
+      "2312DRA50G",
+      "2312DRA50I"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84375-350/Xiaomi-Redmi-Note-13-Pro-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Xcover 4S",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-G398F",
+      "SM-G398FN"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/76445-350/Samsung-Galaxy-Xcover-4S.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 13 5G",
+    "brand": "XIAOMI",
+    "models": [
+      "2312DRAABG",
+      "2312DRAABI",
+      "2312DRAABC"
+    ],
+    "rating": 7.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84371-350/Xiaomi-Redmi-Note-13-5G.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy View 2",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-T920",
+      "SM-T927",
+      "SM-T927A"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/75944-350/Samsung-Galaxy-View-2.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 13 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "23117RA68G"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84374-350/Xiaomi-Redmi-Note-13-Pro.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A60",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A606F",
+      "SM-A606Y",
+      "SM-A6060"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82207-350/Samsung-Galaxy-A60.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 13",
+    "brand": "XIAOMI",
+    "models": [
+      "2312DRAABC",
+      "2312DRAABI",
+      "2312DRAABG"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84370-350/Xiaomi-Redmi-Note-13.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A40",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A405F",
+      "SM-A405FN",
+      "SM-A405FM"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/75567-350/Samsung-Galaxy-A40.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 14",
+    "brand": "XIAOMI",
+    "models": [
+      "23127PN0CG",
+      "23127PN0CC"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84333-350/Xiaomi-14.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A80",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A805F",
+      "SM-A8050",
+      "SM-A805N"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/75777-350/Samsung-Galaxy-A80.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 14 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "23116PN5BC",
+      "23116PN5BG"
+    ],
+    "rating": 8.9,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/84208-350/Xiaomi-14-Pro.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A70",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A705FN",
+      "SM-A705YN",
+      "SM-A705F",
+      "SM-A705GM",
+      "SM-A705MN",
+      "SM-A705W",
+      "SM-A7050"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/75816-350/Samsung-Galaxy-A70.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi POCO F5 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "23013PC75G",
+      "MZB0F11EN"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83968-350/Xiaomi-POCO-F5-Pro.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A20",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A205F",
+      "SM-A205FN",
+      "SM-A205U",
+      "SM-A205GN",
+      "SM-A205YN",
+      "SM-A205G",
+      "SM-A205W"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/75580-350/Samsung-Galaxy-A20.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Poco F5",
+    "brand": "XIAOMI",
+    "models": [
+      "23049PCD8G",
+      "23049PCD8I"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83970-350/Xiaomi-Poco-F5.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A50",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A505F",
+      "SM-A505FN",
+      "SM-A505GN",
+      "SM-A505FM",
+      "SM-A505YN",
+      "SM-A505W",
+      "SM-A505GT",
+      "SM-A505U1",
+      "SM-A505U",
+      "SM-A505G"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/75472-350/Samsung-Galaxy-A50.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 12 Pro+",
+    "brand": "XIAOMI",
+    "models": [
+      "22101316UCP",
+      "22101316UG"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83927-350/Xiaomi-Redmi-Note-12-Pro.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A30",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A305F",
+      "SM-A305FN",
+      "SM-A305G",
+      "SM-A305GN",
+      "SM-A305YN"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/75486-350/Samsung-Galaxy-A30.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 12 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "22101316C",
+      "22101316I",
+      "23013RK75C",
+      "22101316G"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83925-350/Xiaomi-Redmi-Note-12-Pro.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S10",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-G973F",
+      "SM-G973U",
+      "SM-G973W",
+      "SM-G9730"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/75312-350/Samsung-Galaxy-S10.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 13 Ultra",
+    "brand": "XIAOMI",
+    "models": [
+      "2304FPN6DC",
+      "2304FPN6DG"
+    ],
+    "rating": 9.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83921-350/Xiaomi-13-Ultra.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S10+",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-G975F",
+      "SM-G975U",
+      "SM-G975W"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/75319-350/Samsung-Galaxy-S10.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 13 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "2210132G",
+      "2210132C"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83786-350/Xiaomi-13-Pro.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S10e",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-G970F",
+      "SM-G970U",
+      "SM-G970W",
+      "SM-G9700",
+      "SM-G970U1",
+      "SM-G970N",
+      "SM-G970X"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/75305-350/Samsung-Galaxy-S10e.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 13",
+    "brand": "XIAOMI",
+    "models": [
+      "2211133G",
+      "2211133C",
+      "2210132G",
+      "2304FPN6DC",
+      "2304FPN6DG"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83782-350/Xiaomi-13.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy S10 5G",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-G977N",
+      "SM-G977U",
+      "SM-G977B",
+      "SM-G9770"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/75689-350/Samsung-Galaxy-S10-5G.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 12 Explorer",
+    "brand": "XIAOMI",
+    "models": [
+      "22101317C"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83755-350/Xiaomi-Redmi-Note-12-Explorer.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Fold",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-F9000",
+      "SM-F900F",
+      "SM-F900U",
+      "SM-F900W",
+      "SM-F9070",
+      "SM-F907F",
+      "SM-F907N",
+      "SM-F907U",
+      "SM-F907W"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/75802-350/Samsung-Galaxy-Fold.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 12T Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "22081212UG"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83715-350/Xiaomi-12T-Pro.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A10",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A105F",
+      "SM-A105FN",
+      "SM-A105G",
+      "SM-A105M"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/75480-350/Samsung-Galaxy-A10.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 12T",
+    "brand": "XIAOMI",
+    "models": [
+      "22071212AG",
+      "22081212UG"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83719-350/Xiaomi-12T.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy M30",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-M305F",
+      "SM-M305FN",
+      "SM-M305G",
+      "SM-M305M"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/75434-350/Samsung-Galaxy-M30.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi 7",
+    "brand": "XIAOMI",
+    "models": [
+      "M1810F6LG",
+      "M1810F6LH",
+      "M1810F6LI",
+      "M1901F7E",
+      "M1901F7T",
+      "M1901F7C"
+    ],
+    "rating": 8.6,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83592-350/Xiaomi-Redmi-7.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy M20",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-M205F",
+      "SM-M205FN",
+      "SM-M205G",
+      "SM-M205M"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/74992-350/Samsung-Galaxy-M20.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 12S",
+    "brand": "XIAOMI",
+    "models": [
+      "2206123SC"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83446-350/Xiaomi-12S.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy M10",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-M105F",
+      "SM-M105G",
+      "SM-M105Y",
+      "SM-M105M"
+    ],
+    "rating": 5.6,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81731-350/Samsung-Galaxy-M10.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 12S Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "2206122SC"
+    ],
+    "rating": 8.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83442-350/Xiaomi-12S-Pro.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy J4 Core",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-J410F",
+      "SM-J410G"
+    ],
+    "rating": 5.7,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/74351-350/Samsung-Galaxy-J4-Core.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 12S Ultra",
+    "brand": "XIAOMI",
+    "models": [
+      "2203121C"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83438-350/Xiaomi-12S-Ultra.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy Book2",
+    "brand": "SAMSUNG",
+    "models": [
+      "NP750XED",
+      "NP730QED",
+      "NP930QED",
+      "NP950QED",
+      "NP950XED",
+      "NP646BEFA"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/74372-350/Samsung-Galaxy-Book2.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Poco X4 GT",
+    "brand": "XIAOMI",
+    "models": [
+      "22041216G",
+      "22041216UG"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83423-350/Xiaomi-Poco-X4-GT.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy A9 (2018)",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-A920F",
+      "SM-A9200"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/73665-350/Samsung-Galaxy-A9-2018.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Poco F4",
+    "brand": "XIAOMI",
+    "models": [
+      "22021211RG",
+      "22021211RI"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83422-350/Xiaomi-Poco-F4.jpg?w=1"
+  },
+  {
+    "name": "Samsung Galaxy J4+",
+    "brand": "SAMSUNG",
+    "models": [
+      "SM-J415F",
+      "SM-J415FN",
+      "SM-J415G"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/73150-350/Samsung-Galaxy-J4.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 12 Lite",
+    "brand": "XIAOMI",
+    "models": [
+      "2203129G"
+    ],
+    "rating": 8.9,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83466-350/Xiaomi-12-Lite.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi POCO F4 GT",
+    "brand": "XIAOMI",
+    "models": [
+      "21121210G"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83303-350/Xiaomi-POCO-F4-GT.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Black Shark 5 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "SHARK KTUS-H0"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83399-350/Xiaomi-Black-Shark-5-Pro.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 11 Pro+ 5G",
+    "brand": "XIAOMI",
+    "models": [
+      "21091116UG",
+      "21091116UC",
+      "21091116C"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83270-350/Xiaomi-Redmi-Note-11-Pro-5G.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 12X",
+    "brand": "XIAOMI",
+    "models": [
+      "2112123AG",
+      "2112123AC"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83233-350/Xiaomi-12X.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi POCO X4 Pro 5G",
+    "brand": "XIAOMI",
+    "models": [
+      "2201116PG",
+      "22041216G"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83190-350/Xiaomi-POCO-X4-Pro-5G.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi POCO M4 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "2201117PI",
+      "2201117PG",
+      "22041219PI"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83189-350/Xiaomi-POCO-M4-Pro.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 11S",
+    "brand": "XIAOMI",
+    "models": [
+      "2201117SG",
+      "2201117SI",
+      "2201117SY",
+      "2201117SL"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83119-350/Xiaomi-Redmi-Note-11S.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Mi Mix Fold",
+    "brand": "XIAOMI",
+    "models": [
+      "M2011J18C",
+      "2405CPX3DG",
+      "2405CPX3DC"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83092-350/Xiaomi-Mi-Mix-Fold.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 12 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "2201122G",
+      "2201122C"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83065-350/Xiaomi-12-Pro.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 12",
+    "brand": "XIAOMI",
+    "models": [
+      "2201123G",
+      "2201123C"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83063-350/Xiaomi-12.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 11",
+    "brand": "XIAOMI",
+    "models": [
+      "2201117TG",
+      "2201117TI",
+      "2201117TY",
+      "2201117T",
+      "21091116AC"
+    ],
+    "rating": 7.7,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83117-350/Xiaomi-Redmi-Note-11.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 11 Pro 5G",
+    "brand": "XIAOMI",
+    "models": [
+      "21091116C",
+      "21091116I"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83114-350/Xiaomi-Redmi-Note-11-Pro-5G.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 11 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "21091116C",
+      "2201116TG",
+      "2201116TI"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/83115-350/Xiaomi-Redmi-Note-11-Pro.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi POCO M4 Pro 5G",
+    "brand": "XIAOMI",
+    "models": [
+      "21091116AG",
+      "MZB0BGVIN",
+      "MZB0BGUIN",
+      "22041219PI"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82983-350/Xiaomi-POCO-M4-Pro-5G.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi pad 5",
+    "brand": "XIAOMI",
+    "models": [
+      "21051182G",
+      "21051182C"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82897-350/Xiaomi-pad-5.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 11 lite 5G NE",
+    "brand": "XIAOMI",
+    "models": [
+      "2109119DG",
+      "2109119DI",
+      "2107119DC"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82880-350/Xiaomi-11-lite-5G-NE.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 11T",
+    "brand": "XIAOMI",
+    "models": [
+      "21081111RG"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82876-350/Xiaomi-11T.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi 11T Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "2107113SG"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82875-350/Xiaomi-11T-Pro.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 8 2021",
+    "brand": "XIAOMI",
+    "models": [
+      "M1908C3JGG",
+      "M1908C3JG",
+      "M1908C3JE",
+      "M1908C3JH"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82377-350/Xiaomi-Redmi-Note-8-2021.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi POCO M3 Pro 5G",
+    "brand": "XIAOMI",
+    "models": [
+      "M2103K19PG",
+      "M2103K19PI",
+      "M2103K19PY"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82421-350/Xiaomi-POCO-M3-Pro-5G.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Black Shark 4",
+    "brand": "XIAOMI",
+    "models": [
+      "SHARK PRS-A0",
+      "SHARK KSR-A0",
+      "SHARK PRS-H0"
+    ],
+    "rating": 8.6,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82258-350/Xiaomi-Black-Shark-4.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Mi 11 Ultra",
+    "brand": "XIAOMI",
+    "models": [
+      "M2102K1G",
+      "M2102K1C"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81988-350/Xiaomi-Mi-11-Ultra.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Mi 11i",
+    "brand": "XIAOMI",
+    "models": [
+      "M2012K11G",
+      "21091116I"
+    ],
+    "rating": 8.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81991-350/Xiaomi-Mi-11i.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Mi 11 Lite",
+    "brand": "XIAOMI",
+    "models": [
+      "M2101K9AG",
+      "M2101K9AI",
+      "M2101K9G",
+      "M2101K9C"
+    ],
+    "rating": 8.6,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81996-350/Xiaomi-Mi-11-Lite.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Poco F3",
+    "brand": "XIAOMI",
+    "models": [
+      "M2012K11AG",
+      "M2012K11AI"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82420-350/Xiaomi-Poco-F3.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Poco X3 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "M2102J20SG",
+      "M2102J20SI"
+    ],
+    "rating": 8.7,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81888-350/Xiaomi-Poco-X3-Pro.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 10 5G",
+    "brand": "XIAOMI",
+    "models": [
+      "M2103K19G",
+      "M2103K19C"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81725-350/Xiaomi-Redmi-Note-10-5G.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 10 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "M2101K6G",
+      "M2101K6P",
+      "M2101K6T",
+      "M2101K6R"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81709-350/Xiaomi-Redmi-Note-10-Pro.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 10S",
+    "brand": "XIAOMI",
+    "models": [
+      "M2101K7BG",
+      "M2101K7BNY",
+      "M2101K7BI",
+      "M2101K7BL"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81720-350/Xiaomi-Redmi-Note-10S.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 10",
+    "brand": "XIAOMI",
+    "models": [
+      "M2101K7AG",
+      "M2101K7AI"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81715-350/Xiaomi-Redmi-Note-10.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 9T",
+    "brand": "XIAOMI",
+    "models": [
+      "M2007J22G"
+    ],
+    "rating": 8.6,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81207-350/Xiaomi-Redmi-Note-9T.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi 9T",
+    "brand": "XIAOMI",
+    "models": [
+      "M2010J19SG",
+      "M2010J19SR",
+      "M2010J19ST"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82214-350/Xiaomi-Redmi-9T.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Poco M3",
+    "brand": "XIAOMI",
+    "models": [
+      "M2010J19CG",
+      "M2010J19CI"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/81143-350/Xiaomi-Poco-M3.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Mi 10T Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "M2007J3SG",
+      "M2007J3SP",
+      "M2007J3SI",
+      "M2007J17C"
+    ],
+    "rating": 8.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/80443-350/Xiaomi-Mi-10T-Pro.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Mi 10T",
+    "brand": "XIAOMI",
+    "models": [
+      "M2007J3SY"
+    ],
+    "rating": 8.6,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/80408-350/Xiaomi-Mi-10T.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Mi 10T Lite",
+    "brand": "XIAOMI",
+    "models": [
+      "M2007J17G"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/80426-350/Xiaomi-Mi-10T-Lite.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Poco X3 NFC",
+    "brand": "XIAOMI",
+    "models": [
+      "M2007J20CG",
+      "M2007J20CT"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/80141-350/Xiaomi-Poco-X3-NFC.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi 9A",
+    "brand": "XIAOMI",
+    "models": [
+      "M2006C3LG",
+      "M2006C3LI",
+      "M2006C3LC"
+    ],
+    "rating": 4.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/79537-350/Xiaomi-Redmi-9A.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi 9C",
+    "brand": "XIAOMI",
+    "models": [
+      "M2006C3MG"
+    ],
+    "rating": 6.2,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82188-350/Xiaomi-Redmi-9C.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi 9",
+    "brand": "XIAOMI",
+    "models": [
+      "M2004J19G",
+      "M2004J19C",
+      "M2004J19AG",
+      "M2006C3MII",
+      "M2004C3MI"
+    ],
+    "rating": 7.1,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/79192-350/Xiaomi-Redmi-9.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Poco F2 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "M2004J11G"
+    ],
+    "rating": 9.3,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/78859-350/Xiaomi-Poco-F2-Pro.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 9",
+    "brand": "XIAOMI",
+    "models": [
+      "M2003J15SG",
+      "M2003J15SS",
+      "M2003J15SC",
+      "CX296VRD",
+      "CX296CIN"
+    ],
+    "rating": 7.4,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/79022-350/Xiaomi-Redmi-Note-9.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Mi Note 10 Lite",
+    "brand": "XIAOMI",
+    "models": [
+      "M2002F4LG"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/79175-350/Xiaomi-Mi-Note-10-Lite.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 9 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "M2003J6B2G",
+      "M2003J6A1I"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/79167-350/Xiaomi-Redmi-Note-9-Pro.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Mi 10 Lite",
+    "brand": "XIAOMI",
+    "models": [
+      "M2002J9G",
+      "M2002J9S",
+      "XIG01"
+    ],
+    "rating": 8.9,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/78499-350/Xiaomi-Mi-10-Lite.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Mi 10 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "M2001J1G"
+    ],
+    "rating": 3.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/78465-350/Xiaomi-Mi-10-Pro.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 9S",
+    "brand": "XIAOMI",
+    "models": [
+      "M2003J6A1G",
+      "M2003J6A1R",
+      "M2003J6A1I"
+    ],
+    "rating": 8.6,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/78393-350/Xiaomi-Redmi-Note-9S.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Black Shark 3 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "MBU-A0",
+      "MBU-H0"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/78785-350/Xiaomi-Black-Shark-3-Pro.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Black Shark 3",
+    "brand": "XIAOMI",
+    "models": [
+      "KLE-H0",
+      "KLE-A0"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/78783-350/Xiaomi-Black-Shark-3.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Poco X2",
+    "brand": "XIAOMI",
+    "models": [
+      "MZB9011IN",
+      "MZB9012IN",
+      "MZB9013IN",
+      "MZB8741IN",
+      "MZB8742IN",
+      "MZB8743IN",
+      "MZB8744IN",
+      "MZB8745IN",
+      "MZB8746IN",
+      "M1912G7BI"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/78063-350/Xiaomi-Poco-X2.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Mi Note 10",
+    "brand": "XIAOMI",
+    "models": [
+      "M1910F4G"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/77593-350/Xiaomi-Mi-Note-10.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi 8",
+    "brand": "XIAOMI",
+    "models": [
+      "M1908C3IC",
+      "MZB8255IN",
+      "M1908C3II"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82156-350/Xiaomi-Redmi-8.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Black Shark 2 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "DLT-A0",
+      "DLT-H0"
+    ],
+    "rating": 8.15,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/77392-350/Xiaomi-Black-Shark-2-Pro.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Mi Mix Alpha",
+    "brand": "XIAOMI",
+    "models": [
+      "Xiaomi Mi Mix Alpha"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/76902-350/Xiaomi-Mi-Mix-Alpha.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 8 Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "M1906G7G",
+      "M1906G7E"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/77559-350/Xiaomi-Redmi-Note-8-Pro.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 8T",
+    "brand": "XIAOMI",
+    "models": [
+      "M1908C3XG"
+    ],
+    "rating": 7.8,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/77701-350/Xiaomi-Redmi-Note-8T.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Mi 9T Pro",
+    "brand": "XIAOMI",
+    "models": [
+      "M1903F11G"
+    ],
+    "rating": 8.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/76688-350/Xiaomi-Mi-9T-Pro.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Redmi Note 8",
+    "brand": "XIAOMI",
+    "models": [
+      "M1908C3JG",
+      "M1908C3JE",
+      "M1908C3JH",
+      "M1908C3JI",
+      "M1908C3JC"
+    ],
+    "rating": 6.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/82153-350/Xiaomi-Redmi-Note-8.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Mi A3",
+    "brand": "XIAOMI",
+    "models": [
+      "M1906F9SH",
+      "M1906F9SI"
+    ],
+    "rating": 8.6,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/76581-350/Xiaomi-Mi-A3.jpg?w=1"
+  },
+  {
+    "name": "Xiaomi Mi 9T",
+    "brand": "XIAOMI",
+    "models": [
+      "M1903F10G"
+    ],
+    "rating": 7.5,
+    "imageUrl": "https://m-cdn.phonearena.com/images/phones/76518-350/Xiaomi-Mi-9T.jpg?w=1"
+  }
+]
