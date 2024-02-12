@@ -434,6 +434,8 @@ export default class CustomerProductItemsController {
                 }
             }
 
+            const cart = await CartItem.findBy('productItemId', item.id)
+
             items.push({
                 id: item.id,
                 desc: item.description,
@@ -450,9 +452,7 @@ export default class CustomerProductItemsController {
                 usedProductCondition: item.usedProductCondition,
                 flaws: flaws,
                 features: productFeatures,
-                inCart:
-                    (await CartItem.findBy('productItemId', item.id)) !=
-                    undefined,
+                inCart: cart != undefined,
             })
         }
 
