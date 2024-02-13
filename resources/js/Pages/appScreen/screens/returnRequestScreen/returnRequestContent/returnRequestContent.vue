@@ -145,7 +145,7 @@
                                     ></i>
                                     <details dir="ltr">
                                         <summary>التفاصيل</summary>
-                                        {{ device.description }}
+                                        <div>{{  device.description }}</div>
                                     </details>
                                 </li>
                                 <!-- Additional list items here -->
@@ -206,7 +206,7 @@
                                                     <img
                                                         :src="image.imageUrl"
                                                         alt=""
-                                                        class="rounded-md border-primary border-2"
+                                                        class="rounded-md border-primary border-2 w-10 h-10 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-32 xl:h-32"
                                                         @click="
                                                             openImageDialog(
                                                                 image.imageUrl
@@ -224,7 +224,10 @@
                         <div class="flex justify-between mb-5">
                             <ul>
                                 <li class="bg-primary-opacity p-2 rounded-lg">
-                                    <img src="../../../../../Assets/icons/return.svg" class="w-5 ml-2 lg:w-7">
+                                    <img
+                                        src="../../../../../Assets/icons/return.svg"
+                                        class="w-5 ml-2 lg:w-7"
+                                    />
                                     <details dir="ltr">
                                         <summary>سبب الإرجاع</summary>
                                         {{ device.reason }}
@@ -598,6 +601,46 @@ export default {
                 // Set loading to false when the request completes (either success or failure)
             }
         },
+        fLeft(inp: string): string {
+            let content: string = '         '
+            let charCount: number = 0
+
+            const words: string[] = inp.split(/\s+/) // Split input string into an array of words
+
+            for (const word of words) {
+                if (word.includes('</left>')) {
+                    const endIndexOfLastWord: number = word.indexOf('</left>')
+                    const lastWord: string = word.substring(
+                        0,
+                        endIndexOfLastWord
+                    ) // Remove "</left>" from the last word if present
+                    charCount += lastWord.length
+
+                    if (charCount <= 70) {
+                        content += word + ' '
+                    } else {
+                        content += '\n     ' + word + ' '
+                    }
+
+                    break
+                } else {
+                    charCount += word.length
+
+                    if (charCount <= 70) {
+                        content += word + ' '
+                    } else {
+                        content += '\n     ' + word + ' '
+                    }
+                }
+
+                if (charCount >= 70) {
+                    charCount = 0 // Reset charCount to 0 if it reaches 70
+                }
+            }
+
+            return content
+        },
+
         async resolveAcceptedReturnRequest(returnRequestId) {
             this.loadingReturning = true
             try {
