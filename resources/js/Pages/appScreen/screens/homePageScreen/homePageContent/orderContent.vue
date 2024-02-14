@@ -214,7 +214,7 @@
                                                     <img
                                                         :src="image.imageUrl"
                                                         alt=""
-                                                        class="rounded-md border-primary border-2"
+                                                        class="rounded-md border-primary border-2 w-10 h-10 sm:w-10 sm:h-10 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-32 xl:h-32"
                                                         @click="
                                                             openImageDialog(
                                                                 image.imageUrl
