@@ -30,5 +30,6 @@ Route.group(() => {
         '/excellent-items',
         'ProductItems/CustomerProductItemsController.getExcellentItems'
     )
-}).prefix('api/product-items')
-// .middleware('auth:api')
+})
+    .prefix('api/product-items')
+    .middleware('auth:api')

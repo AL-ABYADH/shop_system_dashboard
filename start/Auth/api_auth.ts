@@ -4,5 +4,6 @@ Route.group(() => {
     Route.post('/register', 'Auth/APIAuthController.register')
 
     Route.post('/login', 'Auth/APIAuthController.login')
-}).prefix('api/auth')
-// .middleware('checkPaymentAccount')
+})
+    .prefix('api/auth')
+    .middleware('checkPaymentAccount')

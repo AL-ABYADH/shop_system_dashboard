@@ -16,11 +16,8 @@ export default class CustomerProductItemsController {
     public async getAllItems({ auth, params, response }) {
         try {
             // Get the currently authenticated user
-            // const customer = await auth
-            //     .use('api')
-            //     .authenticate()
-            //     .select('preferredCurrency')
-            const customer = await User.find(3)
+            const customer = await auth.use('api').authenticate()
+            // const customer = await User.find(3)
 
             const productId = params.productId
 
@@ -30,14 +27,9 @@ export default class CustomerProductItemsController {
 
             if (loadedItems.length == 0) return response.ok([])
 
-            const seller = await User.find(loadedItems[0].sellerUserId)
-            if (!seller)
-                return response.notFound({ message: 'Seller not found' })
-
             const items = await this.getItems(
                 loadedItems,
-                customer?.preferredCurrency!,
-                seller?.fullName
+                customer?.preferredCurrency!
             )
 
             response.ok(items)
@@ -49,11 +41,8 @@ export default class CustomerProductItemsController {
     public async getHomeScreenItems({ auth, request, response }) {
         try {
             // Get the currently authenticated user
-            // const customer = await auth
-            //     .use('api')
-            //     .authenticate()
-            //     .select('preferredCurrency')
-            const customer = await User.find(3)
+            const customer = await auth.use('api').authenticate()
+            // const customer = await User.find(3)
 
             const page = request.input('page', 1)
             const perPage = request.input('perPage', 10)
@@ -78,8 +67,7 @@ export default class CustomerProductItemsController {
                 paginatedRecentlyAddedItems.length != 0
                     ? await this.getItems(
                           paginatedRecentlyAddedItems.toJSON().data,
-                          customer?.preferredCurrency!,
-                          seller!.fullName
+                          customer?.preferredCurrency!
                       )
                     : []
 
@@ -99,8 +87,7 @@ export default class CustomerProductItemsController {
                 paginatedHighRatedItems.length != 0
                     ? await this.getItems(
                           paginatedHighRatedItems.toJSON().data,
-                          customer?.preferredCurrency!,
-                          seller!.fullName
+                          customer?.preferredCurrency!
                       )
                     : []
 
@@ -118,8 +105,7 @@ export default class CustomerProductItemsController {
                 paginatedNewItems.length != 0
                     ? await this.getItems(
                           paginatedNewItems.toJSON().data,
-                          customer?.preferredCurrency!,
-                          seller!.fullName
+                          customer?.preferredCurrency!
                       )
                     : []
 
@@ -139,8 +125,7 @@ export default class CustomerProductItemsController {
                 paginatedExcellentItems.length != 0
                     ? await this.getItems(
                           paginatedExcellentItems.toJSON().data,
-                          customer?.preferredCurrency!,
-                          seller!.fullName
+                          customer?.preferredCurrency!
                       )
                     : []
 
@@ -162,11 +147,8 @@ export default class CustomerProductItemsController {
     public async getRecentlyAddedItems({ auth, request, response }) {
         try {
             // Get the currently authenticated user
-            // const customer = await auth
-            //     .use('api')
-            //     .authenticate()
-            //     .select('preferredCurrency')
-            const customer = await User.find(3)
+            const customer = await auth.use('api').authenticate()
+            // const customer = await User.find(3)
 
             const page = request.input('page', 1)
             const perPage = request.input('perPage', 10)
@@ -190,8 +172,7 @@ export default class CustomerProductItemsController {
                 paginatedRecentlyAddedItems.length != 0
                     ? await this.getItems(
                           paginatedRecentlyAddedItems.toJSON().data,
-                          customer?.preferredCurrency!,
-                          seller!.fullName
+                          customer?.preferredCurrency!
                       )
                     : []
 
@@ -208,11 +189,8 @@ export default class CustomerProductItemsController {
     public async getHighRatedItems({ auth, request, response }) {
         try {
             // Get the currently authenticated user
-            // const customer = await auth
-            //     .use('api')
-            //     .authenticate()
-            //     .select('preferredCurrency')
-            const customer = await User.find(3)
+            const customer = await auth.use('api').authenticate()
+            // const customer = await User.find(3)
 
             const page = request.input('page', 1)
             const perPage = request.input('perPage', 10)
@@ -233,8 +211,7 @@ export default class CustomerProductItemsController {
                 paginatedHighRatedItems.length != 0
                     ? await this.getItems(
                           paginatedHighRatedItems.toJSON().data,
-                          customer?.preferredCurrency!,
-                          seller!.fullName
+                          customer?.preferredCurrency!
                       )
                     : []
 
@@ -251,11 +228,8 @@ export default class CustomerProductItemsController {
     public async getNewItems({ auth, request, response }) {
         try {
             // Get the currently authenticated user
-            // const customer = await auth
-            //     .use('api')
-            //     .authenticate()
-            //     .select('preferredCurrency')
-            const customer = await User.find(3)
+            const customer = await auth.use('api').authenticate()
+            // const customer = await User.find(3)
 
             const page = request.input('page', 1)
             const perPage = request.input('perPage', 10)
@@ -274,8 +248,7 @@ export default class CustomerProductItemsController {
                 paginatedNewItems.length != 0
                     ? await this.getItems(
                           paginatedNewItems.toJSON().data,
-                          customer?.preferredCurrency!,
-                          seller!.fullName
+                          customer?.preferredCurrency!
                       )
                     : []
 
@@ -292,11 +265,8 @@ export default class CustomerProductItemsController {
     public async getExcellentItems({ auth, request, response }) {
         try {
             // Get the currently authenticated user
-            // const customer = await auth
-            //     .use('api')
-            //     .authenticate()
-            //     .select('preferredCurrency')
-            const customer = await User.find(3)
+            const customer = await auth.use('api').authenticate()
+            // const customer = await User.find(3)
 
             const page = request.input('page', 1)
             const perPage = request.input('perPage', 10)
@@ -317,8 +287,7 @@ export default class CustomerProductItemsController {
                 paginatedExcellentItems.length != 0
                     ? await this.getItems(
                           paginatedExcellentItems.toJSON().data,
-                          customer?.preferredCurrency!,
-                          seller!.fullName
+                          customer?.preferredCurrency!
                       )
                     : []
 
@@ -334,14 +303,16 @@ export default class CustomerProductItemsController {
 
     private async getItems(
         loadedItems: Array<ProductItem>,
-        preferredCurrency: 'YER' | 'SAR' | 'USD',
-        seller: string
+        preferredCurrency: 'YER' | 'SAR' | 'USD'
     ) {
         const items: Array<any> = []
         const exchangeRates = await ExchangesController.getExchanges()
 
         for (const item of loadedItems) {
             const product = await Product.find(item.productId)
+
+            const seller = await User.find(item.sellerUserId)
+
             const price = (await Price.find(item.priceId))!
             const imagesGroup = await ImagesGroup.findBy(
                 'productItemId',
@@ -442,7 +413,7 @@ export default class CustomerProductItemsController {
                 productId: item.productId,
                 productName: product?.name,
                 model: item.model,
-                seller: seller,
+                seller: seller?.fullName,
                 price: productItemPrice,
                 primImageUrl: primImageUrl,
                 imageUrls: imageUrls,

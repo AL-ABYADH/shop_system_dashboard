@@ -18,8 +18,8 @@ export default class CartsController {
     public async getCartItems({ auth, response }: HttpContextContract) {
         try {
             // Get the currently authenticated user
-            // const customer = await auth.use('api').authenticate()
-            const customer = await User.find(3)
+            const customer = await auth.use('api').authenticate()
+            // const customer = await User.find(3)
 
             const cart = await Cart.query()
                 .where('customerUserId', customer!.id)
@@ -39,14 +39,9 @@ export default class CartsController {
 
             if (loadedItems.length == 0) return response.ok([])
 
-            const seller = await User.find(loadedItems[0].sellerUserId)
-            if (!seller)
-                return response.notFound({ message: 'Seller not found' })
-
             const items = await this.getItems(
                 loadedItems,
-                customer?.preferredCurrency!,
-                seller?.fullName
+                customer?.preferredCurrency!
             )
 
             response.ok(items)
@@ -134,14 +129,16 @@ export default class CartsController {
 
     private async getItems(
         loadedItems: Array<ProductItem>,
-        preferredCurrency: 'YER' | 'SAR' | 'USD',
-        seller: string
+        preferredCurrency: 'YER' | 'SAR' | 'USD'
     ) {
         const items: Array<any> = []
         const exchangeRates = await ExchangesController.getExchanges()
 
         for (const item of loadedItems) {
             const product = await Product.find(item.productId)
+
+            const seller = await User.find(item.sellerUserId)
+
             const price = (await Price.find(item.priceId))!
             const imagesGroup = await ImagesGroup.findBy(
                 'productItemId',
@@ -242,7 +239,7 @@ export default class CartsController {
                 productId: item.productId,
                 productName: product?.name,
                 model: item.model,
-                seller: seller,
+                seller: seller?.fullName,
                 price: productItemPrice,
                 primImageUrl: primImageUrl,
                 imageUrls: imageUrls,

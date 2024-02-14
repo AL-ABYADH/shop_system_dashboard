@@ -1,15 +1,23 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import ExchangesController from 'App/Controllers/ExchangesController'
+import PaymentServiceController from 'App/Controllers/PaymentServiceController'
+import Address from 'App/Models/Address'
+import Cart from 'App/Models/Cart'
+import CartItem from 'App/Models/CartItem'
 import Order from 'App/Models/Order'
 import OrderItem from 'App/Models/OrderItem'
-import Product from 'App/Models/Product'
+import Price from 'App/Models/Price'
 import ProductItem from 'App/Models/ProductItem'
-import ImageItems from 'Database/migrations/1694510470366_image_items'
+import User from 'App/Models/User'
+import Env from '@ioc:Adonis/Core/Env'
 
 export default class CustomerOrdersController {
     public async getOngoingOrders({ auth, response }: HttpContextContract) {
-        const user = auth.user!
+        const customer = await auth.use('api').authenticate()
+        // const customer = await User.find(3)
+
         const ongoingOrders = await Order.query()
-            .where('customerUserId', user.id)
+            .where('customerUserId', customer!.id)
             .whereIn('status', [
                 'awaiting',
                 'confirming',
@@ -26,26 +34,31 @@ export default class CustomerOrdersController {
                             .preload('product', (productQuery) => {
                                 productQuery.select(
                                     // 'id',
-                                    'name'
+                                    'name',
+                                    'rating'
                                     // 'brand',
                                     // 'models',
                                     // 'flaws'
                                 )
                             })
+                            .preload('flaws')
+                            .preload('productFeatures')
                             .preload('price', (x) => {
                                 x.select('price')
                             })
                             .preload('imagesGroup', (ImageItems) => {
                                 ImageItems.preload('imageItems', (i) => {
-                                    i.select('image_url')
+                                    i.select('imageUrl', 'is_primary')
                                 })
                             })
                     })
                     .select(
                         'id',
-                        'order_id',
-                        'order_item_price',
-                        'product_item_id'
+                        'orderId',
+                        'orderItemPrice',
+                        'productItemId'
+                        // 'flaws',
+                        // 'productFeatures'
                     )
             })
             .select(
@@ -74,10 +87,11 @@ export default class CustomerOrdersController {
 
     public async getFinishedOrders({ auth, response }: HttpContextContract) {
         try {
-            const user = await auth.authenticate()
+            const customer = await auth.authenticate()
+            // const customer = await User.find(3)
 
             const orders = await Order.query()
-                .where('customer_user_id', user.id)
+                .where('customer_user_id', customer!.id)
                 .andWhere('status', 'done')
                 .preload('seller')
                 .preload('sellerAddress')
@@ -88,7 +102,7 @@ export default class CustomerOrdersController {
                             .preload('price')
                             .preload('imagesGroup', (ImageItems) => {
                                 ImageItems.preload('imageItems', (i) => {
-                                    i.select('image_url')
+                                    i.select('imageUrl', 'is_primary')
                                 })
                             })
                     })
@@ -100,7 +114,7 @@ export default class CustomerOrdersController {
                 deliveryPrice: order.deliveryPrice,
                 currency: order.currency,
                 totalPrice: order.totalPrice,
-                commission: order.companyCommission + order.adminCommission, // اجمع العمولات
+                commission: order.companyCommission + order.adminCommission,
                 customerAddress: order.customerAddress?.address,
                 devicesNumber: order.orderItems.length,
                 time: order.createdAt.toLocaleString(),
@@ -109,7 +123,7 @@ export default class CustomerOrdersController {
                     id: item.id,
                     deviceName: item.productItem.product.name,
                     price: item.productItem.price.price,
-                    flaws: item.productItem?.flaws,
+                    flaws: item.productItem.flaws,
                     description: item.productItem?.description,
                     usedProductCondition: item.productItem.usedProductCondition,
                     isUsed: item.productItem?.usedProduct ? 1 : 0,
@@ -131,35 +145,215 @@ export default class CustomerOrdersController {
         }
     }
 
-    public async createOrder({ auth, request, response }: HttpContextContract) {
+    public async createOrder({ auth, response }: HttpContextContract) {
         try {
-            const user = auth.user!
-            const { product_item_id } = request.only(['product_item_id'])
-            const product_item = await ProductItem.query()
-                .where('id', product_item_id)
-                .andWhere('status', 'available')
-                .first()
+            // Get the currently authenticated user
+            const customer = await auth.use('api').authenticate()
+            // const customer = await User.find(3)
+            if (!customer)
+                return response.notFound({ message: 'User not found' })
 
-            if (!product_item) {
+            const cart = await Cart.findBy('customerUserId', customer!.id)
+            if (!cart) return response.notFound({ message: 'Cart not found' })
+
+            const cartItems = await CartItem.query().where('cartId', cart.id)
+            if (cartItems.length == 0)
                 return response.badRequest({
-                    message: 'the order not available',
+                    message: 'No items found in cart',
                 })
+
+            const sellerProductItems: { [key: number]: ProductItem[] } = {}
+
+            for (const cartItem of cartItems) {
+                const productItem = await ProductItem.find(
+                    cartItem.productItemId
+                )
+                if (!productItem)
+                    return response.notFound({
+                        message: 'Product item not found',
+                    })
+
+                if (productItem.status != 'available')
+                    return response.badRequest({
+                        message: 'Product item is not available for sale',
+                    })
+
+                if (productItem.sellerUserId in sellerProductItems)
+                    sellerProductItems[productItem.sellerUserId].push(
+                        productItem
+                    )
+                else
+                    sellerProductItems[productItem.sellerUserId] = [productItem]
             }
 
-            // const sellerUserId = ProductItem.query()
-            // .where('id', product_item_id)
-            // .select('seller_user_id')
-            // .first()
+            const exchangeRates = await ExchangesController.getExchanges()
 
-            // const order = new Order()
-            // order.customerUserId = user.id
-            // order.status = 'awaiting'
-            // await order.save()
+            for (let sellerUserId in sellerProductItems) {
+                const customerAddressId =
+                    await this.getCorrespondingCustomerAddressId(customer!.id)
+                const sellerAddressId =
+                    await this.getCorrespondingSellerAddressId(
+                        Number(sellerUserId)
+                    )
 
-            // const orderItem = new OrderItem()
-            // orderItem.productItemId = product_item_id
+                let deliveryPrice = 1000 // In YER. Will be converted according to customer's preferred currency
 
-            return response.ok(product_item)
+                // Check if the preferred currency isn't equal to YER (the currency of the delivery pride) to convert it accordingly
+                if (customer!.preferredCurrency != 'YER') {
+                    deliveryPrice /= exchangeRates[customer!.preferredCurrency!]
+                }
+
+                let itemsPrice = 0
+
+                const orderItems: Array<any> = []
+
+                const order: {
+                    status:
+                        | 'awaiting'
+                        | 'confirming'
+                        | 'confirmed'
+                        | 'testing'
+                        | 'done'
+                        | 'canceled'
+                        | 'returnRequest'
+                    [key: string]: any
+                } = {
+                    customerUserId: customer!.id,
+                    sellerUserId: Number(sellerUserId),
+                    adminUserId: null,
+                    paymentMethodId: 1,
+                    sellerAddressId: sellerAddressId!,
+                    customerAddressId: customerAddressId!,
+                    deliveryPrice: deliveryPrice,
+                    totalPrice: 0,
+                    itemsPrice: 0,
+                    companyCommission: 0,
+                    adminCommission: 0,
+                    currency: customer!.preferredCurrency!,
+                    status: 'awaiting',
+                }
+
+                for (let productItem of sellerProductItems[sellerUserId]) {
+                    const price = (await Price.find(productItem.priceId))!
+                    let orderItemPrice: number = price.price
+
+                    // Check if the product item's price currency is not equal to the customer's preferred currency to convert it accordingly
+                    if (price.currency != customer!.preferredCurrency) {
+                        if (
+                            price.currency == 'USD' &&
+                            customer!.preferredCurrency == 'YER'
+                        ) {
+                            // Convert from USD to YER
+                            orderItemPrice =
+                                price.price * Number(exchangeRates['USD'])
+                            itemsPrice += orderItemPrice
+                        } else if (
+                            price.currency == 'USD' &&
+                            customer!.preferredCurrency == 'SAR'
+                        ) {
+                            // Convert from USD to SAR (First convert USD to YER then YER to SAR)
+                            const usdToYer =
+                                price.price * Number(exchangeRates['USD'])
+                            orderItemPrice =
+                                usdToYer / Number(exchangeRates['SAR'])
+                            itemsPrice += orderItemPrice
+                        } else if (
+                            price.currency == 'SAR' &&
+                            customer!.preferredCurrency == 'YER'
+                        ) {
+                            // Convert from SAR to YER
+                            orderItemPrice =
+                                price.price * Number(exchangeRates['SAR'])
+                            itemsPrice += orderItemPrice
+                        } else if (
+                            price.currency == 'SAR' &&
+                            customer!.preferredCurrency == 'USD'
+                        ) {
+                            // Convert from SAR to USD (First convert SAR to YER then YER to USD)
+                            const sarToYer =
+                                price.price * Number(exchangeRates['SAR'])
+                            orderItemPrice =
+                                sarToYer / Number(exchangeRates['USD'])
+                            itemsPrice += orderItemPrice
+                        } else if (
+                            price.currency == 'YER' &&
+                            customer!.preferredCurrency == 'SAR'
+                        ) {
+                            // Convert from YER to SAR
+                            orderItemPrice =
+                                price.price / Number(exchangeRates['SAR'])
+                            itemsPrice += orderItemPrice
+                        } else if (
+                            price.currency == 'YER' &&
+                            customer!.preferredCurrency == 'USD'
+                        ) {
+                            // Convert from YER to USD
+                            orderItemPrice =
+                                price.price / Number(exchangeRates['USD'])
+                            itemsPrice += orderItemPrice
+                        }
+                    } else itemsPrice += orderItemPrice
+
+                    const companyCommission = itemsPrice * (5 / 100) // 5% of the total items price goes for the company
+                    const adminCommission = itemsPrice * (5 / 100) // 5% of the total items price goes for the admin
+
+                    // Check the customer's payment balance to see if it has enough money for order
+                    const customerBalance =
+                        await PaymentServiceController.checkBalance(
+                            customer.phoneNumber,
+                            customer.preferredCurrency!
+                        )
+                    // console.log(customerBalance)
+                    if (
+                        customerBalance <
+                        deliveryPrice +
+                            itemsPrice +
+                            companyCommission +
+                            adminCommission
+                    ) {
+                        return response.badRequest({
+                            message:
+                                'لا يوجد لديك رصيد كاف للعملة المحددة في حسابك',
+                        })
+                    }
+                    await PaymentServiceController.pay({
+                        from: customer.phoneNumber,
+                        to: Env.get('COMPANY_PHONE_NUMBER'),
+                        amount:
+                            deliveryPrice +
+                            itemsPrice +
+                            companyCommission +
+                            adminCommission,
+                        currency: customer.preferredCurrency!,
+                    })
+
+                    const createdOrder = await Order.create(order)
+
+                    orderItems.push({
+                        orderId: createdOrder.id,
+                        productItemId: productItem.id,
+                        orderItemPrice: orderItemPrice,
+                    })
+
+                    productItem.status = 'reserved'
+                    productItem.save()
+                    await OrderItem.createMany(orderItems)
+
+                    for (const cartItem of cartItems) cartItem.softDelete()
+
+                    createdOrder.totalPrice =
+                        deliveryPrice +
+                        itemsPrice +
+                        companyCommission +
+                        adminCommission
+                    createdOrder.itemsPrice = itemsPrice
+                    createdOrder.companyCommission = companyCommission
+                    createdOrder.adminCommission = adminCommission
+                    createdOrder.save()
+                }
+            }
+
+            return response.ok({ message: 'success' })
         } catch (error) {
             return response.internalServerError({
                 message: 'Failed to create order.',
@@ -196,5 +390,23 @@ export default class CustomerOrdersController {
         } else {
             response.notFound({ message: 'Order not found ' })
         }
+    }
+
+    private getCorrespondingSellerAddressId = async (
+        sellerId: number
+    ): Promise<number | null> => {
+        const sellerAddress = await Address.query()
+            .where('userId', sellerId)
+            .first()
+        return sellerAddress ? sellerAddress.id : null
+    }
+
+    private getCorrespondingCustomerAddressId = async (
+        customerId: number
+    ): Promise<number | null> => {
+        const customerAddress = await Address.query()
+            .where('userId', customerId)
+            .first()
+        return customerAddress ? customerAddress.id : null
     }
 }

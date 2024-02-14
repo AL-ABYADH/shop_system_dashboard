@@ -44,6 +44,8 @@ export default class OrderSeeder extends BaseSeeder {
         // Counter for product items
         let productItemCount = 0
 
+        const exchangeRates = await ExchangesController.getExchanges()
+
         for (const customer of customers) {
             for (let i = 0; i < 5; i++) {
                 const { status, adminUserId } = this.getRandomStatusAndAdmin()
@@ -55,7 +57,6 @@ export default class OrderSeeder extends BaseSeeder {
 
                 let deliveryPrice = 1000 // In YER. Will be converted according to customer's preferred currency
 
-                const exchangeRates = await ExchangesController.getExchanges()
                 // Check if the preferred currency isn't equal to YER (the currency of the delivery pride) to convert it accordingly
                 if (customer.preferredCurrency != 'YER') {
                     deliveryPrice /= exchangeRates[customer.preferredCurrency!]
